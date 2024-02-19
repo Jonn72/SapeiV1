@@ -1,0 +1,131 @@
+﻿<div class="page-title">
+     <div class="title_left">
+          <h3>Registro de Estudiantes</h3>
+     </div>
+</div>
+<div class="clearfix"></div>
+<div class="x_panel">
+     <div class="x_title">
+          <form class="class=" form-horizontal form-label-left input_mask" id="form_modificarDomicilio" action="" method="post" accept-charset="utf-8">
+               <div class="row">
+                    <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                         <label for="txtNoControl">No. de Control:<span class="required">*</span></label>
+                         <input type="text" class="form-control" name="txtNoControl" id="txtNoControl" placeholder="No. de control" oninvalid="Valida(this);" onblur="Valida(this);" required="required">
+                    </div>
+                    <div class="col-md-8 col-sm-8 col-xs-12 form-group">
+                         <label for="txtNombreCompleto">
+                              Nombre Completo
+                         </label>
+                         <input type="text" class="form-control" id="txtNombreCompleto" placeholder="Nombre del Estudiante" readonly />
+                    </div>
+
+                    @*<div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                              <label for="txtCalle">
+                                   Domicilio Actual
+                              </label>
+                              <input type="text" class="form-control" id="txtCalle" placeholder="Calle" required />
+                              <div class="help-block with-errors"></div>
+                         </div>
+                         <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                              <label for="txtNoDomicilio">
+                                   Número Domicilio
+                              </label>
+                              <input type="text" class="form-control" id="txtNoDomicilio" placeholder="Número" required />
+                              <div class="help-block with-errors"></div>
+                         </div>*@
+                    <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                         <label for="txtCodPostal">
+                              Código Postal
+                         </label>
+                         <input type="number" class="form-control" id="txtCodPostal" maxlength="5" placeholder="Código Postal" onblur="autocompleta(this, 'Estudiante');" required="required" />
+                         <div class="help-block with-errors"></div>
+                    </div>
+               </div>
+               <div class="row">
+                    <div class="col-md-4 col-sm-4 col-xs-8 form-group">
+                         <label for="cboColonia">
+                              Colonia
+                         </label>
+                         <select class="form-control" id="cboColonia"></select>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                         <label for="txtCiudad">
+                              Ciudad o Localidad
+                         </label>
+                         <input type="text" class="form-control" id="txtCiudad" disabled placeholder="Ciudad o Localidad" />
+                         <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                         <label for="txtEstado">
+                              Entidad Federativa
+                         </label>
+                         <input type="text" class="form-control" id="txtEstado" disabled placeholder="Entidad Federativa" />
+                         <div class="help-block with-errors"></div>
+                    </div>
+               </div>
+
+               <div class="form-group">
+                    <button id="btnGuardar" type="submit" class="btn btn-success">Guardar</button>
+               </div>
+          </form>
+     </div>
+</div>
+
+<script src="~/Scripts/ManejoDatos/Estudiantes/Validaciones.js"></script>
+<script src="~/Scripts/ManejoDatos/Domicilio.js"></script>
+<script>
+     function Valida(textbox) {
+          ValidaExisteNoControl();
+          return true;
+     }
+     $(".alert").hide();
+     $("#form_modificarDomicilio").submit(function (event) {
+
+          var noControl = $("#txtNoControl").val();
+          var idCP = $("#cboColonia").val();
+          $(".alert").show();
+          
+               $.ajax({
+                    asyn: false,
+                    url: '../../Estudiante/ModificarDomicilioEstudiante',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: { psNoControl: noControl, psCalle: ' ', psNumero: ' ', piIdCP: idCP },
+               })
+			.done(function (data) {
+
+			     if (typeof (data.Success) === "undefined" || !data.Success ) {
+
+			          $(".alert").addClass('alert-danger');
+			          $(".alert").html("<strong><span class='lnr lnr-cross-cirlce'></span>&nbsp; Error al Guardar</strong>");
+			     }
+			     else {
+			          $(".alert").addClass('alert-info');
+			          $(".alert").html("<strong><span class='lnr lnr-cross-cirlce'></span>&nbsp; Registro Correcto</strong>");
+			          $('#form_modificarDomicilio').find("input, textarea").val("");
+			          $("#cboColonia").empty();
+			     }
+			})
+			.fail(function (data) {
+			     $(".alert").addClass('alert-danger');
+			     $(".alert").html("<strong><span class='lnr lnr-cross-cirlce'></span>&nbsp; No hay conexion con el servidor...</strong>");
+			})
+			.always(function () {
+			     setTimeout(function () {
+			          if ($(".alert").hasClass('alert-danger')) {
+			               $(".alert").removeClass('alert-danger');
+			          } else if ($(".alert").hasClass('alert-warning')) {
+			               $(".alert").removeClass('alert-warning');
+			          } else if ($(".alert").hasClass('alert-info')) {
+			               $(".alert").removeClass('alert-info');
+			          } else {
+			               $(".alert").removeClass('alert-success');
+			          }
+			          $(".alert strong").remove();
+			          $(".alert").hide();
+			     }, 3000);
+			});          
+          event.preventDefault();
+     })
+
+</script> 

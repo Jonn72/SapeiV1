@@ -1,0 +1,111 @@
+﻿<div class="clearfix"></div>
+<form class="form-horizontal form-label-left" action="#" id="frmHistorialPagos" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+    <input type="hidden" id="hidPeriodo" value="@ViewData["txtPeriodo"]" />
+    <div class="page-title">
+        <div class="title_left">
+            <h3>Historial de pagos</h3>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div>
+                <div class="x_panel">
+                    <div class="x_content">
+                        <div class="col-md-8 center-margin center-block">
+                            @{
+                                string lsMonto = "";
+                                string lsVigencia = "";
+                                bool lbBandera = false;
+                                <div id="divCombo">
+                                    <div class="x_content">
+                                        <label for="cboServicios">
+                                            Servicios
+                                        </label>
+                                        @if (ViewData["Servicios"] != null)
+                                        {
+                                            <select class="form-control" id="cboServicios">
+                                                @foreach (System.Data.DataRow dr in (ViewData["Servicios"] as System.Data.DataTable).Rows)
+                                                {
+                                                    if (!lbBandera)
+                                                    {
+                                                        lsMonto = dr.ItemArray[2].ToString().Trim();
+                                                        lsVigencia = dr.ItemArray[3].ToString().Trim();
+                                                        lbBandera = true;
+                                                    }
+                                                    <option value="@dr.ItemArray[0].ToString().Trim()-@dr.ItemArray[2].ToString().Trim()-@dr.ItemArray[3].ToString().Trim()">@dr.ItemArray[1].ToString().Trim() ($@dr.ItemArray[2].ToString().Trim())</option>
+                                                }
+                                            </select>
+                                        }
+                                        <label>
+                                            Monto $
+                                        </label>
+                                        <input type="text" class="form-control" id="txtMonto" value="@lsMonto" readonly />
+
+                                        <label>
+                                            Esta ficha estará vigente por:
+                                        </label>
+                                        <input type="text" class="form-control" id="txtVigencia" value="@lsVigencia Días" readonly />
+
+                                        <br />
+                                        <div class="form-group ">
+                                            <a class="btn btn-info" href="#divModalPoliticas" data-toggle="modal">Revisar Politicas </a>
+                                            <input type="checkbox" value="1" id="cbxPoliticas">
+                                            Al dar clíc aceptas las politicas de cancelación , devolución y pagos
+                                            <button id="btnGuardar" type="submit" oncl class="btn btn-info" disabled>Aceptar y Generar Ficha de Pago</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @Html.Partial("../Generales/ModalVisorPDF")
+    @Html.Partial("../Generales/TablaGeneral")
+</form>
+
+<div class="modal fullscreen-modal fade bs-example-modal-lg1" id="divModalPoliticas" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Politicas de cancelación, devolución y pagos</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <p>a) Solo podrás pagar en las fechas límite establecidas.</p>
+                        <p>b) El Campus Tláhuac se reserva el derecho de cancelar cursos cuando no tenga el mínimo de alumnos inscritos requeridos por curso.</p>
+                        <p>c) En el caso de que el Campus Tláhuac cancele el curso el monto pagado por el estudiante lo podrá utilizar para otro servicio que requiera, siempre y cuando sea en el mismo año del pago; previa solicitud hecha ante las áreas correspondientes y autorización de Dirección.</p>
+                        <p>d) No se reembolsa dinero alguno si el estudiante no asiste o completa la totalidad de las horas del curso.</p>
+                        <p>e) En caso de capturar mal el pago y requerir un cambio, se te cobrará un cargo para su modificación. No hay reembolsos.</p>
+                        <p>
+                            f) A los estudiantes que hayan realizado el pago total o parcial de la reinscripción o inscripción y cancelen si ingreso al semestre en curso por cualquier motivo, no se les reembolsará monto alguno
+                            pagado.
+                        </p>
+                        <p>
+                            g) En caso de presentarse alguna situación especial que no se especifique en este documento, el Campus Tláhuac revisará de forma personal en conjunto con el cliente con el objetivo de brindar un excelente servicio
+
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+</div>
+
+<script src="~/Scripts/ManejoDatos/Estudiantes/HistorialServicios.js"></script>
+
+<script>
+    $('#cbxPoliticas').change(function () {
+        if ($(this).is(':checked')) {
+            $("#btnGuardar").attr("disabled", false);
+            $(this).remove();
+        }
+    });
+</script>

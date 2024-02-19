@@ -1,0 +1,235 @@
+﻿<div class="page-title">
+    <div class="title_left">
+        <h3>Información Escolar <small>@ViewData["PeriodoDesc"]</small></h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="x_panel">
+    <div class="x_title">
+        <h2>Datos Generales</h2>
+        <div class="clearfix"></div>
+    </div>
+    <div class="form-group col-md-12 center-margin">
+        @{
+            System.Data.DataRow loFila = null;
+            string lsNombre = "";
+            string lsCarrera = "";
+            string lsControl = "";
+            string lsEspecialidad = "";
+            string lsSemestre = "";
+            string lsPeriodoIngreso = "";
+            string lsPromedio = "";
+            string lsCreditosAprobados = "";
+            string lsCreditosCursados = "";
+            string lsPorcentaje = "";
+            string lsCargaFIrmada = "";
+            string lsMateriasSeleccionadas = "";
+            string lsFechaFirmaCarga = "";
+            string lsCargaFIrmadaDep = "";
+
+
+            if (ViewData["Datos"] != null)
+            {
+                loFila = (ViewData["Datos"] as System.Data.DataTable).Rows[0];
+                lsNombre = loFila.ItemArray[0].ToString().Trim();
+                lsControl = loFila.ItemArray[1].ToString().Trim();
+                lsCarrera = loFila.ItemArray[2].ToString().Trim();
+                lsEspecialidad = loFila.ItemArray[3].ToString().Trim();
+                lsSemestre = loFila.ItemArray[4].ToString().Trim();
+                lsPeriodoIngreso = loFila.ItemArray[5].ToString().Trim();
+                lsPromedio = loFila.ItemArray[6].ToString().Trim();
+                lsCreditosAprobados = loFila.ItemArray[7].ToString().Trim();
+                lsCreditosCursados = loFila.ItemArray[8].ToString().Trim();
+                lsPorcentaje = loFila.ItemArray[9].ToString().Trim();
+                lsMateriasSeleccionadas = loFila.ItemArray[10].ToString().Trim();
+                lsFechaFirmaCarga = loFila.ItemArray[11].ToString().Trim();
+                lsCargaFIrmada = loFila.ItemArray[12].ToString().Trim();
+                lsCargaFIrmadaDep = loFila.ItemArray[13].ToString().Trim();
+
+            }
+        }
+        <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-12 form-group bg-tecnm">
+                <label>
+                    Periodo de Ingreso
+                </label>
+                <input type="text" class="form-control bg-white" value="@lsPeriodoIngreso" placeholder="Apellido Paterno" readonly />
+
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12 form-group bg-tecnm">
+                <label for="tags">
+                    Nombre (s)
+                </label>
+                <input type="text" class="form-control bg-white" value="@lsNombre" placeholder="Nombre (s)" readonly />
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-12 form-group bg-tecnm">
+                <label>
+                    No. Control
+                </label>
+                <input type="text" class="form-control bg-white" value="@lsControl" placeholder="Control" readonly />
+            </div>
+            <div class="col-md-1 col-sm-4 col-xs-12 form-group bg-tecnm">
+                <label>
+                    Semestre
+                </label>
+                <input type="text" class="form-control bg-white" value="@lsSemestre" placeholder="Semestre" readonly />
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5 col-sm-12 col-xs-12 form-group bg-tecnm">
+                <label>
+                    Carrera
+                </label>
+                <input type="text" class="form-control bg-white" value="@lsCarrera" placeholder="Carrera" readonly />
+
+            </div>
+            <div class="col-md-7 col-sm-12 col-xs-12 form-group bg-tecnm">
+                <label for="tags">
+                    Especialidad
+                </label>
+                <input type="text" class="form-control bg-white" value="@lsEspecialidad" placeholder="Especialidad" readonly />
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-sm-3 col-xs-6 form-group bg-tecnm">
+                <label>
+                    Pormedio Acumulado
+                </label>
+                <input type="text" class="form-control bg-white" value="@lsPromedio" placeholder="Carrera" readonly />
+
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-6 form-group bg-tecnm">
+                <label>
+                    Creditos Cursados
+                </label>
+                <input type="text" class="form-control bg-white" value="@lsCreditosCursados" placeholder="Carrera" readonly />
+
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-6 form-group bg-tecnm">
+                <label for="tags">
+                    Creditos Aprobados
+                </label>
+                <input type="text" class="form-control bg-white" value="@lsCreditosAprobados" placeholder="Especialidad" readonly />
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-6 form-group bg-tecnm">
+                <label>
+                    % de Avance
+                </label>
+                <input type="text" class="form-control bg-white" value="@lsPorcentaje" placeholder="Semestre" readonly />
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="x_panel">
+    <div class="x_title">
+        <h2>Avance</h2>
+        <div class="clearfix"></div>
+    </div>
+    <div class="form-group col-md-12 center-margin">
+
+        <div class="row">
+            <div class="col-sm-3 text-center">
+                <div class="card text-white bg-info mb-3">
+                    <div class="card-header">Avance Reticular</div>
+                    <div class="card-body">
+                        <p class="card-text">Puedes ver tu avance reticular aquí:</p>
+                        @*<a class="btn btn-success" id="btnMostrarReticula" data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#BodyPrincipal" href="/Reticula/Consulta">
+                            Mostrar
+                        </a>*@
+                        <a class="btn btn-success" id="btnMostrarHorario" data-ajax="true" data-ajax-method="GET" data-ajax- data-ajax-mode="replace"
+                           data-ajax-update="#divModalVistaParcial" data-ajax-complete="AbreModalGeneral" href="/Reticula/Consulta">
+                            Mostrar
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 text-center">
+                <div class="card text-white bg-success mb-3">
+                    <div class="card-header">Horario de clases</div>
+                    <div class="card-body">
+                        <p class="card-text">Si tienes materias seleccionadas en este periodo, puedes ver tu horario aquí:</p>
+
+                        <a class="btn btn-success" id="btnMostrarHorario" data-ajax="true" data-ajax-method="POST" data-ajax- data-ajax-mode="replace"
+                           data-ajax-update="#divModalVistaParcial" data-ajax-complete="AbreModalGeneral" href="/Estudiante/HorarioActividades">
+                            Mostrar
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-sm-3 text-center">
+                <div class="card text-white bg-green mb-3">
+                    <div class="card-header">Carga Académica</div>
+                    <div class="card-body">
+                        @if (lsMateriasSeleccionadas.Trim() == "1")
+                        {
+                            if (lsFechaFirmaCarga.Trim() == "1")
+                            {
+                                if (lsCargaFIrmada.Trim() == "1")
+                                {
+                                    if (lsCargaFIrmadaDep.Trim() == "1")
+                                    {
+                                        <p class="card-text">Tu carga acádemica esta firmada, debes descargar y conservar.</p>
+                                    }
+                                    else
+                                    {
+                                        <p class="card-text">Ya has firmado tu carga, debes esperar a que sea firmada por el Departamento de División de Estudios Profesionales.</p>
+                                    }
+                                }
+                                else
+                                {
+                                    <p class="card-text">Revisa tu carga Académica, si es correcta deberas firmar.</p>
+                                }
+                                if (lsCargaFIrmada.Trim() == "0")
+                                {
+                                    <button type="submit" id="btnFirmarCargaAcademica" class="btn btn-info div-hide">Firmar y enviar</button>
+                                }
+                            }
+                            else
+                            {
+                                <p class="card-text">@lsFechaFirmaCarga</p>
+                            }
+                            <button type="submit" id="btnCargaAcademica" class="btn btn-info">Vista Previa</button>
+
+                        }
+                        else
+                        {
+                            <p class="card-text">No hay materias en el periodo @ViewData["PeriodoDesc"] </p>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3 text-center">
+                <div class="card text-white bg-orange mb-3">
+                    <div class="card-header">Boleta de Calificaciones</div>
+                    <div class="card-body">
+                        <p class="card-text">Puedes consultar tus boletas de calificaciones aquí:</p>
+
+                        <a class="btn btn-success" id="btnMostrarHorario" data-ajax="true" data-ajax-method="POST" data-ajax- data-ajax-mode="replace"
+                           data-ajax-update="#BodyPrincipal" data-ajax-complete="AbreModalGeneral" href="/Estudiante/BoletaCalificaciones">
+                            Mostrar
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+
+@Html.Partial("../Generales/ModalVistasParciales")
+@Html.Partial("../Generales/ModalVisorPDF")
+@Html.Partial("../Generales/FirmaElectronica")
+
+<script src="~/Scripts/ManejoDatos/Estudiantes/InformacionEscolar.js"></script>
+
+

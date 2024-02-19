@@ -1,0 +1,27 @@
+﻿@* MODAL validar reporte bimestral1*@
+<div id="ModalReporteBimestral4" class=" modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">¿Esta seguro de validar el reporte final??</h4>
+            </div>
+            <form id="frmReporteBimestral4" data-parsley-validate class="form-horizontal form-label-left">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <label>Número de Control</label>
+                            <input type="text" class=" form-control" id="Controltxt" disabled />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" id="btnGuardar" class="btn btn-success">Guardar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="margin-top:1px">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@Html.Partial("../Generales/TablaGeneral")
+<script src="~/Scripts/ManejoDatos/Vinculacion/ReporteFinalSS.js"></script>

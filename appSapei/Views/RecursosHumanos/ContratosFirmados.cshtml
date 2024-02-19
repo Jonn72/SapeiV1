@@ -1,0 +1,33 @@
+﻿<input type="hidden" id="fecha_creacion" value="" />
+<input type="hidden" id="RFC" value="" />
+<input type="hidden" id="ClaveArea" value="" />
+<input type="hidden" id="tipocontrato" value="" />
+@Html.Partial("../Generales/ModalVisorPDF")
+@Html.Partial("../Generales/FirmaElectronica")
+<div class="page-title">
+    <div class="title_left">
+        <h3>Contratos <small>Firmados</small></h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+
+@Html.Partial("../Generales/TablaGeneral")
+
+<script type="text/javascript">
+
+    function displaySection() {
+        $('#divModalVisorPDF').modal('show');
+        $("#divCargando").hide();
+        $("#divPDF").show();
+        $('#divModalFirmaElectronica').modal('hide');
+
+    }
+
+
+    function vistaContrato(FechaCreacion, RFC, ClaveArea, TipoContrato) {
+
+        $("#divCargando").show();
+        $("#divPDF").hide();
+        $('#divPDF').load('../../../../Reportes/ContratoGeneralFE?psFechaCreacion=' + FechaCreacion + '&psClaveArea=' + ClaveArea + '&psRFC=' + RFC + '&psTipoContrato=' + TipoContrato, displaySection);
+    }
+</script>

@@ -1,0 +1,177 @@
+﻿<input type="hidden" id="hidNombreReporte"/>
+<input type="hidden" id="hidTipoDocumento"/>
+
+<div class="page-title">
+    <div class="col-md-8 col-sm-8 col-xs-12 form-group pull-left">
+        <h3>Documentos Oficiales</h3>
+    </div>
+</div>
+<div class="x_panel">
+    <div class="x_title">
+        <h3>Constancias</h3>
+    </div>
+    <div class="col-md-10 center-margin center-block">
+        <div class="x_content">
+
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                    <label>
+                        Número de Oficio
+                    </label>
+                    <input type="text" class="form-control" id="txtNoOficio" required />
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                    <label for="tags">
+                        Fecha de Emisión
+                    </label>
+                    <div class='input-group date' id='dtpFecha'>
+                        <input type='text' id="txtFechaEmision" class="form-control" required />
+                        <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+                    </div>
+
+                </div>
+            </div>
+
+            <label for="cboDiplomas">
+                Seleccione Constancia
+            </label>
+            @if (ViewData["cboDocOficiales"] != null)
+            {
+                <select class="form-control" id="cboDocOficiales">
+                    <option value="0">-- Seleccione --</option>
+                    @foreach (System.Data.DataRow dr in (ViewData["cboDocOficiales"] as System.Data.DataTable).Rows)
+                    {
+                        <option value="@dr.ItemArray[0].ToString().Trim()">@dr.ItemArray[1].ToString().Trim()</option>
+                    }
+                </select>
+            }
+            <div id="divCombo" class="div-hide">
+                <label for="cboPeriodo">
+                    Seleccione el Periodo
+                </label>
+                @if (ViewData["cboPeriodo"] != null)
+                {
+                    <select class="form-control" id="cboPeriodo">
+                        @foreach (System.Data.DataRow dr in (ViewData["cboPeriodo"] as System.Data.DataTable).Rows)
+                        {
+                            <option value="@dr.ItemArray[0].ToString().Trim()">@dr.ItemArray[1].ToString().Trim()</option>
+                        }
+                    </select>
+                }
+            </div>
+            <div id="divSemestre" class="div-hide">
+                <label for="cboSemestre">
+                    Seleccione el Periodo
+                </label>
+                <select class="form-control" id="cboSemestre">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+
+
+
+            <div id="divSeguro" class="div-hide">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                        <label>
+                            Nombre del Seguro
+                        </label>
+                        <input type="text" class="form-control" id="txtNomSeguro"  />
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                        <label>
+                            Número de Seguro
+                        </label>
+                        <input type="text" class="form-control" id="txtNoSeguro"  />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                        <label for="tags">
+                            Fecha de Inicio de Seguro
+                        </label>
+                        <div class='input-group date' id='dtpFechaInicioSeguro'>
+                            <input type='text' id="txtFechaInicioSeguro" class="form-control"  />
+                            <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+                        </div>
+
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                        <label for="tags">
+                            Fecha de Fin de Seguro
+                        </label>
+                        <div class='input-group date' id='dtpFechaFinSeguro'>
+                            <input type='text' id="txtFechaFinSeguro" class="form-control"  />
+                            <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div id="divImss" class="div-hide">
+                <label for="txtImss">
+                    Clinica I.M.M.S
+                </label>
+                <input type="text" class="form-control" id="txtImss" placeholder="Ingrese el nombre de la clinica I.M.S.S" />
+            </div>
+
+            <div id="divTitulo" class="div-hide">
+                    <label for="tags">
+                        Fecha de Titulación
+                    </label>
+                    <div class='input-group date' id='dtpFechaTitulo'>
+                        <input type='text' id="txtFechaTitulo" class="form-control" />
+                        <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+                    </div>
+            </div>
+
+            <div id="divTraslado" class="div-hide">
+                <label for="txtNombreDirector">
+                    Nombre del director
+                </label>
+                <input type="text" class="form-control" id="txtNombreDirector" placeholder="Ingrese el nombre del director del Instituto Tecnológico a trasladar" />
+
+                <label for="txtNombreInstituto">
+                    Nombre del Instituto Tecnológico
+                </label>
+                <input type="text" class="form-control" id="txtNombreInstituto" placeholder="Ingrese el nombre del Instituto Tecnológico a trasladar (Ejemolo: Tláhuac)" />
+            </div>
+
+            <div id="divControl" class="div-hide">
+                <label for="txtNoControl">
+                    No. de Control
+                </label>
+                <input type="text" class="form-control" id="txtNoControl" placeholder="Ingrese el no. de control" oninvalid="ValidaCampo(this, 'NOCONTROL');" onblur="ValidaCampo(this, 'NOCONTROL');" required />
+            </div>
+        </div>
+        <div id="divBoton" class="col-md-4">
+            <button id="btnGenerar" type="submit" class="btn btn-block btn-info">Generar</button>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 center-margin center-block">
+        <div class="x_panel">
+            <div class="x_title">
+                <h3>Vista Previa</h3>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                @Html.Partial("../Generales/VisorPDF")
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/ManejoDatos/DocumentosOficiales/DocumentosOficiales.js"></script>

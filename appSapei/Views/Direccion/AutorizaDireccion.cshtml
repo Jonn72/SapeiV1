@@ -1,0 +1,123 @@
+﻿<input type="hidden" id="hidID" value="" />
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>Recontratación <small>de personal</small></h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+
+@Html.Partial("../Generales/TablaGeneral")
+
+@Html.Partial("../Generales/ModalVisorPDF")
+@Html.Partial("../Generales/FirmaElectronica")
+@Html.Partial("../Generales/ModalAlertaConfirmacion")
+<script type="text/javascript">
+
+
+    orden(3, "desc");
+    ocultar_buscar();
+    function displaySection(ID, status) {
+        $('#divModalVisorPDF').modal('show');
+        $("#divCargando").hide();
+        $("#divPDF").show();
+        $('#divModalFirmaElectronica').modal('hide');
+        if (status === "A") {
+            $("#btnFirmarHorarioPersonal" + ID + "").show();
+            $("#btnCancelar" + ID + "").show();
+        }
+
+    }
+
+    function displayAlert(ID) {
+        var html = "¿Esta segura(o) que desea cancelar esta solicitud?"
+        $('#replace').html(html);
+        $('#ModalAlertaConfirmacion').modal('show');
+        $('#hidModalAlertaConfirmacion').val(ID);
+    }
+
+    function vistaHorario(ID, status) {
+
+        $("#divCargando").show();
+        $("#divPDF").hide();
+        $('#divPDF').load('../../../../Reportes/HorarioRecontratacionPDF?psID=' + ID, displaySection(ID, status));
+    }
+
+    function vistaHorarioFacilitador(ID, status) {
+
+        $("#divCargando").show();
+        $("#divPDF").hide();
+        $('#divPDF').load('../../../../Reportes/HorarioRecontratacionFacilitadorPDF?psID=' + ID, displaySection(ID, status));
+    }
+
+    function PreparaFirma(ID) {
+        $("#hidID").val(ID);
+        $('#divModalFirmaElectronica').modal('show');
+        $("#btnFirmarCargaAcademica").show();
+    }
+
+    $("#btnEnviarFirmar").click(function () {
+        var firma = $("#txtFirma").val();
+        var ID = $("#hidID").val();
+        var Status = "5";
+        $('#divModalFirmaElectronica').modal('hide');
+
+        $.ajax({
+            asyn: false,
+            url: '../../../Generales/FirmaHorarioPersonal',
+            type: 'POST',
+            dataType: 'json',
+            data: { psFirma: firma, psID: ID, psStatus: Status },
+        })
+            .done(function (data) {
+
+                if (typeof (data.Success) === "undefined" || !data.Success) {
+                    MensajesToastr("error", "Solicitud Procesada", "Error al Guardar");
+                }
+                else {
+                    MensajesToastr("success", "Solicitud Procesada", "Registro Correcto");
+                    $('#BodyPrincipal').load('../../../../Direccion/AutorizaDireccion');
+
+                    $('.modal-backdrop').remove();
+
+                }
+            })
+            .fail(function (data) {
+                MensajesToastrErrorConexion();
+            }).always(function () {
+            });
+        event.preventDefault();
+    });
+
+    $("#btnAlertaConfirmar").click(function () {
+        var ID = $('#hidModalAlertaConfirmacion').val();
+
+        $.ajax({
+            url: '../../../Generales/CancelarSolicitud',
+            type: 'POST',
+            dataType: 'json',
+            data: { psID: ID }
+        })
+            .done(function (data) {
+                if (typeof (data.Success) !== "undefined" && !data.Success) {
+                    MensajesToastr("warning", "Error de proceso", data.Mensaje);
+                }
+                else {
+
+                    if (data.Mensaje === "delete") {
+                        MensajesToastr("info", "Solicitud Procesada", "Horario Cancelado, reportelo al departamento correspondiente.");
+                        $('#BodyPrincipal').load('../../../../Direccion/AutorizaDireccion');
+                        $('.modal-backdrop').remove();
+                    }
+
+                    else if (data.Mensaje === "NE") {
+                        MensajesToastr("info", "Solicitud Procesada", "El registro no se ha podido eliminar");
+                    }
+                }
+            })
+            .fail(function (data) {
+                MensajesToastrErrorConexion();
+            });
+
+    });
+</script>

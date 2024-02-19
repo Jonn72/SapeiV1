@@ -1,0 +1,183 @@
+﻿<link href="../../Content/font/font-awesome.min.css" rel="stylesheet" />
+<link href="../../Content/prettify/prettify.min.css" rel="stylesheet" />
+
+@using Sapei.Framework.Utilerias;
+@using System.Data;
+
+@{
+
+    string lsControl = "";
+    string lsNombre = "";
+    string lsCarrera = "";
+    string lsEspecialidad = "";
+    string lsSemestre = "";
+    string lsCreditos = "";
+    bool lbEncontrado = false;
+    DataTable loDatos = new DataTable();
+    if (ViewData["Datos"] != null)
+    {
+        loDatos = ViewData["Datos"] as DataTable;
+        if (loDatos.Columns.Count > 1)
+        {
+            lbEncontrado = true;
+
+            lsNombre = loDatos.Rows[0].Field<string>("nombre");
+            lsCarrera = loDatos.Rows[0].Field<string>("carrera");
+            lsEspecialidad = loDatos.Rows[0].Field<string>("especialidad");
+            lsSemestre = loDatos.Rows[0].Field<string>("semestre");
+            lsCreditos = loDatos.Rows[0].Field<string>("creditos_autorizados");
+            lsControl = loDatos.Rows[0].Field<string>("no_de_control");
+        }
+    }
+}
+<input type="hidden" id="hidNoControl" value="@lsControl" />
+<div class="x_panel">
+
+
+        <div class="row">
+            <div class="col-md-10 center-margin center-block">
+                <ul class="stats-overview">
+                    <li style="width:33%">
+                        <span class="name"> Nombre </span>
+                        <span class="value text-success"> @lsNombre </span>
+                    </li>
+
+                    <li>
+                        <span class="name"> Carrera</span>
+                        <span class="value text-success"> @lsCarrera  </span>
+                    </li>
+                    <li>
+                        <span class="name"> Especialidad </span>
+                        <span class="value text-success"> @lsEspecialidad </span>
+                    </li>
+                    <li>
+                        <span class="name"> Periodo </span>
+                        <span class="value text-success"> @lsSemestre </span>
+                    </li>
+                    <li>
+                        <span class="name"> Creditos </span>
+                        <span class="value text-success"> @lsCreditos </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-10 center-margin center-block">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8 center-margin center-block">
+                        <div class="card text-white bg-info center-margin center-block">
+                            <div class="card-header center">Autorización</div>
+                            <div class="card-body text-center center-block">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <label for="tags">
+                                            Tipo de Autorizacion
+                                        </label>
+                                        @if (ViewData["TAutorizacion"] != null)
+                                        {
+                                            <select class="form-control" id="cboTAutorizacion" onchange="getval(this);">
+                                                @foreach (System.Data.DataRow dr in (ViewData["TAutorizacion"] as System.Data.DataTable).Rows)
+                                                {
+                                                    <option value="@dr.ItemArray[0].ToString().Trim()">@dr.ItemArray[1].ToString().Trim()</option>
+                                                }
+                                            </select>
+                                        }
+                                        <br />
+                                    </div>
+                                   
+                                    <div class="col-md-12 col-sm-12 col-xs-12 div-hide" id="divMaterias">
+                                        <label for="tags">
+                                            Materia
+                                        </label>
+                                        @if (ViewData["MateriasAlumno"] != null)
+                                        {
+                                            <select class="form-control" id="cboMaterias">
+                                                @foreach (System.Data.DataRow dr in (ViewData["MateriasAlumno"] as System.Data.DataTable).Rows)
+                                                {
+                                                    <option value="@dr.ItemArray[0].ToString().Trim()">@dr.ItemArray[1].ToString().Trim()</option>
+                                                }
+                                            </select>
+                                        }
+                                        <br />
+                                    </div>
+
+
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <label for="tags">
+                                            Motivo de autorización
+                                        </label>
+                                        <input type="text" class="form-control" id="txtMotivo" />
+
+                                    </div>
+
+
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <br />
+                                        <button id="btnDescargar" type="submit" class="btn btn-block btn-success">Guardar Autorización</button>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                    </div>
+
+            </div>
+        </div>
+    </div>
+
+
+<script type="text/javascript">
+
+    function getval(val) {
+        if (val.value === "CX" || val.value === "MP") {
+
+            $("#divMaterias").removeClass("div-hide");
+        }
+        else {
+            $("#divMaterias").addClass("div-hide");
+        }
+    }
+
+    $("#btnDescargar").click(function () {
+
+        var no_de_control = $('#hidNoControl').val();
+        var motivo = $('#txtMotivo').val();
+        var tipoauto = $('#cboTAutorizacion').val();
+        var materia = "";
+
+        if (tipoauto === "CX" || tipoauto === "MP") {
+
+            materia = $('#cboMaterias').val();
+
+        }
+        else {
+            materia = "0";
+        }
+
+
+        $.ajax({
+            url: '../../../DEP/GuardarAutorizacionAlumno',
+            type: 'POST',
+            dataType: 'json',
+            data: { psNoControl: no_de_control, psMateria: materia, psMotivo: motivo, psTipoAutorizacion: tipoauto }
+        })
+            .done(function (data) {
+                if (typeof (data.Success) !== "undefined" && !data.Success) {
+                    MensajesToastr("warning", "Error de proceso", data.Mensaje);
+                }
+                else {
+                    if (data.Mensaje.indexOf("Error") > -1) {
+                        MensajesToastr("warning", "Error de proceso", data.Mensaje);
+                    }
+                    else {
+                        MensajesToastr("info", "Solicitud Procesada", data.Mensaje);
+                    }
+                }
+            })
+            .fail(function (data) {
+                MensajesToastrErrorConexion();
+            });
+
+    });
+
+</script>

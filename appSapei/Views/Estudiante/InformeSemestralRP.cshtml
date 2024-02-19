@@ -1,0 +1,17 @@
+﻿<div class="x_panel">
+    <div class="x_title">
+        <h3>Formato de Informe Semestral de Residencias Profesionales</h3>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <p>Descarga tu formato en y entregalo a los depratamentos correspondientes</p>
+            <a class="btn btn-success" id="btnFormato">Formato <span class="fa fa-download"></span></a>
+        </div>
+    </div>
+</div>
+@Html.Partial("../Generales/ModalVisorPDF")
+<a class="btn btn-info" data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#BodyPrincipal" href="/Estudiante/ControlEscolarRP">
+    Regresar al menú
+</a>
+<script src="~/Scripts/ManejoDatos/Estudiantes/InformeSemestralRP.js"></script>

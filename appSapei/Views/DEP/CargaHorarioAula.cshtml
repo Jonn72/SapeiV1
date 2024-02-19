@@ -1,0 +1,325 @@
+﻿@using Syncfusion.EJ2.Schedule
+<style>
+    .custom-event-editor .e-textlabel {
+        padding-right: 15px;
+        text-align: right;
+    }
+
+    .custom-event-editor td {
+        padding: 7px;
+        padding-right: 16px;
+    }
+</style>
+<script type="text/javascript">
+
+    function stylex() {
+        $(".e-header-date").hide();
+    }
+
+    function onRenderer(args) {
+
+        if (args.elementType === "dateHeader" || args.elementType === "monthCells") {
+            ej.base.removeClass(args.element.childNodes, "e-navigate");
+        }
+    }
+
+
+</script>
+<input type="hidden" id="idHorario" value="" />
+<input type="hidden" value="@Html.Raw(ViewData["Periodo"])" id="hidPeriodo" />
+<input type="hidden" value="@Html.Raw(ViewData["Materia"])" id="hidMateria" />
+<input type="hidden" value="@Html.Raw(ViewData["Grupo"])" id="hidGrupo" />
+<input type="hidden" value="@Html.Raw(ViewData["Aula"])" id="hidAula" />
+<input type="hidden" value="@Html.Raw(ViewData["Carrera"])" id="hidCarrera" />
+<input type="hidden" value="@Html.Raw(ViewData["Reticula"])" id="hidReticula" />
+<script id="EventEditorTemplate" type="text/template">
+    <table class="custom-event-editor" width="100%" cellpadding="5">
+        <tbody>
+            <tr>
+                <td class="e-textlabel">Grupo / Materia</td>
+                <td colspan="4">
+                    <input type="text" id="EventType" name="EventType" style="width: 100%" readonly />
+                </td>
+            </tr>
+            <tr>
+                <td class="e-textlabel">From</td>
+                <td colspan="4">
+                    <input id="StartTime" type="text" name="StartTime" />
+                </td>
+            </tr>
+            <tr>
+                <td class="e-textlabel">To</td>
+                <td colspan="4">
+                    <input id="EndTime" type="text" name="EndTime" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</script>
+
+
+<script type="">
+    var DialogObj;
+    var dateini = new Date();
+    var datefin = new Date();
+
+    function onPopupOpen(args) {
+        if (args.type === 'Editor') {
+            var statusElement = args.element.querySelector('#EventType');
+            if (statusElement) {
+                var Materia = $("#txtMateria").val();
+                var Grupo = $("#txtGrupo").val();
+                statusElement.value = Materia + " / " + Grupo;
+            }
+            var startElement = args.element.querySelector('#StartTime');
+            if (!startElement.classList.contains('e-datetimepicker')) {
+                startElement.value = (args.data).StartTime;
+                dateini = new Date(startElement.value);
+                localStorage.setItem("dateini", dateini);
+                new ej.calendars.TimePicker({ format: 'HH:mm', step: 60, value: new Date(startElement.value) || new Date()}, startElement);
+            }
+            var endElement = args.element.querySelector('#EndTime');
+            if (!endElement.classList.contains('e-datetimepicker')) {
+                endElement.value = (args.data).EndTime;
+                datefin = new Date(endElement.value);
+                localStorage.setItem("datefin", datefin);
+                new ej.calendars.TimePicker({ format: 'HH:mm', step: 60, value: new Date(endElement.value) || new Date() }, endElement);
+            }
+        }
+    }
+
+    function onPopupClose(args) {
+        if (args.type === 'Editor' && !ej.base.isNullOrUndefined(args.data)) {
+            var statusElement = args.element.querySelector('#EventType');
+            if (statusElement) {
+                (args.data).Subject = statusElement.value;
+                (args.data).Periodo = $("#hidPeriodo").val();
+                (args.data).Materia = $("#hidMateria").val();
+                (args.data).Grupo = $("#hidGrupo").val();
+                (args.data).Aula = $("#hidAula").val();
+                (args.data).Carrera = $("#hidCarrera").val();
+                (args.data).Reticula = $("#hidReticula").val();
+            }
+            var startElement = args.element.querySelector('#StartTime');
+            if (startElement) {
+                var formattedDate = new Date(localStorage.getItem("dateini"));
+                console.log(formattedDate);
+                var d = formattedDate.getDate();
+                var m = formattedDate.getMonth();
+                var y = formattedDate.getFullYear();
+                var hh = 0;
+                var mm = 0;
+                var splited = startElement.value.split(':');            
+                hh = parseInt(splited[0]);
+                mm = parseInt(splited[1]);
+                var datein = new Date(y, m, d, hh, mm);
+                (args.data).StartTime = datein;
+            }
+
+            var endElement = args.element.querySelector('#EndTime');
+            if (endElement) {
+                var formattedDate2 = new Date(localStorage.getItem("datefin"));
+                var d2 = formattedDate2.getDate();
+                var m2 = formattedDate2.getMonth();
+                var y2 = formattedDate2.getFullYear();
+                var hh2 = 0;
+                var mm2 = 0;
+                var splited2 = endElement.value.split(':');
+                hh2 = parseInt(splited2[0]);
+                mm2 = parseInt(splited2[1]);
+                var datefi = new Date(y2, m2, d2, hh2, mm2);
+                (args.data).EndTime = datefi;
+            }
+            (args.data).IsReadonly = true;
+        }
+
+
+    }
+
+    function onActionBegin(args) {
+        if (args.requestType === 'eventCreate' || args.requestType === 'eventChange') {
+            var data;
+            if (args.requestType === 'eventCreate') {
+                data = args.data[0];
+            } else if (args.requestType === 'eventChange') {
+                data = args.data;
+            }
+            if (!this.isSlotAvailable(data)) {
+                args.cancel = true;
+                var dialog = document.getElementById("dialog").ej2_instances[0]
+                dialog.show();
+            }
+        }
+
+        if (args.requestType === 'eventRemove') {
+            if (args.deletedRecords.length > 0) {
+                var Periodo, Materia, Grupo, Aula, Hora_Inicio, Hora_Fin;
+                Periodo = args.deletedRecords[0].Periodo;
+                Materia = args.deletedRecords[0].Materia;
+                Grupo = args.deletedRecords[0].Grupo;
+                Aula = args.deletedRecords[0].Aula;
+                Carrera = args.deletedRecords[0].Carrera;
+                Reticula = args.deletedRecords[0].Reticula;
+                Hora_Inicio = new Date(args.deletedRecords[0].StartTime);
+                Hora_Fin = new Date(args.deletedRecords[0].EndTime);
+                console.log(args.deletedRecords[0].StartTime);
+                var Parse_Hora_Ini = Hora_Inicio.toISOString();
+                var Parse_hora_Fin = Hora_Fin.toISOString();
+
+
+                $.ajax({
+                    url: '../../../DEP/EliminaHorarioGrupoJSON',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: { psPeriodo: Periodo, psMateria: Materia, psGrupo: Grupo, psAula: Aula, psHoraInicio: Parse_Hora_Ini, psHoraFin: Parse_hora_Fin }
+                })
+                    .done(function (data) {
+                        if (typeof (data.Success) !== "undefined" && !data.Success) {
+                            MensajesToastr("warning", "Error de proceso", data.Mensaje);
+                        }
+                        else {
+                            if (data.Mensaje === "DELETE") {
+                                MensajesToastr("info", "Solicitud Procesada", "Horario Eliminado");
+                                var dialogObj = document.getElementById('dialog2').ej2_instances[0];
+                                dialogObj.hide();
+                                $('#BodyPrincipal').load('../../../../DEP/AgregaHorarioGrupo', { psPeriodo: Periodo, psMateria: Materia, psGrupo: Grupo, psCarrera: Carrera, psReticula: Reticula });
+
+                            }
+
+                            else if (data.Mensaje === "NE") {
+                                var dialogObj = document.getElementById('dialog2').ej2_instances[0];
+                                dialogObj.hide();
+                                MensajesToastr("info", "Solicitud Procesada", "Horario Eliminado");
+                            }
+                        }
+                    })
+                    .fail(function (data) {
+                        MensajesToastrErrorConexion();
+                    });
+            }
+        }
+    }
+
+    function clicked(args) {
+
+        args.cancel = true;
+        var dialog = document.getElementById("dialog2").ej2_instances[0];
+        $(".dialog-content").show();
+        dialog.show();
+    }
+
+    function NoClick() {
+        var dialogObj = document.getElementById('dialog2').ej2_instances[0];
+        dialogObj.hide();
+    }
+
+    function SiClick() {
+        
+        var scheduleObj = document.querySelector("schedule").ej2_instances[0];
+        console.log(scheduleObj)
+        scheduleObj.deleteEvent(scheduleObj.activeEventData.event.Id);
+
+    }
+
+    function dlgButtonClick() {
+        var dialogObj = document.getElementById('dialog').ej2_instances[0];
+        dialogObj.hide();
+    }
+
+    function onOverlayClick() {
+        var dialog = document.getElementById("dialog").ej2_instances[0];
+        dialog.hide();
+    }
+
+    function Guardar() {
+        var periodo = $("#hidPeriodo").val();
+        var materia = $("#hidMateria").val();
+        var grupo = $("#hidGrupo").val();
+        var carrera = $("#hidCarrera").val();
+        var reticula = $("#hidReticula").val();
+
+        var scheduleObj = document.getElementById('schedule').ej2_instances[0];
+        var objeto = scheduleObj.getCurrentViewEvents();
+        var objeto2 = JSON.stringify(objeto);
+        console.log(JSON.stringify(objeto2));
+
+        $.ajax({
+            url: '../../../DEP/GuardaHorarioGrupoJSON',
+            type: 'POST',
+            dataType: 'json',
+            data: { lsobjeto: objeto2 }
+        })
+            .done(function (data) {
+                if (typeof (data.Success) !== "undefined" && !data.Success) {
+                    MensajesToastr("warning", "Error de proceso", data.Mensaje);
+                }
+                else {
+                    MensajesToastr("info", "Solicitud Procesada", "Horario Guardado");
+                    $('#BodyPrincipal').load('../../../../DEP/AgregaHorarioGrupo', { psPeriodo: periodo, psMateria: materia, psGrupo: grupo, psCarrera: carrera, psReticula: reticula });
+                }
+            })
+            .fail(function (data) {
+                MensajesToastrErrorConexion(data.Mensaje);
+            });
+
+    }
+
+    function Cancelar() {
+        $('#BodyPrincipal').load('../../../../DEP/Grupos');
+    }
+
+
+
+
+</script>
+<div id="main">
+    @Html.EJS().Dialog("dialog2").IsModal(true).Visible(false).AnimationSettings(e => e.Effect(Syncfusion.EJ2.Popups.DialogEffect.Zoom)).Header("Eliminar Horario").ShowCloseIcon(true).Width("400px").Target("#main").Buttons(btn =>
+        {
+            btn.Click("SiClick").ButtonModel(ViewBag.button1).Add();
+            btn.Click("NoClick").ButtonModel(ViewBag.button2).Add();
+        }).ContentTemplate(@<div class='dialog-content div-hide'>
+            <div class='msg-wrapper  col-lg-12'>
+                <span class='e-icons close-icon col-lg-2'></span>
+                <span class='error-msg col-lg-10'>Está por eliminar el horario seleccionado</span>
+            </div><div class='error-detail col-lg-8'><span>¿esta seguro de eliminarlo? </span> </div>
+        </div>).Render()
+    </div>
+
+    <div id="container">
+        @Html.EJS().Dialog("dialog").Header("Alert").AnimationSettings(e => e.Effect(Syncfusion.EJ2.Popups.DialogEffect.Zoom).Duration(400).Delay(0)).Visible(false).IsModal(true).OverlayClick("onOverlayClick").Content("Los eventos no se pueden programar dentro del intervalo de tiempo bloqueado.").Width("300px").Target("#container").Buttons(btn => { btn.Click("dlgButtonClick").ButtonModel(ViewBag.DialogButtons1).Add(); }).Render()
+    </div>
+
+
+
+
+    @(Html.EJS().Schedule("schedule")
+            .Width("100%")
+            .Height("370px")
+            .WorkHours(wh =>
+            wh.Highlight(true)
+            .Start("07:00")
+            .End("21:00")
+            )
+            .PopupOpen("onPopupOpen")
+            .PopupClose("onPopupClose")
+            .EditorTemplate("#EventEditorTemplate")
+            .FirstDayOfWeek(1)
+            .EventSettings(new ScheduleEventSettings { DataSource = ViewBag.datasource })
+            .Views(view =>
+            {
+                view.Option(View.Week).FirstDayOfWeek(1).Interval(1).Add();
+            })
+            .ShowHeaderBar(false)
+            .ShowQuickInfo(false)
+            .Created("stylex")
+            .ActionBegin("onActionBegin")
+            .EventClick("clicked")
+            .SelectedDate(new DateTime(2018, 1, 1))
+            .Render()
+            )
+
+
+
+
+    @Html.EJS().ScriptManager()
+

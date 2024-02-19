@@ -1,0 +1,88 @@
+﻿<input type="hidden" id="hidTipoDocumento" />
+<input type="hidden" id="hidNombreReporte" />
+
+<div class="page-title">
+    <div class="col-md-8 col-sm-8 col-xs-12 form-group pull-left">
+        <h3>Documentos Oficiales</h3>
+    </div>
+</div>
+<div class="x_panel">
+    <div class="x_title">
+        <h3>Diplomas</h3>
+    </div>
+    <div class="col-md-10 center-margin center-block">
+        <div class="x_content">
+            <label for="cboDiplomas">
+                Seleccione Diploma
+            </label>
+            @if (ViewData["cboDocOficiales"] != null)
+            {
+                <select class="form-control" id="cboDocOficiales">
+                    <option value="0">-- Seleccione --</option>
+                    @foreach (System.Data.DataRow dr in (ViewData["cboDocOficiales"] as System.Data.DataTable).Rows)
+                    {
+                        <option value="@dr.ItemArray[0].ToString().Trim()">@dr.ItemArray[1].ToString().Trim()</option>
+                    }
+                </select>
+            }
+            <div id="divCombo" class="div-hide">
+                <label for="cboPeriodo">
+                    Seleccione el Periodo
+                </label>
+                @if (ViewData["cboPeriodo"] != null)
+                {
+                    <select class="form-control" id="cboPeriodo">
+                        @foreach (System.Data.DataRow dr in (ViewData["cboPeriodo"] as System.Data.DataTable).Rows)
+                        {
+                            <option value="@dr.ItemArray[0].ToString().Trim()">@dr.ItemArray[1].ToString().Trim()</option>
+                        }
+                    </select>
+                }
+            </div>
+            <div id="divSemestre" class="div-hide">
+                <label for="cboSemestre">
+                    Seleccione el Periodo
+                </label>
+                <select class="form-control" id="cboSemestre">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+
+                </select>
+            </div>
+
+            <div id="divControl" class="div-hide">
+                <label for="txtNoControl">
+                    No. de Control
+                </label>
+                <input type="text" class="form-control" id="txtNoControl" placeholder="Ingrese el no. de control" oninvalid="ValidaCampo(this, 'NOCONTROL');" onblur="ValidaCampo(this, 'NOCONTROL');" required />
+            </div>
+        </div>
+        <div id="divBoton" class="col-md-4">
+            <button id="btnGenerar" type="submit" class="btn btn-block btn-info">Generar</button>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 center-margin center-block">
+        <div class="x_panel">
+            <div class="x_title">
+                <h3>Vista Previa</h3>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                @Html.Partial("../Generales/VisorPDF")
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/ManejoDatos/DocumentosOficiales/DocumentosOficiales.js"></script>

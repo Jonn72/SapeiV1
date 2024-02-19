@@ -1,0 +1,76 @@
+﻿
+
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>Códigos QR de estado acádemico</h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="x_panel">
+    <input type="hidden" id="hidControl" value="@ViewData["NoControl"]" />
+
+    <div class="x_title">
+        <div class="col-md-6 center-margin">
+            <div class="input-group">
+                <input type="text" id="txtNoControl" class="form-control" placeholder="Ingrese el no. de control">
+                <span class="input-group-btn">
+                    <button class="btn btn-default btn-success" type="button" id="btnBuscar"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="col-md-10 center-margin center-block">
+        @if (ViewData["DatosQR"] != null)
+        {
+            System.Data.DataTable loDt = null;
+            loDt = ViewData["DatosQR"] as System.Data.DataTable;
+            if (loDt.Columns.Count > 1)
+            {
+                System.Data.DataRow dr = loDt.Rows[0];
+                string base64EncodedImage = Convert.ToBase64String(dr.ItemArray[4] as System.Byte[]);
+                string lsControl = Convert.ToString(dr.ItemArray[0]);
+                string lsNombre = Convert.ToString(dr.ItemArray[1]);
+                string lsCarrera = Convert.ToString(dr.ItemArray[2]);
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12 form-group bg-tecnm">
+                                <label>
+                                    No. de Control
+                                </label>
+                                <input type="text" class="form-control bg-white" value="@lsControl" readonly />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12 form-group bg-tecnm">
+                                <label>
+                                    Nombre
+                                </label>
+                                <input class="form-control bg-white" value="@lsNombre" readonly />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12 form-group bg-tecnm">
+                                <label>
+                                    Carrera
+                                </label>
+                                <input class="form-control bg-white" value="@lsCarrera" readonly />
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-md-12 col-sm-12 col-xs-12 form-group bg-tecnm">
+                            <img id="imgQR" src="data:image/png;base64, @base64EncodedImage" width="250px" height="250px">
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+
+    </div>
+</div>
+<script src="~/Scripts/ManejoDatos/Escolares/RegresaQR.js"></script>
+

@@ -1,0 +1,11 @@
+﻿@{
+    if (ViewData["datos"] != null)
+    {
+        <select class="form-control" id="cboGeneral">
+            @foreach (System.Data.DataRow dr in (ViewData["datos"] as System.Data.DataTable).Rows)
+            {
+                <option value="@dr.ItemArray[0].ToString().Trim()">@dr.ItemArray[1].ToString().Trim()</option>
+            }
+        </select>
+    }
+}

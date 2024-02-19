@@ -1,0 +1,81 @@
+﻿
+<input type="hidden" id="hidPeriodo" value="@ViewData["periodo"]" />
+
+<div class="page-title">
+    <div class="col-md-8 col-sm-8 col-xs-12 form-group pull-left">
+        <h3>Listas de actividades con estudiantes inscritos <small>@ViewData["descPeriodo"]</small></h3>
+    </div>
+    <div class="col-md-4 col-sm-4 col-xs-12 form-group pull-right top_search">
+        <div class="form-inline">
+            <label for="cboPeriodo">
+                Periodo
+            </label>
+            <select class="form-control" id="cboPeriodo"></select>
+        </div>
+    </div>
+</div>
+<div class="x_panel">
+     <div class="x_title">
+          <h3>Cargar Listas de Calificaciones <small>@ViewData["descPeriodo"]</small></h3>
+     </div>
+     <div class="col-md-10 center-margin center-block">
+          <div class="x_content">
+               <p>
+                    Este proceso se encarga de cargar las listas por actividad con estudiantes inscritos.
+               </p>
+               <p>
+                    Los archivos cargados deben estar en formato CSV y codifcicación UTF-8. Así mismo deben tener las columnas y orden siguiente:  clave de actividad, no. de control, nombre y promedio. 
+               </p>
+               <p>
+                    Si se requiere, puede bajar el formato de cada una de sus listas en la tabla inferior, seleccionando el ícono de descarga de cada actividad que imparta. Despúes de descargar sólo debe colocar el promedio obtenido de cada estudiante y volver a subir la lista.
+               </p>
+               
+               <p>
+                    Debe seleccionar y cargar uno a uno los archivos de cada actividad registrada, despues de cargar será validada la información, si todo es correcto el resumen se mostrará en la tabla inferior.
+               </p>
+               <div class="file-loading">
+                    <input id="txtFile" name="txtFile[]" type="file" multiple>
+               </div>
+          </div>
+     </div>
+</div>
+@Html.Partial("../Generales/TablaGeneral")
+
+
+<script src="~/Scripts/ManejoDatos/ExtraEscolares/CapturaCalificacion.js"></script>
+<script src="~/Scripts/Componentes/fileinput.js"></script>
+<script src="~/Scripts/Idiomas/es.js"></script>
+<script>
+     $(document).ready(function () {
+          $('#txtFile').fileinput('reset');
+     });
+     $('#txtFile').fileinput({
+          uploadAsync: false,
+          language: 'es',
+          showPreview: false,
+          showCaption: true,
+          showUpload: true,
+          minFileCount: 1,
+          maxFileCount: 1,
+          uploadUrl: '../../../ExtraEscolares/CargaCalificacionPorActividad',
+          allowedFileExtensions: ['csv']
+     });
+
+     $('#txtFile').on('filebatchuploadsuccess', function (event, data) {
+          var form = data.form, files = data.files, extra = data.extra,
+              response = data.response, reader = data.reader;
+          if (response.Success == true) {
+               MensajesToastr("info", "Solicitud Procesada", "El archivo se cargo correctamente");
+               $('#BodyPrincipal').load('../../../../ExtraEscolares/CargaCalificacionEstudiantesActividad');
+          }
+          else {
+               MensajesToastr("info", "Solicitud Procesada", "Error " + response.Mensaje);
+          }
+     });
+     $('#txtFile').on('filebatchuploadcomplete', function (event, files, extra) {
+          //alert('File batch upload complete');
+     });
+     $('#txtFile').on('filebatchuploaderror', function (event, data, msg) {
+          MensajesToastr("info", "Solicitud Procesada", "El archivo no tiene el formato correcto");
+     });
+</script>

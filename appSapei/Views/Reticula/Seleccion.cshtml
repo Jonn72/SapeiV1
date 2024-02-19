@@ -1,0 +1,456 @@
+﻿@using Sapei.Framework.Utilerias;
+
+
+<script src="~/Scripts/Componentes/TimeCircles.js"></script>
+<link href="~/Content/Controles/TimeCircles.css" rel="stylesheet" />
+<div class="page-title">
+    <div class="title_left">
+        <h3>Seleccion de materias <small>@ViewData["DescPeriodo"]</small></h3>
+    </div>
+</div>
+
+
+<link href="~/Content/themes/Reticula.css" rel="stylesheet" />
+@{
+    System.Data.DataRow loFila = null;
+    string lsNombre = "";
+    string lsCarrera = "";
+    string lsControl = "";
+    string lsEspecialidad = "";
+    string lsSemestre = "";
+    string lsCreditosAutorizados = "";
+    string lsPromedio = "";
+    string lsCreditosAprobados = "";
+    string lsCreditosCursados = "";
+    string lsPorcentaje = "";
+    string lsReticula = "";
+    string lsSeleccionadas = "";
+    string lsCreditosSeleccionados = "";
+    string lsMensaje = "";
+    string lsTiempoRestante = "0";
+    int lsEstado = 0;
+
+    if (ViewData["DatosSeleccion"] != null)
+    {
+        loFila = (ViewData["DatosSeleccion"] as System.Data.DataTable).Rows[0];
+        lsNombre = loFila.ItemArray[0].ToString().Trim();
+        lsControl = loFila.ItemArray[1].ToString().Trim();
+        lsCarrera = loFila.ItemArray[2].ToString().Trim();
+        lsEspecialidad = loFila.ItemArray[3].ToString().Trim();
+        lsSemestre = loFila.ItemArray[4].ToString().Trim();
+        lsPromedio = loFila.ItemArray[5].ToString().Trim();
+        lsCreditosAprobados = loFila.ItemArray[6].ToString().Trim();
+        lsCreditosCursados = loFila.ItemArray[7].ToString().Trim();
+        lsPorcentaje = loFila.ItemArray[8].ToString().Trim();
+        lsCreditosAutorizados = loFila.ItemArray[9].ToString().Trim();
+        lsReticula = loFila.ItemArray[10].ToString().Trim();
+        lsSeleccionadas = loFila.ItemArray[11].ToString().Trim();
+        lsCreditosSeleccionados = loFila.ItemArray[12].ToString().Trim();
+        lsMensaje = loFila.ItemArray[13].ToString().Trim();
+        lsTiempoRestante = loFila.ItemArray[14].ToString().Trim();
+        lsEstado = Convert.ToInt32(loFila.ItemArray[15].ToString().Trim());
+
+        if (!string.IsNullOrEmpty(lsMensaje))
+        {
+            <script>
+                MensajesToastr("info", "Solicitud Procesada", "@lsMensaje");
+            </script>
+        }
+
+
+    }
+
+}
+
+
+
+<div class="x_panel">
+    <div class="x_title">
+        <div class="col-md-11 col-sm-11 col-xs-10 form-group pull-left">
+            <h3>
+                Datos Escolares
+            </h3>
+        </div>
+        <div class="col-md-1 col-sm-1 col-xs-2 form-group pull-right">
+            <h3>
+                <a class="collapse-link" onclick="OcultaPanel(this);"><i class="fa fa-chevron-up"></i></a>
+            </h3>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content" style="overflow-x: auto;">
+        <div class="form-group col-md-12 center-margin">
+
+            <div class="row">
+                <div class="col-md-5 col-sm-6 col-xs-12 form-group bg-tecnm">
+                    <label for="tags">
+                        Nombre (s)
+                    </label>
+                    <input type="text" class="form-control bg-white" value="@lsNombre" placeholder="Nombre (s)" readonly />
+                </div>
+                <div class="col-md-4 col-sm-3 col-xs-12 form-group bg-tecnm">
+                    <label>
+                        No. Control
+                    </label>
+                    <input type="text" id="txtControl" class="form-control bg-white" value="@lsControl" placeholder="Control" readonly />
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-6 form-group bg-tecnm">
+                    <label>
+                        Semestre
+                    </label>
+                    <input type="text" class="form-control bg-white" value="@lsSemestre" placeholder="Semestre" readonly />
+
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-5 col-sm-6 col-xs-12 form-group bg-tecnm">
+                    <label>
+                        Carrera
+                    </label>
+                    <input type="text" class="form-control bg-white" value="@lsCarrera" placeholder="Carrera" readonly />
+
+                </div>
+                <div class="col-md-4 col-sm-3 col-xs-12 form-group bg-tecnm">
+                    <label for="tags">
+                        Especialidad
+                    </label>
+                    <input type="text" class="form-control bg-white" value="@lsEspecialidad" placeholder="Especialidad" readonly />
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12 form-group bg-tecnm">
+                    <label>
+                        Pormedio Acumulado
+                    </label>
+                    <input type="text" class="form-control bg-white" value="@lsPromedio" placeholder="Carrera" readonly />
+
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-md-3 col-sm-6 col-xs-6 form-group bg-tecnm">
+                    <label>
+                        Creditos Cursados
+                    </label>
+                    <input type="text" class="form-control bg-white" value="@lsCreditosCursados" placeholder="Carrera" readonly />
+
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6 form-group bg-tecnm">
+                    <label for="tags">
+                        Creditos Aprobados
+                    </label>
+                    <input type="text" class="form-control bg-white" value="@lsCreditosAprobados" placeholder="Especialidad" readonly />
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6 form-group bg-tecnm">
+                    <label for="tags">
+                        Creditos Autorizados
+                    </label>
+                    <input type="text" class="form-control bg-white" value="@lsCreditosAutorizados" placeholder="Especialidad" readonly />
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6 form-group bg-tecnm">
+                    <label>
+                        % de Avance
+                    </label>
+                    <input type="text" class="form-control bg-white" value="@lsPorcentaje" placeholder="Semestre" readonly />
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<div id="div" class="x_panel ">
+    <div class="x_title">
+        <div class="x_content" style="overflow-x: auto;">
+            <div class="row">
+
+                @if (Convert.ToInt32(lsTiempoRestante) > 0)
+                {
+                    <h3>Selecciona tus materias</h3>
+                }
+                else
+                {
+                    <h3>Materias Seleccionadas</h3>
+                }
+
+
+            </div>
+            <div class="row">
+                <div class="column-colorama">
+                    <div class="card-colorama card-acreditada">
+                        <p>Acreditada</p>
+                    </div>
+                </div>
+                <div class="column-colorama">
+                    <div class="card-colorama card-cursando">
+                        <p>Cursando</p>
+                    </div>
+                </div>
+                <div class="column-colorama">
+                    <div class="card-colorama card-noacreditada">
+                        <p>Cursada Sin Acreditar</p>
+                    </div>
+                </div>
+                <div class="column-colorama">
+                    <div class="card-colorama card-cursoespecial">
+                        <p class="card-text">A curso especial</p>
+                    </div>
+                </div>
+                <div class="column-colorama">
+                    <div class="card-colorama card-cursoespecialna">
+                        <p class="card-text">Curso Esp. Reprobado</p>
+                    </div>
+                </div>
+                <div class="column-colorama">
+                    <div class="card-colorama card-posibleseleccionar">
+                        <p class="card-text">Posible a seleccionar</p>
+                    </div>
+                </div>
+                <div class="column-colorama">
+                    <div class="card-colorama card-nopermitida">
+                        <p class="card-text">No permitida</p>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content" style="overflow-x: auto;">
+        <div>
+            <div id="divReticula" class="row_reticula" style="min-width:1000px;">
+                @Html.Raw(lsReticula)
+            </div>
+        </div>
+    </div>
+</div>
+
+@{
+    if (Convert.ToInt32(lsTiempoRestante) > 0)
+    {
+        <div class="compose col-md-6 col-xs-12" id="compose2">
+            <div class="compose-header">
+                Tiempo Restante
+            </div>
+            <div class="sticky">
+                <div id="CountDownTimer" data-timer="@lsTiempoRestante" style="width: 250px; height: 150px;"></div>
+            </div>
+        </div>
+    }
+    if (Convert.ToInt32(lsTiempoRestante) > 0 || SesionSapei.Sistema.Sesion.Usuario.RolUsuario == Sapei.Framework.Configuracion.enmRolUsuario.DEP)
+    {
+        <div id="div" class="x_panel">
+            <div class="x_title">
+                <div class="col-md-11 col-sm-11 col-xs-10 form-group pull-left">
+                    <h3>
+                        Materias Seleccionadas
+                    </h3>
+                </div>
+                <div class="col-md-1 col-sm-1 col-xs-2 form-group pull-right">
+                    <h3>
+                        <a class="collapse-link" onclick="OcultaPanel(this);"><i class="fa fa-chevron-up"></i></a>
+                    </h3>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content" style="overflow-x: auto;">
+                <div>
+                    <div class="row" id="divCabecera">
+                        <div class="col-md-3 col-sm-3 col-xs-3 card_reticula card-cabecera text-white bg-success">
+                            Materia
+                        </div>
+                        <div class="col-md-1 col-sm-1 col-xs-1 card_reticula card-cabecera text-white bg-success">
+                            Grupo
+                        </div>
+                        <div class="col-md-1 col-sm-1 col-xs-1 card_reticula card-cabecera text-white bg-success">
+                            Créditos
+                        </div>
+                        <div class="col-md-1 col-sm-1 col-xs-1 card_reticula card-cabecera text-white bg-success">
+                            Lunes
+                        </div>
+                        <div class="col-md-1 col-sm-1 col-xs-1 card_reticula card-cabecera text-white bg-success">
+                            Martes
+                        </div>
+                        <div class="col-md-1 col-sm-1 col-xs-1 card_reticula card-cabecera text-white bg-success">
+                            Miercoles
+                        </div>
+                        <div class="col-md-1 col-sm-1 col-xs-1 card_reticula card-cabecera text-white bg-success">
+                            Jueves
+                        </div>
+                        <div class="col-md-1 col-sm-1 col-xs-1 card_reticula card-cabecera text-white bg-success">
+                            Viernes
+                        </div>
+                        <div class="col-md-1 col-sm-1 col-xs-1 card_reticula card-cabecera text-white bg-success">
+                            Eliminar
+                        </div>
+                    </div>
+                    <div id="divSeleccionadas" class="row" style="min-width:1000px;">
+                        @Html.Raw(lsSeleccionadas)
+                    </div>
+                    <div class="row" id="divCabecera">
+                        <div class="col-md-4 col-sm-4 col-xs-4 card_reticula card-cabecera text-white bg-success">
+                            Creditos Seleccionados
+                        </div>
+                        <div class="col-md-1 col-sm-1 col-xs-1 card_reticula card-cabecera text-white bg-success">
+                            @Html.Raw(lsCreditosSeleccionados)
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+@{if (Convert.ToInt32(lsCreditosSeleccionados) > 0)
+    {
+        <div id="div" class="x_panel ">
+            <div class="x_title">
+                <div class="x_content">
+                    <div class="row">
+                        <h3>Finalizar proceso</h3>
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="col-md-8 center-margin  bg-info">
+                    <div class="row">
+                        <div class="text-center">
+                            <h4>
+                                <strong>Lea cuidadosamente</strong>
+                            </h4>
+                        </div>
+                        @if (lsEstado == 1)
+                        {
+
+                            <div class="x_title col-md-12 col-sm-12 col-xs-12 text-justify">
+                                <h5>
+                                    1) Si has terminado de seleccionar tus materias debes dar clic en el botón de "Finalizar Selección".
+                                </h5>
+                                <h5>
+                                    NOTA: Después de "Finalizar Selección", ya no se puede realizar cambios en las materias previamente seleccionadas.
+                                </h5>
+                                <h5>
+                                    2) Posteriormente, veras un nuevo botón, el cual te permitirá firmar tu carga académica.
+                                </h5>
+                            </div>
+
+                            <button type="submit" id="btnTerminarSeleccion" class="btn btn-success">Finalizar Selección</button>
+                        }
+                        else if (lsEstado == 2)
+                        {
+                            <div class="x_title col-md-12 col-sm-12 col-xs-12 text-justify">
+                                <h5>
+                                    1) Ahora que has concluido la selección de materias, podras revisar tu carga académica.
+                                </h5>
+                                <h5>
+                                    NOTA: Después de abrir y revisar la "Vista Previa", se mostrará el boton de Firma Eléctronica.
+                                </h5>
+                                <h5>
+                                    2) Debes firmar tu carga académica.
+                                </h5>
+                                <h5>
+                                    3) El Dep. de la División de Estudios debera firmar tu carga para que sea valida (Tiempo estimado, una semana después de tu firma).
+                                </h5>
+                            </div>
+                            <button type="submit" id="btnFirmarCargaAcademica" class="btn btn-info div-hide">Firmar y enviar</button>
+                        }
+                        else if (lsEstado == 3)
+                        {
+                            <h5>
+                                1) Ya has firmado tu carga, debes esperar a que sea firmada por el Departamento de División de Estudios Profesionales.
+                            </h5>
+
+                            <h5>
+                                2) El Dep. de la División de Estudios debera firmar tu carga para que sea valida (Tiempo estimado, una semana después de tu firma).
+                            </h5>
+                        }
+
+                        else if (lsEstado == 4)
+                        {
+                            <h5 class="text-center">
+                                Tu carga acádemica esta firmada, debes descargar y conservar.
+                            </h5>
+                        }
+                        @if (lsEstado > 1)
+                        {
+                            <button type="submit" id="btnCargaAcademica" class="btn btn-danger">Vista Previa</button>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+}
+
+@Html.Partial("../Generales/ModalVisorPDF")
+@Html.Partial("../Generales/FirmaElectronica")
+
+
+<div class="modal" tabindex="-1" role="dialog" id="divModalSeleccion">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Selección de horario</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="scoll-tree">
+                    <div class="row row_reticula" id="divCabecera">
+                        <div class="col-md-1 col-sm-1 col-xs-1 card_reticula card-cabecera text-white bg-success">
+                            Grupo
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-3 card_reticula card-cabecera text-white bg-success">
+                            Profesor
+                        </div>
+                        <div class="col-md-1 col-sm-1 col-xs-1 card_reticula card-cabecera text-white bg-success">
+                            Lunes
+                        </div>
+                        <div class="col-md-1 col-sm-1 col-xs-1 card_reticula card-cabecera text-white bg-success">
+                            Martes
+                        </div>
+                        <div class="col-md-1 col-sm-1 col-xs-1 card_reticula card-cabecera text-white bg-success">
+                            Miercoles
+                        </div>
+                        <div class="col-md-1 col-sm-1 col-xs-1 card_reticula card-cabecera text-white bg-success">
+                            Jueves
+                        </div>
+                        <div class="col-md-1 col-sm-1 col-xs-1 card_reticula card-cabecera text-white bg-success">
+                            Viernes
+                        </div>
+                        <div class="col-md-1 col-sm-1 col-xs-1 card_reticula card-cabecera text-white bg-success">
+                            Sabado
+                        </div>
+                    </div>
+                    <div id="divHorarios">
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnSeleccionarGrupo">Seleccionar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .modal-body {
+        max-width: 100%;
+        overflow-x: auto;
+    }
+
+    .scoll-tree {
+        width: 500px;
+    }
+</style>
+
+<script src="~/Scripts/ManejoDatos/Reticula/Seleccion.js"></script>

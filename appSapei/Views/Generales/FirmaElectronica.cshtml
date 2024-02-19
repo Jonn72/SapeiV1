@@ -1,0 +1,79 @@
+﻿@using Sapei.Framework.Utilerias;
+<!-- Modal -->
+<div class="modal fade" id="divModalFirmaElectronica" data-backdrop="false" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <div class="col-md-12 center-margin center-block">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h3>Firma Electrónica con uso de contraseña</h3>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="col-md-8 center-margin  bg-info">
+                            <div class="row">
+                                <div class="x_title col-md-12 col-sm-12 col-xs-12 text-center">
+                                    <h4>
+                                        <strong>Lea cuidadosamente antes de proceder</strong>
+                                    </h4>
+                                </div>
+                                <div class="x_title col-md-12 col-sm-12 col-xs-12 text-justify">
+                                    <h5>
+                                        1) Revisa cuidadosamente el documento antes de firmar.
+
+                                    </h5>
+                                    <h5>
+                                        2) Si estas de acuerdo con la información que se presenta en el documento, ingresa tu contraseña/NIP y da clíc en el botón Firmar.
+                                    </h5>
+                                    @if (ViewData["Aviso3"] != null)
+                                    {
+                                        <h5>
+                                            3) @ViewData["Aviso3"].ToString();
+                                        </h5>
+                                        if (ViewData["Aviso4"] != null)
+                                        {
+                                            <h5>
+                                                4) @ViewData["Aviso4"].ToString();
+                                            </h5>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 center-margin ">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12 col-xs-12 form-group bg-tecnm">
+                                    <label>
+                                        Usuario
+                                    </label>
+                                    <input type="text" class="form-control bg-white" value="@SesionSapei.Sistema.Sesion.Usuario.Usuario" readonly />
+                                </div>
+                                <div class="col-md-6 col-sm-12 col-xs-12 form-group bg-tecnm">
+                                    <label>
+                                        Contraseña / NIP
+                                    </label>
+                                    <input type="password" id="txtFirma" class="form-control bg-white" placeholder=" Ingresa tu Contraseña / NIP" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 center-margin ">
+                            <div class="row">
+                                <button type="submit" data-dismiss="modal" id="btnEnviarFirmar" class="btn btn-info btn-block">e-Firmar</button>
+                                <button type="button" data-dismiss="modal" id="btnCancelarFirma" class="btn btn-danger btn-block">Cancelar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $("#btnCancelarFirma").click(function () {
+        $("#divModalFirmaElectronica").hide();
+        $('.modal-backdrop').remove();
+    });
+
+</script>

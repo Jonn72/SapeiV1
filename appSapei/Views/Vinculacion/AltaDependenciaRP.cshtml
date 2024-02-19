@@ -1,0 +1,159 @@
+﻿<input type="hidden" id="hidColonia" value="@ViewData["colonia"]" />
+<div class="x_panel">
+    <div class="x_title">
+        <h2>Convenios </h2>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <div class="col-md-4 col-sm-4 col-xs-12">
+            <h2>Generar Registro</h2>
+        </div>
+        <div class="col-md-4 dol-sm-4 col-xs-12">
+            <a class="btn btn-info btn-lg" id="NewDependencia"><span class="fa fa-plus"></span> Nuevo</a>
+        </div>
+     </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" id="MyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Dependencias</h5>
+            </div>
+            <div class="modal-body">
+                <form id="frmAltaDependencia" data-parsley-validate class="form-horizontal form-label-left">
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <label>RFC</label>
+                        <input type="text" id="txtRfc" required class="form-control" maxlength="13" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                    </div>
+                    <div class="col-md-8 col-sm-8 col-xs-12 form-group">
+                        <label>Nombre de la Dependencia</label>
+                        <input type="text" id="txtDependencia" required class="form-control" maxlength="60" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <label>Giro, Ramo o Sector</label>
+                        <select class="form-control" id="cboGiro" required>
+                            <option selected></option>
+                            <option value="Industrial">Industrial</option>
+                            <option value="Privado">Privado</option>
+                            <option value="Público">Público</option>
+                            <option value="Servicios">Servicios</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <label>Misión de la empresa</label>
+                        <textarea class="form-control" id="txtmision" required maxlength="300" rows="2"></textarea>
+                        <span class="alert" id="textarea_message"></span>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                        <label>Domicilio Actual</label>
+                        <input type="text" class="form-control" id="txtCalle" maxlength="100" placeholder="Calle" required onkeyup="javascript:this.value=this.value.toUpperCase();" />
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                        <label>Número Domicilio</label>
+                        <input type="number" class="form-control" id="txtNoDomicilio" placeholder="Número" required />
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                        <label>Código Postal</label>
+                        <input type="number" class="form-control" id="txtCodPostal" maxlength="5" placeholder="Código Postal" onblur="autocompleta('Estudiante', '')" required />
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-8 form-group">
+                        <label>Colonia</label>
+                        <select class="form-control" id="cboColonia"></select>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                        <label>Alcaldía</label>
+                        <input type="text" class="form-control" id="txtCiudad" disabled placeholder="Ciudad o Localidad" />
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                        <label>Entidad Federativa</label>
+                        <input type="text" class="form-control" id="txtEstado" disabled placeholder="Entidad Federativa" />
+                    </div>
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                        <label>Titular de la Dependencia</label>
+                        <input type="text" id="txtTitular" class="form-control" maxlength="50" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                    </div>
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                        <label>Cargo del Titular de la Dependencia</label>
+                        <input type="text" id="txtCargoTitular" required class="form-control" maxlength="30" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <label>Teléfono</label>
+                        <input type="tel" id="txtTelefono" maxlength="15" required class="form-control">
+                    </div>
+                    <div class='col-md-12 col-sm-12 col-xs-12'>
+                        <button type="submit" id="btnGuardar" class="btn btn-success" style="margin-top:10px">Guardar</button>
+                        <button type="button" class="btn btn-secondary" id="btnCerrar" data-dismiss="modal" style="margin-top:10px">Cerrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade bd-example-modal-lg" id="ModalOficina" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Dependencias</h5>
+            </div>
+            <div class="modal-body">
+                <form id="frmAltaDependencia" data-parsley-validate class="form-horizontal form-label-left">
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <label>RFC</label>
+                        <input type="text" id="txtRFCOficina" class="form-control" readonly>
+                    </div>
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                        <label>Registros</label>
+                        <select class="form-control" id="cboOficinasRegistros" required>
+
+                        </select>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                        <label>Nombre de la oficina o área</label>
+                        <input type="text" id="txtOficina" required class="form-control" maxlength="60" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <label>Responsable</label>
+                        <input type="text" id="txtResponsableOficina" class="form-control" maxlength="50" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                    </div>
+                    <div class='col-md-12 col-sm-12 col-xs-12'>
+                        <button type="submit" id="btnGuardarOficina" class="btn btn-success" style="margin-top:10px">Guardar</button>
+                        <button type="button" class="btn btn-secondary" id="btnCerrar" data-dismiss="modal" style="margin-top:10px">Cerrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="ModalEleminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirmacion</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="frmEleminarDependencia" data-parsley-validate class="form-horizontal form-label-left">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <h3>¿Deseas eliminar este registro?</h3>
+                        <input type="text" id="RfcEtxt" disabled class="form-control">
+                    </div>
+                    <div class='col-md-12 col-sm-12 col-xs-12'>
+                        <button type="submit" id="btnEleminar" class="btn btn-danger" style="margin-top:10px">Eliminar</button>
+                        <button type="button" class="btn btn-secondary"  data-dismiss="modal" style="margin-top:10px">Cerrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Html.Partial("../Generales/TablaGeneral")
+<script src="~/Scripts/ManejoDatos/Vinculacion/AltaDependenciaRP.js"></script>
+<script src="~/Scripts/ManejoDatos/Domicilio.js"></script>

@@ -1,0 +1,104 @@
+﻿<link href="~/sii/Content/font/font-awesome.min.css" rel="stylesheet" />
+<link href="~/sii/Content/prettify/prettify.min.css" rel="stylesheet" />
+
+<input type="hidden"  id="hidNoControl"/>
+
+<div class="container body" style="height: 550px;">
+    <div class=" clearfix"></div>
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="clearfix"></div>
+            <div class="x_panel">
+                <div class="x_title">
+                    <h3>Alumnos Titulados</h3>
+                </div>
+                @if (Sapei.Framework.Utilerias.SesionSapei.Sistema.Sesion.Usuario.RolUsuario == Sapei.Framework.Configuracion.enmRolUsuario.ESC)
+                {
+                    <div id="divNoControl">
+                        <div class="col-md-8 center-margin">
+                            <div class="input-group">
+                                <input type="text" id="txtNoControl" class="form-control" placeholder="Ingrese el no. de control">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default btn-success" type="button" id="btnNuevo"><i class="fa fa-search"></i></button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <div id="frmAlumnosTitulados" class="div-hide">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                            <label for="txtNombreEstudiante">
+                                Nombre del estudiante
+                            </label>
+                            <input type="text" class="form-control" id="txtNombreEstudiante" />
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                            <label for="cboPeriodoEscolar">
+                                Periodo de la Titulacion
+                            </label>
+                            @if (ViewData["cboPeriodoEscolar"] != null)
+                            {
+                                <select class="form-control" id="cboPeriodoEscolar">
+                                    @foreach (System.Data.DataRow dr in (ViewData["cboPeriodoEscolar"] as System.Data.DataTable).Rows)
+                                    {
+                                        <option value="@dr.ItemArray[0].ToString().Trim()">@dr.ItemArray[1].ToString().Trim()</option>
+                                    }
+                                </select>
+                            }
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                            <label for="tags">
+                                Fecha de Acto Protocolario
+                            </label>
+                            <div class='input-group date' id='dtpFechaActo'>
+                                <input type='text' id="txtFechaActo" class="form-control" />
+                                <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+                            </div>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                            <label for="cboOpcionTitulacion">
+                                Opcion de Titulación
+                            </label>
+                            @if (ViewData["cboTiposTitulacion"] != null)
+                            {
+                                <select class="form-control" id="cboTiposTitulacion">
+                                    @foreach (System.Data.DataRow dr in (ViewData["cboTiposTitulacion"] as System.Data.DataTable).Rows)
+                                    {
+                                        <option value="@dr.ItemArray[0].ToString().Trim()">@dr.ItemArray[1].ToString().Trim()</option>
+                                    }
+                                </select>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                            <button id="btnGuardar" type="submit" class="btn btn-info">Guardar</button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- /page content -->
+    </div>
+
+
+            @Html.Partial("../Generales/TablaGeneral")
+
+
+
+    </div>
+<script src="~/Scripts/ManejoDatos/Escolares/InsertaTitulado.js">
+</script>
+<script src="~/Scripts/fastclick.js"></script>
+

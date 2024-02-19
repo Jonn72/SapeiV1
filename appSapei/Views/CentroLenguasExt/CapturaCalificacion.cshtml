@@ -1,0 +1,69 @@
+﻿
+<input type="hidden" id="hidPeriodo" value="@ViewData["periodo"]" />
+
+<div class="page-title">
+     <div class="col-md-8 col-sm-8 col-xs-12 form-group pull-left">
+          <h3>Listas de grupos con estudiantes inscritos <small>@ViewData["descPeriodo"]</small></h3>
+     </div>
+</div>
+<div class="x_panel">
+     <div class="x_title">
+          <h3>Cargar Listas de Calificaciones <small>@ViewData["descPeriodo"]</small></h3>
+     </div>
+     <div class="col-md-10 center-margin center-block">
+          <div class="x_content">
+               <p>
+                    Este proceso se encarga de cargar las listas por grupo con estudiantes inscritos, las cuales deben ser entregadas por parte de la institución responsable de los cursos de inglés.
+               </p>
+               <p>
+                    Los archivos cargados deben estar en formato CSV y codifcicación UTF-8. Así mismo deben tener las columnas y orden siguiente:  periodo, nivel, grupo, control, promedio, asistencia, h1, h2, h3 , h4. Donde h1, h2, h3 y h4 son las habilidades de speaking, writing, listening y reading.
+               </p>
+               <p>
+                    Debe seleccionar y cargar uno a uno los archivos de cada grupo inscrito, despues de cargar será validada la información, si todo es correcto el resumen se mostrará en la tabla inferior, donde se reflejará información de estudiantes registrados, bajas o altas en cada grupo registrado.
+               </p>
+               <div class="file-loading">
+                    <input id="txtFile" name="txtFile[]" type="file" multiple>
+               </div>
+          </div>
+     </div>
+</div>
+@Html.Partial("../Generales/TablaGeneral")
+
+
+<script src="~/Scripts/ManejoDatos/CentroLenguasExt/CaprturaCalificacion.js"></script>
+<script src="~/Scripts/Componentes/fileinput.js"></script>
+<script src="~/Scripts/Idiomas/es.js"></script>
+<script>
+     $(document).ready(function () {
+          $('#txtFile').fileinput('reset');
+     });
+     $('#txtFile').fileinput({
+          uploadAsync: false,
+          language: 'es',
+          showPreview: false,
+          showCaption: true,
+          showUpload: true,
+          minFileCount: 1,
+          maxFileCount: 1,
+          uploadUrl: '../../../CentroLenguasExt/CargaCalificacionPorGrupo',
+          allowedFileExtensions: ['csv']
+     });
+
+     $('#txtFile').on('filebatchuploadsuccess', function (event, data) {
+          var form = data.form, files = data.files, extra = data.extra,
+              response = data.response, reader = data.reader;
+          if (response.Success == true) {
+               MensajesToastr("info", "Solicitud Procesada", "El archivo se cargo correctamente");
+               $('#BodyPrincipal').load('../../../../CentroLenguasExt/CapturaCalificacion');
+          }
+          else {
+               MensajesToastr("info", "Solicitud Procesada", "Error " + response.Mensaje);
+          }
+     });
+     $('#txtFile').on('filebatchuploadcomplete', function (event, files, extra) {
+          //alert('File batch upload complete');
+     });
+     $('#txtFile').on('filebatchuploaderror', function (event, data, msg) {
+          MensajesToastr("info", "Solicitud Procesada", "El archivo no tiene el formato correcto");
+     });
+</script>

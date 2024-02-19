@@ -1,0 +1,68 @@
+﻿<div class="page-title">
+    <div class="title_left">
+        <h3>Seguimientos <small>@ViewData["periodo"]</small></h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="x_panel">
+    <div class="x_title">
+        <div class="x_content">
+            <div class="form-group">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <h3>1°er Seguimiento</h3>
+                    <p>Generar a partir de: @ViewData["fecha_primerS"]</p>
+                    @if (ViewData["estado_primer_seguimiento"] != null)
+                    {
+                        <a class="btn btn-success" id="btnSeguimiento1">Descargar <span class="fa fa-download"></span></a>
+                    }
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <h3>Calificación Asignada</h3>
+                    <p>Asesor Interno:@if (Convert.ToInt32(ViewData["calf_interno_primerS"]) != 0)
+                    {@ViewData["calf_interno_primerS"]} </p>
+                    <p>Asesor Externo:@if (Convert.ToInt32(ViewData["calf_externo_primerS"]) != 0)
+                    {@ViewData["calf_externo_primerS"]} </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <h3>2°do Seguimiento</h3>
+                    <p>Generar a partir de: @ViewData["fecha_segundoS"]</p>
+                    @if (ViewData["estado_segundo_seguimiento"] != null)
+                    {
+                        <a class="btn btn-success" id="btnSeguimiento2">Descargar <span class="fa fa-download"></span></a>
+                    }
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <h3>Calificación Asignada</h3>
+                    <p>Asesor Interno:@if (Convert.ToInt32(ViewData["calf_interno_segundoS"]) != 0)
+                    {@ViewData["calf_interno_segundoS"]}</p>
+                    <p>Asesor Externo:@if (Convert.ToInt32(ViewData["calf_externo_segundoS"]) != 0)
+                    {@ViewData["calf_externo_segundoS"]}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <h3>3°er Seguimiento</h3>
+                    <p>Generar a partir de: @ViewData["fecha_tercerS"]</p>
+                    @if (ViewData["estado_tercer_seguimiento"] != null)
+                    {
+                        <a class="btn btn-success" id="btnSeguimiento3">Descargar <span class="fa fa-download"></span></a>
+                    }
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <h3>Calificación Asignada</h3>
+                    <p>Asesor Interno:@if (Convert.ToInt32(ViewData["calf_interno_tercerS"]) != 0)
+                    {@ViewData["calf_interno_tercerS"]}</p>
+                    <p>Asesor Externo:@if (Convert.ToInt32(ViewData["calf_externo_tercerS"]) != 0)
+                    {@ViewData["calf_externo_tercerS"]}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<a class="btn btn-info" data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#BodyPrincipal" href="/Estudiante/ControlEscolarRP">
+    Regresar al menú
+</a>
+@Html.Partial("../Generales/ModalVisorPDF")
+<script src="~/Scripts/ManejoDatos/Estudiantes/SeguimientosRP.js"></script>

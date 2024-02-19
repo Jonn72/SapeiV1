@@ -1,0 +1,151 @@
+﻿<div class="row tile_count">
+    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count" data-toggle="modal" data-target="#divModal" id="total">
+        <div style="cursor: pointer">
+            <span class="count_top"><i class="fa fa-arrow-up"></i> Cargar Base</span>
+            <div class="count"><i class="fa fa-upload"></i></div>
+            <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>.</i> </span>
+        </div>
+    </div>
+</div>
+
+ 
+<div class="x_panel">
+    <div class="x_title">
+        <h3>Generar Incidencias</h3>
+    </div>
+    <div class="x_content">
+        <div class="row">
+            <div class="col-md-4 col-xs-12 col-sm-12 ">
+                <div class="control-group">
+                    <label for="Periodo_txt">Fecha Inicial:</label>
+                    <div class='input-group date' id='dtpFecha'>
+                        <input type='text' id="txtFechaInicial" placeholder="Ingrese fecha de inicio" class="form-control" required />
+                        <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-12 col-sm-12 ">
+                <div class="control-group">
+                    <label for="Periodo_txt">Fecha Final:</label>
+                    <div class='input-group date' id='dtpFecha'>
+                        <input type='text' id="txtFechaFinal" placeholder="Ingrese fecha final" class="form-control" required />
+                        <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-12 col-sm-12 ">
+                <div class="form-group">
+                    <label for="Periodo_txt"> Periodo:</label>
+                    @{
+                        ViewData["NombreCombo"] = "ddlPeriodo";
+                        ViewData["DatosCombo"] = ViewData["periodo"];
+                    }
+                    @Html.Partial("../Generales/ListaDesplegable")
+                </div>
+            </div>
+            </div>
+        <div  class="row">
+            <div class="col-md-4 col-xs-12 col-sm-12 ">
+                <div class="form-group">
+                    <label for="Puestos_txt"> Puestos:</label>
+                    @{
+                        ViewData["NombreCombo"] = "ddlPuesto";
+                        ViewData["DatosCombo"] = ViewData["puesto"];
+                    }
+                    @Html.Partial("../Generales/ListaDesplegable")
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-12 col-sm-12 ">
+                <div class="form-group">
+                    <label for="Empleado_txt"> Empleado:</label>
+                    <select id="ddlEmpleado"  class="form-control">
+                        <option value="-1">-- SELECCIONE UNA OPCIÓN</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-12 col-sm-12 ">
+                <div class="form-group">
+                    <label class="control-label">
+                       RFC:
+                    </label>
+                    <input id="txtRFC" type="text" class="form-control" placeholder="RFC">
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-offset-8 col-md-4 col-xs-12 col-sm-12">
+                <div class="form-group">
+                    <button class="btn btn-block btn-info">Buscar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Html.Partial("../Generales/ModalCargaArchivo")
+
+<script>
+    $("#txtFechaInicial").datetimepicker({ format: 'DD-MM-YYYY' });
+    $("#txtFechaFinal").datetimepicker({ format: 'DD-MM-YYYY' });
+    
+    $(document).ready(function () {
+        $('#input-id').fileinput('reset');
+    });
+
+    $('#txtFile').fileinput({
+        uploadAsync: false,
+        language: 'es',
+        showPreview: false,
+        showCaption: true,
+        showUpload: true,
+        minFileCount: 1,
+        maxFileCount: 1,
+        uploadUrl: '../../Incidencias/RHCargarArchivoIncidencias',
+        allowedFileExtensions: ['txt', 'dat'],
+        success: function (data) {
+            console.log(data);
+        }
+    });
+
+    $("#ddlEmpleado").on('change', function () {
+        if ($(this).val() != "-1") {
+            $("#txtRFC").val($(this).val());
+            $("#txtRFC").attr("disabled", true);
+        } else {
+            $("#txtRFC").val("");
+            $("#txtRFC").attr("disabled",false);
+        }
+    });
+
+
+    $("#ddlPuesto").on('change', function () {
+        var loClavePuesto = $(this).val();
+        $.ajax({
+            url: '../../Incidencias/CargarEmpleadoPuesto',
+            type: 'POST',
+            dataType: 'json',
+            data: { psClavePuesto: loClavePuesto },
+        })
+        .done(function (data) {
+            if (data != null) {
+                var locarga = JSON.parse(data);
+                $('#ddlEmpleado').find('option').remove().end().append('<option value="-1">--SELECCIONE UNA OPCION--</option>');
+
+                $("#txtRFC").val("");
+                $("#txtRFC").attr("disabled", false);
+
+
+                $.each(locarga.data, function (index, diccionario) {
+                    $("#ddlEmpleado").append("<option value=" + diccionario.rfc + ">" + diccionario.nombre + "</option>");
+
+                });
+            }
+        })
+        .fail(function () {
+            console.log("error");
+        })
+        .always(function (data) {
+        });
+    });
+</script>

@@ -1,0 +1,30 @@
+﻿<!-- Modal validacion -->
+<div class="modal fade" id="validaAceptacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirmación</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="frmValidaCarta" data-parsley-validate class="form-horizontal form-label-left">
+                <div class="modal-body">
+                    <h3>¿Deseas validar el siguiente número de control?</h3>
+                    <input type="text" id="txtNoControl" class="form-control" disabled/>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" id="btnAcepta" class="btn btn-success">Aceptar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@Html.Partial("../Generales/TablaGeneral")
+<a class="btn btn-info" data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#BodyPrincipal" href="/Vinculacion/ControlEscolarRP">
+    Regresar al menú
+</a>
+<script src="~/Scripts/ManejoDatos/Vinculacion/CartaAceptacionRP.js"></script>

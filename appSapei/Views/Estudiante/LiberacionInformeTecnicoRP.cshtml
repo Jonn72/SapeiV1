@@ -1,0 +1,17 @@
+﻿<div class="x_panel">
+    <div class="x_title">
+        <h2>Formato de liberación de Informe Técnico</h2>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <p>Descarga tu formato y entregalo a los depratamentos correspondientes</p>
+            <a class="btn btn-success" id="btnFormato">Formato <span class="fa fa-download"></span></a>
+        </div>
+    </div>
+</div>
+<a class="btn btn-info" data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#BodyPrincipal" href="/Estudiante/ControlEscolarRP">
+    Regresar al menú
+</a>
+@Html.Partial("../Generales/ModalVisorPDF")
+<script src="~/Scripts/ManejoDatos/Estudiantes/LiberacionInformeTecnicoRP.js"></script>

@@ -1,0 +1,129 @@
+﻿<input type="hidden" id="hidPeriodo" value="@ViewData["periodo"]" />
+
+
+<div class="page-title">
+     <div class="col-md-8 col-sm-8 col-xs-12 form-group pull-left">
+          <h3>Constancias de cumplimiento</h3>
+     </div>
+     <div class="col-md-4 col-sm-4 col-xs-12 form-group pull-right top_search">
+          <div class="form-inline">
+               <label for="cboPeriodo">
+                    Periodo
+               </label>
+               <select class="form-control" id="cboPeriodo"></select>
+          </div>
+     </div>
+</div>
+<div class="clearfix"></div>
+<form class="form-horizontal form-label-left" action="#" id="frmLiberacion" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+    <div>
+        <div id="divBuscar" class="x_panel col-md-10 col-sm-12 col-xs-12">
+            <div class="x_title">
+                <h3>Buscar</h3>
+            </div>
+            <div class="x_content">
+                <div class="col-md-6">
+                    <button type="button" id="btnIndividual" class="btn btn-primary btn-round btn-lg"><i class="fa fa-user"></i>  Por no. de control</button>
+                </div>
+                <div class="col-md-6">
+                    <button type="button" id="btnGrupo" class="btn btn-success btn-round btn-lg"><i class="fa fa-users"></i> Por grupo de actividad</button>
+                </div>
+            </div>
+        </div>
+        <div id="divControl" class="x_panel col-md-4 col-sm-4 col-xs-12 div-hide">
+            <div class="x_title">
+                <h3>Búsqueda por Estudiante</h3>
+            </div>
+            <div class="x_content">
+                <div class="col-md-8 center-margin">
+                    <div class="input-group">
+                        <input type="text" id="txtNoControl" class="form-control" placeholder="Ingrese el no. de control">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default btn-success" type="button" id="btnBuscar"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+
+                    <button class="btn btn-default btn-info" type="button" id="btnAtras"><i class="fa fa-backward"></i> Atras</button>
+
+                </div>
+            </div>
+        </div>
+        <div id="divActividad" class="x_panel col-md-4 col-sm-4 col-xs-12 div-hide">
+            <div class="x_title">
+                <h3>Buscar</h3>
+            </div>
+            <div class="x_content">
+                <div class="col-md-8 center-margin">
+                    <div class="form-group">
+                        <label for="cboActividades">
+                            Grupo
+                        </label>
+                        <select class="form-control" id="cboActividades"></select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            Formato
+                        </label>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="rbtFormato" id="rdbEs15" value="1" checked="checked">
+                                Ingreso despúes del periodo 2015
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="rbtFormato" id="rdbEs14" value="0">
+                                Ingreso antes en periodo 2015
+                            </label>
+                        </div>
+
+                    </div>
+
+                    <div class="input-group">
+                        <button class="btn btn-default btn-info" type="button" id="btnAtras1"><i class="fa fa-backward"></i>  Atras</button>
+                        <button class="btn btn-default btn-success" type="button" id="btnGenerarGrupo"><i class="fa fa-download"></i>  Generar</button>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <div id="divDatos" class="x_panel col-md-8 col-sm-8 col-xs-12 div-hide">
+            <div class="x_title">
+                <h3>Datos</h3>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                    <label>Nombre</label>
+                    <input type="text" class="form-control" id="txtNombre" readonly>
+                </div>
+
+                <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                    <label>Actividad</label>
+                    <select class="form-control" id="cboActividad"></select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <button id="btnGenerar" type="submit" class="btn btn-block btn-success">Generar</button>
+            </div>
+        </div>
+    </div>
+
+
+</form>
+
+<div id="divVisor" class="row div-hide">
+     <div class="x_panel">
+          <div class="x_title">
+               <h3>Constancia de Cumplimiento</h3>
+               <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+               @Html.Partial("../Generales/VisorPDF")
+          </div>
+     </div>
+</div>
+
+
+<script src="~/Scripts/ManejoDatos/ExtraEscolares/Liberacion.js"></script>

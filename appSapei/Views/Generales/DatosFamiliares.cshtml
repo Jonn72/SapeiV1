@@ -1,0 +1,92 @@
+﻿<h4>Datos del Padre</h4>
+<div class="row">
+     <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+          <label for="txtNombrePadre">
+               Nombre completo del Padre
+          </label>
+          <input type="text" class="form-control" id="txtNombrePadre" placeholder="Nombre completo del Padre" required />
+          <div class="help-block with-errors"></div>
+     </div>
+     <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+          <label for="txtDomicilioPadre">
+               Domicilio Actual (Calle y Número)
+          </label>
+          <input type="text" class="form-control" id="txtDomicilioPadre" placeholder="Calle y número" required />
+          <div class="help-block with-errors"></div>
+     </div>
+     <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+          <label for="txtCodPostalPadre">
+               Código Postal
+          </label>
+          <input type="number" class="form-control" id="txtCodPostalPadre" maxlength="5" placeholder="Código Postal" onblur="autocompleta(this, 'Padre');" required />
+          <div class="help-block with-errors"></div>
+     </div>
+</div>
+<div class="row">
+     <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+          <label for="cboColoniaPadre">
+               Colonia
+          </label>
+          <select class="form-control" id="cboColoniaPadre" placeholder="Ingrese primero su código postal" required></select>
+     </div>
+     <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+          <label for="txtCiudadPadre">
+               Ciudad o Localidad
+          </label>
+          <input type="text" class="form-control" id="txtCiudadPadre" disabled placeholder="Ciudad o Localidad" />
+          <div class="help-block with-errors"></div>
+     </div>
+     <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+          <label for="txtEstadoPadre">
+               Entidad Federativa
+          </label>
+          <input type="text" class="form-control" id="txtEstadoPadre" disabled placeholder="Entidad Federativa" />
+          <div class="help-block with-errors"></div>
+     </div>
+</div>
+<div class="row">
+     <h4>Datos de la Madre</h4>
+     <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+          <label for="txtNombreMadre">
+               Nombre completo de la Madre
+          </label>
+          <input type="text" class="form-control" id="txtNombreMadre" placeholder="Nombre completo de la Madre" required />
+          <div class="help-block with-errors"></div>
+     </div>
+     <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+          <label for="txtDomicilioMadre">
+               Domicilio Actual (Calle y Número)
+          </label>
+          <input type="text" class="form-control" id="txtDomicilioMadre" placeholder="Calle y número" required />
+          <div class="help-block with-errors"></div>
+     </div>
+     <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+          <label for="txtCodPostalMadre">
+               Código Postal
+          </label>
+          <input type="number" class="form-control" id="txtCodPostalMadre" maxlength="5" placeholder="Código Postal" onblur="autocompleta(this, 'Madre');" required />
+          <div class="help-block with-errors"></div>
+     </div>
+</div>
+<div class="row">
+     <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+          <label for="cboColoniaMadre">
+               Colonia
+          </label>
+          <select class="form-control" id="cboColoniaMadre" placeholder="Ingrese primero su código postal" required></select>
+     </div>
+     <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+          <label for="txtCiudadMadre">
+               Ciudad o Localidad
+          </label>
+          <input type="text" class="form-control" id="txtCiudadMadre" disabled placeholder="Ciudad o Localidad" />
+          <div class="help-block with-errors"></div>
+     </div>
+     <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+          <label for="txtEstadoMadre">
+               Entidad Federativa
+          </label>
+          <input type="text" class="form-control" id="txtEstadoMadre" disabled placeholder="Entidad Federativa" />
+          <div class="help-block with-errors"></div>
+     </div>
+</div>

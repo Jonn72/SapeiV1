@@ -1,0 +1,65 @@
+﻿<!-- Modal -->
+<div class="modal fade" id="divModalImprimeCargaAcademica" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-md-12 center-margin center-block">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h3>Carga Académica</h3>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                                        <label for="tags">
+                                            Periodo
+                                        </label>
+                                        <select class="form-control" id="cboPeriodo" required> </select>
+
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                                        <label for="tags">
+                                            Carrera
+                                        </label>
+                                        <select class="form-control" id="cboCarreras" required> </select>
+
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                                        <label for="">
+                                            Semestre
+                                        </label>
+                                        <select class="form-control" id="cboSemestre" required>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">Mayor a 8</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-12 form-group bg-tecnm">
+                                        <label for="tags">
+                                           No. de control (opcional)
+                                        </label>
+                                        <div class='input-group'>
+                                            <input type='text' id="txtNoControl" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/ManejoDatos/Generales/ModalImprimeCargaAcademica.js"></script>

@@ -1,0 +1,110 @@
+﻿<div class="page-title">
+     <div class="title_left">
+          <h3>Datos <small>de Aspirante</small></h3>
+     </div>
+</div>
+<div class="clearfix"></div>
+<div class="x_panel">
+     <div class="x_title">
+          <form class="form-horizontal form-label-left" action="#" id="frmFicha" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+               <div class="form-group">
+                    <div class="col-md-8 center-margin">
+                         <div class="x_title">
+                              <h2>Folio: <small>@ViewData["txtFolio"]</small></h2>
+                         </div>
+                         <div class="dashboard-widget-content">
+                              <ul class="list-unstyled timeline widget">
+                                   <li>
+                                        <div class="block">
+                                             <div class="block_content">
+                                                  &nbsp;
+                                                  <h2 class="title">
+                                                       <a>Nombre:</a>
+                                                  </h2>
+                                                  <div class="byline">
+                                                       <span id="spNombreCompleto">@ViewData["txtNombre"] @ViewData["txtPaterno"] @ViewData["txtMaterno"]</span>
+                                                  </div>
+                                                  &nbsp;
+                                                  <h2 class="title">
+                                                       <a>Fecha de Nacimiento: </a>
+                                                  </h2>
+                                                  <div class="byline">
+                                                       <span id="spFechaNacimiento">@ViewData["txtFechaNacimiento"]</span>
+                                                  </div>
+                                                  &nbsp;
+                                                  <h2 class="title">
+                                                       <a>CURP: </a>
+                                                  </h2>
+                                                  <div class="byline">
+                                                       <span id="spCurp">@ViewData["txtCurp"]</span>
+                                                  </div>
+                                                  &nbsp;
+                                             </div>
+                                        </div>
+                                        <div class="block">
+                                             <div class="block_content">
+                                                  &nbsp;
+                                                  <h2 class="title">
+                                                       <a>Domicilio:</a>
+                                                  </h2>
+                                                  <div class="byline">
+                                                       <span id="spDomicilio">@ViewData["txtCalle"] @ViewData["txtNoDomicilio"]</span>
+                                                  </div>
+                                                  &nbsp;
+                                                  <h2 class="title">
+                                                       <a>Colonia:</a>
+                                                  </h2>
+                                                  <div class="byline">
+                                                       <span id="spColonia">@ViewData["txtColonia"]</span>
+                                                  </div>
+                                                  &nbsp;
+                                                  <h2 class="title">
+                                                       <a>CP:</a>
+                                                  </h2>
+                                                  <div class="byline">
+                                                       <span id="spCp">@ViewData["txtCodPostal"]</span>
+                                                  </div>
+                                                  &nbsp;
+                                             </div>
+                                        </div>
+                                        <div class="block">
+                                             <div class="block_content">
+                                                  &nbsp;
+                                                  <h2 class="title">
+                                                       <a>Carrera 1a Opción:</a>
+                                                  </h2>
+                                                  <div class="byline">
+                                                       <span id="spCarrera1">@ViewData["txtCarrera1"]</span>
+                                                  </div>
+                                                  &nbsp;
+                                                  <h2 class="title">
+                                                       <a>Carrera 2a Opción:</a>
+                                                  </h2>
+                                                  <div class="byline">
+                                                       <span id="spCarrera2">@ViewData["txtCarrera2"]</span>
+                                                  </div>
+                                                  &nbsp;                                                 
+                                             </div>
+                                        </div>
+                                   </li>
+                              </ul>
+                         </div>
+                         <div class="row">
+                              <div class="col-md-4 col-md-offset-4">
+                                   <button id="btnAnterior" type="submit" class="btn btn-block btn-info">Atras</button>
+                              </div>
+                              <div class="col-md-4">
+                                   <a href="@Url.Action("FichaAspirante","Reportes",new {id= "PDF"})" class="btn btn-block btn-success" role="button">Imprimir Ficha</a>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </form>
+     </div>
+</div>
+<script src="~/Scripts/ManejoDatos/Aspirantes/Ficha.js"></script>
+
+
+
+
+

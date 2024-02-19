@@ -1,0 +1,81 @@
+﻿
+<div class="x_panel">
+    <div class="x_title">
+        <h3>
+            Servicios Registrados
+        </h3>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <p>
+            <a class="btn btn-primary" data-toggle="modal" data-target="#divModalNuevo">
+                <span class="fa fa-plus mr-3"></span> Registrar Nuevo
+            </a>
+        </p>
+        @Html.Partial("../Generales/TablaGeneral")
+    </div>
+</div>
+
+
+<div class="modal fade" id="divModalNuevo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Nuevo Servicio</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <form id="AjaxformId">
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <h4>Servicios</h4>
+                        <hr />
+                        <div class="form-group">
+                            <label>
+                                Clave
+                            </label>
+                            <input class="form-control text-box single-line" data-val="true" data-val-required="El campo es obligatorio." id="clave" name="clave" type="text" value="">
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                Concepto
+                            </label>
+                            <input class="form-control text-box single-line" data-val="true" data-val-required="El campo es obligatorio." id="concepto" name="concepto" type="text" value="">
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                Monto
+                            </label>
+                            <input class="form-control text-box single-line" data-val="true" data-val-required="El campo es obligatorio." id="monto" name="monto" type="number" value="">
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                Vigencia
+                            </label>
+                            <input class="form-control text-box single-line" data-val="true" data-val-required="El campo es obligatorio." id="dias_vigencia" name="dias_vigencia" type="number" value="">
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                Activo
+                            </label>
+                            <div>
+                                <input class="check-box" id="activo" name="activo" type="checkbox" value="true">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Guardar" class="btn btn-success btn-small margin-right pull-right" />
+                                <a href="#" id="btnAtras" class="btn btn-primary btn-default btn-small margin-right pull-right" data-dismiss="modal">
+                                    <span class="fa fa-arrow-left mr-3"></span> Cancelar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/Componentes/DataTable/init_datatable.js"></script>
+<script src="~/Scripts/ManejoDatos/Financieros/Servicio.js"></script>

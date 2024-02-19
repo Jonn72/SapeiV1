@@ -1,0 +1,94 @@
+﻿<div class="page-title">
+    <div class="title_left">
+        <h3>Selección <small>de personal</small></h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="x_panel">
+    <div class="clearfix"></div>
+    <div>
+        <div class="col-md-4 col-sm-4 col-xs-12">
+        </div>
+
+        <div class="input-group" id="SelectCarrera">
+            <select class="form-control" id="cboCarrera" onchange="CargaEspecialidades(this);">
+            </select>
+
+        </div>
+    </div>
+    <div class="div-hide" id="SelectEsp">
+        <div class="col-md-4 col-sm-4 col-xs-12"></div>
+        <div class="input-group">
+            <select class="form-control" id="cboEspecialidad">
+            </select>
+        </div>
+    </div>
+    <div>
+        <div class="col-md-6 col-sm-6 col-xs-12"></div>
+        <div class="input-group">
+            <button class="btn btn-default btn-success" type="button" id="btnBuscar1"><i class="fa fa-search"></i></button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script type="text/javascript">
+    var html = "";
+    var html2 = "";
+    var carreras =
+     @if (ViewData["objeto"] != null)
+     {
+
+         foreach (System.Data.DataRow drobjeto in (ViewData["objeto"] as System.Data.DataTable).Rows)
+         {
+            @Html.Raw(drobjeto.ItemArray[0].ToString())
+         }
+
+     };
+    var especialidades =
+        @if (ViewData["objeto"] != null)
+     {
+
+         foreach (System.Data.DataRow drobjeto in (ViewData["objeto"] as System.Data.DataTable).Rows)
+         {
+            @Html.Raw(drobjeto.ItemArray[1].ToString())
+         }
+
+     };
+    html = html + "<option value='0'>Grupos sin Especialidad </option>";
+    Object.keys(carreras).forEach((key) => {
+
+        html = html + "<option value='" + carreras[key].carrera_reticula + "'>" + carreras[key].nombre_carrera + " (" + carreras[key].carrera_reticula +")</option>";
+    });
+    $('#cboCarrera').html(html);
+
+    function CargaEspecialidades(carrera_reticula) {
+
+        html2 = "";
+        if (carrera_reticula.value != "0") {
+            Object.keys(especialidades).forEach((key) => {
+                if (especialidades[key].carrera_reticula === carrera_reticula.value) {
+                    html2 = html2 + "<option value='" + especialidades[key].especialidad + "'>" + especialidades[key].nombre_especialidad + "</option>";
+                }
+            });
+            $('#cboEspecialidad').html(html2);
+            $('#SelectEsp').removeClass("div-hide");
+        }
+        else {
+            $('#SelectEsp').addClass("div-hide");
+        }
+    }
+
+    $("#btnBuscar1").click(function (evento) {
+        evento.preventDefault
+        var carrera_reticula = $('#cboCarrera').val();
+        var especialidad = $('#cboEspecialidad').val();
+        if (carrera_reticula === "0") {
+            especialidad = "0";
+        }
+        $('#BodyPrincipal').load('../../../DEP/ReticulaGrupos', { psCarreraReticula: carrera_reticula, psEspecialidad: especialidad });
+    });
+
+    </script>

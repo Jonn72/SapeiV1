@@ -1,0 +1,301 @@
+﻿@using Sapei.Framework.Utilerias;
+@using Syncfusion.EJ2.Schedule
+
+<style>
+    .custom-event-editor .e-textlabel {
+        padding-right: 15px;
+        text-align: right;
+    }
+
+    .custom-event-editor td {
+        padding: 7px;
+        padding-right: 16px;
+    }
+</style>
+<script type="text/javascript">
+
+    function stylex() {
+        $(".e-header-date").hide();
+    }
+
+    function onRenderer(args) {
+
+        if (args.elementType === "dateHeader" || args.elementType === "monthCells") {
+            ej.base.removeClass(args.element.childNodes, "e-navigate");
+        }
+    }
+
+
+</script>
+@{
+    System.Data.DataRow loFila = null;
+    string lsPeriodo = "";
+    string lsCarrera_Reticula = "";
+    string lsMateria = "";
+    string lsNomMateria = "";
+    string lsGrupo = "";
+    string lsHorasSemana = "";
+    string lsHorasSeleccionadas = "";
+    string lsCarrera = "";
+    string lsReticula = "";
+    string lsEspecialidad = "";
+
+    if (ViewData["DatosSeleccion"] != null)
+    {
+        loFila = (ViewData["DatosSeleccion"] as System.Data.DataTable).Rows[0];
+        lsPeriodo = loFila.ItemArray[0].ToString().Trim();
+        lsCarrera_Reticula = loFila.ItemArray[1].ToString().Trim();
+        lsMateria = loFila.ItemArray[2].ToString().Trim();
+        lsNomMateria = loFila.ItemArray[3].ToString().Trim();
+        lsGrupo = loFila.ItemArray[4].ToString().Trim();
+        lsHorasSemana = loFila.ItemArray[5].ToString().Trim();
+        lsHorasSeleccionadas = loFila.ItemArray[6].ToString().Trim();
+        lsCarrera = loFila.ItemArray[7].ToString().Trim();
+        lsReticula = loFila.ItemArray[8].ToString().Trim();
+        lsEspecialidad = loFila.ItemArray[9].ToString().Trim();
+    }
+    if (lsCarrera_Reticula == "")
+    {
+        lsCarrera_Reticula = "Sin Carrera";
+    }
+}
+
+<script type="text/javascript">
+
+    function Agregar(RFC, Periodo) {
+
+        $.ajax({
+            url: '../../../Academicos/RegresaHorarioDocente',
+            type: 'POST',
+            dataType: 'json',
+            data: { psRFC: RFC, psPeriodo: Periodo }
+        })
+            .done(function (data) {
+                if (data.Mensaje === "ERROR" || data.Mensaje === "")
+                {
+                    recargar();
+                    //MensajesToastr("info", "Solicitud Procesada", "Profesor sin grupos cargados");
+                    $("#btnGuardar").show();
+                }
+                else{
+                //console.log(data);
+                var datos = JSON.parse(data);
+                var Process = JSON.parse(datos.data);
+                Object.keys(Process).forEach(function (key) {
+                    Process[key].StartTime = new Date(Process[key].StartTime);
+                    Process[key].EndTime = new Date(Process[key].EndTime);
+                });
+                var scheduleObj = document.getElementById('schedule').ej2_instances[0];
+                    scheduleObj.addEvent(Process);
+                }
+            })
+            .fail(function (data) {
+                MensajesToastrErrorConexion(data.Mensaje);
+            });
+    }
+
+    function recargar() {
+
+        var scheduleObj = document.getElementById('schedule').ej2_instances[0];
+        var objeto = scheduleObj.eventsProcessed;
+
+        Object.keys(objeto).forEach(function (key) {
+            scheduleObj.deleteEvent(1);
+        });
+
+    }
+
+
+    function dlgButtonClick() {
+        var dialogObj = document.getElementById('dialog').ej2_instances[0];
+        dialogObj.hide();
+    }
+
+    function onOverlayClick() {
+        var dialog = document.getElementById("dialog").ej2_instances[0];
+        dialog.hide();
+    }
+
+    function onActionBegin(args) {
+        $("#btnGuardar").hide();
+        if (args.requestType === 'eventCreate' || args.requestType === 'eventChange') {
+            var data;
+            if (args.requestType === 'eventCreate') {
+                $("#btnGuardar").hide();
+                data = args.data[0];
+                
+
+
+            } else if (args.requestType === 'eventChange') {
+                data = args.data;
+            }
+
+            if (Object.keys(args).length > 1) {
+                $("#btnGuardar").show();
+            }
+            else {
+                console.log(args);
+            }
+        }
+    }
+
+    function clicked(args) {
+
+        args.cancel = true;
+    }
+
+
+
+    function Guardar() {
+        var periodo = '@lsPeriodo';
+        var RFC = $("#cboDoc").val();
+        var materia = '@lsMateria';
+        var grupo = '@lsGrupo';
+
+        var carrera = '@lsCarrera';
+        var reticula = '@lsReticula';
+
+        $.ajax({
+            url: '../../../Academicos/GuardaAsignacionGrupoJSON',
+            type: 'POST',
+            dataType: 'json',
+            data: { psPeriodo: periodo, psRFC: RFC, psMateria: materia, psGrupo: grupo }
+        })
+            .done(function (data) {
+                if (typeof (data.Success) !== "undefined" && !data.Success) {
+                    MensajesToastr("warning", "Error de proceso", data.Mensaje);
+                }
+                else {
+                    MensajesToastr("info", "Solicitud Procesada", "Horario Guardado");
+                    CargaGrupos(periodo, carrera, reticula, materia);
+                }
+            })
+            .fail(function (data) {
+                MensajesToastrErrorConexion(data.Mensaje);
+            });
+
+    }
+
+
+    function CargaHorarioDocente(docente, periodo) {
+        var Docente = docente.value;
+        if (Docente != "0") {
+            recargar();
+            Agregar(Docente, periodo)
+        }
+    }
+
+</script>
+
+
+
+<div class="clearfix"></div>
+<div class="row">
+    <div class="col-md-4 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Registro</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="form-group ">
+                    <br />
+                    <br />
+                    <label>
+                        Carrera/Reticula
+                    </label>
+                    <input type="text" class="form-control" id="txtCarrera" value="@lsCarrera_Reticula" placeholder="Capacidad" readonly />
+                    <label>
+                        Materia
+                    </label>
+                    <input type="text" class="form-control" id="txtMateria" value="@lsNomMateria" placeholder="Ingrese Descripcion" readonly />
+                    <label>
+                        Grupo
+                    </label>
+                    <input type="text" class="form-control" id="txtGrupo" value="@lsGrupo" placeholder="Ingrese Descripcion" readonly />
+                    <label>
+                        Horas por Semana
+                    </label>
+                    <input type="number" class="form-control" id="txtHorasSemana" value="@lsHorasSemana" placeholder="Ingrese Descripcion" readonly />
+                    <label>
+                        Profesor
+                    </label>
+                    <select class="form-control" id="cboDoc" onchange="CargaHorarioDocente(this, '@lsPeriodo');">
+                        <option value="0">-- Seleccione un Docente --</option>
+                        @{
+                            if (ViewData["Docentes"] != null)
+                            {
+                               
+                                    foreach (System.Data.DataRow dr in (ViewData["Docentes"] as System.Data.DataTable).Rows)
+                                    {
+                                        <option value="@dr.ItemArray[0].ToString().Trim()">@dr.ItemArray[1].ToString().Trim()</option>
+                                    }
+
+                            }
+                        }
+                    </select>
+                    <br />
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>
+                    Horario Semanal
+                </h2>
+                <div class="title_right">
+                    <div class="col-md-3 col-sm-3 col-xs-12 form-group pull-right top_search">
+                        <div class="form-inline">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div id="container">
+                @Html.EJS().Dialog("dialog").Header("Alert").AnimationSettings(e => e.Effect(Syncfusion.EJ2.Popups.DialogEffect.Zoom).Duration(400).Delay(0)).Visible(false).IsModal(true).OverlayClick("onOverlayClick").Content("El horario del grupo seleccionado se cruza con el horario cargado del docente.").Width("400px").Target("#container").Buttons(btn => { btn.Click("dlgButtonClick").ButtonModel(ViewBag.DialogButtons1).Add(); }).Render()
+            </div>
+
+
+
+
+            @(Html.EJS().Schedule("schedule")
+            .Width("100%")
+            .Height("440px")
+            .WorkHours(wh =>
+            wh.Highlight(true)
+            .Start("07:00")
+            .End("21:00")
+            )
+            .FirstDayOfWeek(1)
+            .EventSettings(new ScheduleEventSettings { DataSource = ViewBag.datasource })
+            .Views(view =>
+            {
+                view.Option(View.Week).FirstDayOfWeek(1).Interval(1).Add();
+            })
+            .ShowHeaderBar(false)
+            .ShowQuickInfo(false)
+            .Created("stylex")
+            .ActionBegin("onActionBegin")
+            .EventClick("clicked")
+            .SelectedDate(new DateTime(2018, 1, 1))
+            .Render()
+            )
+
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <button id="btnRegresar" type="submit" onclick="CargaGrupos('@lsPeriodo', '@lsCarrera', '@lsReticula', '@lsMateria');" class="btn btn-block btn-danger">Regresar</button>
+    </div>
+    <div class="col-md-8">
+        <button id="btnGuardar" type="submit" onclick="Guardar();" class="btn btn-block btn-success div-hide">Guardar</button>
+    </div>
+</div>
+
+@Html.EJS().ScriptManager()

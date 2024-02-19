@@ -1,0 +1,485 @@
+﻿@using System.Globalization;
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>Selección de Materias <small>@ViewData["PeriodoDesc"]</small></h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+
+@{
+    System.Data.DataRow loFila = null;
+    string lsPago = "";
+    string lsFechaSeleccion = "";
+    string lsCreditos = "";
+    string lsEvaluacion = "";
+    string lsAdeudos = "";
+    string lsCargaAcademica = "";
+    string lsMensaje = "";
+    string lsInicioClases = "";
+    string lsActivar = "";
+    string lsBotonesHtml = "";
+    string lsActivarPago = "";
+    string lsDatosPago = "";
+    string[] lasDatosPagos = new string[7];
+    string lsMonto = "";
+    decimal ldAbonado = 0;
+    decimal ldTotal = 0;
+    bool lbProrroga = false;
+    string lsServicioFolio = "";
+
+    if (ViewData["DatosSeleccion"] != null)
+    {
+        loFila = (ViewData["DatosSeleccion"] as System.Data.DataTable).Rows[0];
+        lsPago = loFila.ItemArray[0].ToString().Trim();
+        lsFechaSeleccion = loFila.ItemArray[1].ToString().Trim();
+        lsCreditos = loFila.ItemArray[2].ToString().Trim();
+        lsEvaluacion = loFila.ItemArray[3].ToString().Trim();
+        lsAdeudos = loFila.ItemArray[4].ToString().Trim();
+        lsCargaAcademica = loFila.ItemArray[5].ToString().Trim();
+        lsInicioClases = loFila.ItemArray[6].ToString().Trim();
+        lsActivar = loFila.ItemArray[7].ToString().Trim();
+        lsMensaje = loFila.ItemArray[8].ToString().Trim();
+        lsBotonesHtml = loFila.ItemArray[9].ToString().Trim();
+        lsActivarPago = loFila.ItemArray[10].ToString().Trim();
+        lsDatosPago = loFila.ItemArray[11].ToString().Trim();
+
+    }
+
+}
+
+<div class="x_panel">
+    <div class="x_content">
+        <div class="row">
+            <ul class="stats-overview">
+
+                <li>
+                    <span class="name">Pago Registrado</span>
+                    <span class="value text-success"> @lsPago </span>
+                </li>
+                <li>
+                    <span class="name"> Fecha de Selección </span>
+                    <span class="value text-success"> @lsFechaSeleccion </span>
+                </li>
+                <li>
+                    <span class="name"> Creditos Asignados</span>
+                    <span class="value text-success"> @lsCreditos </span>
+                </li>
+                <li>
+                    <span class="name"> Realizó Evaluación Docente</span>
+                    <span class="value text-success"> @lsEvaluacion </span>
+                </li>
+                <li>
+                    <span class="name"> Tiene otros Adeudos </span>
+                    <span class="value text-success"> @lsAdeudos </span>
+                </li>
+                <li>
+                    <span class="name"> Firmaste Carga Académica</span>
+                    <span class="value text-success"> @lsCargaAcademica </span>
+                </li>
+            </ul>
+            <br />
+        </div>
+
+
+
+        @if (lsActivarPago == "1")
+        {
+            <div class="col-md-8 center-margin  bg-info">
+                <div class="row">
+                    <div class="x_title col-md-12 col-sm-12 col-xs-12 text-center">
+                        <h4>
+                            <strong>Lea cuidadosamente antes de proceder</strong>
+                        </h4>
+                    </div>
+                    <div class="x_title col-md-12 col-sm-12 col-xs-12 text-justify">
+                        <h5>
+                            1) Valida los montos de pago que están en la parte inferior, en caso de dudas o aclaraciones
+                            acude al Departamento de División de Estudios Profesionales.
+                        </h5>
+                        <h5>
+                            2) Lea cuidadosamente los términos y condiciones y selecciona el recuadro.
+                        </h5>
+                        <h5>
+                            3) Realiza el pago:
+                        </h5>
+                        <h5>
+                            a) Puedes imprimir la ficha de pago y acudir a cualquier sucursal Banamex.
+                            Sólo podrás realizar tu pago usando la referencia bancaria personalizada.
+                            Si realizas el pago a alguna cuenta diferente de la que está en tu ficha,
+                            no se realizará reembolso. Esta forma de pago se reflejará de 24 a 48 hrs.
+                        </h5>
+                        <h5>
+                            b) De igual manera, puedes realizar tu pago electrónico.
+                            Dando clic en el botón de Pago Electrónico de cada concepo que abajo aparece y siguiendo los pasos.
+                            Esta forma de pago se reflejará de forma inmediata.
+                        </h5>
+
+                        <h5>
+                            4) Si requieres de tu factura electrónica,
+                            envía la constancia de actualización fiscal (que proporciona el SAT) al correo rf_asistente@tlahuac.tecnm.mx,
+                            el mismo día que realices tu pago,
+                            de lo contrario no se podrá generar la factura correspondiente.
+                            @*es importante que revises el correo electrónico que aparece en tu recibo,
+                                pues si es incorrecto no te llegará tu factura;*@
+                            @*si el correo es erróneo debes actualizar tus datos (en el menú Estudiante -> Datos ->  Personales) antes de continuar.*@
+                        </h5>
+                        <h5>
+
+                            Para descargar la ficha de pago, seleccione la casilla siguiente.
+                        </h5>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-8 center-margin">
+                @*<div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                            <label>¿Requieres factura?</label>
+
+                            <div class="input-icon">
+                                <div id="radioBtn" class="btn-group">
+                                    <a class="btn btn-primary btn-sm active" data-toggle="happy" data-title="N">NO</a>
+                                    <a class="btn btn-primary btn-sm notActive" data-toggle="happy" data-title="S">SI</a>
+                                </div>
+                                <input type="hidden" name="happy" id="happy">
+                            </div>
+                        </div>
+                    </div>*@
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                        <h5>
+                            <input type="checkbox" id="cbxAcepto" value="ski" data-parsley-mincheck="2" required class="flat" />
+                            Acepto los términos y condiciones
+                        </h5>
+                        <div class="form-group">
+                            <button id="btnDescargarFicha" type="submit" class="btn btn-info" style="display:none;" disabled>Descargar ficha</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 center-margin">
+                <div class="row">
+                    <div class="x_title col-md-12 col-sm-12 col-xs-12 text-center">
+                    </div>
+                </div>
+            </div>
+            <div class="x_title col-md-8 col-sm-12 col-xs-12 center-margin">
+                <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                    <h5>Pagos del periodo</h5>
+                </div>
+                <div class="col-md-2 col-sm-3 col-xs-3 text-right">
+                    <h5>Monto</h5>
+                </div>
+                <div class="col-md-2 col-sm-3 col-xs-3 text-right">
+                    <h5>Abonado</h5>
+                </div>
+                <div class="col-md-2 col-sm-3 col-xs-3 text-right">
+                    <h5>Pago electrónico</h5>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            foreach (string lsPagos in lsDatosPago.Split('@'))
+            {
+                if (string.IsNullOrEmpty(lsPagos))
+                {
+                    continue;
+                }
+                lasDatosPagos = lsPagos.Split('|');
+                
+                    <div class="col-md-8 center-margin">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                                <p>
+                                    @lasDatosPagos[1].ToString().Trim()
+                                </p>
+                            </div>
+                            <div class="col-md-2 col-sm-3 col-xs-3 text-right">
+                                <p>
+                                    @{
+
+                                        lsMonto = (Convert.ToDecimal(lasDatosPagos[2], new CultureInfo("es-MX")) - Convert.ToDecimal(lasDatosPagos[4], new CultureInfo("es-MX"))).ToString();
+                                        ldTotal = ldTotal + (Convert.ToDecimal(lasDatosPagos[2], new CultureInfo("es-MX")) - Convert.ToDecimal(lasDatosPagos[3], new CultureInfo("es-MX")) - Convert.ToDecimal(lasDatosPagos[4], new CultureInfo("es-MX")));
+
+                                    }
+                                    @lsMonto
+                                </p>
+                            </div>
+                            <div class="col-md-2 col-sm-3 col-xs-3 text-right">
+                                <p>
+                                    @{
+
+                                        lsMonto = "$ " + (Convert.ToDecimal(lasDatosPagos[3], new CultureInfo("es-MX")));
+                                    }
+                                    @lsMonto
+                                </p>
+                            </div>
+                            <div class="col-md-2 col-sm-3 col-xs-3 text-right">
+                                @{
+                                    ldAbonado = Convert.ToDecimal(lasDatosPagos[2], new CultureInfo("es-MX")) - Convert.ToDecimal(lasDatosPagos[3], new CultureInfo("es-MX")) - Convert.ToDecimal(lasDatosPagos[4], new CultureInfo("es-MX"));
+                                    if (ldAbonado > 0)
+                                    {
+                                        <button type="button" class="btn btn-info PagoElectronico"
+                                                onclick="PagoBanca('@lasDatosPagos[5]')" style="display:none;" disabled>
+                                            <i class="bi bi-dot"></i>Pago electrónico&nbsp;<img width="20" height="20" src="/Images/bancos/banamex.png" /><i class="bi bi-dot"></i>
+                                        </button>
+                                    }
+
+                                }
+                            </div>
+                        </div>
+                    </div>
+                
+                if (lasDatosPagos[0].ToString() == "900")
+                {
+                    lbProrroga = true;
+                    lsMonto = Convert.ToDouble(lasDatosPagos[2]).ToString("C");
+                }
+            }
+            <div class="col-md-8 center-margin">
+                <div class="row">
+                    <div class="x_title col-md-8 col-sm-10 col-xs-6 text-right">
+
+                    </div>
+                    <div class="x_title col-md-4 col-sm-2 col-xs-6 text-center">
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 center-margin">
+                <div class="row">
+                    <div class="x_title col-md-8 col-sm-10 col-xs-6 text-right">
+                        <h5>
+                            <strong>Total</strong>
+                        </h5>
+                    </div>
+                    <div class="x_title col-md-4 col-sm-2 col-xs-6 text-center">
+                        <h5>
+                            <strong>$ @ldTotal.ToString()</strong>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+
+
+        }
+        else
+        {
+            <div class="col-md-8 center-margin center-block">
+                @if (lsActivar == "1")
+                {
+                    <div class="dashboard-widget-content">
+                        <ul class="list-unstyled timeline widget">
+                            <li>
+                                <div align="center">
+                                    <h2>Recomendaciones</h2>
+                                </div>
+
+                                <div class="block">
+                                    <div class="block_content">
+                                        <h2 class="title">
+                                            Accede exclusivamente hasta la fecha y hora indicada.
+                                        </h2>
+                                        <br />
+                                        <h2 class="title">
+                                            Recuerda que los pagos se reflejan en un tiempo mínimo de 24 horas después de realizar el pago.
+                                            Si no realizas el pago no podras seleccionar materias.
+                                        </h2>
+
+                                        <br />
+                                        <h2 class="title">
+                                            Recuerda que una vez registrado tu horario el sistema no te permitir&aacute; acceder nuevamente.
+                                        </h2>
+                                        <br />
+                                        <h2 class="title">
+                                            Deber&aacute;s seleccionar prioritariamente las materias atrasadas, y las inmediatas que reprobaste.
+                                        </h2>
+                                        <br />
+                                        <h2 class="title">
+                                            Recuerda que si no realizaste tu Evaluación Docente o no firmaste tu carga académica (firma electrónica), apareceras al final de las listas.
+                                        </h2>
+                                        <br />
+                                        <h2 class="title">
+                                            Sólo cuentas con 20 minutos para la seleciión de tus materias. Al término no podras seleccionar materias.
+                                        </h2>
+                                        <br />
+                                        <h2 class="title">
+                                            Al termino de la selección de materias deberas:
+                                        </h2>
+                                        <ul class="list-unstyled timeline widget">
+                                            <li>
+                                                <div class="block">
+                                                    <div class="block_content">
+                                                        <br />
+                                                        <h3 class="title">
+                                                            1) Dar clíc en el botón de finalizar selección, en la parte inferior.
+                                                        </h3>
+                                                        <br />
+                                                        <h3 class="title">
+                                                            2) Vizualizar y firmar (de forma electrónica) tu carga académica.
+                                                        </h3>
+                                                        <br />
+                                                        <h3 class="title">
+                                                            3) Esperar a que el Dpto. de División de Estudios Profesionales, firme tu carga académica.
+                                                        </h3>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <br />
+                                        <h2 class="title">
+                                            Inicio de clase: @lsInicioClases
+                                        </h2>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-8 center-margin">
+                        <div class="row">
+                            <div class="x_title col-md-12 col-sm-12 col-xs-12 text-center">
+                                <h5>
+                                    <input type="checkbox" id="cbxAcepto" value="ski" data-parsley-mincheck="2" required class="flat" />
+                                    Acepto las condiciones
+                                </h5>
+                                <div class="form-group">
+                                    <button id="btnIniciar" type="submit" class="btn btn-info" disabled>Iniciar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+
+        @if (!string.IsNullOrEmpty(lsMensaje))
+        {
+            <div class="col-md-8 center-margin center-block">
+                <div class="alert alert-info alert-dismissible fade in" role="alert">
+                    <h4 class="title text-center">
+                        @Html.Raw(@lsMensaje).
+                    </h4>
+                    @if (!string.IsNullOrEmpty(lsBotonesHtml))
+                    {
+                        <h4 class="title text-center">
+                            @Html.Raw(lsBotonesHtml)
+                        </h4>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+
+</div>
+@Html.Partial("../Generales/ModalTerminosCondiciones")
+@Html.Partial("../Generales/ModalDatosFacturacion");
+@Html.Partial("../Generales/ModalVisorPDF")
+@Html.Partial("../Generales/FirmaElectronica")
+<input type="hidden" id="hidServicio" />
+
+<div id="divIniciaBanca">
+    @Html.Partial("../Generales/ModalPagoBanca");
+</div>
+<script src="https://evopaymentsmexico.gateway.mastercard.com/static/checkout/checkout.min.js"
+        data-error="errorCallback"
+        data-cancel="cancelCallback"
+        data-complete="completeCallback"
+        data-afterRedirect="restorePageState"></script>
+
+<script src="~/Scripts/ManejoDatos/Estudiantes/SeleccionDatos.js"></script>
+<script type="text/javascript">
+
+    var requiere_factura = "N";
+    var procesando = false;
+    var registrando = false;
+    $(document).ready(function () {
+        $('.modal-backdrop').remove();
+    });
+    function PagoBanca(servicio) {
+        $("#hidServicio").val(servicio);
+        $("#hco-embedded").empty();
+        registrando = true;
+        $.ajax({
+            url: '../../../Estudiante/IniciaPagoBanca',
+            type: 'POST',
+            dataType: 'json',
+            data: { psServicio: servicio },
+        })
+            .done(function (data) {
+
+                if (typeof (data.Success) === "undefined") {
+                    MensajesToastr("error", "Solicitud no procesada", "No se proceso la solicitud");
+                }
+                else if (!data.Success) {
+                    MensajesToastr("info", "Solicitud procesada", data.Mensaje);
+
+                }
+                else {
+
+                    Checkout.configure({
+                        session:
+                        {
+                            id: data.Mensaje
+
+                        }
+                    })
+                    Checkout.showEmbeddedPage('#hco-embedded')
+
+                    $('#divModaBanca').modal('show');
+                    console.log(Checkout)
+                }
+                registrando = false;
+            })
+            .fail(function (data) {
+                MensajesToastrErrorConexion();
+                registrando = false;
+            })
+    }
+
+    function completeCallback(data) {
+        $('#divModaBanca').modal('hide');
+        $('.modal-backdrop').remove();
+
+        if (procesando)
+            return;
+        procesando = true;
+        var servicio = $("#hidServicio").val();
+        $.ajax({
+            url: '../../../Estudiante/RegistraPagoBanca',
+            type: 'POST',
+            dataType: 'json',
+            data: { psServicio: servicio, psIndicador: data },
+        })
+            .done(function (data) {
+
+                if (typeof (data.Success) === "undefined" || data.Success == false) {
+                    MensajesToastr("error", "Solicitud no procesada", "No se proceso la solicitud");
+                }
+                else if (data.Success == true) {
+                    MensajesToastr("info", "Solicitud procesada", data.Mensaje);
+                    $('#BodyPrincipal').load('../../../../Estudiante/SeleccionMaterias');
+                }
+            })
+            .fail(function (data) {
+                MensajesToastrErrorConexion();
+            })
+    }
+
+    $('#radioBtn a').on('click', function () {
+
+        var sel = $(this).data('title');
+        var tog = $(this).data('toggle');
+        $('#' + tog).prop('value', sel);
+
+        $('a[data-toggle="' + tog + '"]').not('[data-title="' + sel + '"]').removeClass('active').addClass('notActive');
+        $('a[data-toggle="' + tog + '"][data-title="' + sel + '"]').removeClass('notActive').addClass('active');
+        requiere_factura = sel;
+        if (sel === 'S') {
+            $('#divModalFactura').modal('show');
+        }
+    });
+    $("input").keyup(function () {
+        $(this).val($(this).val().toUpperCase());
+    });
+</script>

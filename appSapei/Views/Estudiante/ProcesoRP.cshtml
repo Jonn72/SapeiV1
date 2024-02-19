@@ -1,0 +1,773 @@
+﻿<input type="hidden" id="hidEstado" value="@ViewData["estado"]" />
+<input type="hidden" id="idPrograma" value="@Convert.ToInt32(ViewData["id_programa"])" />
+<style>
+    .sw-theme-arrows > ul.step-anchor > li > a:after {
+        border-top: 28px solid transparent !important;
+        border-bottom: 27px solid transparent !important;
+        top: 51%;
+        margin-top: -29px;
+    }
+
+    .sw-theme-arrows > ul.step-anchor > li > a:before {
+        border-top: 28px solid transparent !important;
+        border-bottom: 27px solid transparent !important;
+        top: 51%;
+        margin-top: -29px;
+    }
+</style>
+<div class="">
+    <div class="row">
+        <div class="col-12 col-lg-6 col-sm-12 hidden">
+            <select id="theme_selector" class="custom-select col-lg-6 col-sm-12">
+                <option value="arrows"></option>
+            </select>
+        </div>
+    </div>
+
+    <!-- SmartWizard html -->
+    <div id="smartwizard">
+        <ul class="smooth-scroll list-unstyled">
+            <li><a href="#step-1">Curso<br /> de Inducción</a></li>
+            <li><a href="#step-2">Carta<br /> de Presentación</a></li>
+            <li><a href="#step-3">Entrega<br /> de carta</a></li>
+            <li><a href="#step-4">Autorización<br /> de Anteproyecto</a></li>
+            <li><a href="#step-5">Captura <br /> de Solicitud</a></li>
+            <li><a href="#step-6">Captura <br /> de Anteproyecto </a></li>
+            <li><a href="#step-7">Vaidación<br /> de Datos</a></li>
+            <li><a href="#step-8">Validación<br /> de Anteproyecto</a></li>
+            <li><a href="#step-9">Asesor<br /> Interno</a></li>
+            <li><a href="#step-10">Solicitud<br /> de Residencias</a></li>
+            <li><a href="#step-11">Autorización<br /> de Residencias</a></li>
+            <li><a href="#step-12">Asignación<br /> de Revisor</a></li>
+            <li><a href="#step-13">Validación de<br />carta término</a></li>
+        </ul>
+        <div>
+            <div id="step-1" class="">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Curso de Inducción</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="col-md-12 col-sm-12 col-xs-12" style="text-align:center">
+                            <h3>@ViewData["txtTitulo"]</h3>
+                            <iframe width="560" height="315" src="@ViewData["txtUrl"]" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <form name="formulario">
+
+                                @{
+                                    if (Convert.ToInt32(ViewData["estado"]) >= 1)
+                                    {
+                                        <p>Al dar clic aceptas que has tomado el curso de inducción y estas enterado del proceso que debes seguir  </p>
+                                    }
+                                    else
+                                    {
+                                        <p>
+                                            <input type="checkbox" value="1" name="pepe" onclick="boton.disabled = !this.checked">
+                                            Al dar clic aceptas que has tomado el curso de inducción y estas enterado del curso de inducción
+                                            <input id="btnCurso" type="button" value="Continuar" name="boton" disabled class="btn btn-primary">
+                                        </p>
+                                    }
+                                }
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="step-2" class="">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Solicitud de Carta de Presentación</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="form-group text-center">
+                            @{
+                                if (Convert.ToInt32(ViewData["estado"]) == 1)
+                                {
+                                    <h3>Solicita tu carta de presentación, da clíc en el siguiente botón</h3>
+                                    <input type="button" class="btn btn-primary" id="txtSolicita" value="Solicitar" />
+                                }
+                            }
+                            <h3>Y debes acudir al departamento de Gestion Tecnológica y Vinculación con los siguientes datos de la dependencia donde realizaras tu Residencia:</h3>
+                            <h5>- RFC de la dependencia</h5>
+                            <h5>- Nombre de la dependencia</h5>
+                            <h5>- Misión</h5>
+                            <h5>
+                                - Giro, Ramo o Sector
+                            </h5>
+                            <h5>
+                                - Domicilio Actual(Calle, número interno,código postal, colonia, alcaldía)
+                            </h5>
+                            <h5>
+                                - Titular de la dependencia
+                            </h5>
+                            <h5>
+                                - Puesto del titular de la dependencia
+                            </h5>
+                            <h5>
+                                - Teléfono del area donde estaras involucrado
+                            </h5>
+                            <h4 class="bg-success">En caso de realizarlas internamente (IT TLÁHUAC)</h4>
+                            <div>
+                                <h5>- Departamento Solicitado</h5>
+                                <h5>- Nombre del Responsable</h5>
+                                <h5>- Cargo del Responsable / Asesor</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="step-3" class="">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Carta de Aceptación</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <h3>Acude con copia y original de tu carta de aceptación a Gestión Tecnológica y Vinculación</h3>
+                    </div>
+                </div>
+            </div>
+            <div id="step-4" class="">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Autorización de anteproyecto</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <h3>Acude a la academia de tu carrera para solicitar el formato del anteproyecto</h3>
+                    </div>
+                </div>
+            </div>
+            <div id="step-5" class="">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Captura de Solicitud de acuerdo a lo autorizado</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <form id="frmSolicitud" data-parsley-validate class="form-horizontal form-label-left">
+                            <div class="form-group">
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <label>RFC de la dependencia</label>
+                                    <input type="text" class="form-control" maxlength="13" id="txtRfc" placeholder="RFC" onblur="autocompletaDep();" required style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" />
+                                </div>
+                                <div class="col-md-8 col-sm-8 col-xs-12">
+                                    <label>Nombre de la Dependencia</label>
+                                    <input type="text" class="form-control" id="txtNombreDependencia" disabled placeholder="Nombre de la Dependencia" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <label>Titular de la Dependencia</label>
+                                    <input type="text" class="form-control" id="txtTitular" disabled placeholder="Titular de la dependencia" required />
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <label>Cargo del titular de la dependencia</label>
+                                    <input type="text" class="form-control" id="txtCargoTitular" disabled placeholder="Cargo del titular de la dependencia" required />
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <label>Teléfono</label>
+                                    <input type="text" class="form-control" id="txtTelefono" disabled placeholder="Teléfono" required />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <label>Seleccione el nombre del proyecto</label>
+                                    <select class="form-control" id="cboPrograma" onblur="autocompletaPro();" required>
+                                        <option selected></option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2 col-sm-2 col-xs-12">
+                                    @{if (Convert.ToInt32(ViewData["estado"]) == 4)
+                                        {
+                                            if (Convert.ToInt32(ViewData["no_de_registros"]) <= 3)
+                                            {
+                                                <label>Agregar proyecto</label>
+                                                <a class="btn btn-primary" id="NewProyecto"><span class="fa fa-plus"></span> Nuevo</a>
+                                            }
+                                        }
+                                        else
+                                        {
+
+                                        }
+                                    }
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <label>Correo Electrónico</label>
+                                    <input type="email" disabled class="form-control" id="txtCorreo" placeholder="correo@dominio.com" oninvalid=" ValidaCampo(this, 'CORREO');" onblur="     ValidaCampo(this, 'CORREO');" required />
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <label>Departamento Solicitado</label>
+                                    <input type="text" class="form-control" disabled id="txtDepartamento" placeholder="Departamento Solicitado" required />
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <label>Nombre del responsable del programa</label>
+                                    <input type="text" class="form-control" disabled id="txtResponsable" placeholder="Nombre del responsable del programa" required />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <label>Cargo del responsable del programa</label>
+                                    <input type="text" class="form-control" disabled id="txtCargoResponsablePrograma" placeholder="Cargo del responsable del programa" required />
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <label>Opción de proyecto</label>
+                                    <select class="form-control" id="opcioncbo" disabled>
+                                        <option selected></option>
+                                        <option value="banco">Banco de proyectos</option>
+                                        <option value="propi">Propuesta propia</option>
+                                        <option value="traba">Trabajador</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <label>Selecciona modalidad</label>
+                                    <script>document.ready = document.getElementById("txtModalidad").value = '@ViewData["txtModalidad"]';</script>
+                                    <select class="form-control" id="txtModalidad" required>
+                                        <option selected></option>
+                                        <option value="mat">Matutino</option>
+                                        <option value="ves">Vespertino</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                @{
+                                    if (Convert.ToInt32(ViewData["estado"]) == 4)
+                                    {
+                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                    }
+                                    else
+                                    {
+
+                                    }
+                                }
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div id="step-6" class="">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Captura de acuerdo a lo autorizado</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        @{
+                            if (Convert.ToInt32(ViewData["estado"]) == 5 && Convert.ToInt32(ViewData["valida_datos"]) == 0)
+                            {
+                                <form id="frmGuardaAnteproyecto" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data" method="post">
+                                    <div class="form-group">
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <h4 id="txtNombre"><b>@ViewData["NombrePrograma"]</b></h4>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            Delimitación
+                                            <textarea class="form-control" id="txtDelimitacion" maxlength="650" required rows="2"></textarea>
+                                            <span class="alert" id="textarea_delimitacion"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            Objetivo General
+                                            <textarea class="form-control" id="txtObjetivoG" required maxlength="450" rows="2"></textarea>
+                                            <span class="alert" id="textarea_objetivogeneral"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="control-group">
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                Objetivos Especificos
+                                                <input id="tags_2" type="text" onkeyup="mayus(this);" class="tags form-control" />
+                                                <div id="suggestions-container" onkeyup="mayus(this);" style="position: relative; float: left; width: 250px; margin: 10px;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="control-group">
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                Actividades
+                                                <input id="tags_3" type="text" onkeyup="mayus(this);" class="tags form-control" />
+                                                <div id="suggestions-container" onkeyup="mayus(this);" style="position: relative; float: left; width: 250px; margin: 10px;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            Justificación
+                                            <textarea class="form-control" id="txtJustificacion" maxlength="1500" required rows="2"></textarea>
+                                            <span class="alert" id="textarea_justificacion"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class='col-md-4 col-sm-4 col-xs-12'>
+                                            Fecha de Inicio
+                                            <div class='input-group date' id='rpinicio'>
+                                                <input type='text' id="txtInicio" value="@ViewData["txtFechaInicio"]" class="form-control" required />
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class='col-md-4 col-sm-4 col-xs-12'>
+                                            Fecha de Terminó
+                                            <div class='input-group date' id='rpfin'>
+                                                <input type='text' id="txtFin" value="@ViewData["txtFechaFin"]" class="form-control" required />
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class='col-md-4 col-sm-4 col-xs-12'>
+                                            Duración de proyecto
+                                            <input type="number" id="txtDuracion" class="form-control" required value="@ViewData["duracion"]" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-8 col-sm-8 col-xs-12">
+                                            Seleccione imagen del croquis de la ubicación de la empresa (8cm - 15cm)
+                                            <input id="fileUbicacion" name="fileUbicacion[]" type="file">
+                                        </div>
+                                    </div>
+                                </form>
+                            }
+                            else if (Convert.ToInt32(ViewData["estado"]) == 5 && Convert.ToInt32(ViewData["valida_datos"]) != 0)
+                            {
+                                <form id="frmEditAnteproyecto" data-parsley-validate class="form-horizontal form-label-left" method="post" enctype="multipart/form-data">
+                                    <div class="form-group">
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <h4 id="txtNombre"><b>@ViewData["NombrePrograma"]</b></h4>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            Delimitación
+                                            <textarea class="form-control" id="Delimitaciontxt" maxlength="700" disabled required rows="2">@ViewData["delimitaciones"]</textarea>
+                                            <span class="alert" id="textarea_delimitaciontxt"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            Objetivo General
+                                            <textarea class="form-control" id="ObjetivoGtxt" maxlength="500" required disabled rows="2">@ViewData["objetivo_general"]</textarea>
+                                            <span class="alert" id="textarea_objetivogeneraltxt"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="control-group">
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                Objetivos Especificos
+                                                <input id="tags_4" type="text" onkeyup="mayus(this);" class="tags form-control" disabled value="@ViewData["objetivo_especifico"]" />
+                                                <div id="suggestions-container" onkeyup="mayus(this);" style="position: relative; float: left; width: 250px; margin: 10px;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="control-group">
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                Actividades
+                                                <input id="tags_5" type="text" onkeyup="mayus(this);" class="tags form-control" disabled value="@ViewData["actividades"]" />
+                                                <div id="suggestions-container" onkeyup="mayus(this);" style="position: relative; float: left; width: 250px; margin: 10px;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            Justificación
+                                            <textarea class="form-control" id="Justificaciontxt" maxlength="2000" disabled required rows="2">@ViewData["justificacion"]</textarea>
+                                            <span class="alert" id="textarea_justificaciontxt"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class='col-md-4 col-sm-4 col-xs-12'>
+                                            Fecha de Inicio
+                                            <div class='input-group date' id='iniciorp'>
+                                                <input type='text' disabled id="Iniciotxt" value="@ViewData["fecha_inicio"]" class="form-control" required />
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class='col-md-4 col-sm-4 col-xs-12'>
+                                            Fecha de Terminó
+                                            <div class='input-group date' id='finrp'>
+                                                <input type='text' disabled id="Fintxt" value="@ViewData["fecha_fin"]" class="form-control" required />
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class='col-md-4 col-sm-4 col-xs-12'>
+                                            Duración de proyecto
+                                            <input type="number" id="Duraciontxt" class="form-control" required value="@ViewData["duracion"]" disabled />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-6 col-sm-6 col-xs-12" id="hp" style="display:none">
+                                            Seleccione el croquis de la ubicación de la empresa (8cm - 15cm)
+                                            <input type="file" id="Ubicacionfile" name="Ubicacionfile[]">
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12" id="ph">
+                                            Ubicación
+                                            @{
+                                                if (ViewData["ubicacion"] != null)
+                                                {
+                                                    foreach (System.Data.DataRow dr in (ViewData["ubicacion"] as System.Data.DataTable).Rows)
+                                                    {
+                                                        string base64EncodedImage = Convert.ToBase64String(dr.ItemArray[12] as System.Byte[]);
+                                                        <img id="profileImage" src="data:image/jpg;base64, @base64EncodedImage" style="max-width:100%">
+                                                    }
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="alert alert-success" role="alert">
+                                        <strong>Verifica!!</strong> que los datos del anteproyecto esten correctos, de ser asi continua con tu proceso, de lo contrario realiza las correcciones pertinentes.
+                                    </div>
+                                    @{
+                                        if (ViewData["observaciones"] == null)
+                                        {
+
+                                        }
+                                        else
+                                        {
+                                            <div class="alert alert-warning" role="alert">
+                                                <strong>Observaciones de Academia:</strong> @ViewData["observaciones"].
+                                                <input type="hidden" id="txtObservaciones" value="@ViewData["observaciones"]" />
+                                            </div>
+                                        }
+                                    }
+                                    <a class="btn btn-warning" onclick="EditarAnteproyecto();">Editar</a>
+                                </form>
+                                <button type="button" id="bntAceptaAnteproyecto" class="btn btn-success">Aceptar</button>
+                            }
+                            else if (Convert.ToInt32(ViewData["estado"]) >= 6 && Convert.ToInt32(ViewData["valida_datos"]) != 0)
+                            {
+                                <div class="form-group">
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <h4 id="txtNombre"><b>@ViewData["NombrePrograma"]</b></h4>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <b>Delimitación</b>
+                                        <p>@ViewData["delimitaciones"]</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <b>Objetivo General</b>
+                                        <p>@ViewData["objetivo_general"]</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="control-group">
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <b>Objetivos Especificos</b>
+                                            @*<p>@ViewData["objetivo_especificos"]</p>*@
+
+                                            @{
+                                                string strOne = Convert.ToString(ViewData["objetivo_especifico"]);
+                                                char delimitador = ',';
+                                                string[] valores = strOne.Split(delimitador);
+
+                                                foreach (var item in valores)
+                                                {
+                                                    <p>
+                                                        * @item
+                                                    </p>
+                                                }
+
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2 col-sm-2 col-xs-12">Duración del programa</label>
+                                    <div class="col-md-1 col-sm-1 col-xs-12">
+                                        <p>@ViewData["duracion"]</p>
+                                    </div>
+                                    <label class="control-label col-md-1 col-sm-1 col-xs-12">semanas</label>
+                                </div>
+                                <div class="form-group">
+                                    <div class="control-group">
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <b>Actividades</b>
+                                            @*<p>@ViewData["actividades"]</p>*@
+                                            @{
+                                                string strTwo = Convert.ToString(ViewData["actividades"]);
+                                                char delimitado = ',';
+                                                string[] valor = strTwo.Split(delimitado);
+
+                                                foreach (var act in valor)
+                                                {
+                                                    <p>
+                                                        * @act
+                                                    </p>
+                                                }
+
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <b>Justificación</b>
+                                        <p>@ViewData["justificacion"]</p>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <b>Fecha Inicio</b>
+                                        <p>@ViewData["fecha_inicio"]</p>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <b>Fecha Fin</b>
+                                        <p>@ViewData["fecha_fin"]</p>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <b>Ubicación</b><br />
+                                        @{
+                                            if (ViewData["ubicacion"] != null)
+                                            {
+                                                foreach (System.Data.DataRow dr in (ViewData["ubicacion"] as System.Data.DataTable).Rows)
+                                                {
+                                                    string base64EncodedImage = Convert.ToBase64String(dr.ItemArray[12] as System.Byte[]);
+                                                    <img src="data:image/jpg;base64, @base64EncodedImage" style="max-width:100%">
+                                                }
+                                            }
+                                        }
+                                    </div>
+                                </div>
+
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+            <div id="step-7" class="">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Validación de Datos </h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="form-group">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <h3><strong>Atención!</strong> Los datos de tu proyecto tiene que ser validados por los miembros de tu equipo.</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="step-8" class="">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Validación de Datos </h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="form-group">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <h3><strong>Atención!</strong> Los datos de tu anteproyecto estan siendo validados por la Academia de tu carrera.</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="step-9" class="">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Asesor Interno</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        @{
+                            if (Convert.ToInt32(ViewData["estado"]) <= 7)
+                            {
+                                <div class="form-group">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        Tu proyecto esta siendo asignado a un asesor, espera a que se habilite el siguiente paso!!!!<br />
+                                    </div>
+                                </div>
+                            }
+                            else if (Convert.ToInt32(ViewData["estado"]) >= 8)
+                            {
+                                <div class="form-group">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        El Asesor Interno de tu proyecto es: <h4>@ViewData["asesor_interno"]</h4>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+            <div id="step-10" class="">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Solicitud de Residencias Profesionales</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="form-group">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <h5>Descargar e imprime tu Solicitud de Residencias Profesionales y entregala en División de Estudios Profesionales para continuar con tu proceso.</h5>
+                                <a href="@Url.Action("ReporteSolicitudResidenciasRP", "DocumentosOficiales")" class="btn btn-success" id="btnSolicitud">Descargar <span class="fa fa-download"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="step-11" class="">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Autorización de Residencias Profesionales</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="form-group">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <h4>Acude al departamento de División de Estudios Profesionales con la siguinete documentación</h4>
+                                <ul>
+                                    <li>Credencial de estudiante vigente</li>
+                                    <li>Carta de aceptación original</li>
+                                    <li>Solicitud de Residencias Profesionales</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="step-12" class="">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Asignación de Revisor</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        @{
+                            if (ViewData["revisor"] != null)
+                            {
+                        <div class="form-group">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                El Revisor de tu proyecto es: <h4>@ViewData["revisor"]</h4>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                Ahora debes realizar tus asesorias y seguimientos, una vez los concluyas podras validar tu carta de termino.
+                            </div>
+                        </div>
+                            }
+                            else
+                            {
+                                <div class="form-group">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <p>Tu proyecto esta siendo asignado a un asesor.</p>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+            <div id="step-13" class="">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Carta Término</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <h3>Tu carta de término fue validada</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade bd-example-modal-lg" id="AltaPrograma" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLongTitle">Alta de proyecto</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="frmAltaProyecto" data-parsley-validate class="form-horizontal form-label-left">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div class="col-md-4 col-lg-4 col-xs-12">
+                            <label>RFC de la Dependencia</label>
+                            <input type="text" class="form-control" id="RFCtxt" disabled />
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <label>Nombre del proyecto</label>
+                            <input type="text" class="form-control" maxlength="200" id="NombreProyectotxt" placeholder="Nombre del Proyecto" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" />
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <label>Correo Electrónico</label>
+                            <input type="email" class="form-control" id="Correotxt" maxlength="60" placeholder="correo@dominio.com" oninvalid=" ValidaCampo(this, 'CORREO');" onblur="     ValidaCampo(this, 'CORREO');" required />
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <label>Departamento Solicitado</label>
+                            <input type="text" class="form-control" id="Departamentotxt" maxlength="100" placeholder="Departamento Solicitado" required />
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <label>Nombre del responsable del programa</label>
+                            <input type="text" class="form-control" id="Responsabletxt" maxlength="60" placeholder="Nombre del responsable del programa" required />
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <label>Cargo del responsable del programa</label>
+                            <input type="text" class="form-control" id="CargoResponsabletxt" maxlength="60" placeholder="Cargo del responsable del programa" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <label>Opción de proyecto</label>
+                            <select class="form-control" id="cboopcion">
+                                <option selected></option>
+                                <option value="banco">Banco de proyectos</option>
+                                <option value="propi">Propuesta propia</option>
+                                <option value="traba">Trabajador</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <input type="hidden" id="txtId" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" id="btnGuardar" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="MensajeDatos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLongTitle">Aviso</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/Componentes/DataTable/init_datatable.js"></script>
+<script src="~/Scripts/ManejoDatos/Estudiantes/ProcesoRP.js"></script>
+<script src="~/Scripts/Componentes/fileinput.js"></script>
+<script src="~/Scripts/Componentes/jquery.tagsinput.js"></script>

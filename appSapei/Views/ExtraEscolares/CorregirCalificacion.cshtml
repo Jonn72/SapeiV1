@@ -1,0 +1,74 @@
+﻿<input type="hidden" id="hidPeriodo" value="@ViewData["periodo"]" />
+
+
+<div class="page-title">
+     <div class="col-md-8 col-sm-8 col-xs-12 form-group pull-left">
+          <h3>Corrección de calificaciones</h3>
+     </div>
+</div>
+<div class="clearfix"></div>
+<form class="form-horizontal form-label-left" action="#" id="frmCorregirCalif" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+     <div class="row">
+          <div class="col-md-4 col-sm-12 col-xs-12">
+               <div id="divControl" class="x_panel">
+                    <div class="x_title">
+                         <h3>Búsqueda por Estudiante</h3>
+                    </div>
+                    <div class="x_content">
+                         <div class="input-group col-xs-12">
+                              <label for="cboPeriodo">
+                                   Periodo
+                              </label>
+                              <select class="form-control " id="cboPeriodo"></select>
+                         </div>
+                         <div class="input-group col-xs-12">
+                              <input type="text" id="txtNoControl" class="form-control" placeholder="Ingrese el no. de control">
+                              <span class="input-group-btn">
+                                   <button class="btn btn-default btn-success" type="button" id="btnBuscar"><i class="fa fa-search"></i></button>
+                              </span>
+                         </div>
+
+                    </div>
+               </div>
+          </div>
+          <div class="col-md-8 col-sm-12 col-xs-12">
+               <div id="divDatos" class="x_panel div-hide">
+                    <div class="x_title">
+                         <h3>Datos</h3>
+                    </div>
+                    <div class="row">
+                         <div class="col-md-8 col-sm-12 col-xs-12 form-group">
+                              <label>Nombre</label>
+                              <input type="text" class="form-control" id="txtNombre" readonly>
+                         </div>
+                         <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                              <label>
+                                   Actividad
+                              </label>
+                              <select class="form-control" id="cboActividad"></select>
+                         </div>
+                         <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                              <label>
+                                   Calificación Actual
+                              </label>
+                              <input type="number" id="txtCalificacion" readonly>
+                         </div>
+                         <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                              <label>
+                                   Nueva Calificación
+                              </label>
+                              <input type="number" id="txtCalificacionN" step=0.01>
+                         </div>
+                    </div>
+                    <div class="col-md-offset-6">
+                         <button id="btnGuardar" type="submit" class="btn btn-block btn-success">Guardar</button>
+                    </div>
+               </div>
+          </div>
+
+          </div>
+
+
+</form>
+
+<script src="~/Scripts/ManejoDatos/ExtraEscolares/CorregirCalificacion.js"></script>

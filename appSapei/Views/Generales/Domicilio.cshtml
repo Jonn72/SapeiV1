@@ -1,0 +1,53 @@
+﻿<div class="x_panel">
+     <div class="x_title">
+          <h3>Domicilio <small>Actual</small></h3>
+     </div>
+    <input type="hidden" value="" id="hidColonia" />
+     <div class="clearfix"></div>
+     <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+               <label for="txtCalle">
+                    Domicilio Actual
+               </label>
+               <input type="text" class="form-control" id="txtCalle" value="@ViewData["txtCalle"]" placeholder="Calle" autocomplete="nope" required />
+
+          </div>
+          <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+               <label for="txtNoDomicilio">
+                    Número Domicilio
+               </label>
+               <input type="text" class="form-control" id="txtNoDomicilio" value="@ViewData["txtNoDomicilio"]" placeholder="Número" autocomplete="nope" required />
+
+          </div>
+          <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+               <label for="txtCodPostal">
+                    Código Postal
+               </label>
+               <input type="number" class="form-control" id="txtCodPostal" value="@ViewData["txtCodPostal"]" maxlength="5" placeholder="Código Postal" autocomplete="nope" onblur="autocompleta('Estudiante','');" required />
+
+          </div>
+     </div>
+     <div class="row">
+          <div class="col-md-4 col-sm-4 col-xs-8 form-group">
+               <label for="cboColonia">
+                    Colonia
+               </label>
+               <select class="form-control" id="cboColonia"></select>
+          </div>
+          <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+               <label for="txtCiudad">
+                    Ciudad o Localidad
+               </label>
+               <input type="text" class="form-control" id="txtCiudad" disabled placeholder="Ciudad o Localidad" />
+
+          </div>
+          <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+               <label for="txtEstado">
+                    Entidad Federativa
+               </label>
+               <input type="text" class="form-control" id="txtEstado" disabled placeholder="Entidad Federativa" />
+
+          </div>
+     </div>
+</div>
+<script src="~/Scripts/ManejoDatos/Domicilio.js"></script>

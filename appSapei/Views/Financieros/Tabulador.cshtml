@@ -1,0 +1,65 @@
+﻿<div class="container body" style="height: 550px;">
+    <div class=" clearfix"></div>
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="clearfix"></div>
+            <div class="x_panel">
+                <div class="x_title">
+                    <h3>Tabulador</h3>
+                </div>
+                <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count" data-toggle="modal" data-target="#divModal" id="total">
+                    <div style="cursor: pointer">
+                        <span class="count_top"><i class="fa fa-arrow-up"></i> Cargar Base</span>
+                    </div>
+                </div>
+
+                @Html.Partial("../Generales/TablaGeneral")
+                <div class="modal fade" id="divModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Carga de Archivos</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="file-loading">
+                                    <input id="txtFile" name="txtFile[]" type="file" multiple>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+        <!-- /page content -->
+    </div>
+
+
+
+
+
+</div>
+<script src="~/Scripts/Componentes/fileinput.js"></script>
+<script src="~/Scripts/Idiomas/es.js"></script>
+<script>
+     $(document).ready(function () {
+          $('#input-id').fileinput('reset');
+     });
+     $('#txtFile').fileinput({
+          uploadAsync: false,
+          language: 'es',
+          showPreview: false,
+          showCaption: true,
+          showUpload: true,
+          minFileCount: 1,
+          maxFileCount: 1,
+          uploadUrl: '../../../Financieros/CargaTabulador',
+          allowedFileExtensions: ['xlsx', 'xls']
+     });
+
+</script>

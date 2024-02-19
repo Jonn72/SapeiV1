@@ -1,0 +1,302 @@
+﻿<div class="clearfix"></div>
+<input type="hidden" id="hidPeriodo" value="@ViewData["txtPeriodo"]" />
+<div class="page-title">
+    <div class="title_left">
+        <h3>Servicio Social <small>@ViewData["txtDescPeriodo"]</small></h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h4>Control Escolar</h4>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="row">
+
+                    <div class="col-sm-2 col-sm-4 col-xs-12 text-center">
+                        <div class="card text-white bg-success mb-3" style="min-height:10rem;">
+                            <div class="card-header">Carta de Presentación</div>
+                            <div class="card-body">
+                                <p class="card-text">Modulo para generar y descargar la carta de presentación.</p>
+                                <a class="btn btn-dark btn-block" data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#BodyPrincipal" href="/Vinculacion/CartaPresentacion">
+                                    Abrir
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 col-sm-4 col-xs-12 text-center" text-white>
+                        <div class="card text-white bg-info mb-3">
+                            <div class="card-header">Carta de Aceptación</div>
+                            <div class="card-body">
+                                <p class="card-text">Modulo para generar y descargar la carta de aceptación</p>
+                                <a class="btn btn-dark btn-block" data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#BodyPrincipal" href="/Vinculacion/CartaAceptacionSS">
+                                    Abrir
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 col-sm-4 col-xs-12 text-center">
+                        <div class="card text-white bg-green mb-3">
+                            <div class="card-header">Reportes</div>
+                            <div class="card-body">
+                                <p class="card-text">Seguimiento de reportes</p>
+
+                                <a class="btn btn-dark btn-block" data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#BodyPrincipal" href="/Vinculacion/ReportesSS">
+                                    Abrir
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 col-sm-4 col-xs-12 text-center">
+                        <div class="card text-white bg-green mb-3">
+                            <div class="card-header">Carta de Termino</div>
+                            <p class="card-text">Modulo para generar y descargar la carta de termino</p>
+
+                            <div class="card-body">
+                                <a class="btn btn-dark btn-block" data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#BodyPrincipal" href="/Vinculacion/CartaTerminoSS">
+                                    Validar
+                                </a>
+                                <a class="btn btn-dark btn-block" data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#BodyPrincipal" href="/Vinculacion/CartaTerminoFinalSS">
+                                    Descargar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+
+                    <div class="col-sm-2 col-sm-4 col-xs-12 text-center">
+                        <div class="card text-white bg-blue mb-3">
+                            <div class="card-header">Seguimiento</div>
+                            <p class="card-text">Modulo para dar seguimiento del proceso</p>
+
+                            <div class="card-body">
+                                <a class="btn btn-dark btn-block" data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#BodyPrincipal" href="/Vinculacion/AvanceProcesoSS">
+                                    Abrir
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script src="~/Scripts/ManejoDatos/Vinculacion/ControlEscolarSS.js"></script>
+
+@*@{TempData["VistaAnterior"] = "/Vinculacion/ControlEscolarSS"; }
+
+    <div class="x_panel ">
+        <div class="col-md-12">
+            <div class="heading-container200">
+                <div class="heading-block ">
+                    <h1 class="lang">Proceso de Servicio Social</h1>
+
+                    <div class="heading-description ">
+                    </div>
+                </div>
+            </div>
+            <div class="main-content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-12 wow fadeIn animated">
+                            <div class="content-box big ch-item bottom-pad-small">
+                                <div class="ch-info-wrap">
+                                    <div class="ch-info">
+                                        <div class="ch-info-front ch-img-1"><i class="fa fa-folder-open"></i></div>
+                                    </div>
+                                </div>
+                                <div class="content-box-info">
+                                    <h3>Apertura</h3>
+                                    <p style="text-align:justify">
+                                        El proceso comienza con la validación de candidatos
+                                        que deben asistir a la platica de inicio de proceso, en este módulo se encuentra
+                                        la lista de candidatos que cumplen los requisitos.
+                                    </p>
+                                    <a data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#BodyPrincipal" href="/Vinculacion/PreregistroSS">
+                                        Comenzar <i class="fa fa-angle-right"></i><i class="fa fa-angle-right"></i>
+                                    </a>
+                                </div>
+                                <div class="border-bottom margin-top30">
+                                </div>
+                                <div class="border-bottom">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-12 wow fadeIn animated">
+                            <div class="content-box big ch-item bottom-pad-small">
+                                <div class="ch-info-wrap">
+                                    <div class="ch-info">
+                                        <div class="ch-info-front ch-img-1"><i class="fa fa-cogs"></i></div>
+                                    </div>
+                                </div>
+                                <div class="content-box-info">
+                                    <h3>Avance</h3>
+                                    <p>
+                                        Lorem Ipsum is simply dummy text of Lorem the printing and typesettings industry.
+                                    </p>
+                                    <a href="#">Read More <i class="fa fa-angle-right"></i><i class="fa fa-angle-right"></i></a>
+                                </div>
+                                <div class="border-bottom margin-top30">
+                                </div>
+                                <div class="border-bottom">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-12 wow fadeIn animated">
+                            <div class="content-box big ch-item bottom-pad-small">
+                                <div class="ch-info-wrap">
+                                    <div class="ch-info">
+                                        <div class="ch-info-front ch-img-1"><i class="fa fa-folder"></i></div>
+                                    </div>
+                                </div>
+                                <div class="content-box-info">
+                                    <h3>Cierre</h3>
+                                    <p>
+                                        Lorem Ipsum is simply dummy text of Lorem the printing and typesettings industry.
+                                    </p>
+                                    <a href="#">Read More <i class="fa fa-angle-right"></i><i class="fa fa-angle-right"></i></a>
+                                </div>
+                                <div class="border-bottom margin-top30">
+                                </div>
+                                <div class="border-bottom">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="heading-container-footer"></div>
+
+        </div>
+    </div>*@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="clearfix"></div>
+<input type="hidden" id="hidPeriodo" value="@ViewData["txtPeriodo"]" />
+<div class="page-title div-hide">
+    <div class="title_left">
+        <h3>Servicio Social <small>@ViewData["txtDescPeriodo"]</small></h3>
+    </div>
+</div>
+<div class="row div-hide">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h4>Control Escolar</h4>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="row">
+
+                    <div class="col-sm-2 col-sm-4 col-xs-12 text-center">
+                        <div class="card text-white bg-success mb-3" style="min-height:10rem;">
+                            <div class="card-header">Carta de Presentación</div>
+                            <div class="card-body">
+                                <p class="card-text">Modulo para generar y descargar la carta de presentación.</p>
+                                <a class="btn btn-dark btn-block" data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#BodyPrincipal" href="/Vinculacion/CartaPresentacion">
+                                    Abrir<span class="fa-code"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 col-sm-4 col-xs-12 text-center" text-white>
+                        <div class="card text-white bg-info mb-3">
+                            <div class="card-header">Carta de Aceptación</div>
+                            <div class="card-body">
+                                <p class="card-text">Modulo para generar y descargar la carta de aceptación</p>
+                                <a class="btn btn-dark btn-block" data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#BodyPrincipal" href="/Vinculacion/CartaAceptacionSS">
+                                    Abrir
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 col-sm-4 col-xs-12 text-center">
+                        <div class="card text-white bg-green mb-3">
+                            <div class="card-header">Reportes</div>
+                            <div class="card-body">
+                                <p class="card-text">Seguimiento de reportes</p>
+
+                                <a class="btn btn-dark btn-block" data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#BodyPrincipal" href="/Vinculacion/ReportesSS">
+                                    Abrir
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 col-sm-4 col-xs-12 text-center">
+                        <div class="card text-white bg-green mb-3">
+                            <div class="card-header">Carta de Termino</div>
+                            <p class="card-text">Modulo para generar y descargar la carta de termino</p>
+
+                            <div class="card-body">
+                                <a class="btn btn-dark btn-block" data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#BodyPrincipal" href="/Vinculacion/CartaTerminoSS">
+                                    Validar
+                                </a>
+                                <a class="btn btn-dark btn-block" data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#BodyPrincipal" href="/Vinculacion/CartaTerminoFinalSS">
+                                    Descargar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+
+                    <div class="col-sm-2 col-sm-4 col-xs-12 text-center">
+                        <div class="card text-white bg-blue mb-3">
+                            <div class="card-header">Seguimiento</div>
+                            <p class="card-text">Modulo para dar seguimiento del proceso</p>
+
+                            <div class="card-body">
+                                <a class="btn btn-dark btn-block" data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#BodyPrincipal" href="/Vinculacion/AvanceProcesoSS">
+                                    Abrir
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script>
+    jQuery(document).ready(function () {
+
+
+        wow = new WOW(
+            {
+                animateClass: 'animated',
+                offset: 100
+            }
+        );
+
+        wow.init();
+    }
+</script>
+<script src="~/Scripts/ManejoDatos/Vinculacion/ControlEscolarSS.js"></script>

@@ -1,0 +1,109 @@
+﻿<input type="hidden" id="hidCancelado" value="@Convert.ToBoolean(ViewData["cancelado"])" />
+
+<div class="x_panel">
+    <div class="x_title">
+        @{
+            if (@Convert.ToBoolean(ViewData["cancelado"]))
+            {
+                <h3>Avance</h3>
+            }
+            else
+            {
+                <h3 style="color: red; font-weight: bold;">@ViewData["mensaje"]</h3>
+            }
+        }
+    </div>
+    <div class="col-md-10 center-margin center-block">
+        <div class="x_content">
+            @{
+                string lsActivo = "";
+            }
+            <div class="row">
+                <div class="col-xs-2">
+                    <span>Historia Alumnos</span>
+                </div>
+                <div class="progress col-xs-8">
+                    @{
+                        lsActivo = "";
+                        if (0 < Convert.ToInt32(ViewData["paso1_avance"]) && Convert.ToInt32(ViewData["paso1_avance"]) < 100)
+                        {
+                            lsActivo = "active";
+                        }
+                    }
+                    <div class="progress-bar progress-bar-striped @lsActivo" role="progressbar"
+                         aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:@ViewData["paso1_avance"]%">
+                        @Convert.ToInt32(ViewData["paso1_avance"])%
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-xs-2">
+                    <span>Acumulado Historico</span>
+                </div>
+                <div class="progress col-xs-8">
+                    @{
+                        lsActivo = "";
+                        if (0 < Convert.ToInt32(ViewData["paso1_avance"]) && Convert.ToInt32(ViewData["paso2_avance"]) < 100)
+                        {
+                            lsActivo = "active";
+                        }
+                    }
+                    <div class="progress-bar progress-bar-striped @lsActivo" role="progressbar"
+                         aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:@ViewData["paso2_avance"]%">
+                        @Convert.ToInt32(ViewData["paso2_avance"])%
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-xs-2">
+                    <span>Avisos Reinscripcion</span>
+                </div>
+                <div class="progress col-xs-8">
+                    @{
+                        lsActivo = "";
+                        if (0 < Convert.ToInt32(ViewData["paso1_avance"]) && Convert.ToInt32(ViewData["paso3_avance"]) < 100)
+                        {
+                            lsActivo = "active";
+                        }
+                    }
+                    <div class="progress-bar progress-bar-striped @lsActivo" role="progressbar"
+                         aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:@ViewData["paso3_avance"]%">
+                        @Convert.ToInt32(ViewData["paso3_avance"])%
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-xs-2">
+                    <span>Cierre Periodo</span>
+                </div>
+                <div class="progress col-xs-8">
+                    @{
+                        lsActivo = "";
+                        if (0 < Convert.ToInt32(ViewData["paso1_avance"]) && Convert.ToInt32(ViewData["paso4_avance"]) < 100)
+                        {
+                            lsActivo = "active";
+                        }
+
+                    }
+                    <div id="proPaso4" class="progress-bar  progress-bar-striped @lsActivo" role="progressbar"
+                         aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:@ViewData["paso4_avance"]%">
+                        @Convert.ToInt32(ViewData["paso4_avance"])%
+                    </div>
+                </div>
+                @{
+                    if (@Convert.ToInt32(ViewData["paso4_avance"]) == 0)
+                    {
+                        <script>
+                            CargaTabla();
+                        </script>
+                    }
+                }
+
+            </div>
+        </div>
+
+    </div>
+</div>

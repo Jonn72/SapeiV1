@@ -1,0 +1,185 @@
+﻿<div class="clearfix"></div>
+<form class="form-horizontal form-label-left" action="#" id="frmHistorialPagos" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+    <input type="hidden" id="hidPeriodo" value="@ViewData["txtPeriodo"]" />
+    <div class="page-title">
+        <div class="title_left">
+            <h3>Historial de pagos</h3>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div>
+                <div class="x_panel">
+                    <div class="x_content">
+                        @{
+                            bool lbProrroga = false;
+                            string lsFecha = "";
+                            string lsFecha_prorroga = "";
+                            string lsMonto = "";
+                            double ldTotal = 0;
+                            System.Data.DataTable loDt = null;
+
+                            if (ViewData["DatosPago"] != null)
+                            {
+                                loDt = ViewData["DatosPago"] as System.Data.DataTable;
+                                if (loDt.Columns.Count == 1)
+                                {
+                                    <div class="col-md-8 center-margin  bg-info">
+                                        <div class="row">
+                                            <div class="x_title col-md-12 col-sm-12 col-xs-12 text-center">
+                                                <h4>
+                                                    @Html.Raw(loDt.Rows[0].ItemArray[0].ToString())
+                                                </h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="x_title col-md-10 col-sm-10 col-xs-12 center-margin">
+                                        <div class="col-md-8 col-sm-3 col-xs-6 text-right">
+                                            <h4>Pagos del periodo <small>@ViewData["txtDescPeriodo"]</small></h4>
+                                        </div>
+                                        <div class="col-md-4 col-sm-2 col-xs-12 text-right">
+                                            <h4>Monto</h4>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    foreach (System.Data.DataRow dr in loDt.Rows)
+                                    {
+                                        if (@dr.ItemArray[0].ToString() != "900")
+                                        {
+                                            lsFecha = Convert.ToString(dr.ItemArray[5]).Substring(0, 10);
+                                            <div class="col-md-10 center-margin">
+                                                <div class="row">
+                                                    <div class="x_title col-md-8 col-sm-10 col-xs-6 text-right">
+                                                        <h5>
+                                                            @dr.ItemArray[1].ToString().Trim()
+                                                        </h5>
+                                                    </div>
+                                                    <div class="x_title col-md-4 col-sm-2 col-xs-6 text-right">
+                                                        <h5>
+                                                            @{
+
+                                                                                lsMonto = "$ " + (Convert.ToDouble(dr.ItemArray[2]) - Convert.ToDouble(dr.ItemArray[4])).ToString() + ".00";
+                                                                                ldTotal = ldTotal + (Convert.ToDouble(dr.ItemArray[2]) - Convert.ToDouble(dr.ItemArray[4]));
+
+                                                                            }
+                                                                            @lsMonto
+                                                                        </h5>
+                
+                                                                    </div>
+                
+                                                                </div>
+                
+                                                            </div>
+                                        }
+                                        else if (@dr.ItemArray[0].ToString() == "900")
+                                                                        {
+                                                                            lbProrroga = true;
+                                                                            lsFecha_prorroga = Convert.ToString(dr.ItemArray[5]);
+                                                                            lsMonto = Convert.ToDouble(dr.ItemArray[2]).ToString("C");
+                                                                        }
+                                                                    }
+
+                                    <div class="col-md-10 center-margin">
+                                        <div class="row">
+                                            <div class="x_title col-md-8 col-sm-10 col-xs-6 text-right">
+                                                <h4>
+                                                    <strong>Total</strong>
+                                                </h4>
+                                            </div>
+                                            <div class="x_title col-md-4 col-sm-2 col-xs-6 text-center">
+                                                <h4>
+                                                    <strong>$ @ldTotal.ToString().00</strong>
+                                                </h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8 center-margin  bg-info">
+                                        <div class="row">
+                                            <div class="x_title col-md-12 col-sm-12 col-xs-12 text-center">
+                                                <h4>
+                                                    <strong>Lea cuidadosamente antes de proceder</strong>
+                                                </h4>
+                                            </div>
+                                            <div class="x_title col-md-12 col-sm-12 col-xs-12 text-justify">
+                                                <h5>
+                                                    1) Valida los montos de pago que estan en la parte superior, en caso de dudas o aclaraciones
+                                                    acude al Departamento de División de Estudios Profesionales.
+                                                </h5>
+                                                <h5>
+                                                    2) Imprime y acude a cualquier sucursal Banamex.
+                                                    Sólo podrás realizar tu pago usando la referencia bancaria personalizada.
+                                                    Si realizas el pago a alguna cuenta diferente de la que esta en tu ficha,
+                                                    no se realizará reembolso.
+                                                </h5>
+                                                <h5>
+                                                    3) Realiza el pago en el banco, tu pago será reflejado en sistema de forma automática en 48 hrs. aproximadamente.
+                                                </h5>
+                                                <h5>
+                                                    4) Es importante que revises la vigencia de la ficha de reinscripción, 
+                                                    pues de no ser vigente el banco no podrá procesar tu pago.                                                </h5>
+                                                <h5>
+                                                    5) Si requieres de tu factura eléctronica, envia tus datos de facturación al correo rf_asistente@tlahuac.tecnm.mx,
+                                                    el mismo día que realices tu pago, de lo contrario la facturación se hará con tus datos del sistema.
+                                                    @*es importante que revises el correo electrónico que aparece en tu recibo,
+        pues si es incorrecto no te llegará tu factura;*@
+                                                    @*si el correo es erróneo debes actualizar tus datos (en el menú Estudiante -> Datos ->  Personales) antes de continuar.*@
+                                                </h5>
+                                                <h5>
+
+                                                    Para descargar la ficha de pago, seleccione la casilla siguiente.
+                                                </h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    if (lbProrroga)
+                                    {
+                                        <div class="col-md-8 center-margin  bg-danger">
+                                            <div class="row">
+                                                <div class="x_title col-md-12 col-sm-12 col-xs-12 text-center">
+                                                    <h4>
+                                                        <strong>Información de la Prórroga</strong>
+                                                    </h4>
+                                                </div>
+                                                <div class="x_title col-md-12 col-sm-12 col-xs-12 text-justify">
+                                                    <h5>
+                                                        Estimado guardián, le recordamos que cuenta con una prórroga de pago,
+                                                        por lo que debe realizar el pago antes del <strong>
+                                                            @lsFecha_prorroga
+                                                        </strong>
+                                                       </h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    <div class="col-md-8 center-margin">
+                                        <div class="row">
+                                            <div class="x_title col-md-12 col-sm-12 col-xs-12 text-center">
+                                                <h5>
+                                                    <input type="checkbox" id="cbxAcepto" value="ski" data-parsley-mincheck="2" required class="flat" />
+                                                    Acepto las condiciones
+                                                </h5>
+                                                <div class="form-group">
+                                                    <button id="btnGuardar" type="submit" class="btn btn-info" disabled>Descargar ficha</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                }
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @Html.Partial("../Generales/ModalVisorPDF")
+    @Html.Partial("../Generales/TablaGeneral")
+</form>
+<script src="~/Scripts/ManejoDatos/Estudiantes/HistorialPagos.js"></script>
+
+

@@ -1,0 +1,151 @@
+﻿@using Sapei.Framework.Utilerias;
+@using Syncfusion.EJ2.Schedule
+<style>
+    .custom-event-editor .e-textlabel {
+        padding-right: 15px;
+        text-align: right;
+    }
+
+    .custom-event-editor td {
+        padding: 7px;
+        padding-right: 16px;
+    }
+</style>
+@{
+    System.Data.DataRow loFila = null;
+    string lsPeriodoParaExistente = "";
+    string lsCarrera_ReticulaParaExistente = "";
+    string lsMateriaParaExistente = "";
+    string lsNomMateriaParaExistente = "";
+    string lsGrupoParaExistente = "";
+    string lsRFCParaExistente = "";
+    string lsCarreraParaExistente = "";
+    string lsReticulaParaExistente = "";
+    string lsEspecialidadParaExistente = "";
+
+    if (ViewData["DatosSeleccion"] != null)
+    {
+        loFila = (ViewData["DatosSeleccion"] as System.Data.DataTable).Rows[0];
+        lsPeriodoParaExistente = loFila.ItemArray[0].ToString().Trim();
+        lsCarrera_ReticulaParaExistente = loFila.ItemArray[1].ToString().Trim();
+        lsMateriaParaExistente = loFila.ItemArray[2].ToString().Trim();
+        lsNomMateriaParaExistente = loFila.ItemArray[3].ToString().Trim();
+        lsGrupoParaExistente = loFila.ItemArray[4].ToString().Trim();
+        lsRFCParaExistente = loFila.ItemArray[5].ToString().Trim();
+        lsCarreraParaExistente = loFila.ItemArray[6].ToString().Trim();
+        lsReticulaParaExistente = loFila.ItemArray[7].ToString().Trim();
+        lsEspecialidadParaExistente = loFila.ItemArray[8].ToString().Trim();
+    }
+}
+<input type="hidden" value="@lsPeriodoParaExistente" id="hidPeriodoExParalelo" />
+<input type="hidden" value="@lsCarreraParaExistente" id="hidCarreraExParalelo" />
+<input type="hidden" value="@lsReticulaParaExistente" id="hidReticulaExParalelo" />
+<input type="hidden" value="@lsMateriaParaExistente" id="hidMateriaExParalelo" />
+<input type="hidden" value="@lsGrupoParaExistente" id="hidGrupoExParalelo" />
+<input type="hidden" value="@lsRFCParaExistente" id="hidRFCExParalelo" />
+<input type="hidden" value="@Html.Raw(ViewData["DivAct"])" id="hidDivActExParalelo" />
+<script type="text/javascript">
+
+    function stylex() {
+        $(".e-header-date").hide();
+    }
+
+    function onRenderer(args) {
+
+        if (args.elementType === "dateHeader" || args.elementType === "monthCells") {
+            ej.base.removeClass(args.element.childNodes, "e-navigate");
+        }
+    }
+
+    
+    var expar = $("#hidRFCExParalelo").val();
+    var espar = $("#hidEspecialidadParalelo").val();
+    if ((expar || typeof expar !== 'undefined') && (espar || typeof espar !== 'undefined')) {
+        $("#btnGuardar").show();
+    }
+
+</script>
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>Asignacion de Horario </h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="x_panel">
+    <div class="row">
+
+        <div class="x_title">
+            <h2>Registro</h2>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <div class="form-group ">
+                <label>
+                    Carrera/Reticula
+                </label>
+                <input type="text" class="form-control" id="txtCarreraExistente" value="@lsCarrera_ReticulaParaExistente" placeholder="Capacidad" readonly />
+                <label>
+                    Materia
+                </label>
+                <input type="text" class="form-control" id="txtMateriaExistente" value="@lsNomMateriaParaExistente" placeholder="Ingrese Descripcion" readonly />
+                <label>
+                    Grupo
+                </label>
+                <input type="text" class="form-control" id="txtGrupoExistente" value="@lsGrupoParaExistente" placeholder="Ingrese Descripcion" readonly />
+            </div>
+        </div>
+
+        <div class="x_title">
+            <h2>
+                Horario Semanal
+            </h2>
+            <div class="title_right">
+                <div class="col-md-3 col-sm-3 col-xs-12 form-group pull-right top_search">
+                    <div class="form-inline">
+
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            @(Html.EJS().Schedule("schedule")
+            .Width("100%")
+            .Height("370px")
+            .WorkHours(wh =>
+            wh.Highlight(true)
+            .Start("07:00")
+            .End("21:00")
+            )
+            .FirstDayOfWeek(1)
+            .EventSettings(new ScheduleEventSettings { DataSource = ViewBag.datasource })
+            .Views(view =>
+            {
+                view.Option(View.Week).FirstDayOfWeek(1).Interval(1).Add();
+            })
+            .ShowHeaderBar(false)
+            .ShowQuickInfo(false)
+            .Created("stylex")
+            .SelectedDate(new DateTime(2018, 1, 1))
+            .Render()
+            )
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3 div-hide">
+    </div>
+    <div class="col-md-3">
+        <button id="btnRegresar" type="submit" onclick="Regresar1('@lsPeriodoParaExistente', '@lsMateriaParaExistente', '@lsCarreraParaExistente', @lsReticulaParaExistente, '@lsEspecialidadParaExistente');" class="btn btn-block btn-danger">Regresar</button>
+    </div>
+
+</div>
+<script type="text/javascript">
+    function Regresar1(periodo, materia, carrera, reticula, especialidad) {
+        var DivAct = $("#hidDivActExParalelo").val();
+        $('#Panel1').load('../../../DEP/GrupoExistenteParalelo', { psPeriodo: periodo, psCarrera: carrera, psReticula: reticula, psMateria: materia, psEspecialidad: especialidad, psDiv: DivAct });
+    }
+</script>
+@Html.EJS().ScriptManager()

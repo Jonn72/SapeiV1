@@ -1,0 +1,135 @@
+﻿<div class="page-title">
+     <div class="title_left">
+          <h3>Registro de Aspirantes</h3>
+     </div>
+</div>
+<div class="clearfix"></div>
+<input type="hidden" id="hidValida" value="@ViewData["Valida"]" />
+<div class="x_panel " id="divRegistro">
+     <div>
+          <div class="x_title">
+               <h4>Datos</h4>
+               <div class="clearfix"></div>
+               <h5>Por disposiciones oficiales el nombre y apellidos deben escribirse sin acentos.</h5>
+          </div>
+          <div class="row form-group">
+               <div class="col-md-3 col-sm-4 col-xs-12 form-group">
+                    <label for="tags">
+                         CURP
+                    </label>
+                    <input type="text" class="form-control" id="txtCURP" placeholder="CURP" oninvalid="InvalidMsg(this);" name="txtCURP" onblur="InvalidMsg(this);" maxlength="18" required />
+               </div>
+               <div class="col-md-3 col-sm-4 col-xs-12 form-group">
+                    <label for="tags">
+                         Nombre (s)
+                    </label>
+                    <input type="text" class="form-control" id="txtNombre" placeholder="Nombre (s)" required />
+               </div>
+               <div class="col-md-3 col-sm-4 col-xs-12 form-group">
+                    <label for="tags">
+                         Apellido Paterno
+                    </label>
+                    <input type="text" class="form-control" id="txtPaterno" placeholder="Apellido Paterno" required />
+               </div>
+               <div class="col-md-3 col-sm-4 col-xs-12 form-group">
+                    <label for="tags">
+                         Apellido Materno
+                    </label>
+                    <input type="text" class="form-control" id="txtMaterno" placeholder="Apellido Materno" required />
+               </div>
+
+          </div>
+          <div class=" col-lg-offset-8">
+              <button id="btnPaso1" type="submit" class="btn btn-block btn-info">Siguiente</button>
+          </div>
+     </div>
+</div>
+<input type="hidden" id="hidCorreo" value="" />
+<input type="hidden" id="hidCodigo" value="ZXCVB" />
+
+<div class="x_panel div-hide" id="divCorreo">
+     <div>
+          <div class="x_title">
+               <h4>Validación de correo</h4>
+               <div class="clearfix"></div>
+          </div>
+          <div class="row">
+               <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+
+                    <div class="clearfix"></div>
+
+                    <p align="center"><h5><b>En este paso se debe ingresar un correo valido, sigue los siguientes pasos:</b></h5></p>
+                    <p align="center"><h5>1. Ingresa un correo personal valido.</h5></p>
+                    <p align="center"><h5>2. Da clic en el botón de validar correo (<i class="fa fa-check"></i>).</h5></p>
+                    <p align="center"><h5>3. Revisa tu correo (puede tardar un par de minutos), te debió  llegar un código de validación.</h5></p>
+                    <p align="center"><h5>4. Si en un lapso de 2 minutos no te llego el código de validación, valida el correo escrito y repite el paso 2.</h5></p>
+                    <p align="center"><h5>5. Ingresa el código, si es el correcto veras el paso final del registro.</h5></p>
+               </div>
+
+          </div>
+          <div class="row">
+               <div class="col-md-12 col-sm-12 col-xs-12 form-inline">
+                    <input type="email" class="form-control" id="txtCorreo" style="width:300px;" placeholder="Correo Electrónico" required />
+                    <button id="btnValidar" type="submit" class="btn btn-info"><i class="fa fa-check"></i><i id="iLoad" class="fa fa-spinner fa-spin" style="display: none;"></i></button>
+                    <input type="text" class="form-control" id="txtCodigo" placeholder="Ingresa el Código" required />
+
+               </div>
+          </div>
+          <div class="col-lg-offset-8">
+               <button id="btnPaso2" type="submit" class="btn btn-block btn-info">Siguiente</button>
+          </div>
+     </div>
+</div>
+<div class="x_panel div-hide" id="divContraseña">
+     <div class="">
+          <div class="x_title">
+               <h4>Contraseña de acceso</h4>
+               <div class="clearfix"></div>
+          </div>
+
+          <form class="class=" form-horizontal form-label-left input_mask" id="mc-form" action="" method="post" accept-charset="utf-8">
+               <div class="row">
+
+                    <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                         <label for="">Contraseña:</label>
+                         <input type="password" class="input form-control" id="txtContrase1" placeholder="Contraseña" autocomplete="off" required>
+                         <span id="8char" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> 8 caracteres<br>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                         <label>Confirmar:</label>
+                         <input type="password" class="input  form-control" id="txtContrase2" placeholder="confirmar contraseña" autocomplete="off" required>
+                         <span id="pwmatch" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> contraseña correcta
+                    </div>
+               </div>
+               <div class="row">
+                    <div class="col-md-12 center-margin">
+                         <div id="captchat empieza">
+                              <div id="wrap">
+                                   <div id="page">
+                                        <div id="mc">
+                                             <font face="Soberana sans" size="3">Por favor dibuje con el mouse la imagen.</font><br />
+                                             <canvas id="mc-canvas">
+                                                  Tu navegador no es el adecuado, debes usar Chrome. Gracias
+                                             </canvas>
+                                             <input type="hidden" id="mc-action" value="" />
+                                        </div>
+                                        <p><input disabled="disabled" type="submit" value="Registrar"></p>
+                                   </div>
+                              </div>
+                         </div> <!--Capchat termina-->
+                    </div>
+               </div>
+          </form>
+     </div>
+</div>
+<div class="x_panel div-hide" id="divFinal">
+     <div id="divCargando" class="div-hide">
+          <img src="~/Images/efectos/ajax-loader3.gif" />
+     </div>
+     <div id="divAviso" class="x_title div-hide">
+          <h3>Pre-registro completo</h3>
+          <span id="mensaje"></span><a href="../Home/Index">
+               <h3><i class="fa fa-home"></i></h3>
+          </a>
+     </div>
+</div>

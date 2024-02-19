@@ -1,0 +1,33 @@
+﻿<input type="hidden" value="@Html.Raw(ViewData["Materia"])" id="hidMateria" />
+<input type="hidden" value="@Html.Raw(ViewData["Carrera"])" id="hidCarrera" />
+<input type="hidden" value="@Html.Raw(ViewData["Reticula"])" id="hidReticula" />
+<input type="hidden" value="@Html.Raw(ViewData["Especialidad"])" id="hidEspecialidad" />
+<input type="hidden" value="@Html.Raw(ViewData["DivAct"])" id="hidDivAct" />
+<div class="clearfix"></div>
+@Html.Partial("../Generales/TablaGeneral")
+<div class="row">
+
+    <div class="col-md-3">
+        <button id="btnRegresar" type="submit" onclick="Regresar();" class="btn btn-block btn-danger">Regresar</button>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+
+    $("#btnGuardar").hide();
+
+    function Regresar() {
+        var periodo = $("#hidPeriodo").val();
+        var carrera = $("#hidCarrera").val();
+        var reticula = $("#hidReticula").val();
+        var especialidad = $("#hidEspecialidad").val();
+        var DivAct = $("#hidDivAct").val();
+        var CarreraReticula = carrera == "0" && reticula == "0" ? "0" : carrera + '_' + reticula;
+        $('#Panel1').load('../../../DEP/ReticulaParalelo', { psPeriodo: periodo, psCarreraReticula: CarreraReticula, psEspecialidad: especialidad, psDiv: DivAct });
+    }
+    DesactivaBotones();
+    ocultar_buscar();
+    MostrarTodos();
+    QuitarMostrar();
+</script>

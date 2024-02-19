@@ -1,0 +1,92 @@
+﻿
+@using Sapei.Framework.Utilerias;
+
+@{ System.Data.DataTable loDatos = null;
+    string lsNombre = "";
+
+    string lsControl = "";
+    string lsCarrera = "";
+    string lsFecha = "";
+
+    if (ViewData["Datos"] != null)
+    {
+        loDatos = ViewData["Datos"] as System.Data.DataTable;
+        if (loDatos.Columns.Count > 0)
+        {
+
+            lsControl = loDatos.Rows[0].RegresaValor<string>("no_de_control");
+            lsNombre = loDatos.Rows[0].RegresaValor<string>("nombre_alumno");
+            lsCarrera = loDatos.Rows[0].RegresaValor<string>("carrera");
+            lsFecha = loDatos.Rows[0].RegresaValor<string>("fecha_registro");
+
+        }
+    }
+}
+
+<div class="modal fade" id="divModalNoPertenenciaAOtroTecnologico" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_content">
+                            <div class="row">
+                                <div class="col-md-3 col-md-offset-8">
+                                    <h5>
+                                        Instituto Tecnológico de Tláhuac
+                                        Dirección
+                                    </h5>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <h3> NO PERTENENCIA A OTRO TECNOLÓGICO </h3>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="text-justify col-md-12">
+                                    <p>
+                                        A quien corresponda:
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                    </p>
+                                    <p>
+                                        Por este medio, bajo protesta de decir verdad, declaro que NO he cursado otra carrera en el Instituto Tecnológico de
+                                        Tláhuac, ni en algún otra Institución perteneciente al Tecnológico Nacional de México. Por lo que, en caso de contar
+                                        con doble número de control, entiendo que seré dado de baja definitiva, sin que esto cause algún perjuicio para
+                                        el Instituto Tecnológico de Tláhuac ni para el Tecnológico Nacional de México y sin que se vea obligado a realizar
+                                        cualquier clase de reembolso por concepto de inscripción, propedéutico, etc.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="row"></div>
+                            <div class="row"></div>
+                            &nbsp;
+                            &nbsp;
+                            &nbsp;
+                            <div class="row">
+                                <div class=" col-md-12">
+                                    <p><strong>Nombre:</strong> @lsNombre</p>
+                                    <p><strong>No. de Control:</strong> @lsControl</p>
+                                    <p><strong>Carrera:</strong> @lsCarrera</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12 center-block">
+                                    <a id="btnFirmar" class="btn btn-info" data-toggle="modal" data-target="#divModalFirmaElectronica" onclick="OcultaModal('FormatoNoPertenciaAOtroPlantel');">Firmar</a>
+                                    <input value="" id="Valor" hidden />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

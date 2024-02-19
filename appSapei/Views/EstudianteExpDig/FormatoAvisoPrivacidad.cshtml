@@ -1,0 +1,116 @@
+﻿
+@using Sapei.Framework.Utilerias;
+
+@{ System.Data.DataTable loDatos = null;
+    string lsNombre = "";
+
+    string lsControl = "";
+    string lsCarrera = "";
+    string lsFecha = "";
+
+    if (ViewData["Datos"] != null)
+    {
+        loDatos = ViewData["Datos"] as System.Data.DataTable;
+        if (loDatos.Columns.Count > 0)
+        {
+
+            lsControl = loDatos.Rows[0].RegresaValor<string>("no_de_control");
+            lsNombre = loDatos.Rows[0].RegresaValor<string>("nombre_alumno");
+            lsCarrera = loDatos.Rows[0].RegresaValor<string>("carrera");
+            lsFecha = loDatos.Rows[0].RegresaValor<string>("fecha_registro");
+
+        }
+    }
+}
+
+<div class="modal fade" id="divModalAvisoPrivacidad" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_content">
+                            <div class="row">
+                                <div class="col-md-3 col-md-offset-8">
+                                    <h5>
+                                        Instituto Tecnológico de Tláhuac
+                                        Dirección
+                                    </h5>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <h3> AVISO DE PRIVACIDAD</h3>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="text-justify col-md-12">
+                                    <p>
+                                        De acuerdo con lo Previsto en la <strong>
+                                            "Ley federal de protección de Datos Personales",
+                                            declara el Instituto Tecnológico de Tláhuac
+                                        </strong> ser una institución legalmente constituida de
+                                        conformidad con las leyes mexicanas, con domicilio en Av. Estanislao Ramírez No. 301,
+                                        Col. Ampliación Selene, C.P. 13430, Alcaldia Tláhuac.; y como responsable del tratamiento de sus
+                                        datos personales, hace de su conocimiento que:
+
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                    </p>
+                                    <p>
+                                        La información de nuestros estudiantes es tratada de forma estrictamente confidencial por lo que al proporcionar sus datos personales,
+                                        solo podrán ser transmitidos a las instancias correspondientes dentro del instituto, a las autoridades correspondientes en materia
+                                        educativa (o relacionadas) así como a la(s) persona(s) autorizada(s) en el formato de autorización de consulta de expediente,
+                                        con la finalidad de coadyuvar al ejercicio de las facultades propias de la institución y presentar evidencia del cumplimiento de
+                                        disposiciones legales en materia educativa, además de otras transmisiones previas en la unidad administrativa responsable de sistemas
+                                        de datos personales la cual será el departamento de Servicios Escolares del instituto, teniendo el interesado el derecho
+                                        de acceso y corrección de sus datos ante la misma en cualquier momento.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="row"></div>
+                            <div class="row"></div>
+                            &nbsp;
+                            &nbsp;
+                            &nbsp;
+                            &nbsp;
+                            &nbsp;
+                            &nbsp;
+                            &nbsp;
+                            &nbsp;
+                            &nbsp;
+                            &nbsp;
+                            &nbsp;
+                            &nbsp;
+                            &nbsp;
+                            &nbsp;
+                            &nbsp;
+                            &nbsp;
+
+
+                            <div class="row">
+                                <div class=" col-md-12">
+                                    <p><strong>Nombre:</strong>  &nbsp; @lsNombre</p>
+                                    <p><strong>No. de Control:</strong> &nbsp; @lsControl</p>
+                                    <p><strong>Carrera:</strong> &nbsp; @lsCarrera</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12 center-block">
+                                    <a id="btnFirmar" class="btn btn-info" data-toggle="modal" data-target="#divModalFirmaElectronica" onclick="OcultaModal('AvisoDePrivacidad');">Firmar</a>
+                                    <input value="" id="Valor" hidden />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

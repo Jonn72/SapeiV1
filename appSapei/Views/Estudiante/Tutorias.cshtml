@@ -1,0 +1,153 @@
+﻿<div class="page-title">
+     <div class="title_left">
+          <h3>Registro <small>de Tutoraías</small></h3>
+     </div>
+</div>
+<div class="x_panel">
+     <form class="form-horizontal form-label-left" action="#" id="frmRegistraActividad" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+          @if (Sapei.Framework.Utilerias.SesionSapei.Sistema.Sesion.Usuario.RolUsuario == Sapei.Framework.Configuracion.enmRolUsuario.DDA)
+          {
+               <div id="divNoControl">
+                    <div class="col-md-8 center-margin">
+                         <label for="txtNoControl">No. de Control:</label>
+                         <input type="text" class="form-control" name="txtNoControl" id="txtNoControl" placeholder="No. de control" required>
+                         <div class="form-group">
+                              <button id="btnBuscarEstudiante" type="submit" class="btn btn-info">Buscar</button>
+                         </div>
+                    </div>
+               </div>
+          }
+          <div id="divDatos" class="div-hide">
+
+               <div class="col-md-6 center-margin">
+                    <h2 class="text-center">Tutorías</h2>
+                    <div class="form-group ">
+                         @if (Sapei.Framework.Utilerias.SesionSapei.Sistema.Sesion.Usuario.RolUsuario == Sapei.Framework.Configuracion.enmRolUsuario.DDA)
+                         {
+                              <label for="txtNombreCompleto">
+                                   Estudiante
+                              </label>
+                              <input type="text" class="form-control" id="txtNombreCompleto" readonly>
+                         }
+                    </div>
+               </div>
+               <div class="col-md-12 center-margin">
+                    <div class="dashboard-widget-content">
+                         <ul class="list-unstyled timeline widget">
+                              <li>
+                                   <h5>
+                                        <a>Por este conducto se te informa GUARDIÁN que, para inscribirte al curso de tutoría, debes de considerar lo siguiente:</a>
+                                   </h5>
+                                   <div class="block">
+                                        <div class="block_content">
+                                             <h5 class="title">
+                                                  <a>1. Sólo se te permitirá visualizar los grupos que no se crucen con otras actividades o materias seleccionadas.</a>
+                                             </h5>
+                                             <h5 class="title">
+                                                  <a>2. No puedes darte de baja o cambiarte de la actividad, por lo que sugerimos revisar bien los horarios y organizar tu tiempo antes de inscribirte.</a>
+                                             </h5>
+ 
+                                        </div>
+                                   </div>
+                              </li>
+                         </ul>
+                    </div>
+
+                    <h3>
+                         <input type="checkbox" id="cbxAcepto" value="ski" data-parsley-mincheck="2" required class="flat" />
+                         Acepto las condiciones
+                    </h3>
+
+                    <div class="col-md-12">
+                         <h3>Fecha de Servidor <small style="color: #aef6c1;">FECHA y HORA</small></h3>
+                         <div class="row">
+                                   @if (ViewData["cursos_validos"] != null)
+                                   {
+                                        <script type="text/javascript">
+                                             $("#@dr.ItemArray[0].ToString()").addClass("in");
+                                        </script>
+                                        foreach (System.Data.DataRow drCursos in (ViewData["cursos_validos"] as System.Data.DataTable).Rows)
+                                        {
+                                             if (drCursos.ItemArray[0].ToString() == "1")
+                                             {
+                                                  string lsCursos = drCursos.ItemArray[1].ToString();
+                                                  string[] lasCursos = lsCursos.Split('|');
+
+                                                  <div class="col-md-8 center-margin">
+                                                       <h4>Selección de cursos</h4>
+                                                       <h5>A continuación se presentan los grupos disponibles según tu horario de materias seleccionadas en este periodo. Si tienes alguna duda preséntate en el CLE del Instituto</h5>
+                                                       <div class="ln_solid"></div>
+                                                       @if (lasCursos.Length > 0)
+                                                       {
+                                                            string lsColor = "#E9F7EF";
+                                                            bool lbColor = true;
+                                                            foreach (string lsGrupo in lasCursos)
+                                                            {
+                                                                 string[] horario = lsGrupo.Split('!');
+                                                                 <div class="col-md-offset-3 form-group" style="background:@lsColor">
+                                                                      <label>
+                                                                           <input type="radio" name="rbtCurso" class="icheckbox_flat-green " id="@horario[0]" value="@horario[0]">
+
+                                                                           Grupo @Sapei.Framework.Utilerias.ManejoCadenas.Base64Decode(horario[0]) <small>@horario[1]</small>
+                                                                      </label>
+                                                                 </div>
+                                                                 if (lbColor)
+                                                                 {
+                                                                      lbColor = false;
+                                                                      lsColor = "";
+                                                                 }
+                                                                 else
+                                                                 {
+                                                                      lbColor = true;
+                                                                      lsColor = "#E9F7EF";
+                                                                 }
+                                                            }
+                                                            <div class="ln_solid"></div>
+                                                            <h5>Antes de guardar debes estar seguro del horario que has seleccionado, pues una vez guardado el grupo de inglés, no podrás hacer cambio alguno.</h5>
+                                                            <div class="row">
+                                                                 <div class="col-md-offset-4 col-md-8">
+                                                                      <button id="btnGuardarGrupo" type="submit" class="btn btn-block btn-success">Aceptar y Guardar</button>
+                                                                 </div>
+                                                            </div>
+                                                       }
+
+                                                  </div>
+                                             }
+                                             else
+                                             {
+                                                  <div class="row">
+
+                                                       <div class="col-md-8 center-margin">                                                                               <h5>@drCursos.ItemArray[0].ToString()</h5>                                                                                                </div>
+                                                  </div>
+                                             }
+                                        }
+
+                                   }
+                                   <span>@dr.ItemArray[12].ToString()</span>
+                              </div>
+                         
+                    </div>
+
+                    <div class="form-group">
+                         <button id="btnGuardar" type="submit" class="btn btn-info" disabled>Guardar</button>
+                    </div>
+               </div>
+          </div>
+
+     </form>
+</div>
+@Html.Partial("../Generales/TablaGeneral")
+
+
+<script src="~/Scripts/ManejoDatos/Estudiantes/Tutorias.js"></script>
+<script src="~/Scripts/ManejoDatos/Estudiantes/RegresaDatosEstudiante.js"></script>
+<script src="~/Scripts/ManejoDatos/Estudiantes/Validaciones.js"></script>
+@if (Sapei.Framework.Utilerias.SesionSapei.Sistema.Sesion.Usuario.RolUsuario == Sapei.Framework.Configuracion.enmRolUsuario.ALU)
+{
+     <script type="text/javascript">
+          $(document).ready(function () {
+               $("#divDatos").show();
+          });
+
+     </script>
+}

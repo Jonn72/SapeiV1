@@ -1,0 +1,251 @@
+﻿<style type="text/css">
+
+    @@keyframes slidein {
+        from {
+            margin-left: 100%;
+            width: 100%;
+        }
+
+        to {
+            margin-left: 0%;
+            width: 100%;
+        }
+    }
+
+
+    @@keyframes cambiarColor {
+        0% {
+            background-color: #ffffff;
+        }
+
+        10% {
+            background-color: #ffd9d9;
+        }
+
+        20% {
+            background-color: #ffa9a9;
+        }
+
+        30% {
+            background-color: #ff7b7b;
+        }
+
+        40% {
+            background-color: #ff4040;
+        }
+
+        50% {
+            background-color: #ff0000;
+        }
+
+        60% {
+            background-color: #ff4040;
+        }
+
+        70% {
+            background-color: #ff7b7b;
+        }
+
+        80% {
+            background-color: #ffa9a9;
+        }
+
+        90% {
+            background-color: #ffd9d9;
+        }
+
+        100% {
+            background-color: #ffffff;
+        }
+    }
+</style>
+<div class="page-title">
+    <div class="title_left">
+        <h3>Evaluacion Docente</h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+
+        @{
+            if (ViewData["Evaluacion"] != null)
+            {
+                foreach (System.Data.DataRow dr in (ViewData["Evaluacion"] as System.Data.DataTable).Rows)
+                {
+                    @Html.Raw(dr.ItemArray[0].ToString());
+                }
+            }
+        }
+
+
+
+    </div>
+</div>
+@Html.Partial("../Generales/ModalVisorPDF")
+
+<script type="text/javascript">
+
+    function readCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0;i < ca.length;i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1,c.length);
+            if (c.indexOf(nameEQ) == 0) {
+                return decodeURIComponent( c.substring(nameEQ.length,c.length) );
+            }
+        }
+        return null;
+    }
+    function cambia_contenido(id_pregunta, objeto, no_de_control) {
+        if (id_pregunta === 0) {
+            var temp_cookie = readCookie(no_de_control + "_pregunta");
+            var temp_resp = '';
+            if (temp_cookie != null) {
+                Object.keys(objeto).forEach(function (key) {
+                    temp_resp = readCookie(no_de_control + '_' + key.toString());
+                    objeto[key].respuestas.push(temp_resp);
+                })
+                var spreg = parseInt(temp_cookie) + 1;
+                $("#" + id_pregunta).css("display", "none");
+                $("#" + spreg).css({
+                    "display": "block",
+                    "animation-duration": "1s",
+                    "animation-name": "slidein"
+                 });
+            }
+            else {
+                var spreg = 0;
+                spreg = id_pregunta + 1;
+                $("#" + id_pregunta).css("display", "none");
+                $("#" + spreg).css({
+                    "display": "block",
+                    "animation-duration": "1s",
+                    "animation-name": "slidein"
+                });
+            }
+        }
+        else if(id_pregunta === limite){
+            var detect = 0;
+            var count = 0;
+            Object.keys(objeto).forEach(function (key) {
+                count = count + 1;
+                var temp_check_div = $('input:radio[name=' + id_pregunta + '_' + objeto[key].materia + ']:checked').val();
+                if (temp_check_div != null) {
+                    detect = detect + 1;
+                }
+                else {
+                    $("#" + id_pregunta + '_' + objeto[key].materia + '_' + objeto[key].rfc).css({
+                       "animation-duration": "1s",
+                        "animation-name": "cambiarColor",
+                        "animation-iteration-count": "2"
+                    });
+                }
+            })
+            if (detect != count) {
+                MensajesToastr("warning", "Faltan Preguntas", "Aún no has respondido todas las preguntas");
+                return;
+            }
+            else {
+                Object.keys(objeto).forEach(function (key) {
+                    objeto[key].respuestas.push($('input:radio[name=' + id_pregunta + '_' + objeto[key].materia + ']:checked').val());
+                    objeto[key].fecha_hora_evaluacion = "@System.DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff")";
+                })
+            }
+            $("#" + id_pregunta).css("display", "none");
+            var obj = "";
+            var obj2 = "";
+            Object.keys(objeto).forEach(function (key) {
+                objeto[key].respuestas = objeto[key].respuestas.toString();
+                objeto[key].respuestas = objeto[key].respuestas.replace(/,/gi, "");
+                obj = obj + '' + JSON.stringify(objeto[key]);
+            })
+            obj2 = obj.replace(/}{/gi, "},{");
+
+            console.log(obj2);
+            $.ajax({
+                url: '../../../Estudiante/RegistraEncuestaJSON',
+                type: 'POST',
+                dataType: 'json',
+                data: { lsobjeto: obj2 }
+            })
+            .done(function (data) {
+                if (typeof (data.Success) !== "undefined" && !data.Success) {
+                    MensajesToastr("warning", "Error de proceso", data.Mensaje);
+                }
+                else{
+                    MensajesToastr("info", "Solicitud Procesada", "Evaluación registrada");
+                    $("#fin").css({
+                        "display": "block",
+                        "animation-duration": "1s",
+                        "animation-name": "slidein"
+                    });
+                }
+            })
+            .fail(function (data) {
+                MensajesToastrErrorConexion();
+            });
+            Object.keys(objeto).forEach(function (key) {
+                document.cookie = no_de_control + '_' + key.toString() + "=" + objeto[key].respuestas + "; max-age=0";
+            })
+            document.cookie = no_de_control + "_pregunta=" + id_pregunta + "; max-age=0";
+        }
+        else {
+            var detect = 0;
+            var count = 0;
+            Object.keys(objeto).forEach(function (key) {
+                count = count + 1;
+                var temp_check_div = $('input:radio[name=' + id_pregunta + '_' + objeto[key].materia + ']:checked').val();
+                if (temp_check_div != null) {
+                    detect = detect + 1;
+                }
+                else {
+                    $("#" + id_pregunta + '_' + objeto[key].materia + '_' + objeto[key].rfc).css({
+                        "animation-duration": "1s",
+                        "animation-name": "cambiarColor",
+                        "animation-iteration-count": "2"
+                    });
+                }
+            })
+            if (detect != count) {
+                MensajesToastr("warning", "Faltan Preguntas", "Aún no has respondido todas las preguntas");
+                return;
+            }
+            else {
+                Object.keys(objeto).forEach(function (key) {
+                    objeto[key].respuestas.push($('input:radio[name=' + id_pregunta + '_' + objeto[key].materia + ']:checked').val());
+                })
+            }
+            var spreg = 0;
+            spreg = id_pregunta + 1;
+            $("#" + id_pregunta).css("display", "none");
+            $("#" + spreg).css({
+                "display": "block",
+                "animation-duration": "1s",
+                "animation-name": "slidein"
+            });
+            var d = new Date();
+            d.setTime(d.getTime() + (3 * 24 * 60 * 60 * 1000));
+            var expires = "expires=" + d.toUTCString();
+            Object.keys(objeto).forEach(function (key) {
+                document.cookie = no_de_control + '_' + key.toString() + "=" + objeto[key].respuestas + "; " + expires;
+            })
+            document.cookie = no_de_control + "_pregunta=" + id_pregunta + "; " + expires;
+        }
+    }
+
+    function displaySection() {
+        $('#divModalVisorPDF').modal('show');
+        $("#divCargando").hide();
+        $("#divPDF").show();
+    }
+
+
+    function vistaEvaluacionDocente(periodo) {
+
+        $("#divCargando").show();
+        $("#divPDF").hide();
+        $('#divPDF').load('../../../../Reportes/EvaluacionPDF?psPeriodo=' + periodo, displaySection());
+    }
+</script>

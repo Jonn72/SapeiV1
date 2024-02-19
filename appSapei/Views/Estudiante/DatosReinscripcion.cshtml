@@ -1,0 +1,83 @@
+﻿<div class="page-title">
+    <div class="title_left">
+        <h3>Datos de Reinscripción <small>@ViewData["periodo"]</small></h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="x_panel">
+    <div class="x_title">
+        <form class="form-horizontal form-label-left" action="#" id="frmFicha" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+            <div class="form-group">
+                <div class="col-md-8 center-margin">
+                    <div class="x_title">
+                        <h2>Fecha de selección y Adeudos</h2>
+                    </div>
+                    <div class="dashboard-widget-content">
+                        <ul class="list-unstyled timeline widget">
+                            <li>
+                                <div class="block">
+                                    <div class="block_content">
+                                        &nbsp;
+                                        <h2 class="title">
+                                            <a>Pago:</a>
+                                        </h2>
+                                        <div class="byline">
+                                            <h3 id="spPago">@ViewData["pago"]</h3>
+                                        </div>
+                                        &nbsp;
+                                        <h2 class="title">
+                                            <a>Fecha de Seleccion: </a>
+                                        </h2>
+                                        <div class="byline">
+                                            <h3 id="spFecha">@ViewData["fecha"]</h3>
+                                        </div>
+                                        &nbsp;
+                                        <h2 class="title">
+                                            <a>Creditos Asignados: </a>
+                                        </h2>
+                                        <div class="byline">
+                                            <h3 id="spCreditos">@ViewData["creditos"]</h3>
+                                        </div>
+                                        &nbsp;
+                                    </div>
+                                </div>
+                                <div class="block">
+                                    <div class="block_content">
+                                        &nbsp;
+                                        <h2 class="title">
+                                            <a>¿Realizó evaluación docente?:</a>
+                                        </h2>
+                                        <div class="byline">
+                                            <h3 id="spEvaluacion">@ViewData["evaluacion"]</h3>
+                                        </div>
+                                        &nbsp;
+                                        <h2 class="title">
+                                            <a>Adeudos:</a>
+                                        </h2>
+                                        <div class="byline">
+                                            <h3 id="spAdeudos">@ViewData["adeudos"]</h3>
+                                        </div>
+                                        &nbsp;
+                                        <h2 class="title">
+                                            <a>¿Firmó Carga Acádemica?:</a>
+                                        </h2>
+                                        <div class="byline">
+                                            <h3 id="spCarga">@ViewData["carga"]</h3>
+                                        </div>
+                                        &nbsp;
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+

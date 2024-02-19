@@ -1,0 +1,103 @@
+﻿<div class="clearfix"></div>
+<input type="hidden" id="hidPeriodo" value="@ViewData["txtPeriodo"]" />
+<div class="page-title">
+    <div class="title_left">
+        <h3>Facilitadores</h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="x_panel">
+    <div class="x_title">
+        <h4>Asignación de Facilitadores <small>@ViewData["txtDescPeriodo"]</small></h4>
+        <div class="clearfix"></div>
+        <div class="x_content">
+            <p>
+                En este modulo se encuentra la lista de grupos por nivel para asiganr facilitadores.
+            </p>
+            <p>
+                Solo estaran disponibles los facilitadores que hayan sido contratados en las fechas dentro del periodo actual.
+            </p>
+        </div>
+    </div>
+</div>
+<div class="div-hide" id="prt">
+    @if (ViewData["Facilitadores"] != null)
+    {
+        <select class="form-control" id="cboSel">
+
+            <option value="">Sin Asignar</option>
+
+            @foreach (System.Data.DataRow dr in (ViewData["Facilitadores"] as System.Data.DataTable).Rows)
+            {
+                <option value="@dr.ItemArray[0].ToString().Trim()">@dr.ItemArray[1].ToString().Trim()</option>
+            }
+        </select>
+    }
+</div>
+@Html.Partial("../Generales/ModalVisorPDF")
+@Html.Partial("../Generales/TablaGeneral")
+@Html.Partial("../Generales/ModalVistasParciales")
+<script type="text/javascript">
+
+    DesactivaBotones();
+
+    function vistaActa(periodo, nivel, grupo, facilitador) {
+
+        $("#divCargando").show();
+        $("#divPDF").hide();
+        $('#divPDF').load('../../../../Reportes/ActaFacilitadoresPDF?psPeriodo=' + periodo + '&psNivel=' + nivel + '&psGrupo=' + grupo + '&psFacilitador=' + facilitador, displaySection());
+    }
+
+    function displaySection() {
+        $('#divModalVisorPDF').modal('show');
+        $("#divCargando").hide();
+        $("#divPDF").show();
+    }
+
+    function capturar(id, periodo, nivel, grupo) {
+
+        var content = $('.page-title').prop('outerHTML');
+        content = content + "<h4>Seleccione el facilitador para el grupo " + grupo + "<br/>";
+        content = content + $('#prt').prop('outerHTML');
+        var replaced = content.replace('cboSel', 'sel-' + id);
+        var unhide = replaced.replace('div-hide', '');
+        unhide = unhide + '<br/><input type="button" class="btn btn-success" value="Guardar" onclick="guardar(\'' + id + '\', \'' + periodo + '\', \'' + nivel + '\', \'' + grupo + '\')"/>'
+        $('#divModalVistaParcial').html(unhide);
+        $('#divModalGeneral').modal('show');
+    };
+
+
+    function guardar(id, periodo, nivel, grupo) {
+
+        var rfc = $("#sel-" + id).val();
+
+        $('#divModalFirmaElectronica').modal('hide');
+
+        $.ajax({
+            asyn: false,
+            url: '../../../CentroLenguasExt/ActualizaFacilitador',
+            type: 'POST',
+            dataType: 'json',
+            data: { psRFC: rfc, psPeriodo: periodo, psNivel: nivel, psGrupo: grupo },
+        })
+            .done(function (data) {
+
+                if (typeof (data.Success) === "undefined" || !data.Success) {
+                    MensajesToastr("error", "Solicitud Procesada", "Error al Guardar");
+                }
+                else {
+                    MensajesToastr("success", "Solicitud Procesada", "Registro Correcto");
+
+                    $('#BodyPrincipal').load('../../../../CentroLenguasExt/AsignaFacilitador');
+                    $('.modal-backdrop').remove();
+                }
+            })
+            .fail(function (data) {
+                MensajesToastrErrorConexion();
+            }).always(function () {
+            });
+        event.preventDefault();
+
+    }
+
+</script>

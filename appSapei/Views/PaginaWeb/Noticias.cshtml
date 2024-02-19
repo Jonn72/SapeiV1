@@ -1,0 +1,420 @@
+﻿<link href="~/Content/Controles/Dropzone.css" rel="stylesheet" />
+
+<div style="margin-bottom:70px" class="col-md-4 col-sm-4 col-xs-12" id="form">
+    <div class="x_panel">
+        <div class="x_title">
+            <h3>Nueva Noticia</h3>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                <label for="titulotxt">Título de la noticia</label>
+                <input type="text" class="form-control" name="titulo" id="titulo" placeholder="Introduce el título de la Noticia">
+                <label for="titulotxt">Cuerpo de la noticia</label>
+                <input type="text" class="form-control" name="cuerpo" id="cuerpo" placeholder="Introduce el cuerpo de la Noticia">
+            </div>
+            <div class="dropzone_form col-md-12 col-sm-12 col-xs-12 form-group">
+                <label>Imagen de la noticia</label>
+                <form id="dropzone_banner" style="margin-left:10px; margin-right:10px;" action="#" method="post" enctype="multipart/form-data" class="dropzone needsclick dz-clickable">
+                    <div class="dz-default dz-message">
+                        <span>Haz clic aquí o arrastra una imagen.</span>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                <label for="tags">
+                    Encabezado de la Noticia
+                </label>
+            </div>
+            <div id="divArchivo" class="dropzone_form col-md-12 col-sm-12 col-xs-12 form-group">
+                <label>Imagenes</label>
+                <form id="dropzone_archivo" style="margin-left:10px; margin-right:10px;" method="post" enctype="multipart/form-data" class="dropzone needsclick dz-clickable">
+                    <div class="dz-default dz-message">
+                        <span>Haz clic aquí o arrastrala imagen.</span>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                <label for="tags">
+                    Galeria
+                </label>
+            </div>
+            <div id="divArchivo" class="dropzone_form col-md-12 col-sm-12 col-xs-12 form-group">
+                <label>Imagenes</label>
+                <form id="dropzone_encabezado" style="margin-left:10px; margin-right:10px;" method="post" enctype="multipart/form-data" class="dropzone needsclick dz-clickable">
+                    <div class="dz-default dz-message">
+                        <span>Haz clic aquí o arrastrala imagen.</span>
+                    </div>
+                </form>
+            </div>
+            @*<p>&nbsp;</p>
+                <div class="file-loading">
+                    <input id="file" name="file[]" type="file" enctype="multipart/form-data" multiple>
+                </div>*@
+            <p>&nbsp;</p>
+            <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                <label>Publicar</label>
+                <input type="checkbox" class="form-control" id="cbxPublicar">
+            </div>
+
+
+
+
+            <div style="margin-top:30px;" class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                <button id="btnEnviar" type="submit" class="btn btn-block btn-success" disabled>Generar Banner</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="margin-bottom:70px" class="col-md-8 col-sm-8 col-xs-12">
+    @Html.Partial("../Generales/TablaJson")
+</div>
+
+<script src="~/Scripts/ManejoDatos/Gnosis/dropzone.js"></script>
+
+<script>
+    var urlBanner;
+    var urlContenido;
+    var urlEncabezado = new Array();
+    var n;
+    var objs;
+    var toks;
+    var o = 0;
+
+    var urlServer;
+    var hostname = location.hostname;
+    (function () {
+        switch (hostname) {
+            case "localhost":
+                urlServer = "https://tlahuac.tecnm.mx";
+                break;
+            case "sapei.tlahuac.tecnm.mx":
+                urlServer = "https://tlahuac.tecnm.mx";
+                break;
+            case "192.168.9.245":
+                urlServer = "https://192.168.9.246";
+                break;
+        }
+
+
+
+  var settings = {
+  "url": urlServer + "/api/login",
+  "method": "POST",
+  "timeout": 0,
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "data": JSON.stringify({"usuario":"prueba","password":"prueba123"}),
+};
+
+$.ajax(settings).done(function (response) {
+
+    objs = response;
+    toks = objs['token'];
+
+             $.ajax({
+        url: urlServer + "/api/Noticia",
+        type: 'GET',
+        contentType: 'application/json',
+             headers: {
+                 'Authorization': 'Bearer ' + toks,
+        },
+        success: function (result) {
+            //CallBack(result);
+            JsonGet = result;
+            var htmlHead = "<tr>";
+            htmlHead = htmlHead + "<th>No.</th>";
+            htmlHead = htmlHead + "<th>Titulo</th>";
+            htmlHead = htmlHead + "<th>Acciones</th>";
+            htmlHead = htmlHead + '</tr>';
+            CargarTablaBanners();
+            $('#tabla-json thead').append(htmlHead);
+
+        },
+        error: function (error) {
+
+        }
+            });
+       
+    
+});
+
+
+        $("#divArchivo").show();
+        $("#divUrl").hide();
+        $("#banners").hide();
+        Dropzone.autoDiscover = false;
+        $("#dropzone_banner").dropzone({
+            maxFilesize: 10,
+            maxFiles: 1,
+            dictMaxFilesExceeded: 'No se pueden subir más archivos, Limite superado!.',
+            dictInvalidFileType: 'Formato de archivo no permitido',
+            dictFallbackMessage: 'Tu navegador no soporta esta funcion.',
+            acceptedFiles: '.jpeg,.jpg,.png,.JPEG,.JPG,.PNG',
+            renameFile: function (file) {
+                return 'noticia.' + file.name.split(".")[1];
+            },
+            init: function () {
+                this.on("processing", function (file) {
+                    this.options.url = urlServer + "/api/UploadImages";
+                });
+                this.on('success', function (file, response) {
+                    urlBanner = response;
+                })
+            }
+        });
+        $("#dropzone_archivo").dropzone({
+            maxFilesize: 10,
+            maxFiles: 1,
+            url: urlServer,
+            dictMaxFilesExceeded: 'No se pueden subir más archivos, Limite superado!.',
+            dictInvalidFileType: 'Formato de archivo no permitido',
+            dictFallbackMessage: 'Tu navegador no soporta esta funcion.',
+            acceptedFiles: '.jpeg,.jpg,.png,.JPEG,.JPG,.PNG',
+            renameFile: function (file) {
+                return 'noticia.' + file.name.split(".")[1];
+            },
+            init: function () {
+                this.on("processing", function (file) {
+                    this.options.url = urlServer + "/api/UploadImages";
+                });
+                this.on('success', function (file, response) {
+                    urlContenido = response;
+                })
+            }
+        });
+        $("#dropzone_encabezado").dropzone({
+            maxFilesize: 5,
+            maxFiles: 3,
+            parallelUploads: 3,
+            url: urlServer,
+            dictMaxFilesExceeded: 'No se pueden subir más archivos, Limite superado!.',
+            dictInvalidFileType: 'Formato de archivo no permitido',
+            dictFallbackMessage: 'Tu navegador no soporta esta funcion.',
+            acceptedFiles: '.jpeg,.jpg,.png,.JPEG,.JPG,.PNG',
+            renameFile: function (file) {
+                return 'noticia.' + file.name.split(".")[1];
+            },
+            init: function () {
+                this.on("processing", function (file) {
+
+                    this.options.url = urlServer + "/api/UploadImages";
+                });
+                this.on('success', function (file, response) {
+                    urlEncabezado[o] = response;
+                    //alert(urlEncabezado[o]);
+                    o++;
+                    var MyDropzone = this;
+                    n = MyDropzone.files.length;
+                })
+            }
+        });
+    })();
+
+    $("#btnEnviar").on('click', function (event) {
+        event.preventDefault();
+        var obj = new Object();
+
+        var ult;
+        if (urlBanner == null || urlContenido == null || urlEncabezado == null) {
+        MensajesToastr("warning", "Debe seleccionar una imagen de banner", "Intentalo de nuevo");
+        return;
+        }
+        obj.titulo = $("#titulo").val().trim();
+        obj.cuerpo = $("#cuerpo").val().trim();
+        obj.fechapublicacion = new Date();
+        obj.urlimagen = urlBanner;
+        obj.urlimagenencabezado = urlContenido;
+        var tipo = $('input[name=rbtPublicacion]:checked').val();
+        if (tipo == 'U')
+            urlContenido = $("#urlvideo").val().trim();
+        if ($("#cbxPublicar").is(':checked'))
+            obj.activa = true;
+        else
+            obj.activa = false;
+        obj.activait = false;
+        var urlServerPost = urlServer + "/api/Noticia";
+        obj = JSON.stringify(obj);
+        $.ajax({
+            url: urlServerPost,
+            type: 'POST',
+            async: true,
+            contentType: "application/json; charset=utf-8", // this
+            dataType: "json", // and this
+            crossDomain: true,
+            contentType: 'application/json',
+            dataType: 'json',
+            data: obj,
+
+        })
+            .done(function (data) {
+                LimpiaControles();
+                 MensajesToastr("success", "Se ha publicado la noticia", "Publicación exitosa");
+            })
+            .fail(function (data) {
+                MensajesToastrErrorConexion();
+            })
+            .always(function () {
+
+            });
+
+        Object.keys(JsonGet).forEach(function (key) {
+            ult = JsonGet[key].id + 1;
+        })
+        // for (var i = 0; i < n; i++) {
+
+        function enviar(ims) {
+            var obj2 = new Object();
+            if (ims < n) {
+                obj2.urlimagen = urlEncabezado[ims];
+                var urlServerPost2 = urlServer + "/api/Galerias";
+                obj2.idnoticia = parseInt(ult);
+                obj2 = JSON.stringify(obj2);
+                $.ajax({
+                    url: urlServerPost2,
+                    type: 'POST',
+                    async: true,
+                    crossDomain: true,
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    data: obj2,
+                })
+                    .done(function (data) {
+                        ob2 = null;
+                        enviar(ims + 1);
+                    })
+                    .fail(function (data) {
+                        MensajesToastrErrorConexion();
+                    })
+                    .always(function () {
+
+                    });
+            }
+        }
+        enviar(0);
+        // }
+
+    });
+
+    function LimpiaControles() {
+        $("#titulo").val("");
+        urlBanner = "";
+        urlContenido = "";
+    }
+
+    $('input[type=radio][name=rbtPublicacion]').change(function () {
+
+        var tipo = $('input[name=rbtPublicacion]:checked').val();
+        $("#divArchivo").show();
+
+    });
+
+
+
+    function CargarTablaBanners() {
+        $("#tabla-json tbody").empty();
+        var htmlTags = "";
+        var class_activa;
+        var id_boton;
+        Object.keys(JsonGet).forEach(function (key) {
+            class_activa = "success";
+            if (JsonGet[key].activa)
+                class_activa = "info"
+            id_boton = JsonGet[key].id;
+            htmlTags = htmlTags + '<tr>' + '<td>' + JsonGet[key].id + '</td>'
+                + '<td>' + JsonGet[key].titulo + '</td>'
+                //+ '<td> <a class="btn btn-success" > <span class="fa fa-edit"></span></a >'
+                + '<td><a id="btnPublicar' + id_boton + '" class="btn btn-' + class_activa + '" data-toggle="tooltip" data-placement="top" title="No Publicar Listas"><span class="fa fa-eye"></span></a></td>'
+                + '</tr>';
+        })
+        $('#tabla-json tbody').append(htmlTags);
+    }
+    $('#tabla-json tbody').on('click', 'a.btn-success,a.btn-info', function (event) {
+        var $table = $('#tabla-json').DataTable();
+        var $row = $(this).parents("tr");
+        var data = $table.row($row).data();
+        Publicar(data);
+    });
+
+    function Publicar(data) {
+        var Json;
+        var valor;
+
+        Object.keys(JsonGet).forEach(function (key) {
+            if (JsonGet[key].id == data[0]) {
+                JsonGet[key].activa = !JsonGet[key].activa;
+                valor = JsonGet[key].activa;
+                Json = JsonGet[key];
+                if ($('#btnPublicar' + JsonGet[key].id).hasClass('btn-success')) {
+                    $('#btnPublicar' + JsonGet[key].id).addClass('btn-info');
+                    $('#btnPublicar' + JsonGet[key].id).removeClass('btn-success');
+                }
+                else {
+                    $('#btnPublicar' + JsonGet[key].id).addClass('btn-success');
+                    $('#btnPublicar' + JsonGet[key].id).removeClass('btn-info');
+                }
+            }
+        })
+
+        Json = JSON.stringify(Json);
+        $.ajax({
+            url: urlServer + '/api/Noticia/' + data[0],
+            type: 'PUT',
+            crossDomain: true,
+            withCredentials: true,
+            contentType: 'application/json',
+            dataType: 'json',
+            data: Json,
+        })
+            .done(function (data) {
+                if (valor)
+                    MensajesToastr("success", "Se ha publicado el Banner", "Publicación exitosa");
+                else
+                    MensajesToastr("success", "Se bloqueado el Banner", "Desactivación exitosa");
+
+            })
+            .fail(function (data) {
+                MensajesToastrErrorConexion();
+            }).always(function () {
+
+            });
+
+
+    }
+
+
+        $(document).ready(function () {
+        $("#form input").keyup(function () {
+            var form = $(this).parents("#form");
+            var check = checkCampos(form);
+            if (check) {
+                $("#btnEnviar").prop("disabled", false);
+            }
+            else {
+                $("#btnEnviar").prop("disabled", true);
+            }
+        });
+    });
+
+    function checkCampos(obj) {
+        var camposRellenados = true;
+        obj.find("input").each(function () {
+            var $this = $(this);
+            if ($this.val().length <= 0) {
+                camposRellenados = false;
+                return false;
+            }
+        });
+        if (camposRellenados == false) {
+                return false;
+        }
+    
+        else {
+            return true;
+        }
+    }
+
+
+
+</script>

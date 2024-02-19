@@ -1,0 +1,86 @@
+﻿<div class="clearfix"></div>
+<div class="page-title">
+     <div class="title_left">
+          <h3>Activar Fechas <small>@ViewData["txtDescPeriodo"]</small></h3>
+     </div>
+     <div class="col-md-4 col-sm-4 col-xs-12 form-group pull-right top_search">
+          <div class="form-inline">
+               <label for="cboPeriodo">
+                    Periodo
+               </label>
+               <select class="form-control" id="cboPeriodo"></select>
+          </div>
+     </div>
+</div>
+<div class="x_panel">
+
+     <form class="form-horizontal form-label-left" action="#" id="frmPeriodos" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+          <input type="hidden" id="hidPeriodo" value="@ViewData["txtPeriodo"]" />
+          <div class="col-md-12 center-margin">
+               <div class="form-group col-md-6 ">
+                    <label>
+                         Inicio Registro de Grupos
+                    </label>
+                    <div class='input-group date' id='dtpFechaIniGrupos'>
+                         <input type='text' id="txtFechaIniGrupos" class="form-control" value="@ViewData["txtFechaIniGrupos"]" required />
+                         <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+                    </div>
+               </div>
+               <div class="form-group col-md-6 ">
+                    <label>
+                         Fin de Registro de Grupos
+                    </label>
+                    <div class='input-group date' id='dtpFechaFinGrupos'>
+                         <input type='text' id="txtFechaFinGrupos" class="form-control" value="@ViewData["txtFechaFinGrupos"]" required />
+                         <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+                    </div>
+               </div>
+               <div class="form-group col-md-6 ">
+                    <label>
+                         Fecha de Inicio de Registro
+                    </label>
+                    <div class='input-group date' id='dtpFechaIni'>
+                         <input type='text' id="txtFechaIni" class="form-control" value="@ViewData["txtFechaIni"]" required />
+                         <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+                    </div>
+               </div>
+               <div class="form-group col-md-6 ">
+                    <label>
+                         Fecha de Termino de Registro
+                    </label>
+                    <div class='input-group date' id='dtpFechaFin'>
+                         <input type='text' id="txtFechaFin" class="form-control" value="@ViewData["txtFechaFin"]" required />
+                         <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+                    </div>
+               </div>
+                    
+               <div class="form-group col-md-6 ">
+                    <label>
+                         Inicio de Captura de Calificaciones
+                    </label>
+                    <div class='input-group date' id='dtpFechaIniCaptura'>
+                         <input type='text' id="txtFechaIniCaptura" class="form-control" value="@ViewData["txtFechaIniCaptura"]" required />
+                         <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+                    </div>
+               </div>
+               <div class="form-group col-md-6 ">
+                    <label>
+                         Termino de Captura de Calificaciones
+                    </label>
+                    <div class='input-group date' id='dtpFechaFinCaptura'>
+                         <input type='text' id="txtFechaFinCaptura" class="form-control" value="@ViewData["txtFechaFinCaptura"]" required />
+                         <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+                    </div>
+               </div>
+                    
+               
+               <div class="form-group ">
+                    <button id="btnGuardar" type="submit" class="btn btn-info">Guardar</button>
+               </div>
+          </div>
+     </form>
+</div>
+@Html.Partial("../Generales/TablaGeneral")
+
+
+<script src="~/Scripts/ManejoDatos/DesarrolloAcademico/ActivarPeriodo.js"></script>

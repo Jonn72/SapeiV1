@@ -1,0 +1,129 @@
+﻿<input type="hidden" id="hidEntidad" value="@ViewData["cboEstados"]" />
+<input type="hidden" id="hidSexo" value="@ViewData["rbtSexo"]" />
+<input type="hidden" id="hidEstadoCivil" value="@ViewData["cboEstadoCivil"]" />
+<input type="hidden" id="hidColonia" value="@ViewData["cboColonia"]" />
+<div class="page-title">
+     <div class="title_left">
+          <h3>Captura <small>de datos</small></h3>
+     </div>
+</div>
+<div class="clearfix"></div>
+<div class="x_panel">
+     <div class="x_title">
+          <h3>Datos <small>Personales</small></h3>
+     </div>
+     <div class="clearfix"></div>
+     <div class="row">
+          <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+               <label for="tags">
+                    Nombre (s)
+               </label>
+               <input type="text" class="form-control" id="txtNombre" value="@ViewData["txtNombre"]" placeholder="Nombre (s)" oninvalid="ValidaCampo(this, 'NOMBRE');" onblur="ValidaCampo(this, 'NOMBRE');" required />
+          </div>
+          <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+               <label for="tags">
+                    Apellido Paterno
+               </label>
+               <input type="text" class="form-control" id="txtPaterno" value="@ViewData["txtPaterno"]" placeholder="Apellido Paterno" oninvalid="ValidaCampo(this, 'NOMBRE');" onblur="ValidaCampo(this, 'NOMBRE');" required />
+
+          </div>
+          <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+               <label for="tags">
+                    Apellido Materno
+               </label>
+               <input type="text" class="form-control" id="txtMaterno" value="@ViewData["txtMaterno"]" placeholder="Apellido Materno" oninvalid="ValidaCampo(this, 'NOMBRE');" onblur="ValidaCampo(this, 'NOMBRE');" required />
+
+          </div>
+     </div>
+     <div class="row">
+          <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+               <label for="tags">
+                    Fecha de Nacimiento
+               </label>
+               <div class='input-group date' id='dtpFecha'>
+                    <input type='text' id="txtFechaNacimiento" value="@ViewData["txtFechaNacimiento"]" class="form-control" required />
+                    <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+               </div>
+
+          </div>
+          <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+               <label for="tags">
+                    Entidad donde Nació
+               </label>
+               <select class="form-control" id="cboEstados" required></select>
+
+          </div>
+          <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+               <label for="tags">
+                    Genero
+               </label>
+               <div class="radio">
+                    <label for="tags">
+                         <input type="radio" name="rbtSexo" id="rdbMujer" value="M" checked="checked">
+                         Mujer
+                    </label>
+                    <label for="tags">
+                         <input type="radio" name="rbtSexo" id="rdbHombre" value="H">
+                         Hombre
+                    </label>
+               </div>
+          </div>
+     </div>
+     <div class="row">
+          <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+               <label for="tags">
+                    CURP
+               </label>
+               <input type="text" class="form-control" id="txtCURP" value="@ViewData["txtCURP"]" placeholder="CURP" oninvalid="InvalidMsg(this);" name="txtCURP" onblur="InvalidMsg(this);" maxlength="18" required />
+
+          </div>
+          <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+               <label for="tags">
+                    Estado Civil
+               </label>
+               <select class="form-control" id="cboEstadoCivil" required>
+                    <option value="S">Soltero(a)</option>
+                    <option value="C">Casado(a)</option>
+                    <option value="D">Divorsiado(a)</option>
+                    <option value="V">Viudo(a)</option>
+                    <option value="U">Union Libre</option>
+               </select>
+
+          </div>
+          <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+               <label for="txtNSS">
+                    NSS
+               </label>
+               <input type="text" class="form-control" id="txtNSS" value="@ViewData["txtNSS"]" placeholder="NSS" oninvalid="ValidaCampo(this, 'NSS');" name="txtNSS" onblur="ValidaCampo(this, 'NSS');" maxlength="11" autocomplete="nope" required />
+
+          </div>
+     </div>
+     <div class="row">
+          <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+               <label for="txtCorreo">
+                    Correo Electronico
+               </label>
+               <input type="email" class="form-control" id="txtCorreo" value="@ViewData["txtCorreo"]" placeholder="Correo Electrónico" oninvalid="ValidaCampo(this, 'CORREO');" onblur="ValidaCampo(this, 'CORREO');" autocomplete="nope" required />
+
+          </div>
+          <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+               <label for="txtTelefono">
+                    Teléfono
+               </label>
+               <input type="tel" class="form-control" id="txtTelefono" value="@ViewData["txtTelefono"]" placeholder="Teléfono Casa o de emergencia" oninvalid="ValidaCampo(this, 'TEL');" onblur="ValidaCampo(this, 'TEL');" maxlength="10" autocomplete="nope" required />
+               <span id="spTelefono" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Número a 10 dígitos<br>
+
+          </div>
+          <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+               <label for="txtCelular">
+                    Teléfono Celular
+               </label>
+               <input type="tel" class="form-control" id="txtCelular" value="@ViewData["txtCelular"]" placeholder="Teléfono Celular" oninvalid="ValidaCampo(this, 'TEL');" onblur="ValidaCampo(this, 'TEL');" maxlength="10" autocomplete="nope" required />
+               <span id="spCelular" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Número a 10 dígitos<br>
+
+          </div>
+     </div>
+</div>
+@Html.Partial("../Generales/Domicilio")
+<script src="~/Scripts/curp.js"></script>
+<script src="~/Scripts/ManejoDatos/DatosPersonales.js"></script>

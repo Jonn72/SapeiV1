@@ -1,0 +1,32 @@
+﻿<input type="hidden" id="hidPeriodo" value="@ViewData["periodo"]" />
+
+<div class="page-title">
+     <div class="col-md-8 col-sm-8 col-xs-12 form-group pull-left">
+          <h3>Reporte de Aspirantes Inscritos <small>@ViewData["desc_periodo"]</small></h3>
+     </div>
+     <div class="col-md-4 col-sm-4 col-xs-12 form-group pull-right top_search">
+          <div class="form-inline">
+               <label for="cboPeriodo">
+                    Periodo
+               </label>
+               <select class="form-control" id="cboPeriodo"></select>
+          </div>
+     </div>
+</div>
+<div class="clearfix"></div>
+
+<div id="divVisor" class="row">
+     <div class="col-md-12 center-margin center-block">
+          <div class="x_panel">
+               <div class="x_title">
+                    <h3>Reporte del periodo <small>@ViewData["desc_periodo"]</small></h3>
+                    <div class="clearfix"></div>
+               </div>
+               <div class="x_content">
+                    @Html.Partial("../Generales/VisorPDF")
+               </div>
+          </div>
+     </div>
+</div>
+<script src="~/Scripts/ManejoDatos/Escolares/Aspirantes2AlumnosInscritos.js"></script>
+

@@ -1,0 +1,27 @@
+﻿<div class="x_panel">
+    <div class="x_title">
+        <h2>Curso de Inducción</h2>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <form id="frmCursoInduccion" data-parsley-validate class="form-horizontal form-label-left">
+            <div class="form-group">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    Titulo del curso
+                    <input type="text" id="txtTitulo" value="@ViewData["txtTitulo"]" required class="form-control col-md-7 col-xs-12">
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    Ingrese URL de video
+                    @*<textarea class="form-control" id="txtUrl" required rows="3">@ViewData["txtUrl"]</textarea>*@
+                    <input type="text" id="txtUrl" value="@ViewData["txtUrl"]" required class="form-control col-md-7 col-xs-12">
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-12">
+                    <br />
+                    <button type="submit" id="btnGuardar" class="btn btn-success">Guardar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="~/Scripts/ManejoDatos/DEP/CursoInduccionRP.js"></script>
+@Html.Partial("../Generales/TablaGeneral")

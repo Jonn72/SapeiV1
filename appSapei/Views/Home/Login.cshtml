@@ -1,0 +1,122 @@
+﻿<div class="bats-container"></div>
+<div class="ghost-container"></div>
+
+<div id="wrapper">
+    <div class="vertical-align-wrap">
+        <div class="vertical-align-middle">
+            <div class="auth-box font-texto ">
+                <div class="left">
+                    <div class="content">
+                        <div class="alert text-center font-mensaje" role="alert"></div>
+                        <form class="form-auth-small" id="form_log" action="" method="post" accept-charset="utf-8">
+                            <div class="logo text-center"><img src="~/Images/aniversario.png" alt="Logo" style="width: 27%; height: auto;"></div>
+                            <div class="form-group">
+                                <label for="signup-email" class="control-label sr-only">Usuario</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon "><span class="lnr lnr-user"></span></span>
+                                    <input type="text" class="form-control" placeholder="Usuario" id="usr">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="signup-password" class="control-label sr-only">Password</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon "><span class="lnr lnr-lock"></span></span>
+                                    <input type="password" class="form-control" placeholder="Contraseña" id="psw">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input class="btn btn_success btn-lg btn-block btn_send" type="submit" value="Iniciar Sesión" />
+                            </div>
+                            <div class="bottom">
+                                <h6><span><i class="fa fa-lock"></i> <a href="../Home/Recupera">Restablecer Contraseña</a></span></h6>
+                            </div>
+                            @{
+                                if (Sapei.Framework.Utilerias.SesionSapei.Sistema.Sesion.Periodo.ActivaRegistroAspirantes)
+                                {
+                                    <div class="bottom">
+                                        <a href="../Aspirante/Registro">
+                                            <h6><i class="fa fa-address-card"></i>  Registro de Aspirantes</h6>
+                                        </a>
+                                    </div>
+                                }
+                            }
+                        </form>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="overlay"></div>
+                    <div class="content text">
+                        <h2 class="heading">Tecnológico Nacional de México campus Tláhuac</h2>
+                        <div class="page-header">
+                            <h1>SAPEI</h1>
+                            <h4>Sistema de Administración de Procesos Estratégicos Institucionales</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Scripts.Render("~/bundles/login")
+
+<script>
+    function createBat() {
+        const $bat = $('<div>').addClass('bat');
+
+        const x = Math.random() * window.innerWidth;
+        const y = Math.random() * window.innerHeight;
+
+        $bat.css({
+            left: x,
+            top: y
+        });
+
+        const animationDuration = Math.random() * 5 + 3;
+        $bat.css('animation-duration', animationDuration + 's');
+
+        $bat.on('animationiteration', function () {
+            const newX = Math.random() * window.innerWidth;
+            const newY = Math.random() * window.innerHeight;
+            $bat.css({
+                left: newX,
+                top: newY
+            });
+        });
+
+        $('.bats-container').append($bat);
+    }
+    function createGost() {
+        const $bat = $('<div>').addClass('ghost');
+
+        const x = Math.random() * window.innerWidth;
+        const y = Math.random() * window.innerHeight;
+
+        $bat.css({
+            left: x,
+            top: y
+        });
+
+        const animationDuration = Math.random() * 5 + 3;
+        $bat.css('animation-duration', animationDuration + 's');
+
+        $bat.on('animationiteration', function () {
+            const newX = Math.random() * window.innerWidth;
+            const newY = Math.random() * window.innerHeight;
+            $bat.css({
+                left: newX,
+                top: newY
+            });
+        });
+
+        $('.ghost-container').append($bat);
+    }
+    $(document).ready(function () {
+        const numberOfBats = 3; // Puedes ajustar el número de murciélagos
+        //for (let i = 0; i < numberOfBats; i++) {
+        //    createBat();
+        //    createGost();
+        //}
+    });
+</script>

@@ -1,0 +1,74 @@
+﻿@using Sapei.Framework.Utilerias;
+<link rel="stylesheet" href="~/Content/themes/Tecnologico.css" />
+
+
+<div style="padding:15px;">
+    <h2 align="center">Bienvenido(a) @SesionSapei.Sistema.Sesion.Usuario.Nombre</h2>
+</div>
+
+<div class="row"></div>
+<div class="row"></div>
+
+<div class="col-md-12 col-sm-12 col-xs-12 center-block text-center">
+
+    <div class="row">
+
+        @{
+            if (SesionSapei.Sistema.Sesion.Usuario.RolUsuario == Sapei.Framework.Configuracion.enmRolUsuario.ALU
+                || SesionSapei.Sistema.Sesion.Usuario.RolUsuario == Sapei.Framework.Configuracion.enmRolUsuario.DOC)
+            {
+                <div class="row">
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <center>
+                            <div class="div-img">
+                                <a class="img img-centro" data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#BodyPrincipal" href="../../Generales/Tecnologico">
+                                    <img class="" src="~/Images/Tecnm.png" width="64%" height="64%" alt="" />
+                                    <br />Conoce tu comunidad TecNM
+                                </a>
+                            </div>
+                        </center>
+
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <center>
+                            <div class="div-img">
+                                <a class="img img-centro" target="_blank" href="https://sapei2.tlahuac.tecnm.mx">
+                                    <img class="" src="~/Images/Sapei2.png" width="100%" height="60%" alt="" />
+                                    <br />El Centro de Cómputo te invita a conocer la nueva versión de Sapei (ingresa con tu mismo usuario y contraseña)
+                                </a>
+                            </div>
+                        </center>
+
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <center>
+                            <div class="div-img">
+                                <a class="img" data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#BodyPrincipal" href="../../Generales/PerfilUsuario">
+                                    <img src="~/Images/PJaguar.png" class="img-centro" width="118%" height="118%" alt="" />
+                                    <br />
+                                    Conoce tu Perfil
+                                </a>
+                            </div>
+                        </center>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="col-md-12 col-sm-12 col-xs-12 center-block">
+                    <center>
+                        <div class="div-img">
+                            <a class="img img-centro" data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#BodyPrincipal" href="../../Generales/Tecnologico">
+                                <img class="" src="~/Images/Tecnm.png" width="64%" height="64%" alt="" />
+                                <br />Conoce tu comunidad TecNM
+                            </a>
+                        </div>
+                    </center>
+                </div>
+            }
+        }
+
+
+    </div>
+
+</div>

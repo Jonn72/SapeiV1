@@ -1,0 +1,28 @@
+﻿@Html.Partial("../Generales/TablaGeneral")
+
+<!-- Modal -->
+<div class="modal fade" id="valida" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">¿Deseas dar de baja el siguiente folio?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="frmBajaFolio" data-parsley-validate class="form-horizontal form-label-left">
+                <div class="modal-body">
+                    <input type="text" disabled class="form-control" id="txtFolio" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Aceptar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<a class="btn btn-info" data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#BodyPrincipal" href="/DEP/ControlEscolarRP">
+    Regresar al menú
+</a>
+<script src="~/Scripts/ManejoDatos/DEP/BajaFoliosRP.js"></script>

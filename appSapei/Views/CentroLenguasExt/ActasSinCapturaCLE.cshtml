@@ -1,0 +1,24 @@
+﻿<div class="clearfix"></div>
+<input type="hidden" id="hidPeriodo" value="@ViewData["txtPeriodo"]" />
+<div class="page-title">
+    <div class="title_left">
+        <h3>Facilitadores</h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="x_panel">
+    <div class="x_title">
+        <h4>Actas Sin Calificación <small>@ViewData["txtDescPeriodo"]</small></h4>
+        <div class="clearfix"></div>
+        <div class="x_content">
+            <p>
+                En este modulo se encuentra la lista de grupos activos en el semestre y su estatus conforme a la captura de calificaciones.
+            </p>
+            <p>
+                Solo estaran disponibles los grupos que tengan cargado un facilitador.
+            </p>
+        </div>
+    </div>
+</div>
+
+@Html.Partial("../Generales/TablaGeneral")

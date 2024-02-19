@@ -1,0 +1,134 @@
+﻿<div class="container body" style="height: 550px;">
+    <div class=" clearfix"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <input type="hidden" id="Hidconcepto" value="" />
+            <div class="clearfix"></div>
+            <div class="x_panel">
+                <div class="x_title">
+                    <h3>Montos para Pago de Personal</h3>
+                </div>
+                <div class="form-group" id="button">
+                    <button type="button" class="btn btn-info" onclick="nuevo();">Nuevo</button>
+                </div>
+                <div id="divDatos" class="x_content div-hide">
+                    <label>
+                        Tipo de pago
+                    </label>
+                    <select class="form-control" id="txtTipoMonto">
+                        <option value="H">Honorarios</option>
+                        <option value="B">Asimilados</option>
+                    </select>
+                    <label>
+                        Concepto
+                    </label>
+                    <input type="text" class="form-control" id="txtConcepto" placeholder="Concepto" required />
+                    <label>
+                        Monto por hora $
+                    </label>
+                    <input type="text" class="form-control" id="txtMonto" placeholder="Monto" oninvalid="ValidaCampo(this, 'MONEDA');" onblur="ValidaCampo(this, 'MONEDA');" required />
+
+                    <br />
+                    <div class="form-group div-hide" id="guardar">
+                        <button id="btnGuardar" type="submit" class="btn btn-info" onclick="guardar('N');">Guardar</button>
+                    </div>
+                    <div class="form-group div-hide" id="actualizar">
+                        <button id="btnActualizar" type="submit" class="btn btn-info" onclick="guardar('E');">Guardar</button>
+                    </div>
+                </div>
+                <div id="table">
+                    @Html.Partial("../Generales/TablaGeneral")
+                </div>
+            </div>
+        </div>
+
+
+        <!-- /page content -->
+    </div>
+
+</div>
+<script type="text/javascript">
+
+    DesactivaBotones();
+    MostrarTodos();
+    QuitarMostrar();
+
+    function nuevo() {
+
+        $("#divDatos").removeClass("div-hide");
+        $("#guardar").removeClass("div-hide");
+        $("#button").addClass("div-hide");
+        $("#table").addClass("div-hide");
+
+    }
+
+    function actualizar(id, tipo, concepto, monto) {
+
+        $("#txtConcepto").val(concepto);
+        $("#txtMonto").val(monto);
+        $("#Hidconcepto").val(id);
+        $("#txtTipoMonto").val(tipo).change();
+        $("#divDatos").removeClass("div-hide");
+        $("#actualizar").removeClass("div-hide");
+        $("#button").addClass("div-hide");
+        $("#table").addClass("div-hide");
+    }
+
+    function guardar(tipo) {
+
+        var tipomonto = $("#txtTipoMonto").val();
+        var concepto = $("#txtConcepto").val();
+        var monto = $("#txtMonto").val();
+
+        if (tipo === "E") {
+            var id = $("#Hidconcepto").val();
+        }
+        else {
+            var id = null;
+        }
+    $.ajax({
+        url: '../../../Financieros/GuardaMontoPago',
+        type: 'POST',
+        dataType: 'json',
+        data: { psId: id, psTipoMonto: tipomonto, psConcepto: concepto, pdMonto: monto }
+    })
+        .done(function (data) {
+            if (typeof (data.Success) !== "undefined" && !data.Success) {
+                MensajesToastr("warning", "Error de proceso", data.Mensaje);
+            }
+            else {
+                MensajesToastr("info", "Solicitud Procesada", "Monto Registrado");
+                $('#BodyPrincipal').load('../../../Financieros/MontosPagos');
+            }
+        })
+        .fail(function (data) {
+            MensajesToastrErrorConexion();
+        });
+    }
+
+
+
+    function eliminar(id) {
+        var opcion = confirm("Esta Seguro(a) que desea eliminar este monto?");
+        if (opcion == true) {
+            $.ajax({
+                url: '../../../Financieros/EliminarMonto',
+                type: 'POST',
+                dataType: 'json',
+                data: { psId: id }
+            })
+                .done(function (data) {
+                    if (typeof (data.Success) !== "undefined" && !data.Success) {
+                        MensajesToastr("warning", "Error de proceso", data.Mensaje);
+                    }
+                    else {
+                        MensajesToastr("info", "Solicitud Procesada", "Monto Registrado");
+                        $('#BodyPrincipal').load('../../../Financieros/MontosPagos');
+                    }
+                })
+                .fail(function (data) {
+                    MensajesToastrErrorConexion();
+                });
+        }
+    }
+</script>

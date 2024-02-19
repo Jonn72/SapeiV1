@@ -1,0 +1,62 @@
+﻿@Html.Partial("../Generales/TablaGeneral")
+@Html.Partial("../Generales/ModalVisorPDF")
+
+<div class="modal fade" id="GenerarExterno" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Generar Carta de Presentación</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="frmSolicitud" data-parsley-validate class="form-horizontal form-label-left">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <label>Estudiante</label>
+                            <input type="text" class=" form-control" id="txtNombre" disabled />
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <label>Número de Control</label>
+                            <input type="text" class=" form-control" id="txtNoControl" disabled />
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <label>Ingrese número de Oficio</label>
+                            <input type="number" class="form-control" id="txtFolio" step="any" required />
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <label>Selecciona la  Depencia</label>
+                            @{
+                                if (ViewData["Dependencias"] != null)
+                                {
+                                    <select class="form-control" id="cboRfc">
+                                        @foreach (System.Data.DataRow dr in (ViewData["Dependencias"] as System.Data.DataTable).Rows)
+                                        {
+                                            if (ViewData["Dependencias"] != null)
+                                            {
+                                                <option value="@dr.ItemArray[0].ToString().Trim()">@dr.ItemArray[1].ToString().Trim()</option>
+                                            }
+                                        }
+                                    </select>
+                                    <div id="divOficinas">
+                                        <label>Selecciona la  Depencia</label>
+                                        <select class="form-control" id="cboOficinasRegistros"></select>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" id="btnGenerar">Generar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<a class="btn btn-info" data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#BodyPrincipal" href="/Vinculacion/ControlEscolarRP">
+    Regresar al menú
+</a>
+<script src="~/Scripts/ManejoDatos/Vinculacion/SolicitudesRP.js"></script>

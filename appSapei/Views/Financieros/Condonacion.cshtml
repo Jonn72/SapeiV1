@@ -1,0 +1,108 @@
+﻿<div class="page-title">
+     <div class="title_left">
+          <h3>Condonación</h3>
+     </div>
+</div>
+<div class="clearfix"></div>
+<div class="x_panel">
+    <input type="hidden" id="hidControl" value="@ViewData["NoControl"]" />
+
+    <form class="form-horizontal form-label-left" action="#" id="frmAutoReinscripcion" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+        <div class="x_title">
+            <h2>Registro</h2>
+            <div class="clearfix"></div>
+        </div>
+        <div class="col-md-10 center-margin center-block">
+
+            @if (ViewData["DatosPago"] == null)
+            {
+                <div class="x_content">
+                    <div class="col-md-8 center-margin">
+                        <div class="input-group">
+                            <input type="text" id="txtNoControl" class="form-control" placeholder="Ingrese el no. de control">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default btn-success" type="button" id="btnBuscar"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            }
+
+
+
+            @{
+                string lsFecha = "";
+                string lsMonto = "";
+                string lsIdText;
+                double ldTotal = 0;
+                System.Data.DataTable loDt = null;
+
+                if (ViewData["DatosPago"] != null)
+                {
+                    loDt = ViewData["DatosPago"] as System.Data.DataTable;
+                    if (loDt.Columns.Count > 1)
+
+                    {
+                        <div class="x_title col-md-8 col-xs-12 center-margin">
+                            <div class="col-md-4 col-sm-4 col-xs-4 text-right">
+                                <h4>Pagos del periodo <small>@ViewData["txtDescPeriodo"]</small></h4>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-4 text-right">
+                                <h4>Monto</h4>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-4 text-right">
+                                <h4>Monto a condonar</h4>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        foreach (System.Data.DataRow dr in loDt.Rows)
+                        {
+                            if (@dr.ItemArray[0].ToString() != "900")
+                            {
+                                ldTotal = ldTotal + Convert.ToDouble(dr.ItemArray[2]);
+                                lsFecha = Convert.ToString(dr.ItemArray[5]).Substring(0, 10);
+                                lsIdText = Convert.ToString(dr.ItemArray[0]);
+                                <div class="col-md-10 center-margin">
+                                    <div class="row">
+                                        <div class="x_title col-md-4 col-sm-4 col-xs-4 text-right">
+                                            <h5>
+                                                @dr.ItemArray[1].ToString().Trim()
+                                            </h5>
+                                        </div>
+                                        <div class="x_title col-md-4 col-sm-4 col-xs-4 text-right">
+                                            <h5>
+                                                @{lsMonto = "$ " + Convert.ToDouble(dr.ItemArray[2]).ToString() + ".00";}
+                                                @lsMonto
+                                            </h5>
+                                        </div>
+                                        <div class="x_title col-md-4 col-sm-4 col-xs-4">
+                                            @{lsMonto = Convert.ToDouble(dr.ItemArray[4]).ToString() + ".00";}
+                                            <input type="text" id="@lsIdText" name="monto_condonar" class="form-control center-block" style="width:100px;" value="@lsMonto">
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+
+                        <br />
+                        <div class="row">
+                            <div class="col-md-4">
+
+                            </div>
+                            <div class="col-md-4">
+                                <button id="btnAnterior" type="submit" class="btn btn-block btn-info">Regresar</button>
+                            </div>
+                            <div class="col-md-4">
+                                <button id="btnGuardar" type="submit" class="btn btn-block btn-success">Guardar</button>
+                            </div>
+                        </div>
+                    }
+                }
+            }
+
+
+        </div>
+
+    </form>
+</div>
+<script src="~/Scripts/ManejoDatos/Financieros/AutorizaCondonacion.js"></script>

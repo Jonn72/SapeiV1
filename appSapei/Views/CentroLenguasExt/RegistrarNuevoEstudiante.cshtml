@@ -1,0 +1,105 @@
+﻿<input type="hidden" id="hidPeriodo" value="@ViewData["periodo"]" />
+
+<div class="">
+     <div class="page-title">
+          <div class="title_left">
+               <h3>Colocar Estudiantes a Nivel de Inglés <small>@ViewData["periodo_desc"]</small></h3>
+          </div>
+          <div class="col-md-4 col-sm-4 col-xs-12 form-group pull-right top_search">
+               <div class="form-inline">
+                    <label for="cboPeriodo">
+                         Periodo
+                    </label>
+                    <select class="form-control" id="cboPeriodo"></select>
+               </div>
+          </div>
+     </div>
+
+     <div class="clearfix"></div>
+     <form class="form-horizontal form-label-left" action="#" id="frmCLEColocacion" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+          <div class="row">
+               <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                         <div class="x_title">
+                              <h2>Registro Individual</h2>
+                              <div class="clearfix"></div>
+                         </div>
+                         <div class="x_content">
+                              <div class="row">
+                                   <div class="form-group col-md-4">
+                                        <label for="txtNoControl">
+                                             No. de Control
+                                        </label>
+                                        <input type="text" class="form-control" id="txtNoControl" placeholder="Ingrese el no. de control" oninvalid="ValidaCampo(this, 'NOCONTROL');" onblur="ValidaCampo(this, 'NOCONTROL');" required />
+                                   </div>
+                                   <div class="form-group col-md-3">
+                                        <label for="cboNivelesIngles">
+                                             Nivel
+                                        </label>
+                                        @{
+                                             if (ViewData["cboNivelesIngles"] != null)
+                                             {
+                                                  <select class="form-control" id="cboNivelesIngles" required>
+                                                       @foreach (System.Data.DataRow dr in (ViewData["cboNivelesIngles"] as System.Data.DataTable).Rows)
+                                                       {
+                                                            <option value="@dr.ItemArray[0].ToString().Trim()">@dr.ItemArray[0].ToString().Trim()</option>
+                                                       }
+                                                  </select>
+                                             }
+                                        }
+                                   </div>
+                                   <div class="form-group col-md-3">
+                                        <label for="cboGruposIngles">
+                                             Grupo
+                                        </label>
+                                        @{
+                                             if (ViewData["cboGruposIngles"] != null)
+                                             {
+                                                  <select class="form-control" id="cboGruposIngles" required>
+                                                       @foreach (System.Data.DataRow dr in (ViewData["cboGruposIngles"] as System.Data.DataTable).Rows)
+                                                       {
+                                                            <option value="@dr.ItemArray[1].ToString().Trim()">@dr.ItemArray[2].ToString().Trim()</option>
+                                                       }
+                                                  </select>
+                                             }
+              
+}
+                                   </div>
+                                   <div class="form-group col-md-2">
+                                        <label>
+                                             Actualizar
+                                        </label>
+                                        <br />
+                                             <input type="checkbox" id="cbxActualizar" data-parsley-mincheck="2" class="flat" />
+                                        Seleccione sólo si desea modificar
+                                   </div>
+                              </div>
+                         </div>
+                         <div class="row">
+                              <div class=" col-lg-offset-8 col-md-4">
+                                   <button id="btnGuardar" type="submit" class="btn btn-block btn-info">Guardar y Generar Horario</button>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+
+          </div>
+     </form>
+</div>
+<div id="divVisor" class="row div-hide">
+     <div class="col-md-12 center-margin center-block">
+          <div class="x_panel">
+               <div class="x_title">
+                    <h3>Horario</h3>
+                    <div class="clearfix"></div>
+               </div>
+               <div class="x_content">
+                    @Html.Partial("../Generales/VisorPDF")
+               </div>
+          </div>
+     </div>
+</div>
+<div id="divTabla">
+     @Html.Partial("../Generales/TablaGeneral")
+</div>
+     <script src="~/Scripts/ManejoDatos/CentroLenguasExt/RegistrarNuevoEstudiante.js"></script>

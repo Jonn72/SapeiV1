@@ -1,0 +1,109 @@
+﻿<div class="clearfix"></div>
+<div class="x_panel">
+     <div class="x_title">
+          <form class="form-horizontal form-label-left" action="#" id="frmEstudianteGenerales" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+               @{
+                    if (ViewData["Encabezados"] == null)
+                    {
+                         <div class="col-md-8 center-margin">
+                              <h2>Consulta de Información General del Estudiante</h2>
+                              <div id="divBuscar" class="form-group">
+                                   <div class="col-md-8 center-margin">
+                                        <label for="txtBuscar">Proporcione el Valor a Buscar</label>
+                                        <input type="text" class="form-control" name="txtBuscar" id="txtBuscar" placeholder="Ingrese el valor a buscar" required>
+                                   </div>
+                                   <div class="col-md-4 center-margin">
+                                        <label for="tags">
+                                             Busqueda en:
+                                        </label>
+                                        <div class="radio">
+                                             <label><input type="radio" name="rbtBusqueda" value="NC" checked="checked">No. de Control</label>
+                                        </div>
+                                        <div class="radio">
+                                             <label>
+                                                  <input type="radio" name="rbtBusqueda" id="rdbApellidos" value="AP">
+                                                  Apellidos
+                                             </label>
+                                        </div>
+                                        <div class="radio">
+                                             <label>
+                                                  <input type="radio" name="rbtBusqueda" id="rdbNombre" value="NO">
+                                                  Nombre
+                                             </label>
+                                        </div>
+                                        <div class="radio">
+                                             <label>
+                                                  <input type="radio" name="rbtBusqueda" id="rdbCarrera" value="CA">
+                                                  Carrera
+                                             </label>
+                                        </div>
+                                        <div class="radio">
+                                             <label>
+                                                  <input type="radio" name="rbtBusqueda" id="rdbCalle" value="DC">
+                                                  Domicilio - Calle
+                                             </label>
+                                        </div>
+                                        <div class="radio">
+                                             <label>
+                                                  <input type="radio" name="rbtBusqueda" id="rdbCiudad" value="DL">
+                                                  Domicilio - Colonia
+                                             </label>
+                                        </div>
+                                        <button id="btnConsultar" type="submit" class="btn btn-success">Consultar</button>
+                                   </div>
+                              </div>
+                         </div>
+                    }
+                    else
+                    {
+                         <div class="col-md-10 col-sm-10 col-xs-12 center-margin">
+                              <div class="form-group">
+                                   <button id="btnRegresar" type="submit" class="btn btn-success">Regresar</button>
+                              </div>
+                              <div class="form-group">
+                                   <div id="divBotones">
+                                        <button id="btnDatosGenerales" type="submit" data-toggle="modal" data-target="#divModal" class="btn btn-info">General</button>
+                                        <button id="btnReticula" type="submit" data-toggle="modal" data-target="#divModalReticula" class="btn btn-info">Cardex</button>
+                                        <button id="btnCardex" type="submit" class="btn btn-info">Cardex</button>
+                                   </div>
+                              </div>
+                              @Html.Partial("../Generales/TablaGeneral")
+                         </div>
+
+                         <div class="modal fade" id="divModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                              <div class="modal-dialog modal-lg" role="document">
+                                   <div class="modal-content">
+                                        <div class="modal-header">
+                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                             <div class="col-md-12 col-sm-12 col-xs-12">
+                                                  <div id="divDatosGenerales">
+                                                       @Html.Partial("../Estudiante/FichaDatosGenerales")
+                                                  </div>
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                         <div class="modal fade" id="divModalReticula" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                              <div class="modal-dialog modal-lg" role="document">
+                                   <div class="modal-content">
+                                        <div class="modal-header">
+                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                             <div class="col-md-12 col-sm-12 col-xs-12">
+                                                  <div id="divReticula">
+                                                       @Html.Partial("../Estudiante/Reticula")
+                                                  </div>
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                    }
+               }
+          </form>
+     </div>
+</div>
+<script src="~/Scripts/Componentes/DataTable/init_datatable.js"></script>
+<script src="~/Scripts/ManejoDatos/Estudiantes/BusquedasGenerales.js"></script>
+
+

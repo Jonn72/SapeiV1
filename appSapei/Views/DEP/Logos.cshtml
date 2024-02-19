@@ -1,0 +1,100 @@
+﻿<input type="hidden" id="hidId" value="0" />
+
+<div class="">
+     <div class="page-title">
+          <div class="title_left">
+               <h3>Administración de Logos</h3>
+          </div>
+     </div>
+
+     <div class="clearfix"></div>
+     <form class="form-horizontal form-label-left" action="#" id="frmLogos" role="form" data-toggle="validator" method="post" accept-charset="utf-8"></form>
+
+          <div class="row">
+               <div class="col-md-6 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                         <div class="x_title">
+                              <h2>Registro de Logos</h2>
+                              <div class="clearfix"></div>
+                         </div>
+                         <div class="x_content">
+                              <div class="form-group ">
+                                   <label for="txtDescripcion">
+                                        Descripción
+                                   </label>
+                                   <input type="text" class="form-control" id="txtDescripcion" placeholder="Ingrese la descripción" required />
+                              </div>
+                              <div class="form-group ">
+                                   <label for="txtDescripcion">
+                                        Selección de logo
+                                   </label>
+                                   <div class="file-loading">
+                                        <input id="txtFile" name="txtFile[]" type="file" multiple>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+               <div id="TablaGeneral" class="col-md-6 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                         <div class="x_title">
+                              <h3>
+                                   @{
+                                        if (ViewData["Encabezados"] != null)
+                                        {
+                                             @ViewData["Titulo"]
+                                        }
+                                   }
+                              </h3>
+                              <div class="clearfix"></div>
+                         </div>
+                         <div class="x_content">
+                              <table id="datatable-buttons" class="display nowrap" cellspacing="0" style="width:100%">
+                                   <thead>
+                                        <tr>
+
+                                             @{
+                                                  if (ViewData["Encabezados"] != null)
+                                                  {
+                                                       foreach (string ls in (ViewData["Encabezados"] as List<string>))
+                                                       {
+                                                            <th>@ls</th>
+                                                       }
+                                                  }
+                                             }
+
+                                        </tr>
+                                   </thead>
+                                   <tbody>
+                                        @{
+                                             if (ViewData["Tabla"] != null)
+                                             {
+                                                  foreach (System.Data.DataRow dr in (ViewData["Tabla"] as System.Data.DataTable).Rows)
+                                                  {
+                                                       string base64EncodedImage = Convert.ToBase64String(dr.ItemArray[2] as System.Byte[]);
+                                                       <tr>
+                                                            <td>@dr.ItemArray[0]</td>
+                                                            <td>@dr.ItemArray[1]</td>
+                                                            <td><img id="profileImage" src="data:image/jpg;base64, @base64EncodedImage" width="100px" height="100px"></td>
+                                                           
+                                                       </tr>
+                                                  }
+                                             }
+                                        }
+                                   </tbody>
+                              </table>
+                         </div>
+                    </div>
+
+                    <script src="~/Scripts/Componentes/DataTable/init_datatable.js"></script>
+
+               </div>
+          </div>
+
+ 
+
+
+</div>
+<script src="~/Scripts/Componentes/fileinput.js"></script>
+<script src="~/Scripts/Idiomas/es.js"></script>
+<script src="~/Scripts/ManejoDatos/Administracion/Logos.js"></script>

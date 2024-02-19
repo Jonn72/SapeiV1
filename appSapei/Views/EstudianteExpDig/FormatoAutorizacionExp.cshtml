@@ -1,0 +1,190 @@
+﻿
+
+@using Sapei.Framework.Utilerias;
+
+@{ System.Data.DataTable loDatos = null;
+    string lsNombre = "";
+
+    string lsControl = "";
+    int liRegistradosAutorizadosExp = 0;
+
+    if (ViewData["Datos"] != null)
+    {
+        loDatos = ViewData["Datos"] as System.Data.DataTable;
+        if (loDatos.Columns.Count > 0)
+        {
+
+            lsControl = loDatos.Rows[0].RegresaValor<string>("no_de_control");
+            lsNombre = loDatos.Rows[0].RegresaValor<string>("nombre_alumno");
+            liRegistradosAutorizadosExp = loDatos.Rows[0].RegresaValor<int>("persona_autorizo_registrados");
+
+
+        }
+    }
+}
+
+
+<div class="modal fade" id="divModalAutorizacionExpediente" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="x_panel">
+                    <div class="x_content">
+                        <div class="col-md-12 text-center">
+                            <h3> INSTITUTO TECNOLÓGICO DE TLÁHUAC </h3>
+                            <strong>Formato de Autorización de consulta de expediente</strong>
+                        </div>
+
+                        <div id="Agregar" class="col-md-12 col-xs-12">
+                            <h5>Si deseas agregar a personas para la consulta de tu expediente da click, en el siguiente botón.</h5>
+                            <div class="col-md-8 col-sm-8 col-xs-8 col-lg-8">
+                                <a id="btnAgregar" class="btn btn-info" data-toggle="modal" data-target="#divModalPersonasAutorizo">Agregar</a>
+                            </div>
+                        </div>
+
+                        <div id="Nadie" class="col-md-12 col-xs-12 ">
+                            <h5>Si NO deseas agregar a personas para la consulta de tu expediente da click, en el siguiente botón.</h5>
+                            <div class="col-md-8 col-sm-8 col-xs-8 col-lg-8">
+                                <a class="btn btn-info" id="rdbNadie" onclick="MuestrabtnFirmar();">No autorizo la consulta de mi expediente a nadie.</a>
+                            </div>
+                            <br />
+                            <br />
+                            <br />
+                            <p class="text-justify">
+                                NOTA: En el entendido de que nadie podrá solicitar ningún documento, aunque el alumno no se pueda presentar
+                                y no pueda enviar una carta poder.
+                            </p> <br />
+                        </div>
+
+                        <div id="Observacion" class="col-md-12 col-xs-12" hidden>
+                            <br />
+                            <br />
+                            <p class="text-justify">
+                                Antes de firmar el documento, deberás guardar los cambios.
+                            </p> <br />
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 col-xs-12">
+                                <br />
+                                <p><strong>Nombre:</strong> &nbsp; @lsNombre</p>
+                                <p><strong>No. de Control:</strong>&nbsp; @lsControl</p>
+                            </div>
+                        </div>
+
+                        <div id="btnGuardar" class="col-md-8 col-sm-8 col-xs-8 col-lg-8" hidden>
+                            <a class="btn btn-info">Guardar </a>
+                        </div>
+
+                        <div id="btnRegresaTodo" class=" col-md-offset-10 col-md-8 col-xs-8 col-lg-8 " hidden>
+                            <a class="btn btn-info">Regresar</a>
+                        </div>
+
+                        @{
+                            if (liRegistradosAutorizadosExp == 0)
+                            {
+                                <div id="btnActivarFirmar" class="col-md-8 col-sm-8 col-xs-8 col-lg-8" hidden>
+                                    <a id="btnFirmar" class="btn btn-info" data-toggle="modal" data-target="#divModalFirmaElectronica" onclick="OcultaModal('AutorizacionExpediente');">Firmar</a>
+                                    <input value="" id="Valor" hidden />
+                                </div>
+                            }
+                            else
+                            {
+                                <div id="btnActivarFirmar" class="col-md-8 col-sm-8 col-xs-8 col-lg-8" >
+                                    <a id="btnFirmar" class="btn btn-info" data-toggle="modal" data-target="#divModalFirmaElectronica" onclick="OcultaModal('AutorizacionExpediente');">Firmar</a>
+                                </div>
+                            }
+                        }
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="divModalPersonasAutorizo" tabindex="-1" role="dialog"  aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="x_panel">
+                    <div class="x_content">
+                        <h5>NOTA: Como máximo puedes autorizar la consulta a tu expediente a 4 personas.</h5>
+
+                        <div class="col-md-12 col-xs-12">
+                            <h6>Autorizo la consulta de mi expediente a:</h6>
+                        </div>
+                        <div id="Padre">
+                            <input type="radio" name="inlineRadioOptions" id="rdbPadre" value="Padre"> Padre
+                        </div>
+                        <br />
+
+                        <div id="Madre">
+                            <input type="radio" name="inlineRadioOptions" id="rdbMadre" value="Madre"> Madre
+                        </div>
+
+                        <br />
+                        <input type="radio" name="inlineRadioOptions" id="rdbTutor(a)" value="Tutor(a)" /> Tutor(a)
+                        &nbsp;
+                        &nbsp;
+                        <br />
+                        <br />
+                        <label>Otro(s)</label>
+                        <input type="text" class="form-control" id="txtOtros" onchange="obtener();" value=" " />
+
+                        <br />
+                        <br />
+
+                        <div class="row col-md-12 col-xs-12" id="SolicitaNombre1" hidden>
+                            <label> Ingresa el nombre completo de la persona a la que autorizas la consulta a tu expediente, empezando por apellidos.</label>
+                            <br />
+                            <input type="text" class="form-control" id="txtNombre1" onchange="obtenerNombre();" value=" " />
+                            <br />
+                            <br />
+                        </div>
+                        <br />
+                        <br />
+                        <div class="col-md-12 col-xs-12">
+                            <h5 class="text-justify">
+                                Si vas a agregar a más personas a lista de autorización a expediente da click en el botón guardar,
+                                de lo contrario da click en el botón continuar.
+                            </h5>
+                            <br />
+                        </div>
+
+                        <div id="btnGuardar1" class="col-md-8 col-sm-12 col-xs-12 col-lg-12">
+                            <a class="btn btn-info">
+                                Guardar
+                            </a>
+                        </div>
+
+                        <div class="col-md-8 col-sm-12 col-xs-12 col-lg-12">
+                            <a class="btn btn-info" onclick="RegresabtnFirmar();">
+                                Continuar
+                            </a>
+                        </div>
+
+                        <div id="btnRegresaOrigen" class="col-md-offset-10 col-md-8 col-xs-8 col-lg-8 " hidden>
+                            <a class="btn btn-info">Regresar</a>
+                        </div>
+
+                        <br />
+                        <br />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,61 @@
+﻿<link href="~/Content/themes/Reticula.css" rel="stylesheet" />
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>Avance reticular</h3>
+    </div>
+</div>
+
+<div id="div" class="x_panel">
+    <div class="x_title">
+        <h3>
+            Código de colores
+        </h3>
+        <div class="row">
+            <div class="column-colorama">
+                <div class="card-colorama card-acreditada">
+                    <p>Acreditada</p>
+                </div>
+            </div>
+            <div class="column-colorama">
+                <div class="card-colorama card-cursando">
+                    <p>Cursando</p>
+                </div>
+            </div>
+            <div class="column-colorama">
+                <div class="card-colorama card-noacreditada">
+                    <p>Cursada Sin Acreditar</p>
+                </div>
+            </div>
+            <div class="column-colorama">
+                <div class="card-colorama card-cursoespecial">
+                    <p class="card-text">A curso especial</p>
+                </div>
+            </div>
+            <div class="column-colorama">
+                <div class="card-colorama card-cursoespecialna">
+                    <p class="card-text">Curso Esp. Reprobado</p>
+                </div>
+            </div>
+            <div class="column-colorama">
+                <div class="card-colorama card-posibleseleccionar">
+                    <p class="card-text">Posible a seleccionar</p>
+                </div>
+            </div>
+            <div class="column-colorama">
+                <div class="card-colorama card-nopermitida">
+                    <p class="card-text">No permitida</p>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content" style="overflow-x: auto;">
+        <div>
+            <div class="row" style="min-width:1000px;">
+                @Html.Raw(ViewData["reticula"].ToString())
+            </div>
+        </div>
+    </div>
+</div>
+

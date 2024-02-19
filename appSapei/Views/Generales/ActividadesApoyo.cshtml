@@ -1,0 +1,51 @@
+﻿@using Sapei.Framework.Utilerias;
+<div class="page-title">
+    <div class="title_left">
+        <h3>Asignación de actividades<small> de apoyo a la docencia</small></h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="x_panel">
+    <div class="clearfix"></div>
+    <div class="col-md-8 center-margin">
+        <div class="row">
+
+            <div class="x_title col-md-12 col-sm-12 col-xs-12 text-justify">
+                <h5>
+                    El modulo de Actividades de apoyo a la docencia permite llevar un control de las horas de actividades de apoyo del personal docente de base.
+                </h5>
+                @{ if (SesionSapei.Sistema.Sesion.Usuario.RolUsuario == Sapei.Framework.Configuracion.enmRolUsuario.DAC)
+                    {
+                        <h5>
+                            Registre las horas de actividades de apoyo que apareceran en el horario oficial del personal docente de base del periodo actual.
+                        </h5>
+                        <h5>
+                            Si necesita corregir de nuevo las horas de actividades de apoyo de algun personal, puede solicitarlo al deparamento de recursos humanos.
+                        </h5>
+                    }
+                    if (SesionSapei.Sistema.Sesion.Usuario.RolUsuario == Sapei.Framework.Configuracion.enmRolUsuario.DRH)
+                    {
+                        <h5>
+                            Visualice los horarios de actividades de apoyo del personal docente de base del periodo actual.
+                        </h5>
+                        <h5>
+                            Si se solicita la correccion de horas de actividades de apoyo de algun personal, puede hacerlo dando clic en el boton liberar que se encuentra debajo del horario del personal.
+                        </h5>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+    <div id="divRFC" class="col-md-12">
+        @Html.Partial("../Generales/TablaGeneral")
+
+    </div>
+
+    <script type="text/javascript">
+        DesactivaBotones();
+        ocultar_buscar();
+        MostrarTodos();
+        QuitarMostrar();
+    </script>
+
+</div>

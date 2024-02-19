@@ -1,0 +1,70 @@
+﻿
+<div class="page-title">
+    <div class="title_left">
+        <h3>
+            Usuarios
+        </h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+
+<div class="x_panel" id="divSeleccionaUsuario">
+    <div class="x_title">
+        <h4>Selecciona Usuario</h4>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="x_content">
+        <div class="col-lg-offset-2 col-md-7 col-sm-8 col-xs-12 form-group" id="Usuarios">
+
+            @{
+
+                <label>
+                    Usuario
+                </label>
+
+                if (ViewData["Permisos"] != null)
+                {
+                    <select class="form-control" id="seleccionaUsuario">
+
+                        <option value="0">-- Seleccione un usuario --</option>
+                        @foreach (System.Data.DataRow dr in (ViewData["Permisos"] as System.Data.DataTable).Rows)
+                        {
+                            <option value="@dr.ItemArray[0].ToString().Trim()">@dr.ItemArray[0].ToString().Trim()</option>
+                        }
+                    </select>
+
+                    <br />
+                    <label>
+                        Nombre de usuario
+                    </label>
+
+                    <select class="form-control" id="seleccionaNombre">
+                        <option value="0">-- Seleccione el nombre de usuario --</option>
+                        @foreach (System.Data.DataRow dr in (ViewData["Permisos"] as System.Data.DataTable).Rows)
+                        {
+                            <option value="@dr.ItemArray[1].ToString().Trim()">@dr.ItemArray[1].ToString().Trim()</option>
+                        }
+                    </select>
+
+                }
+            }
+
+        </div>
+    </div>
+
+    <br />
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-2 col-xs-12">
+            <input type="button" id="btnOtorgarPermisos" class="btn btn-info" value="OTORGAR PERMISOS" />
+        </div>
+
+        <div class=" col-md-2 col-xs-12">
+            <input type="button" id="btnEliminar" class="btn btn-info" value="ELIMINAR">
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="~/Scripts/ManejoDatos/ControlUsuario/CrearUsuario.js"></script>
+

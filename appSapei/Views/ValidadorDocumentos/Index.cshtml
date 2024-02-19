@@ -1,0 +1,35 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutSimple.cshtml";
+}
+
+<div class="page-title">
+
+    <div class="col-md-8 col-sm-8 col-xs-12 form-group pull-left">
+        <h4>TECNOLÓGICO NACIONAL DE MÉXICO</h4><b>Instituto Tecnológico de Tláhuac</b>
+    </div>
+</div>
+
+<div class="x_panel " id="divRegistro">
+    <div class="col-md-10 center-margin">
+        <div class="x_title">
+            <h4>Datos del documento emitido</h4>
+            <div class="clearfix"></div>
+
+            <div class="dashboard-widget-content">
+                <ul class="list-unstyled timeline widget">
+                    <li>
+                        <div class="block">
+                            <div class="block_content">
+                                &nbsp;
+                                @Html.Raw(ViewData["resultado"])
+                                
+                            </div>
+
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+

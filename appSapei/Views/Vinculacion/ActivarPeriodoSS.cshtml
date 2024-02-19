@@ -1,0 +1,101 @@
+﻿<input type="hidden" id="hidPeriodo" value="@ViewData["periodo"]" />
+<div class="page-title">
+    <div class="col-md-8 col-sm-8 col-xs-12 form-group pull-left">
+        <h3>Servicio Social <small>@ViewData["descPeriodo"]</small></h3>
+    </div>
+    <div class="col-md-4 col-sm-4 col-xs-12 form-group pull-right top_search">
+        <div class="form-inline">
+            <label for="cboPeriodo">
+                Periodo
+            </label>
+            <select class="form-control" id="cboPeriodo"></select>
+        </div>
+    </div>
+</div>
+<div class="x_panel">
+    <div class="x_title">
+        <h3>Inicio del Periodo de Servicio Social <small>@ViewData["descPeriodo"]</small></h3>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <form id="frmAperturaPeriodo" data-parsley-validate class="form-horizontal form-label-left">
+            <div class="=form-group">
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    Fecha de Inicio
+                    <div class='input-group date' id='ssinicio'>
+                        <input type="text" id="txtInicio" value="@ViewData["txtFechaInicio"]" class="form-control" required />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    Fecha de Terminó
+                    <div class='input-group date' id='ssfin'>
+                        <input type="text" id="txtFin" value="@ViewData["txtFechaFin"]" class="form-control" required />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    Cierre de registros
+                    <div class='input-group date' id='ssCierre'>
+                        <input type="text" id="txtFechaCierre" value="@ViewData["txtFechaCierre"]" class="form-control" required />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    Título de Curso
+                    <input type="text" id="txtTitulo" value="@ViewData["txtTitulo"]" class="form-control col-md-7 col-xs-12" required />
+                    <br />
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    Ingrese la URL del video
+                    <input type="text" id="txtUrl" value="@ViewData["txtUrl"]" class="form-control col-md-7 col-xs-12" required />
+                    <br />
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    Fecha fin de Bimestre 1
+                    <div class='input-group date' id='ssb1'>
+                        <input type="text" id="txtB1" value="@ViewData["txtB1"]" class="form-control" required />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    Fecha fin de Bimestre 2
+                    <div class='input-group date' id='ssb2'>
+                        <input type="text" id="txtB2" value="@ViewData["txtB2"]" class="form-control" required />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    Fecha fin de Bimestre 3
+                    <div class='input-group date' id='ssb3'>
+                        <input type="text" id="txtB3" value="@ViewData["txtB3"]" class="form-control" required />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-12">
+                    <br />
+                    <button type="submit" id="btnGuardar" class="btn btn-success">Guardar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@Html.Partial("../Generales/TablaGeneral")
+
+<script src="~/Scripts/ManejoDatos/Vinculacion/ActivarPeriodoSS.js"></script>
+
+
+

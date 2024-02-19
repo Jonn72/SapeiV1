@@ -1,0 +1,33 @@
+﻿
+<div class="page-title">
+    <div class="col-md-8 col-sm-8 col-xs-12 form-group pull-left">
+        <h3>Autoriza Reinscripción Extemporanea <small>@ViewData["txtDescPeriodo"]</small></h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+<form class="form-horizontal form-label-left" action="#" id="frmReinscripcion" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+    <div>
+        <div id="divControl" class="x_panel col-md-4 col-sm-4 col-xs-12">
+            <div class="x_title">
+                <h3>Búsqueda por Estudiante</h3>
+            </div>
+            <div class="x_content">
+                <div class="col-md-8 center-margin">
+                    <div class="input-group">
+                        <input type="text" id="txtNoControl" class="form-control" placeholder="Ingrese el no. de control">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default btn-success" type="button" id="btnBuscar"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="divMuestra" class="div-hide">
+            <div class="col-lg-offset-8">
+                <button id="btnValidar" type="submit" class="btn btn-block btn-success">Actualizar</button>
+            </div>
+            @Html.Partial("../DEP/DatosReinscripcion")
+        </div>
+    </div>
+</form>
+<script src="~/Scripts/ManejoDatos/DEP/ReinscripcionResetHora.js"></script>

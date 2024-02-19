@@ -1,0 +1,44 @@
+﻿<div id="divDatos">
+    <div class="x_panel">
+        <div class="x_title">
+            <h3>Datos</h3>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm-6 col-xs-12 form-group">
+                <label>Nombre</label>
+                <input type="text" class="form-control" id="txtNombre" value="@ViewData["txtNombre"]" readonly>
+            </div>
+
+            <div class="col-md-2 col-sm-6 col-xs-12 form-group">
+                <label>Fecha de Selección</label>
+                <div class='input-group date' id='dtpFechaSeleccion'>
+                    <input type='text' id="txtFechaSeleccion" class="form-control" value="@ViewData["txtFecha"]" @ViewData["readonly"] required />
+                    <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-6 col-xs-12 form-group">
+                <label>Fin Selección</label>
+                <input type="text" class="form-control" id="txtFechaFinSeleccion" value="@ViewData["txtFechaFin"]" readonly>
+            </div>
+            <div class="col-md-2 col-sm-6 col-xs-12 form-group">
+                <label>Creditos</label>
+                <input type="text" class="form-control" id="txtFechaSeleccion" value="@ViewData["txtCreditos"]" readonly>
+            </div>
+            <div class="col-md-2 col-sm-6 col-xs-12 form-group text-center">
+                <label>Extemporaneo</label>
+                <input type="checkbox" class="form-control" id="cbxExtemporaneo" checked="@ViewData["cbxExtemporaneo"]">
+            </div>
+        </div>
+    </div>
+    @Html.Partial("../Generales/TablaGeneral")
+
+</div>
+<script>
+    $('#dtpFechaSeleccion').datetimepicker({
+        viewMode: 'years',
+        format: 'DD/MM/YYYY hh:mm',
+        locale: 'es',
+        defaultDate: new Date()
+    });
+</script>
+

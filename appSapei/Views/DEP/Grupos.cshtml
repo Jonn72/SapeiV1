@@ -1,0 +1,130 @@
+﻿<input type="hidden" value="@Html.Raw(ViewData["Periodo"])" id="hidPeriodo" />
+<input type="hidden" value="@Html.Raw(ViewData["Materia"])" id="hidMateria" />
+<input type="hidden" value="@Html.Raw(ViewData["Carrera"])" id="hidCarrera" />
+<input type="hidden" value="@Html.Raw(ViewData["Reticula"])" id="hidReticula" />
+<input type="hidden" value="@Html.Raw(ViewData["Especialidad"])" id="hidEspecialidad" />
+<div class="page-title">
+    <div class="title_left">
+        <h3>Administracion <small>de Grupos</small></h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="x_panel">
+    <div class="x_title">
+        <h3>Datos <small>Generales</small></h3>
+    </div>
+    <div class="clearfix"></div>
+    <div id="frmDatos1">
+        <div class="row">
+            <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                <label for="tags">
+                    Grupo
+                </label>
+                <input type="text" id="txtGrupo" class="form-control" required>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                <label for="tags">
+                    Capacidad
+                </label>
+                <input type="number" id="txtCapacidad" class="form-control" required>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-12">
+                <label for="tags">
+                    &nbsp;
+                </label>
+                <button type="button" id="btnGuardar" class="btn btn-success" onclick="Guardar();"> Crear </button>
+                &nbsp;
+                <button type="button" id="btnRegresar" class="btn btn-danger" onclick="Regresar();"> Regresar </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="x_panel">
+    <div id="TablaGeneral" class="col-md-12 col-sm-12 col-xs-12">
+        @Html.Partial("../Generales/TablaGeneral")
+    </div>
+</div>
+<script type="text/javascript">
+
+    DesactivaBotones();
+    ocultar_buscar();
+    MostrarTodos();
+    QuitarMostrar();
+
+    function Guardar() {
+        var periodo = $("#hidPeriodo").val();
+        var materia = $("#hidMateria").val();
+        var grupo = $("#txtGrupo").val();
+        var capacidad = $("#txtCapacidad").val();
+        var excarrera = $("#hidCarrera").val();
+        var exreticula = $("#hidReticula").val();
+        var especialidad = $("#hidEspecialidad").val();
+
+
+        $.ajax({
+            url: '../../../DEP/GuardaGrupoJSON',
+            type: 'POST',
+            dataType: 'json',
+            data: { psPeriodo: periodo, psMateria: materia, psCarrera: excarrera, psReticula: exreticula, psGrupo: grupo, psCapacidad: capacidad}
+        })
+            .done(function (data) {
+                if (typeof (data.Success) !== "undefined" && !data.Success) {
+                    MensajesToastr("warning", "Error de proceso", data.Mensaje);
+                }
+                else {
+                    MensajesToastr("info", "Solicitud Procesada", "Horario Guardado");
+                    $('#BodyPrincipal').load('../../../../DEP/Grupos', { psPeriodo: periodo, psCarrera: excarrera, psReticula: exreticula, psMateria: materia, psEspecialidad: especialidad });
+                }
+            })
+            .fail(function (data) {
+                MensajesToastrErrorConexion();
+            });
+
+    }
+
+    function Liberar(periodo, materia, grupo, excarrera, exreticula) {
+
+        DialogObj = ej.popups.DialogUtility.confirm({
+            title: 'Confirmación',
+            content: "Esta seguro que desea eliminar este horario?",
+            okButton: { text: 'Si', click: Eliminar.bind(this, periodo, materia, grupo, excarrera, exreticula) },
+            cancelButton: { text: 'No'},
+            closeOnEscape: true,
+            animationSettings: { effect: 'Zoom' }
+        });
+
+        function Eliminar(periodo, materia, grupo, excarrera, exreticula) {
+
+            var especialidad = $("#hidEspecialidad").val();
+            DialogObj.hide();
+            $.ajax({
+            url: '../../../DEP/EliminaGrupoJSON',
+            type: 'POST',
+            dataType: 'json',
+            data: { psPeriodo: periodo, psMateria: materia, psGrupo: grupo }
+        })
+            .done(function (data) {
+                if (typeof (data.Success) !== "undefined" && !data.Success) {
+                    MensajesToastr("warning", "Error de proceso", data.Mensaje);
+                }
+                else {
+                    MensajesToastr("info", "Solicitud Procesada", "Horario Guardado");
+                    $('#BodyPrincipal').load('../../../../DEP/Grupos', { psPeriodo: periodo, psCarrera: excarrera, psReticula: exreticula, psMateria: materia, psEspecialidad: especialidad });
+                }
+            })
+            .fail(function (data) {
+                MensajesToastrErrorConexion();
+            });
+        }
+    }
+
+    function Regresar() {
+        var carrera = $("#hidCarrera").val();
+        var reticula = $("#hidReticula").val();
+        var especialidad = $("#hidEspecialidad").val();
+        var CarreraReticula = carrera == "0" && reticula == "0" ? "0" : carrera + '_' + reticula;
+
+        $('#BodyPrincipal').load('../../../DEP/ReticulaGrupos', { psCarreraReticula: CarreraReticula, psEspecialidad: especialidad });
+    }
+
+</script>

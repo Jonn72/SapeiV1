@@ -1,0 +1,44 @@
+﻿<div class="clearfix"></div>
+
+<form class="form-horizontal form-label-left" action="#" id="frmDatosAspirante" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+     @Html.Partial("../Generales/DatosPersonales")
+     <div class="row">
+          <div class="col-md-offset-8 col-md-4">
+               <button id="btnGuardar" type="submit" class="btn btn-block btn-info">Guardar y Continuar</button>
+          </div>
+     </div>
+     <div class="form-group">
+          
+     </div>
+</form>
+
+<script src="~/Scripts/ManejoDatos/Domicilio.js"></script>
+<script src="~/Scripts/ManejoDatos/Aspirantes/DatosPersonales.js"></script>
+@if (Sapei.Framework.Utilerias.SesionSapei.Sistema.Sesion.Usuario.RolUsuario == Sapei.Framework.Configuracion.enmRolUsuario.ASP)
+{
+     <script type="text/javascript">
+          $(document).ready(function () {
+               $("#divDatos").show();
+               $("#divPersonales").show();
+               $('#txtNombre').prop('readonly', true);
+               $('#txtPaterno').prop('readonly', true);
+               $('#txtMaterno').prop('readonly', true);
+               $('#txtCURP').prop('readonly', true);
+               $('#txtFechaNacimiento').prop('readonly', true);
+               $('#cboEstados').prop('disabled', true);
+               $("#rbdHombre").attr('disabled', 'disabled');
+               $("#rdbMujer").attr('disabled', 'disabled');
+               $("#txtCorreo").attr('disabled', 'disabled');
+          });
+
+     </script>
+}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,60 @@
+﻿<input type="hidden" id="hidTipoAutorizacion" value="@ViewData["vdTipoAuto"]" />
+<div class="page-title">
+     <div class="title_left">
+          <h3>Registro de Pago</h3>
+     </div>
+</div>
+<div class="clearfix"></div>
+<div class="x_panel">
+     <form class="form-horizontal form-label-left" action="#" id="frmAutoReinscripcion" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+          <div class="x_title">
+               <h2>@ViewData["vdTitulo"]</h2>
+               <div class="clearfix"></div>
+          </div>
+          <div class="col-md-8 center-margin center-block">               
+               <div id="divCombo">
+                   <div class="x_content">
+
+                       <label for="cboPeriodo">
+                           Seleccione el Periodo
+                       </label>
+                       <select class="form-control" id="cboPeriodo"></select>
+                       <label for="txtNoControl">
+                           No. de Control
+                       </label>
+                       <input type="text" class="form-control" id="txtNoControl" placeholder="Ingrese el no. de control" oninvalid="ValidaCampo(this, 'NOCONTROL');" onblur="ValidaCampo(this, 'NOCONTROL');" required />
+
+                       <label for="txtNoControl">
+                           Linea de Captura
+                       </label>
+                       <input type="text" class="form-control" id="txtLineaCaptura" placeholder="Ingrese la línea de captura" required />
+                   </div>
+               </div>
+               <div id="divDatos" class="x_content div-hide">
+                   <label>
+                       No. de Control
+                   </label>
+                   <input type="text" class="form-control" id="txtNoControl1" placeholder="No de Control" readonly required />
+                   <label>
+                       Nombre
+                   </label>
+                   <input type="text" class="form-control" id="txtNombre" placeholder="Nombre" readonly required />
+                   <label>
+                       Concepto
+                   </label>
+                   <input type="text" class="form-control" id="txtConcepto" placeholder="Concepto" readonly required />
+                   <label>
+                       Monto a Cubrir
+                   </label>
+                   <input type="number" class="form-control" id="txtMonto" placeholder="Monto" readonly required />
+                   <br />
+                   <div class="form-group ">
+                       <button id="btnGuardar" type="submit" class="btn btn-info">Autorizar</button>
+                       <button id="btnAnterior" type="submit" class="btn btn-success">Atras</button>
+                   </div>
+               </div>
+          </div>
+
+     </form>
+</div>
+<script src="~/Scripts/ManejoDatos/Financieros/AutorizaPago.js"></script>

@@ -1,0 +1,85 @@
+﻿<div class="page-title">
+    <div class="title_left">
+        <h3>@ViewData["Titulo"]</h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+
+
+<div class="x_panel">
+    @Html.Partial("../Generales/BuscaNoControl")
+    <div class="col-md-7 center-margin" id="MuestraDetalles">
+        <div class="row">
+
+            <div class="x_title col-md-12 col-sm-12 col-xs-12 text-justify">
+                @{
+                    if (ViewData["Modulo"] != null)
+                    {
+                        switch (ViewData["Modulo"].ToString())
+                        {
+                            case "LiberacionIngles":
+                                <p align="justify">1) El Coordinador del Centro de Lenguas Extranjeras genera la solicitud para la liberación del curso de inglés.</p>
+
+                                <p align="justify">
+                                    2) Posteriormente, la solicitud debe ser autorizada por el Jefe (a) del Dpto. de Gestión Tecnológica y Vinculación.
+                                </p>
+                                <p align="justify">
+                                    3) Después de la autorización, se podrá generar y descargar la constancia de termino.
+                                </p>
+                                break;
+
+                            case "ModificaCalificacion":
+                                <p align="justify">1) El Coordinador del Centro de Lenguas Extranjeras genera la solicitud para el cambio de califiaciones.</p>
+
+                                <p align="justify">
+                                    2) El cambio de calificaciones solo se puede realizar despues de la captura de calificaciones y antes de cerrar el semestre. 
+                                </p>
+                                <p align="justify">
+                                    3) Posteriormente, la solicitud debe ser autorizada por el Jefe(a) del Dpto. de Gestión Tecnológica y Vinculación.
+                                </p>
+
+                                <p align="justify">
+                                    4) Después de la autorización, se podrá generar y descargar la constancia de termino.
+                                </p>
+                                break;
+                        }
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<div id="divDatos"></div>
+@Html.Partial("../Generales/ModalVisorPDF")
+@Html.Partial("../Generales/ModalTablaDatos")
+
+<script>
+    $("#btnBuscarNoControlRegresar").on('click', function (evento) {
+        $('#MuestraDocumentos').hide();
+        $('#MuestraDetalles').show();
+        $('#MuestraTabla').show();
+
+        evento.preventDefault();
+    })
+    $("#btnBuscarNoControlTabla").on('click', function (evento) {
+        $('#divModal').modal("show");
+        evento.preventDefault();
+    })
+
+
+    function BuscaNoControl(control) {
+        var url;
+        @{
+            string lsURL = "";
+            if (ViewData["Vista"] != null)
+            {
+                lsURL = ViewData["Vista"].ToString();
+            }
+        }
+        url = '../../../../@lsURL';
+        $("#divDatos").load(url, { psNoControl: control });
+        $("#divDatos").show();
+        event.preventDefault();
+    }
+
+</script>

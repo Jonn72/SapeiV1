@@ -1,0 +1,75 @@
+﻿<style>
+    .btn-app {
+            height: 70px !important;
+            margin-bottom: 5px !important;
+    }
+</style>
+@Html.Partial("../Generales/TablaGeneral")
+<!-- Modal -->
+<div class="modal fade" id="Valida_Seguimiento" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Validación de Seguimientos</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                    <div class="form-group">
+                        <div class="col-md-4 col-sm-4 col-xs-4">
+                            <a class="btn btn-app" id="btn1Seguimiento"><i class="fa fa-file-text-o"></i>1°<br />Seguimiento</a>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-4">
+                            <a class="btn btn-app" id="btn2Seguimiento"><i class="fa fa-file-text-o"></i>2°<br />Seguimiento</a>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-4">
+                            <a class="btn btn-app" id="btn3Seguimiento"><i class="fa fa-file-text-o"></i>3°<br />Seguimiento</a>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        Residente
+                        <input type="text" id="Nombretxt" class="form-control" disabled />
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="CapturaCalififcacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Captura de calificaciones</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="frmGuardaCalificacion" data-parsley-validate class="form-horizontal form-label-left">
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <label>Calificación de asesor externo</label>
+                            <input type="hidden" id="NoControl" />
+                            <input type="hidden" id="txtNoReporte" />
+                            <input type="number" class="form-control" id="CalifExterno" min="1" max="100" required />
+                            <label>Calificación de asesor interno</label>
+                            <input type="number" class="form-control" id="CalifInterno" min="1" max="100" required />
+                            <label>Seleccione la fecha de evaluación</label>
+                            <div class='input-group date' id='rpevaluacion'>
+                                <input type='text' id="txtFecha" value="@ViewData["txtFechaInicio"]" class="form-control" required />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" id="btnGuardar" class="btn btn-success">Guardar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<a class="btn btn-info" data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#BodyPrincipal" href="/Academicos/ControlEscolarRP">
+    Regresar al menú
+</a>
+<script src="~/Scripts/ManejoDatos/Academicos/SeguimientosRP.js"></script>

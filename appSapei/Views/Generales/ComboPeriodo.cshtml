@@ -1,0 +1,31 @@
+﻿<div id="cboPeriodo" class="col-md-4 col-sm-4 col-xs-12 pull-right top_search">
+    <div class="form-inline">
+        @{
+
+            <label for="cboPeriodos" style="font-size:medium">Seleccionar Periodo</label>
+
+            if (ViewData["cboPeriodos"] != null)
+            {
+                <select class="form-control" id="cboPeriodos">
+                @foreach (Tuple<string, string, bool> loTuple in ViewData["cboPeriodos"] as List<Tuple<string, string, bool>>)
+                {
+                    if (loTuple.Item3)
+                    {
+                        <option value="@loTuple.Item1" selected>@loTuple.Item2</option>
+                    }
+                    else
+                    {
+                        <option value="@loTuple.Item1">@loTuple.Item2</option>
+                    }
+                }
+                </select>
+            }
+        }
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+
+    });
+
+</script>

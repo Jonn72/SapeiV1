@@ -1,0 +1,81 @@
+﻿<input type="hidden" id="hidTipoAutorizacion" value="@ViewData["vdTipoAuto"]" />
+<div class="page-title">
+     <div class="title_left">
+          <h3>Registro de Pago Vehícular</h3>
+     </div>
+</div>
+<div class="clearfix"></div>
+<div class="x_panel">
+     <form class="form-horizontal form-label-left" action="#" id="frmAutoPago" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+          <div class="x_title">
+               <h2>Pago Vehícular</h2>
+               <div class="clearfix"></div>
+          </div>
+          <div class="col-md-8 center-margin center-block">
+               <div id="divCombo">
+                   <div class="x_content">
+                       @*<label>Tipo de Vehículo a Registrar</label>
+        @if (ViewData["cboTipoVehiculo"] != null)
+        {
+             <select class="form-control" id="cboTipoVehiculo">
+                  @foreach (System.Data.DataRow dr in (ViewData["cboTipoVehiculo"] as System.Data.DataTable).Rows)
+                  {
+                       <option value="@dr.ItemArray[0].ToString().Trim()">@dr.ItemArray[1].ToString().Trim()</option>
+                  }
+             </select>
+        }*@
+                       <label for="txtQR">
+                           Escanear código QR
+                       </label>
+                       <input type="text" class="form-control" id="txtQR" placeholder="Clave QR" required />
+                       <label for="txtNoControl">
+                           O ingrese el no. de control
+                       </label>
+                       <div class="">
+
+                           <div class="col-md-6">
+                               <input type="text" class="form-control" id="txtNoControl" placeholder="No de control" required />
+                           </div>
+                           <div class="col-md-6">
+                               <select  class="form-control" id="cboTipo">
+                                   <option value="AUT">AUTO</option>
+                                   <option value="MOT">MOTO</option>
+                               </select>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+               <div id="divDatos" class="x_content div-hide">
+                    <label>
+                         No. de Control
+                    </label>
+                    <input type="text" class="form-control" id="txtNoControl1" placeholder="No de Control" readonly required />
+                    <label>
+                         Nombre
+                    </label>
+                    <input type="text" class="form-control" id="txtNombre" placeholder="Nombre" readonly required />
+                    <label>
+                         Tipo de Vehículo
+                    </label>
+                    <input type="text" class="form-control" id="txtTipoVehiculo" placeholder="Vehículo" readonly required />
+                    <label>
+                         Monto a Pagar
+                    </label>
+                    <input type="number" class="form-control" id="txtMontoRegistrado" readonly />
+                    <label>
+                         Monto Pagado
+                    </label>
+                    <input type="number" class="form-control" id="txtMontoRegistrar" placeholder="Monto a Registrar" oninvalid="ValidaCampo(this, 'MONEDA');" onblur="ValidaCampo(this, 'MONEDA');" required />
+
+                    <br />
+                    <div class="form-group ">
+                         <button id="btnGuardar" type="submit" class="btn btn-info">Guardar</button>
+                         <button id="btnAnterior" type="submit" class="btn btn-success">Atras</button>
+
+                    </div>
+               </div>
+          </div>
+
+     </form>
+</div>
+<script src="~/Scripts/ManejoDatos/Financieros/AutorizaPagoVehicular.js"></script>

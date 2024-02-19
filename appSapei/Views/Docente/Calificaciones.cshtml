@@ -1,0 +1,252 @@
+﻿<style type="text/css">
+    @@keyframes cambiarColor {
+        0% {
+            background-color: #ffffff;
+        }
+
+        10% {
+            background-color: #ffd9d9;
+        }
+
+        20% {
+            background-color: #ffa9a9;
+        }
+
+        30% {
+            background-color: #ff7b7b;
+        }
+
+        40% {
+            background-color: #ff4040;
+        }
+
+        50% {
+            background-color: #ff0000;
+        }
+
+        60% {
+            background-color: #ff4040;
+        }
+
+        70% {
+            background-color: #ff7b7b;
+        }
+
+        80% {
+            background-color: #ffa9a9;
+        }
+
+        90% {
+            background-color: #ffd9d9;
+        }
+
+        100% {
+            background-color: #ffffff;
+        }
+    }
+</style>
+
+@Html.Partial("../Generales/TablaGeneral")
+
+@if (ViewData["objeto"] != null)
+{
+    <div class="alineacion">
+        <button id="verif" type="button" class="btn btn-success" align="right" onclick="verif()" style="display: block">Verificar</button>
+        <button id="guardar" type="button" class="btn btn-success" align="right" onclick="guardarcalif()" style="display: none">Guardar</button>
+    </div>
+
+    <style>
+        .alineacion {
+            text-align: right;
+        }
+    </style>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+}
+<script type="text/javascript">
+
+
+    var captura = [];
+
+     @if (ViewData["objeto"] != null)
+     {
+
+         foreach (System.Data.DataRow drobjeto in (ViewData["objeto"] as System.Data.DataTable).Rows)
+         {
+            @Html.Raw(drobjeto.ItemArray[0].ToString())
+         }
+
+     }
+
+ocultar_columnas(5);
+    DesactivaBotones();
+    ocultar_buscar();
+    MostrarTodos();
+    QuitarMostrar();
+
+    $("input").blur(function () {
+        if ($(this).val() < 70) {
+
+            $(this).val('0');
+
+        }
+        else if ($(this).val() > 100) {
+
+            $(this).val('');
+
+        }
+
+     });
+
+    function verif() {
+
+        var count = 0;
+        var count2 = 0;
+        Object.keys(captura).forEach(function (key) {
+            var temp_check_calif = $("#" + key.toString() + "_calificacion").val();
+            if (temp_check_calif === null || temp_check_calif === '') {
+                $("#" + key.toString() + "_calificacion").css({
+                    "animation-duration": "1s",
+                    "animation-name": "cambiarColor",
+                    "animation-iteration-count": "2"
+                });
+                count = count + 1;
+            }
+
+            $("#" + key.toString() + "_calificacion").val() > 100 ? count2 = count2 + 1 : '';
+        });
+        if (count > 0) {
+            MensajesToastr("warning", "Faltan Calificaciones", "Aún no has cargado todas las calificaciones");
+            return;
+        }
+
+        if (count2 > 0) {
+
+            MensajesToastr("warning", "Error", "Una de las calificaciones es mayor a 100");
+                return;
+        }
+
+
+        ocultar_columnas(6);
+        mostrar_columnas(5);
+        $("#verif").css("display", "none");
+        $("#guardar").css("display", "block");
+    }
+
+    function guardarcalif() {
+
+        var count = 0;
+        var count2 = 0;
+        Object.keys(captura).forEach(function (key) {
+            var temp_check_calif = $("#" + key.toString() + "_calificacion").val();
+            if (temp_check_calif === null || temp_check_calif === '') {
+                $("#" + key.toString() + "_calificacion").css({
+                    "animation-duration": "1s",
+                    "animation-name": "cambiarColor",
+                    "animation-iteration-count": "2"
+                });
+                count = count + 1;
+            }
+
+            $("#" + key.toString() + "_calificacion").val() > 100 ? count2 = count2 + 1 : '';
+        });
+        if (count > 0) {
+            MensajesToastr("warning", "Faltan Calificaciones", "Aún no has cargado todas las calificaciones");
+            return;
+        }
+
+        if (count2 > 0) {
+
+            MensajesToastr("warning", "Error", "Una de las calificaciones es mayor a 100");
+                return;
+        }
+
+
+            var obj = "";
+            var obj2 = "";
+        var count3 = 0;
+        Object.keys(captura).forEach(function (key) {
+            captura[key].calificacion = $("#" + key.toString() + "_calificacion").val() < 70 ? 0 : parseInt($("#" + key.toString() + "_calificacion").val(), 10);
+            captura[key].tipo_evaluacion = $("#" + key.toString() + "_select").val();
+            captura[key].nopresento = $("#" + captura[key].materia + "_" + captura[key].grupo + "_" + captura[key].no_de_control + "_checkbox").is(':checked') == true ? 'S' : 'N';
+            captura[key].fecha_hora_modif = "@System.DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff")";
+            $("#" + captura[key].materia.replace("-","") + "_" + captura[key].grupo + "_" + captura[key].no_de_control + "_validar").is(':checked') == true ? '' : count3 = count3 + 1;
+            obj = obj + '' + JSON.stringify(captura[key]);
+            });
+
+            if (count3 > 0) {
+
+            MensajesToastr("warning", "Error", "Selccione todas las casillas de verificación");
+            return;
+            }
+
+            obj2 = obj.replace(/}{/gi, "},{");
+
+            console.log(obj2);
+
+            $.ajax({
+            url: '../../../Docente/RegistraCalificacionJSON',
+            type: 'POST',
+            dataType: 'json',
+            data: { lsobjeto: obj2 }
+            })
+            .done(function (data) {
+            if (typeof (data.Success) !== "undefined" && !data.Success) {
+            MensajesToastr("warning", "Error de proceso", data.Mensaje);
+            }
+            else {
+            MensajesToastr("info", "Solicitud Procesada", "Evaluación registrada");
+            $('#BodyPrincipal').load('../../../Docente/CapturaCalificaciones');
+            }
+            })
+            .fail(function (data) {
+            MensajesToastrErrorConexion();
+            });
+
+            }
+
+
+            function validaNumericos(event) {
+            if (event.charCode >= 48 && event.charCode <= 57) {
+            return true;
+            }
+            return false;
+            }
+
+            function validar(e) {
+            tecla = (document.all) ? e.keyCode : e.which;
+            return !(tecla == 86 && e.ctrlKey);
+            }
+
+            function nopresento(materia, grupo, control) {
+            if ($("#" + materia + "_" + grupo + "_" + control + "_checkbox").is(':checked')) {
+            $("#" + materia + "_" + grupo + "_" + control + "_calificacion").val("0");
+            $("#" + materia + "_" + grupo + "_" + control + "_calificacion").prop('disabled', true);
+            }
+            else {
+            $("#" + materia + "_" + grupo + "_" + control + "_calificacion").val("");
+            $("#" + materia + "_" + grupo + "_" + control + "_calificacion").prop('disabled', false);
+            }
+
+            }
+
+            function verified(materia, grupo, control) {
+            if ($("#" + materia + "_" + grupo + "_" + control + "_validar").is(':checked')) {
+            $("#" + materia + "_" + grupo + "_" + control + "_calificacion").prop('disabled', true);
+            $("#" + materia + "_" + grupo + "_" + control + "_checkbox").attr("disabled", true);
+            }
+            else {
+            if ($("#" + materia + "_" + grupo + "_" + control + "_checkbox").is(':checked')) {
+            $("#" + materia + "_" + grupo + "_" + control + "_checkbox").prop("checked", false);
+            $("#" + materia + "_" + grupo + "_" + control + "_calificacion").val('');
+            }
+            $("#" + materia + "_" + grupo + "_" + control + "_checkbox").attr("disabled", false);
+            $("#" + materia + "_" + grupo + "_" + control + "_calificacion").prop('disabled', false);
+            }
+
+    }
+
+    </script>

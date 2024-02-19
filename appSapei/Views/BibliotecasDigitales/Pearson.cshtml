@@ -1,0 +1,86 @@
+﻿@{
+     string lsKey = "6b63b6a0-d3ad-11e8-b568-0800200c9a66";
+     string lsSecret = "873eac78-25e1-46c2-a2ae-b5d52fb7ba9e";
+     string lsUniqID = "5be0cb72320136.34624640";//SII.Framework.Utilerias.ManejoCadenas.RegresaUniqID(true);
+     string lsTimeStamp = "1541458802";// SII.Framework.Utilerias.ManejoFechas.GetTimestamp();
+     string lsUserId = string.Format("user_id={0}", "12345");
+     string lsRoles = string.Format("roles={0}", "Student");
+     string lsNombreCompleto = string.Format("lis_person_name_full={0}", "Nombre ApellidoP ApellidoM");
+     string lsFamily = string.Format("lis_person_name_family={0}", "ApellidoP");
+     string lsNombre = string.Format("lis_person_name_given={0}", "Nombre");
+     string lsEmail = string.Format("lis_person_contact_email_primary={0}", "Nombre@institucion.edu.mx");
+     string lsLTIVersion = string.Format("lti_version={0}", "LTI-1p0");
+     string lsLTIMessaheType = string.Format("lti_message_type={0}", "basic-lti-launch-request");
+     string lsOauthCallback = string.Format("oauth_callback={0}", "about:blank");
+     string lsOauthConsumerKey = string.Format("oauth_consumer_key={0}",lsKey);
+     string lsOauthVersion = string.Format("oauth_version={0}", "1.0");
+     string lsOauthNonce =  string.Format("oauth_nonce={0}",lsUniqID);
+     string lsOauthTimeStamp = string.Format("oauth_timestamp={0}",lsTimeStamp);
+     string lsOauthSignatureMethod = string.Format("oauth_signature_method={0}","HMAC-SHA1");
+
+     string lslaunchUrl = HttpUtility.UrlEncode("https://bc.vitalsource.com/books/BOOKSHELF-TUTORIAL");
+
+     string lsCadenaBase = "POST&" + lslaunchUrl + "&" + SII.Framework.Utilerias.ManejoCadenas.UrlEncode(lsEmail + "&" + lsFamily + "&" + lsNombreCompleto + "&" + lsNombre + "&" + lsLTIMessaheType + "&" + lsLTIVersion + "&" + lsOauthCallback + "&" + lsOauthConsumerKey + "&" + lsOauthNonce + "&" + lsOauthSignatureMethod + "&" + lsOauthTimeStamp + "&" + lsOauthVersion + "&" + lsRoles + "&" + lsUserId); 
+     
+     lsSecret = SII.Framework.Utilerias.ManejoCadenas.UrlEncode(lsSecret) + "&";
+
+     string lbsHMACSHA256 = SII.Framework.Utilerias.ManejoCifrados.HMAC_SHA1(lsCadenaBase, lsSecret);
+
+         // string lsCode64 = System.Convert.ToBase64String(lbsHMACSHA256);
+          
+     //POST&https%3A%2F%2Fbc.vitalsource.com%2Fbooks%2FBOOKSHELF-TUTORIAL&lis_person_contact_email_primary%3DNombre%2540institucion.edu.mx%26lis_person_name_family%3DApellidoP%26lis_person_name_full%3DNombre%2520ApellidoP%2520ApellidoM%26lis_person_name_given%3DNombre%26lti_message_type%3Dbasic-lti-launch-request%26lti_version%3DLTI-1p0%26oauth_callback%3Dabout%253Ablank%26oauth_consumer_key%3D6b63b6a0-d3ad-11e8-b568-0800200c9a66%26oauth_nonce%3D5bd3952882bac3.72818350%26oauth_signature_method%3DHMAC-SHA1%26oauth_timestamp%3D1540593871%26oauth_version%3D1.0%26roles%3DStudent%26user_id%3D12345
+     
+     string l = lsUniqID;
+}
+<form id="ltiLaunchForm" name="ltiLaunchForm" method="POST" action="https://bc.vitalsource.com/books/BOOKSHELF-TUTORIAL">
+
+
+     <input type="hidden" name="user_id" value="12345">
+
+
+     <input type="hidden" name="roles" value="Student">
+
+
+     <input type="hidden" name="lis_person_name_full" value="Nombre ApellidoP ApellidoM">
+
+
+     <input type="hidden" name="lis_person_name_family" value="ApellidoP">
+
+
+     <input type="hidden" name="lis_person_name_given" value="Nombre">
+
+
+     <input type="hidden" name="lis_person_contact_email_primary" value="Nombre@institucion.edu.mx">
+
+
+     <input type="hidden" name="lti_version" value="LTI-1p0">
+
+
+     <input type="hidden" name="lti_message_type" value="basic-lti-launch-request">
+
+
+     <input type="hidden" name="oauth_callback" value="about:blank">
+
+
+     <input type="hidden" name="oauth_consumer_key" value="6b63b6a0-d3ad-11e8-b568-0800200c9a66">
+
+
+     <input type="hidden" name="oauth_version" value="1.0">
+     
+
+     <input type="hidden" name="oauth_nonce" value="@lsUniqID">
+
+
+     <input type="hidden" name="oauth_timestamp" value="1540508956">
+
+
+     <input type="hidden" name="oauth_signature_method" value="HMAC-SHA1">
+
+
+     <input type="hidden" name="oauth_signature" value="PSm7/BW1NrZQRyDdU5i6PcVvU7A=">
+
+
+
+     <button type="submit">Launch</button>
+
+</form>

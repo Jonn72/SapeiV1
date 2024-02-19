@@ -1,0 +1,100 @@
+﻿<link href="~/Scripts/Componentes/select2/css/select2.min.css" rel="stylesheet" />
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>Adeudos</h3>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <form class="form-horizontal form-label-left" action="#" id="frmAdeudos" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h3>Consultar Adeudo</h3>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content"> 
+                        <div class="form-group col-md-12 ">
+                            <label for="txtUsuario">
+                                Filtrar
+                            </label>
+                            <select id="sTipoSol" class="form-control">
+                                <option value="Alumno">Alumno</option>
+                                <option value="Todos">Adeudos del periodo</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-12 " id="fldUsuario">
+                            <label for="txtUsuario">
+                                Usuario
+                            </label>
+                            <input type="text" class="form-control" id="txtUsuario" placeholder="Número de control"  />
+                        </div>
+                        @*<div id="divFecha">
+                            <div class="form-group col-md-12 " id="fldFechaI">
+                                <label for="txtFechaI">
+                                    Fecha Inicio
+                                </label>
+                                <input type="date" class="form-control" id="txtFechaI"  />
+                            </div>
+                            <div class="form-group col-md-12 " id="fldFechaF">
+                                <label for="txtFechaF">
+                                    Fecha Fin
+                                </label>
+                                <input type="date" class="form-control" id="txtFechaF" />
+                            </div>
+                        </div>*@
+                        <div class="col-md-12 col-sm-6">
+                            <button id="btnGuardar" type="submit" class="btn btn-info">Consultar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
+@Html.Partial("../Generales/TablaGeneral")
+<div class="modal fade" id="mdlAdeudo" tabindex="-1" role="dialog" aria-labelledby="mdlPrestamoLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="mdlPrestamoLabel">Adeudo</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal form-label-left" action="#" id="frmPrestamo" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group col-md-3">
+                                <label for="txtFechaI">
+                                    Pagar adeudo
+                                </label>
+                                <input type="button" class="form-control btn btn-primary" id="btnPagar" value="Pagar" />
+                            </div>
+                            <div class="form-group col-md-3 ">
+                                <label for="txtFechaI">
+                                    Condonar adeudo
+                                </label>
+                                <input type="button" class="form-control btn btn-info" id="btnCondonar" value="Condonar"  />
+                            </div>
+                            <div class="form-group col-md-3 ">
+                                <label for="txtFechaI">
+                                    Cancelar adeudo
+                                </label>
+                                <input type="button" class="form-control btn btn-warning" id="btnCancelar" value="Cancelar" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/Componentes/select2/js/select2.min.js"></script>
+<script src="~/Scripts/ManejoDatos/CentroInformacion/AdeudoF.js"></script>

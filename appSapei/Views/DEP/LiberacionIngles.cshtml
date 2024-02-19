@@ -1,0 +1,173 @@
+﻿
+
+<link href="~/sii/Content/font/font-awesome.min.css" rel="stylesheet" />
+<link href="~/sii/Content/prettify/prettify.min.css" rel="stylesheet" />
+
+@using Sapei.Framework.Utilerias;
+@using System.Data;
+
+@{
+    string lsPeriodo = "";
+    string lsControl = "";
+    string lsNombre = "";
+    string lsTipoLiberacion = "";
+    string lsFechaLiberacion = "";
+    int liEstado = 0;
+    string lsAutorizado = "";
+    bool lbEncontrado = false;
+    DataTable loDatos = new DataTable();
+    if (ViewData["Datos"] != null)
+    {
+        loDatos = ViewData["Datos"] as DataTable;
+        if (loDatos.Columns.Count > 1)
+        {
+            lbEncontrado = true;
+            lsPeriodo = loDatos.Rows[0].Field<string>("periodo");
+            lsControl = loDatos.Rows[0].Field<string>("no_de_control");
+            lsNombre = loDatos.Rows[0].Field<string>("nombre");
+            lsTipoLiberacion = loDatos.Rows[0].Field<string>("liberacion");
+            lsFechaLiberacion = loDatos.Rows[0].Field<string>("fecha_autoriza");
+            liEstado = loDatos.Rows[0].Field<int>("estado");
+            lsAutorizado = loDatos.Rows[0].Field<string>("autorizado");
+        }
+    }
+}
+
+<div class="x_panel">
+    <div class="col-md-10 center-margin center-block">
+        @if (lbEncontrado)
+        {
+            <input type="hidden" id="hidNoControl" value="@lsControl" />
+            <div class="row">
+                <div class="col-md-10 center-margin center-block">
+                    <ul class="stats-overview">
+
+                        <li>
+                            <span class="name">No. Control</span>
+                            <span id="spNoControl" class="value text-success"> @lsControl </span>
+                        </li>
+                        <li style="width:33%">
+                            <span class="name"> Nombre </span>
+                            <span class="value text-success"> @lsNombre </span>
+                        </li>
+                        <li>
+                            <span class="name">Tipo Liberación </span>
+                            <span class="value text-success"> @(liEstado == 0 ? "Ninguna": lsTipoLiberacion) </span>
+                        </li>
+                        <li>
+                            <span class="name"> Fecha Liberación</span>
+                            <span class="value text-success"> @(string.IsNullOrEmpty(lsFechaLiberacion) ? "SIN AUTORIZAR":lsFechaLiberacion)  </span>
+                        </li>
+                        <li>
+                            <span class="name"> Liberado </span>
+                            <span class="value text-success"> @lsAutorizado </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 center-margin center-block">
+                    <div id="#lines_div" class="alert alert-dismissible fade in" role="alert">
+                        @{
+
+                            if (SesionSapei.Sistema.Sesion.Usuario.RolUsuario == Sapei.Framework.Configuracion.enmRolUsuario.GTV)
+                            {
+                                if (lsAutorizado.Trim().ToUpper() == "SI" || liEstado == 3)
+                                {
+                                    <h4 class="title text-center">
+                                        El (la) estudiante, ya cuenta con el idioma liberado y autorizado.
+                                    </h4>
+                                }
+                                if (liEstado == 0)
+                                {
+                                    <h4 class="title text-center">
+                                        El (la) estudiante, no cuenta con solicitud de liberación emitida por el Centro de Lenguas Extranjeras.
+                                    </h4>
+                                }
+                                if (liEstado == 1)
+                                {
+                                    <h4 class="title text-center">
+                                        El (la) estudiante tiene aprobado el nivel @lsTipoLiberacion, y no cuenta con solicitud de liberación emitida por el Centro de Lenguas Extranjeras.
+                                    </h4>
+                                }
+                                else if (liEstado == 2)
+                                {
+                                    <h4 class="title text-center">
+                                        El (la) estudiante, cuenta con solicitud de liberación emitida por el Centro de Lenguas Extranjeras, solicitando ser liberado por @lsTipoLiberacion
+                                    </h4>
+                                    <br />
+                                    <div class="form-group text-center">
+                                        <button id="btnAutorizar" type="submit" class="btn btn-success">Validar Liberación</button>
+                                    </div>
+                                }
+                            }
+                            else if (SesionSapei.Sistema.Sesion.Usuario.RolUsuario == Sapei.Framework.Configuracion.enmRolUsuario.CLE)
+                            {
+
+                                if (liEstado == 2 && lsAutorizado == "NO")
+                                {
+                                    <h4 class="title text-center">
+                                        El (la) estudiante, ya cuenta con solicitud de liberación por @lsTipoLiberacion, y sigue pendiente la autorización.
+                                    </h4>
+                                }
+                                else if (liEstado == 0 || liEstado == 1)
+                                {
+                                    <h4 class="title text-center">
+                                        Este modulo permite solicitar la liberación del idioma, lo cual debe ser autorizado por el depto. de Gestión Tecnológica y Vinculación. Una vez sea autorizado se verá reflejado en el modulo del estudiante.
+
+                                    </h4>
+                                    <br />
+                                    <div class="col-md-6 col-sm-12  center-margin center-block">
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 text-align-left">
+                                                <label>Modo de liberación</label>
+                                            </div>
+                                            <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12 text-align-left">
+                                                <select class="list-dt" id="cboTipoLiberacion">
+                                                    @if (ViewData["cboTipo_liberacion"] != null)
+                                                    {
+                                                        foreach (System.Data.DataRow dr in (ViewData["cboTipo_liberacion"] as System.Data.DataTable).Rows)
+                                                        {
+                                                            <option value="@dr.ItemArray[0].ToString().Trim()">@dr.ItemArray[1].ToString().Trim()</option>
+                                                        }
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-align-left">
+                                                <label>Promedio </label>
+                                            </div>
+                                            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 text-align-left">
+                                                <div class="input-icon">
+                                                    <input type="number" id="txtPromedio" min="70" max="100" autocomplete="nope" placeholder="Promedio  (valor 0 a 100)" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="form-group text-center">
+                                        <button id="btnSolicitar" type="submit" class="btn btn-success">Solicitar Liberación</button>
+                                    </div>
+                                }
+                                else if (lsAutorizado.Trim().ToUpper() == "SI" || liEstado == 3)
+                                {
+                                    <h4 class="title text-center">
+                                        El (la) estudiante, ya cuenta con el idioma liberado y autorizado.
+                                    </h4>
+                                    <br />
+                                    <div class="form-group text-center">
+                                        <button id="btnGenerar" type="submit" class="btn btn-success">Generar Constancia</button>
+                                    </div>
+                                }
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+@Html.Partial("../Generales/ModalVisorPDF")
+<script src="~/Scripts/ManejoDatos/CentroLenguasExt/LiberacionIngles.js">
+</script>

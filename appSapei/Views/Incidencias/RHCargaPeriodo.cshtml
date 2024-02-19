@@ -1,0 +1,68 @@
+﻿<div class="page-title">
+    <div class="title_right">
+   </div>
+</div>
+<div class="x_panel">
+    <div class="x_title">
+        <h3> RH Carga de Periodo</h3>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <div class="row">
+            <div class="col-md-4 col-xs-12 col-sm-12">
+                <div class="control-group">
+                    <label for="Periodo_txt">Fecha Inicial:</label>
+
+                    <div class='input-group date' id='dtpFecha'>
+                        <input type='text' id="txtFechaInicial" placeholder="Ingrese fecha de inicio" class="form-control" required />
+                        <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+                    </div>
+
+
+                </div>
+            <div class="clearfix"></div>
+            </div>
+
+            <div class="col-md-4 col-xs-12 col-sm-12">
+                <div class="control-group">
+                    <label for="Periodo_txt">Fecha Final:</label>
+                    <div class='input-group date' id='divFechaFinal'>
+                        <input type='text' id="txtFechaFinal" placeholder="Ingrese fecha de inicio" class="form-control" required />
+                        <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+            <div class="col-md-4 col-xs-12 col-sm-12">
+                <div class="form-group">
+                    <label>TIpo de Periodo</label>
+                    <select class="form-control">
+                        <option value="-1">-SELECCIONA UNA OPCIÓN-</option>
+                        <option value="0">INTERSEMESTRE</option>
+                        <option value="1">SEMESTRE</option>
+                    </select>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+           
+            <br />
+            <div class="col-md-offset-8 col-md-4 col-xs-12 col-sm-12">
+                <button class="btn btn-block btn-info">Guardar</button>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    $("#txtFechaInicial").datetimepicker({ format: 'DD-MM-YYYY' });
+    $("#txtFechaFinal").datetimepicker({ format: 'DD-MM-YYYY' });
+    
+</script>
+
+
+

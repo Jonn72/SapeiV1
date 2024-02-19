@@ -1,0 +1,188 @@
+﻿<div class="page-title">
+    <div class="title_left">
+        <h3>Datos <small>del Trabajador</small></h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="x_panel">
+    <div class="x_title">
+        <h3>Datos <small>Generales</small></h3>
+    </div>
+    <div class="clearfix"></div>
+    <div id="frmDatos1">
+        <div class="row">
+            <div class="col-md-4 col-sm-6 col-xs-12 form-group">
+                <label for="tags">
+                    RFC
+                </label>
+                <input type="text" id="txtRFC2" value="@ViewData["RFC"]" class="form-control" disabled>
+            </div>
+
+            <div class="col-md-4 col-sm-6 col-xs-12 form-group">
+                <label for="tags">
+                    Numero de Tarjeta
+                </label>
+                <input type='text' id="txtNumTarjeta" value="@ViewData["NTarjeta"]" class="form-control" disabled />
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12 form-group">
+                <label for="tags">
+                    CURP
+                </label>
+                <input type="text" id="txtCURP" value="@ViewData["CURP"]" class="form-control" disabled>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                <label for="tags">
+                    Nombre (s)
+                </label>
+                <input type="text" class="form-control" id="txtNombre" value="@ViewData["Nombre"]" disabled />
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                <label for="tags">
+                    Apellido Paterno
+                </label>
+                <input type="text" class="form-control" id="txtPaterno" value="@ViewData["ApeP"]" disabled />
+
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                <label for="tags">
+                    Apellido Materno
+                </label>
+                <input type="text" class="form-control" id="txtMaterno" value="@ViewData["ApeM"]" disabled/>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                <label for="tags">
+                    Departamento de Adscripción
+                </label>
+                <input type='text' id="txtDeptoAd" value="@ViewData["DepAd"]" class="form-control" disabled/>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                <label for="tags">
+                    Departamento académico
+                </label>
+                <input type='text' id="txtDeptoAc" value="@ViewData["DepAc"]" class="form-control" disabled/>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="x_panel" id="frmDatos2">
+    <div class="x_title">
+        <h3>Datos <small>Personales</small></h3>
+    </div>
+    <div class="clearfix"></div>
+
+    <div id="frmD2">
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                <label for="tags">
+                    Numero de Seguro Social
+                </label>
+                <input type='text' id="txtNSS" value="@ViewData["NSS"]" class="form-control" disabled/>
+
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                <label for="tags">
+                    Genero
+                </label>
+                <input type='text' id="txtNumTarjeta" value="@ViewData["Genero"]" class="form-control" disabled/>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                <label for="tags">
+                    Fecha de Nacimiento
+                </label>
+                <div class='input-group date' id='dtpFecha'>
+                    <input type='text' id="txtFechaNacimiento" value="@ViewData["FechaNac"]" class="form-control" disabled/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                <label for="tags">
+                    Estado Civil
+                </label>
+                <input type='text' id="txtEdoCivil" value="@ViewData["EdoCiv"]" class="form-control" disabled/>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                <label for="tags">
+                    Nacionalidad
+                </label>
+                <input type='text' id="txtNacionalidad" value="@ViewData["Nacion"]" class="form-control" disabled/>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                <label for="tags">
+                    Estado donde Nació
+                </label>
+                <input type='text' id="txtEdoNac" value="@ViewData["EdoNac"]" class="form-control" disabled />
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                <label for="tags">
+                    Nivel De Estudios
+                </label>
+                <input type='text' id="txtNivelEst" value="@ViewData["NivelEst"]" disabled/>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                <label for="tags">
+                    Nombre de la Carrera
+                </label>
+                <input type='text' id="txtCarrera" value="@ViewData["Carrera"]" disabled/>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                <label for="tags">
+                    Fecha de Titulacion
+                </label>
+                <div class='input-group date' id='dtpFechaTit'>
+                    <input type='text' id="txtFechaTitulacion" value="@ViewData["FechaTit"]" class="form-control" disabled/>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                <label for="tags">
+                    Cédula Profesional
+                </label>
+                <input type='text' id="txtCedula" value="@ViewData["Cedula"]" class="form-control" disabled/>
+
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                <label for="tags">
+                    Correo Electronico
+                </label>
+                <input type='text' id="txtCorreo" value="@ViewData["Correo"]" class="form-control" disabled/>
+
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                <label for="tags">
+                    Telefono
+                </label>
+                <input type='text' id="txtTel" value="@ViewData["Tel"]" class="form-control" disabled/>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                <label for="tags">
+                    Telefono de Emergencias
+                </label>
+                <input type='text' id="txtTelEm" value="@ViewData["TelEm"]" class="form-control" disabled/>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div id="frmDom">
+    @Html.Partial("../Generales/Domicilio")
+</div>
+<br />
+<br />
+<br />
+<br />

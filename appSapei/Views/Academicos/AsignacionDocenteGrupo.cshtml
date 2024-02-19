@@ -1,0 +1,88 @@
+﻿<div class="page-title">
+    <div class="title_left">
+        <h3>Asignacion de Horario</h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="x_panel">
+    <div class="clearfix"></div>
+    <div id="divSeleccion">
+        <br />
+        <div class="col-md-4 col-sm-4 col-xs-12"></div>
+        <label style="font-size:medium">Seleccionar Periodo</label>
+        <br />
+        <div class="col-md-4 col-sm-4 col-xs-12"></div>
+        @Html.Partial("../Generales/ComboPeriodo")
+        <br />
+        <br />
+        <div class="col-md-4 col-sm-4 col-xs-12"></div>
+        <div class="col-md-4 col-sm-4 col-xs-12">
+            <label style="font-size:medium">Seleccionar Carrera</label>
+            @Html.Partial("../Generales/ComboGeneral")
+            <br />
+            <button class="btn btn-default btn-success" type="button" id="btnBuscar1" onclick="Buscar();"><i class="fa fa-search"></i></button>
+        </div>
+    </div>
+
+    <div id="hidButton" class="div-hide">
+    </div>
+
+</div>
+
+<script type="text/javascript">
+
+    $("#cboPeriodo").removeClass("pull-right");
+    $('label[for=cboPeriodos]').remove();
+
+    function Buscar() {
+        var CarreraReticula = $("#cboGeneral").val();
+        var Periodo = $("#cboPeriodos").val();
+        CargaMaterias(CarreraReticula, Periodo);
+    }
+
+    function CargaMaterias(CarreraReticula, Periodo) {
+        $('#divSeleccion').load('../../../Academicos/ListaMateriasAsignacion', { psCarreraReticula: CarreraReticula, psPeriodo: Periodo });
+        $('#hidButton').show();
+        $('#hidButton').html('<div class="col-md-10 col-sm-10 col-xs-12"></div><a class="btn btn-danger" href="../../Academicos/AsignacionDocenteGrupo" data-ajax-update="#BodyPrincipal" data-ajax-mode="replace" data-ajax-method="GET" data-ajax="true"> Regresar </a>')
+    }
+
+    function CargaGrupos(periodo, carrera, reticula, materia) {
+        console.log(materia);
+        $('#divSeleccion').load('../../../Academicos/ListaGruposAsignacion', { psPeriodo: periodo, psCarrera: carrera, psReticula: reticula, psMateria: materia });
+        $('#hidButton').show();
+        $('#hidButton').html('<div class="col-md-10 col-sm-10 col-xs-12"></div><button type="button" id="btnEliminar" class="btn btn-danger" onclick="CargaMaterias(\'' + carrera + '_' + reticula + '\',\'' + periodo + '\');"> Regresar </button>')
+    }
+
+    function CargaHorarioGrupo(carrera, reticula, periodo, materia, grupo) {
+
+        $('#divSeleccion').load('../../../Academicos/AsignaGrupo', { psCarrera: carrera, psReticula: reticula, psPeriodo: periodo, psMateria: materia, psGrupo: grupo });
+        $('#hidButton').hide();
+    }
+
+    function Liberar(periodo, materia, grupo, carrera, reticula) {
+        var opcion = confirm("¿Esta seguro que desea liberr este grupo?");
+        if (opcion == true) {
+
+            $.ajax({
+                url: '../../../Academicos/EliminaAsignacionGrupoJSON',
+                type: 'POST',
+                dataType: 'json',
+                data: { psPeriodo: periodo, psMateria: materia, psGrupo: grupo }
+            })
+                .done(function (data) {
+                    if (typeof (data.Success) !== "undefined" && !data.Success) {
+                        MensajesToastr("warning", "Error de proceso", data.Mensaje);
+                    }
+                    else {
+                        MensajesToastr("info", "Solicitud Procesada", "Horario Liberado");
+                        console.log(periodo + ' ' + materia + ' ' + carrera + ' ' + reticula);
+                        CargaGrupos(periodo, carrera, reticula, materia);
+                    }
+                })
+                .fail(function (data) {
+                    MensajesToastrErrorConexion(data.Mensaje);
+                });
+
+        }
+    }
+</script>

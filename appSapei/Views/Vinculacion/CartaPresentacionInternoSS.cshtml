@@ -1,0 +1,198 @@
+﻿@*MODAL DEL USUARIO DE VINCULACION PARA ASIGNAR DEPARTAMENTO Y PROGRAMA AL ESTUDIANTE(INTERNO)*@
+<div id="ModalAsignarPrograma" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-tittle">Asignar Departamento</h4>
+            </div>
+            <div class="modal-body">
+                <form id="frmSolicitudInterno" data-parsley-validate class="form-horizontal form-label-left">
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <label>Número de Control</label>
+                            <input type="text" class=" form-control" id="Controltxt" disabled />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-8 col-sm-8 col-xs-12 ">
+                            <label>Departamento</label>
+                            <select class="form-control" id="Departamento" onchange="autocompletaprogramasdepartamento(); mostrarDepartamento(this.options[this.selectedIndex].innerHTML);" name="elejir_departamento" required>
+                                <option selected></option>
+                                <option value="Centro de Computo">Centro de Computo</option>
+                                <option value="Centro de Información">Centro de Información</option>
+                                <option value="CLE">CLE</option>
+                                <option value="CIIE">CIIE</option>
+                                <option value="Coordinación de Sistemas de Gestión Integral">Coordinación de Sistemas de Gestión Integral</option>
+                                <option value="Dep. Ciencias Básicas">Dep. Ciencias Básicas</option>
+                                <option value="Dep. Ciencias de la Tierra">Dep. Ciencias de la Tierra</option>
+                                <option value="Dep. Ciencias Económico Admon.">Dep. Ciencias Económico Admon.</option>
+                                <option value="Dep. de Actividades Extraescolares">Dep. de Actividades Extraescolares</option>
+                                <option value="Dep. de Comunicación y Difusión ">Dep. de Comunicación y Difusión</option>
+                                <option value="Dep. de Gestión Tecnológica y Vinculación">Dep. de Gestión Tecnológica y Vinculación</option>
+                                <option value="Dep. de Ing. Electrica y Electrónica">Dep. de Ing. Electrica y Electrónica</option>
+                                <option value="Dep. de Mantenimiento y Equipo">Dep. de Mantenimiento y Equipo</option>
+                                <option value="Dep. de Planeación y Programación">Dep. de Planeación y Programación</option>
+                                <option value="Dep. de Servicios Escolares">Dep. de Servicios Escolares</option>
+                                <option value="Dep. División de Estudios Profesionales">Dep. División de Estudios Profesionales</option>
+                                <option value="Dep. Metal-Mecánica">Dep. Metal-Mecánica</option>
+                                <option value="Dep. Recursos Financieros">Dep. Recursos Financieros</option>
+                                <option value="Dep. Recursos Humanos">Dep. Recursos Humanos</option>
+                                <option value="Dep. Sistemas y Computación">Dep. Sistemas y Computación</option>
+                                <option value="Dep.Recursos Materiales y de Servicios">Dep.Recursos Materiales y de Servicios</option>
+                                <option value="Desarrollo Académico">Desarrollo Académico</option>
+                                <option value="Dirección">Dirección</option>
+                                <option value="Ecotec">Ecotec</option>
+                                <option value="Sistema de Gestión Integral de Igualdad y Equidad de Genero">Sistema de Gestión Integral de Igualdad y Equidad de Genero</option>
+                                <option value="Sistema de Gestión Ambiental">Sistema de Gestión Ambiental</option>
+                                <option value="Sub. de Planeación y Vinculación">Sub. de Planeación y Vinculación</option>
+                                <option value="Sub. Servicios Admon">Sub. Servicios Admon</option>
+                                <option value="Sub.Académica">Sub.Académica</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-10 col-sm-10 col-xs-12">
+                            <label>
+                                Nombre del programa
+                            </label>
+                            <select class="form-control" id="cboPrograma" placeholder="Nombre Programa" onchange="autocompletadatosprograma();" required>
+                                <option selected></option>
+                            </select>
+                        </div>
+                        <div class="col-md-2 col-sm-2 col-xs-12">
+                            <label>Agregar</label>
+                            <a class="btn btn-info" id="agregar_departamento"><span class="fa fa-plus"></span></a>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <label>
+                                Objetivo del programa
+                            </label>
+                            <textarea class="form-control" id="Objetivotxt" disabled placeholder="Objetivo del responsable del programa" required></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <label>
+                                Nombre del responsable del programa
+                            </label>
+                            <input type="text" class="form-control" id="Responsabletxt" disabled placeholder="Nombre del responsable del programa" required />
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <label>
+                                Cargo del responsable del programa
+                            </label>
+                            <input type="text" class="form-control" id="CargoResponsableProgramatxt" disabled placeholder="Cargo del responsable del programa" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <label>
+                                Correo Electrónico
+                            </label>
+                            <input type="email" class="form-control" id="Correotxt" disabled placeholder="correo@dominio.com" oninvalid=" ValidaCampo(this, 'CORREO');" onblur="     ValidaCampo(this, 'CORREO');" required />
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <label>Tipo de Programa</label>
+                            <input type="text" class=" form-control" name="TipoProgramatxt" id="TipoProgramatxt" value="" disabled />
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <button type="submit" id="btnSolicitudInterno" class="btn btn-success" style="margin-top:1px">Guardar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="margin-top:1px">Cerrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*MODAL DENTRO DEL MODAL ANTERIOR PARA AGREGAR UN NUEVO PROGRAMA EN EL DEPARTAMENTO*@
+<div id="ModalAgregarPrograma" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-tittle">Solicitud de Servicio Social</h4>
+            </div>
+            <div class="modal-body">
+                <form id="frmAltaPrograma" data-parsley-validate class="form-horizontal form-label-left">
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12 ">
+                            <label>
+                                Departamento
+                            </label>
+                            <input type="text" class=" form-control" name="txtDepartamento" id="txtDepartamento" value="" disabled />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <label>
+                                Nombre del programa
+                            </label>
+                            <input type="text" onkeyup="mayus(this);" class="form-control" id="txtPrograma" placeholder="Nombre del programa" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <label>
+                                Objetivo del programa
+                            </label>
+                            <textarea type="text" onkeyup="mayus(this);" class="form-control" id="txtObjetivo" placeholder="Objetivo del programa" required></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <label>
+                                Nombre del responsable del programa
+                            </label>
+                            <input type="text" onkeyup="mayus(this);" class="form-control" id="txtResponsable" placeholder="Nombre del responsable del programa" required />
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <label>
+                                Cargo del responsable del programa
+                            </label>
+                            <input type="text" onkeyup="mayus(this);" class="form-control" id="txtCargoResponsablePrograma" placeholder="Cargo del responsable del programa" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <label>
+                                Correo Electrónico
+                            </label>
+                            <input type="email" class="form-control" id="txtCorreo" placeholder="correo@dominio.com" oninvalid=" ValidaCampo(this, 'CORREO');" onblur="     ValidaCampo(this, 'CORREO');" required />
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <label>Tipo de Programa</label>
+                            <select class="form-control" id="selectTipoPrograma" name="elejir_tipo_programa" onchange="mostrarPrograma(this.options[this.selectedIndex].innerHTML);">
+                                <option value="ACTCI">Actividades cívicas</option>
+                                <option value="ACTCU">Actividades culturales</option>
+                                <option value="ACTDE">Actividades deportivas</option>
+                                <option value="APOSA">Apoyo a la salud</option>
+                                <option value="DESCO">Desarrollo de comunidad</option>
+                                <option value="DESUS">Desarrollo Sustentable</option>
+                                <option value="EDUCA">Educación para adultos</option>
+                                <option value="MEDAM">Medio ambiente</option>
+                                <option value="OTROS">Otros</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <button type="submit" id="btnGuardar" class="btn btn-success">Guardar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="margin-top:1px">Cerrar</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@Html.Partial("../Generales/TablaGeneral")
+@Html.Partial("../Generales/ModalVisorPDF")
+<script src="~/Scripts/ManejoDatos/Vinculacion/CartaPresentacionInternoSS.js"></script>

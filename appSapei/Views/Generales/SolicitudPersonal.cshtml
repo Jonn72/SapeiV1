@@ -1,0 +1,380 @@
+﻿<input type="hidden" value="@ViewData["ClaveArea"]" id="hidClaveArea" />
+<input type="hidden" value="" id="hidId" />
+<div class="page-title">
+    <div class="title_left">
+        <h3>Selección <small>de personal</small></h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="x_panel">
+    <div class="clearfix"></div>
+
+    <div id="divRFC" class="">
+        <div class="form-group bg-tecnm">
+            <div class="input-group">
+                @{
+                    if (ViewData["Personal"] != null)
+                    {
+                        <select class="form-control" id="cboPersonal">
+                            @foreach (System.Data.DataRow dr in (ViewData["Personal"] as System.Data.DataTable).Rows)
+                            {
+                                <option value="@dr.ItemArray[0].ToString().Trim()">@dr.ItemArray[1].ToString().Trim()</option>
+                            }
+                        </select>
+                    }
+                }
+                <span class="input-group-btn">
+                    <button class="btn btn-default btn-success" type="button" id="btnBuscar1"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </div>
+
+
+
+        @{
+            if (ViewData["Datos"].ToString() != "0")
+            {
+                <br />
+                <br />
+
+                @Html.Partial("../Generales/TablaGeneral")
+                <script type="text/javascript">
+
+                    orden(6, "desc");
+                    $(document).ready(function () {
+                        QuitaBuscar();
+                    }
+                </script>
+            }
+        }
+
+
+    </div>
+    <div id="main" class="div-hide">
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                <label for="tags">
+                    Nombre(s)
+                </label>
+                <input type="text" class="form-control" id="txtNombre" value="" placeholder="Nombre (s)" disabled />
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                <label for="tags">
+                    Apellido Paterno
+                </label>
+                <input type="text" class="form-control" id="txtPaterno" value="" placeholder="Apellido Paterno" disabled />
+
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                <label for="tags">
+                    Apellido Materno
+                </label>
+                <input type="text" class="form-control" id="txtMaterno" value="" placeholder="Apellido Materno" disabled />
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                <label for="tags">
+                    Numero de Tarjeta
+                </label>
+                <input type='text' id="txtNumTarjeta" value="" class="form-control" placeholder="Numero de Tarjeta" disabled />
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                <label for="tags">
+                    Tipo de Personal
+                </label>
+                <input type='text' id="txtTipoPersonal" value="" class="form-control" placeholder="Tipo de Personal" disabled />
+
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                <label for="tags">
+                    Puesto asignado
+                </label>
+                @{
+                    if (ViewData["Puestos"] != null)
+                    {
+                        <select class="form-control" id="cboPuesto">
+                            @foreach (System.Data.DataRow dr in (ViewData["Puestos"] as System.Data.DataTable).Rows)
+                            {
+                                <option value="@dr.ItemArray[0].ToString().Trim()">@dr.ItemArray[1].ToString().Trim()</option>
+                            }
+                        </select>
+                    }
+                }
+            </div>
+
+            <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                <label for="tags">
+                    Inicio de Labores
+                </label>
+                <div class='input-group date' id='dtpFechaInicio'>
+                    <input type="text" id="txtFechaInicio" class="form-control" />
+                    <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+                </div>
+                <div class="help-block with-errors"></div>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                <label for="tags">
+                    Fin de Labores
+                </label>
+                <div class='input-group date' id='dtpFechaFin'>
+                    <input type="text" id="txtFechaFin" class="form-control" />
+                    <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+                </div>
+                <div class="help-block with-errors"></div>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-12 form-group div-hide" id="type">
+                <label for="tags">
+                    Tipo de Contrato
+                </label>
+
+                <select class="form-control" id="cboTContrato">
+                    <option value="B">Base</option>
+                    <option value="H">Honorarios</option>
+                </select>
+            </div>
+        </div>
+
+        <br />
+        <div class="form-group">
+
+            <div class="col-md-2 col-sm-2 col-xs-12 col-md-offset-1 ">
+                <input type="text" value="ljdhclasdhbvlskbvdaslvkjbflhkvbslhdjkvblkshdjbvlkjsdabvlkjbdvlkjljhdcv" class="div-hide" />
+            </div>
+
+            <div class="col-md-2 col-sm-2 col-xs-12 col-md-offset-1 ">
+                <input type="text" value="ljdhclasdhbvlskbvdaslvkjbflhkvbslhdjkvblkshdjbvlkjsdabvlkjbdvlkjljhdcv" class="div-hide" />
+            </div>
+
+            <div class="col-md-4 col-sm-4 col-xs-12 col-md-offset-1">
+                <input type="button" class="btn btn-success" id="btnGuardar2" value="Solicitar" />
+                <input type="button" class="btn btn-success div-hide" id="btnGuardar3" value="Modificar" />
+                &nbsp;
+                <input type="button" class="btn btn-danger" id="btnCancelar" value="Cancelar" />
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+<script type="text/javascript">
+
+    $("#btnBuscar1").click(function Nuevo(evento) {
+        RegresaPersonalDatos($("#cboPersonal").val());
+        evento.preventDefault();
+    });
+
+    $("#btnCancelar").click(function Nuevo(evento) {
+        $('#BodyPrincipal').load('../../../../Generales/SolicitudPersonal');
+        evento.preventDefault();
+    });
+
+
+    function RegresaPersonalDatos(RFC) {
+
+        Cargar(RFC);
+    }
+
+    function Cargar(RFC) {
+        $.ajax({
+            url: '../../../../Generales/RegresaPersonalSolicitud',
+            type: 'POST',
+            dataType: 'json',
+            data: { psRFC: RFC }
+        })
+            .done(function (data) {
+                if (typeof (data.Success) !== "undefined" && !data.Success) {
+
+                    MensajesToastr("warning", "Solicitud Procesada", "El personal ya ha sido seleccionado por otro departamento. Acuda a Recursos Humanos para aclarar cualquier inconveniente.");
+
+                }
+                else {
+                    var resultado = JSON.parse(data);
+                    $("#divRFC").hide();
+                    $("#main").show();
+
+                    $("#txtNombre").val(resultado.data[0].nombre_empleado);
+                    $("#txtPaterno").val(resultado.data[0].apellido_paterno);
+                    $("#txtMaterno").val(resultado.data[0].apellido_materno);
+                    $("#txtNumTarjeta").val(resultado.data[0].no_tarjeta);
+                    $("#txtTipoPersonal").val(resultado.data[0].tipo_personal);
+
+                    if (resultado.data[0].tipo_personal === "Mixto") {
+                        $("#type").removeClass("div-hide");
+                    }
+                    else if (resultado.data[0].tipo_personal === "Base") {
+                        $("#cboTContrato option[value=B").attr("selected", true);
+                    }
+                    else {
+                        $("#cboTContrato option[value=H").attr("selected", true);
+                    }
+                }
+            })
+            .fail(function (data) {
+                MensajesToastrErrorConexion();
+            });
+    }
+
+
+    function Modificar(id) {
+
+        $.ajax({
+            url: '../../../../Generales/RegresaDatosActualizacion',
+            type: 'POST',
+            dataType: 'json',
+            data: { psId: id }
+        })
+            .done(function (data) {
+                if (typeof (data.Success) !== "undefined" && !data.Success) {
+
+                    MensajesToastr("warning", "Solicitud Procesada", "El personal ya ha sido seleccionado por otro departamento. Acuda a Recursos Humanos para aclarar cualquier inconveniente.");
+
+                }
+                else {
+                    var resultado = JSON.parse(data);
+                    $("#divRFC").hide();
+                    $("#main").show();
+
+                    $("#hidId").val(id);
+                    $("#cboPersonal option[value=" + resultado.data[0].rfc).attr("selected", true);
+                    $("#txtNombre").val(resultado.data[0].nombre_empleado);
+                    $("#txtPaterno").val(resultado.data[0].apellido_paterno);
+                    $("#txtMaterno").val(resultado.data[0].apellido_materno);
+                    $("#txtNumTarjeta").val(resultado.data[0].no_tarjeta);
+                    $("#txtTipoPersonal").val(resultado.data[0].tipo_personal);
+
+                    if (resultado.data[0].tipo_contrato === "B") {
+                        $("#cboTContrato option[value=B").attr("selected", true);
+                    }
+                    else {
+                        $("#cboTContrato option[value=H").attr("selected", true);
+                    }
+
+                    $("#btnGuardar2").addClass("div-hide");
+                    $("#btnGuardar3").removeClass("div-hide");
+
+
+                    $("#cboPuesto option[value='" + resultado.data[0].clave_puesto).attr("selected", true);
+                    $("#txtFechaInicio").val(resultado.data[0].periodo_inicio);
+                    $("#txtFechaFin").val(resultado.data[0].periodo_fin);
+                }
+            })
+            .fail(function (data) {
+                MensajesToastrErrorConexion();
+            });
+    }
+
+
+    function Eliminar(id) {
+
+        var opcion = confirm("Esta Seguro(a) que desea eliminar esta solicitud?");
+        if (opcion == true) {
+            $.ajax({
+                asyn: false,
+                url: '../../../Generales/EliminarSolicitud',
+                type: 'POST',
+                dataType: 'json',
+                data: { psId: id },
+            })
+                .done(function (data) {
+
+                    if (typeof (data.Success) === "undefined" || !data.Success) {
+                        MensajesToastr("error", "Solicitud Procesada", "Error al Guardar");
+                    }
+                    else {
+                        MensajesToastr("success", "Solicitud Procesada", "Registro Eliminado");
+                        $('#BodyPrincipal').load('../../../../Generales/SolicitudPersonal');
+                    }
+                })
+                .fail(function (data) {
+                    MensajesToastrErrorConexion();
+                });
+
+            event.preventDefault();
+        }
+    }
+
+
+    $("#btnGuardar2").click(function Nuevo(evento) {
+        var RFC = $("#cboPersonal").val();
+        var ClaveArea = $("#hidClaveArea").val();
+        var Puesto = $("#cboPuesto").val();
+        var PeriodoInicio = $("#txtFechaInicio").val();
+        var PeriodoFin = $("#txtFechaFin").val();
+        var TipoContrato = $("#cboTContrato").val();
+
+
+        $.ajax({
+            asyn: false,
+            url: '../../../Generales/GuardaPersonalSolicitud',
+            type: 'POST',
+            dataType: 'json',
+            data: { psRFC: RFC, psClavePuesto: Puesto, psPeriodoInicio: PeriodoInicio, psPeriodoFin: PeriodoFin, psClaveArea: ClaveArea, psTipoContrato: TipoContrato },
+        })
+            .done(function (data) {
+
+                if (typeof (data.Success) === "undefined" || !data.Success) {
+                    MensajesToastr("error", "Solicitud Procesada", "Error al Guardar");
+                }
+                else {
+                    MensajesToastr("success", "Solicitud Procesada", "Registro Correcto");
+                    $('#BodyPrincipal').load('../../../../Generales/SolicitudPersonal');
+                }
+            })
+            .fail(function (data) {
+                MensajesToastrErrorConexion();
+            });
+
+        event.preventDefault();
+    });
+
+    $("#btnGuardar3").click(function Nuevo(evento) {
+        var ID = $("#hidId").val();
+        var RFC = $("#cboPersonal").val();
+        var ClaveArea = $("#hidClaveArea").val();
+        var Puesto = $("#cboPuesto").val();
+        var PeriodoInicio = $("#txtFechaInicio").val();
+        var PeriodoFin = $("#txtFechaFin").val();
+        var TipoContrato = $("#cboTContrato").val();
+
+
+        $.ajax({
+            asyn: false,
+            url: '../../../Generales/GuardaPersonalSolicitud',
+            type: 'POST',
+            dataType: 'json',
+            data: { psId: ID, psRFC: RFC, psClavePuesto: Puesto, psPeriodoInicio: PeriodoInicio, psPeriodoFin: PeriodoFin, psClaveArea: ClaveArea, psTipoContrato: TipoContrato, psID: ID },
+        })
+            .done(function (data) {
+
+                if (typeof (data.Success) === "undefined" || !data.Success) {
+                    MensajesToastr("error", "Solicitud Procesada", "Error al Guardar");
+                }
+                else {
+                    MensajesToastr("success", "Solicitud Procesada", "Registro Actualizado");
+                    $('#BodyPrincipal').load('../../../../Generales/SolicitudPersonal');
+                }
+            })
+            .fail(function (data) {
+                MensajesToastrErrorConexion();
+            });
+
+        event.preventDefault();
+    });
+
+    $('#dtpFechaInicio, #dtpFechaFin, #txtFechaInicio, #txtFechaFin').datetimepicker({
+        viewMode: 'days',
+        format: 'DD/MM/YYYY',
+        locale: 'es',
+        defaultDate: 'now'
+    });
+
+</script>

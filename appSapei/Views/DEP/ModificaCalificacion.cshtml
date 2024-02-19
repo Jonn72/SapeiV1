@@ -1,0 +1,356 @@
+﻿<link href="../../Content/font/font-awesome.min.css" rel="stylesheet" />
+<link href="../../Content/prettify/prettify.min.css" rel="stylesheet" />
+
+@using Sapei.Framework.Utilerias;
+@using System.Data;
+
+@{
+    string lsPeriodo = "";
+    string lsControl = "";
+    string lsNombre = "";
+    string lsCalificaciones = "";
+    string lsFechaLiberacion = "";
+    int liEstado = 0;
+    string lsAutorizado = "";
+    //string[] subs;
+    bool lbEncontrado = false;
+    DataTable loDatos = new DataTable();
+    if (ViewData["Datos"] != null)
+    {
+        loDatos = ViewData["Datos"] as DataTable;
+        if (loDatos.Columns.Count > 1)
+        {
+            lbEncontrado = true;
+
+            lsPeriodo = loDatos.Rows[0].Field<string>("periodo");
+            lsControl = loDatos.Rows[0].Field<string>("no_de_control");
+            lsNombre = loDatos.Rows[0].Field<string>("nombre");
+            lsCalificaciones = loDatos.Rows[0].Field<string>("calificaciones");
+            lsFechaLiberacion = loDatos.Rows[0].Field<string>("fecha_autoriza");
+            liEstado = loDatos.Rows[0].Field<int>("estado");
+            lsAutorizado = loDatos.Rows[0].Field<string>("autorizado");
+        }
+    }
+}
+
+<div class="x_panel">
+    <div class="col-md-10 center-margin center-block">
+        @if (lbEncontrado)
+        {
+            <input type="hidden" id="hidNoControl" value="@lsControl" />
+            <div class="row">
+                <div class="col-md-10 center-margin center-block">
+                    <ul class="stats-overview">
+
+                        <li>
+                            <span class="name">No. Control</span>
+                            <span id="spNoControl" class="value text-success"> @lsControl </span>
+                        </li>
+                        <li style="width:33%">
+                            <span class="name"> Nombre </span>
+                            <span class="value text-success"> @lsNombre </span>
+                        </li>
+
+                        <li>
+                            <span class="name"> Fecha Liberación</span>
+                            <span class="value text-success"> @(string.IsNullOrEmpty(lsFechaLiberacion) ? "SIN AUTORIZAR":lsFechaLiberacion)  </span>
+                        </li>
+                        <li>
+                            <span class="name"> Liberado </span>
+                            <span class="value text-success"> @lsAutorizado </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
+
+
+            <div class="row">
+                <div class="col-md-10 center-margin center-block">
+                    <div id="#lines_div" class="alert alert-dismissible fade in" role="alert">
+
+                        @{
+
+                            if (SesionSapei.Sistema.Sesion.Usuario.RolUsuario == Sapei.Framework.Configuracion.enmRolUsuario.GTV)
+                            {
+                                if (lsAutorizado.Trim().ToUpper() == "SI" || liEstado == 3)
+                                {
+                                    <h4 class="title text-center">
+                                        El (la) estudiante ya tiene modificacion de calificaciones.
+                                    </h4>
+                                }
+                                if (liEstado == 0)
+                                {
+                                    <h4 class="title text-center">
+                                        El (la) estudiante no esta cursando ningun nivel de ingles.
+                                    </h4>
+                                }
+
+                                else if (liEstado == 2)
+                                {
+                                    <script type="text/javascript">
+
+                                        var promant = 0;
+                                        var promdes = 0;
+
+                                        var html = "<div class='col-lg-12 col-md-12 col-sm-6 col-xs-12 text-align-left'><center><h4>Calificaciones Actuales</h4></center></div><div class='col-lg-12 col-md-12 col-sm-6 col-xs-12 text-align-left'><div class='col-lg-1 col-md-1 col-sm-6 col-xs-12 text-align-left'></div>";
+                                                    @{string[] subs = lsCalificaciones.Split('|'); }
+
+                                                    var js = @Html.Raw(subs[1]);
+                                                    var obj = js[0];
+                                                    Object.keys(obj).forEach(function (key) {
+                                                        html = html + "<div class='col-lg-2 col-md-2 col-sm-6 col-xs-12 text-align-left'><label>" + key + ":<input type='text' class='form-control' value='" + obj[key] + "'/></label></div>";
+                                                        promant = promant + parseInt(obj[key]);
+                                                    });
+                                        html = html + "<div class='col-lg-1 col-md-1 col-sm-6 col-xs-12 text-align-left'></div></div></br></br></br></br><div class='col-lg-12 col-md-12 col-sm-6 col-xs-12 text-align-left'><center><h4>Calificaciones a cambiar</h4></center></div>";
+
+                                        var js2 = @Html.Raw(subs[0]);
+                                        var obj2 = js2[0];
+
+                                        console.log(JSON.stringify(obj2));
+                                                    html = html + "<div class='col-lg-12 col-md-12 col-sm-6 col-xs-12 text-align-left'><div class='col-lg-1 col-md-1 col-sm-6 col-xs-12 text-align-left'></div>";
+                                        Object.keys(obj2).forEach(function (key2) {
+                                            html = html + "<div class='col-lg-" + Math.floor((12 / (Object.keys(obj2).length === 5 ? 3 : Object.keys(obj2).length)) - ((Object.keys(obj2).length === 1 ? 2 : 1))) + " col-md-" + Math.floor((12 / (Object.keys(obj2).length === 5 ? 3 : Object.keys(obj2).length)) - ((Object.keys(obj2).length === 1 ? 2 : 1))) +" col-sm-6 col-xs-12 text-align-left'><label>" + key2 + ":<input type='text' class='form-control' value='" + obj2[key2] + "'/></label></div>";
+                          
+                                        });
+
+                                        Object.keys(obj).forEach(function (key) {
+                                            Object.keys(obj2).forEach(function (key2) {
+                                                if (key2 === key) {
+                                                    obj[key] = obj2[key2];
+                                                }
+                                            });
+                                            promdes = promdes + parseInt(obj[key]);
+                                        });
+
+                                        console.log((promant / Object.keys(obj).length) + " " + (promdes / Object.keys(obj).length))
+
+                                        html = html + "<div class='col-lg-1 col-md-1 col-sm-6 col-xs-12 text-align-left'></div></div><div class='col-lg-12 col-md-12 col-sm-6 col-xs-12 text-align-left'><div class='col-lg-1 col-md-1 col-sm-6 col-xs-12 text-align-left'></div>";
+                                        html = html + "<div class='col-lg-5 col-md-5 col-sm-5 col-xs-12 text-align-left'><label>Promedio Anterior:<input type='text' class='form-control' value='" + Math.round(promant / Object.keys(obj).length) + "'/></label></div>";
+                                        html = html + "<div class='col-lg-5 col-md-6 col-sm-5 col-xs-12 text-align-left'><label>Promedio con Cambios:<input type='text' class='form-control' value='" + Math.round(promdes / Object.keys(obj).length) + "'/></label></div><div class='col-lg-1 col-md-1 col-sm-6 col-xs-12 text-align-left'></div></div>";
+
+                                                    $('#replace').html(html);
+                                    </script>
+
+                                    <h4 class="title text-center">
+                                        El (la) estudiante cuenta con solicitud de cambio de calificaciones emitida por el Centro de Lenguas Extranjeras.
+                                    </h4>
+                                    <div class="col-md-12 col-sm-12  center-margin center-block">
+                                        <div class="row">
+
+                                            <div id="replace" class="col-lg-12 col-md-12 col-sm-6 col-xs-12 text-align-left"></div>
+                                        </div>
+                                            <br />
+                                            <br />
+
+                                            <div class="form-group text-center">
+                                                <button id="btnAutorizar" type="submit" class="btn btn-success">Validar Liberación</button>
+                                            </div>
+                                        
+                                    </div>
+                                            }
+                                            }
+                                            else if (SesionSapei.Sistema.Sesion.Usuario.RolUsuario == Sapei.Framework.Configuracion.enmRolUsuario.CLE)
+                                            {
+
+                                            if (liEstado == 2 && lsAutorizado == "NO")
+                                            {
+                                            <h4 class="title text-center">
+                                                El (la) estudiante ya cuenta con solicitud de cambio de calificaciones, y sigue pendiente la autorización.
+                                            </h4>
+                                            }
+
+                                            if (liEstado == 0)
+                                            {
+                                            <h4 class="title text-center">
+                                                El (la) estudiante no esta cursando ningun nivel de ingles.
+
+                                            </h4>
+                                            }
+                                            else if (liEstado == 1)
+                                            {
+                                            <h4 class="title text-center">
+                                                Este modulo permite solicitar el cambio de calificacion, lo cual debe ser autorizado por el depto. de Gestión Tecnológica y Vinculación. Una vez sea autorizado se verá reflejado en el modulo del estudiante.
+
+                                            </h4>
+                                            <br />
+                                            <div class="col-md-12 col-sm-12  center-margin center-block">
+                                                <div class="row">
+                                                    <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 text-align-left">
+                                                        <center><h4>Calificaciones a cambiar</h4></center>
+                                                    </div>
+                                                    <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 text-align-left">
+                                                        <div class="col-lg-1 col-md-1 col-sm-6 col-xs-12 text-align-left">
+                                                        </div>
+                                                        <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 text-align-left">
+                                                            <label>Speaking: <input type="checkbox" onclick="verified('speaking');" id="lblspeaking" value="speaking"></label><br>
+                                                        </div>
+                                                        <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 text-align-left">
+                                                            <label>Writing:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" onclick="verified('writing');" id="lblwriting" value="writing"></label><br>
+                                                        </div>
+                                                        <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 text-align-left">
+                                                            <label>Listening: <input type="checkbox" onclick="verified('listening');" id="lbllistening" value="listening"></label><br>
+                                                        </div>
+                                                        <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 text-align-left">
+                                                            <label>Reading:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" onclick="verified('reading');" id="lblreading" value="reading"></label><br>
+                                                        </div>
+                                                        <div class="col-lg-1 col-md-1 col-sm-6 col-xs-12 text-align-left">
+                                                        </div>
+                                                    </div>
+                                                    <br />
+                                                    <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 text-align-left">
+                                                        <div class="col-lg-1 col-md-1 col-sm-6 col-xs-12 text-align-left">
+                                                        </div>
+                                                        <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 text-align-left div-hide" id="speaking">
+                                                            <label>Speaking:<input type="number" id="txtspeaking" class="form-control" onkeypress="return validaNumericos(event)" onkeydown="return validar(event)" min="0" max="100" /></label>
+                                                        </div>
+                                                        <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 text-align-left div-hide" id="writing">
+                                                            <label>Writing:<input type="number" id="txtwriting" class="form-control" onkeypress="return validaNumericos(event)" onkeydown="return validar(event)" min="0" max="100" /></label>
+                                                        </div>
+                                                        <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 text-align-left div-hide" id="listening">
+                                                            <label>Listening:<input type="number" id="txtlistening" class="form-control" onkeypress="return validaNumericos(event)" onkeydown="return validar(event)" min="0" max="100" /></label>
+                                                        </div>
+                                                        <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 text-align-left div-hide" id="reading">
+                                                            <label>Reading:<input type="number" id="txtreading" class="form-control" onkeypress="return validaNumericos(event)" onkeydown="return validar(event)" min="0" max="100" /></label>
+                                                        </div>
+                                                        <div class="col-lg-1 col-md-1 col-sm-6 col-xs-12 text-align-left">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <br />
+                                            <div class="form-group text-center">
+                                                <button id="btnSolicitar" type="submit" class="btn btn-success">Solicitar Liberación</button>
+                                            </div>
+                                            }
+                                            else if (lsAutorizado.Trim().ToUpper() == "SI" || liEstado == 3)
+                                            {
+                                            <h4 class="title text-center">
+                                                Ya se han modificaco las calificaciones de el (la) estudiante.
+                                            </h4>
+                                            <br />
+                                            <div class="form-group text-center">
+                                                <button id="btnGenerar" type="submit" class="btn btn-success">Generar Constancia</button>
+                                            </div>
+                                            }
+                                            }
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+        }
+    </div>
+</div>
+@Html.Partial("../Generales/ModalVisorPDF")
+<script type="text/javascript">
+
+    var captura = [];
+    var item = {};
+
+    //var temp = "";
+
+   
+
+    function validaNumericos(event) {
+        if (event.charCode >= 48 && event.charCode <= 57) {
+            return true;
+        }
+        return false;
+    }
+
+    function validar(e) {
+        tecla = (document.all) ? e.keyCode : e.which;
+        return !(tecla == 86 && e.ctrlKey);
+    }
+
+    function verified(tipo) {
+        if ($("#lbl" + tipo).is(':checked')) {
+            $("#" + tipo).removeClass('div-hide');
+            $("#txt" + tipo).prop('disabled', false);
+        }
+        else {
+            $("#" + tipo).addClass('div-hide');
+            $("#txt" + tipo).prop('disabled', true);
+            $("#txt" + tipo).val("");
+        }
+    }
+
+    $("#btnSolicitar").click(function Nuevo(event) {
+        var NoControl = $("#spNoControl").text();
+        if (!ValidaCampos()) {
+            //MensajesToastr("info", "Solicitud Procesada", "Complete todos los campos");
+        }
+        else {
+            RegistraSolicitud(NoControl)
+        }
+        event.preventDefault();
+
+    })
+
+    $("#btnAutorizar").click(function Nuevo(event) {
+        var NoControl = $("#spNoControl").text();
+        RegistraSolicitud(NoControl)
+        event.preventDefault();
+    })
+
+    function ValidaCampos() {
+        var count = 0;
+
+        if ($('input[type=checkbox]:checked').length === 0) {
+            MensajesToastr("info", "Solicitud Procesada", "Seleccione por lo menos una calificación");
+            return false;
+        }
+
+        $('input[type=checkbox]:checked').each(function () {
+            if ($("#txt" + $(this).val()).val().length === 0) {
+                item = {};
+                MensajesToastr("info", "Solicitud Procesada", "Complete todos los campos");
+                count = count + 1;
+            }
+            else {
+                item[$(this).val()] = $("#txt" + $(this).val()).val();
+            }
+        });
+
+        if (count > 0) {
+            return false;
+        }
+        else {
+            captura.push(item);
+            console.log(captura);
+            return true;
+        }
+
+    }
+
+    function RegistraSolicitud(NoControl) {
+
+        $.ajax({
+            asyn: false,
+            url: '../../../CentroLenguasExt/ModificaCalificacionJson',
+            type: 'POST',
+            dataType: 'json',
+            data: { psNoControl: NoControl.trim(), psObjeto: JSON.stringify(captura) },
+        })
+            .done(function (data) {
+
+                if (typeof (data.Success) === "undefined" || !data.Success) {
+                    MensajesToastr("error", "Solicitud Procesada", "Error al Guardar");
+                }
+                else {
+                    MensajesToastr("success", "Solicitud Procesada", "Registro Correcto");
+                    LimpiaControles();
+                }
+            })
+            .fail(function (data) {
+                MensajesToastrErrorConexion();
+            });
+    }
+
+    function LimpiaControles() {
+        $("#txtBuscarNoControl").val("");
+        $("#divDatos").hide();
+    }
+</script>

@@ -1,0 +1,59 @@
+﻿<div class="clearfix"></div>
+<form class="form-horizontal form-label-left" action="#" id="frmPeriodosActividades" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+     <input type="hidden" id="hidPeriodo" value="@ViewData["txtPeriodo"]" />
+     <div class="page-title">
+          <div class="title_left">
+               <h3>Registrar Fechas del Periodo <small>@ViewData["txtDescPeriodo"]</small></h3>
+          </div>
+     </div>
+     <div class="clearfix"></div>
+     <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+
+               <div class="row">
+                    
+                         <div class="x_panel">
+                              <div class="x_title">
+                                   <h4>Fecha de Registro de encuestas</h4>
+                                   <div class="clearfix"></div>
+                              </div>
+                              <div class="x_content">
+                                   <div class="col-md-6 col-sm-4 col-xs-12">
+                                        <label>
+                                             Inicio
+                                        </label>
+                                        <div class='input-group date' id='dtpFechaIniRegistro'>
+                                             <input type='text' id="txtFechaIniRegistro" class="form-control" value="@ViewData["txtIniRegistro"]" required />
+                                             <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+                                        </div>
+                                   </div>
+                                   <div class="col-md-6 col-sm-4 col-xs-12">
+                                        <label>
+                                             Fin
+                                        </label>
+                                        <div class='input-group date' id='dtpFechaFinRegistro'>
+                                             <input type='text' id="txtFechaFinRegistro" class="form-control" value="@ViewData["txtFinRegistro"]" required />
+                                             <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+                                        </div>
+                                   </div>
+                                   
+
+                                   
+                              </div>
+                         </div>
+                    
+
+               </div>
+               <div class="row">
+                    <div class="col-md-offset-8 col-md-4">
+                         <button id="btnGuardar" type="submit" class="btn btn-block btn-success">Guardar Fechas</button>
+                    </div>
+               </div>
+          </div>
+     </div>
+
+     @Html.Partial("../Generales/TablaGeneral")
+</form>
+
+
+<script src="~/Scripts/ManejoDatos/SGI/ActivarPeriodo.js"></script>

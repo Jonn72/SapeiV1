@@ -1,0 +1,50 @@
+﻿@using Syncfusion.EJ2.Schedule
+<script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+<script type="text/javascript">
+
+    function stylex() {
+        $(".e-header-date").hide();
+    }
+
+    function onRenderer(args) {
+
+        if (args.elementType === "dateHeader" || args.elementType === "monthCells") {
+            ej.base.removeClass(args.element.childNodes, "e-navigate");
+        }
+    }
+
+</script>
+<div id="divVisorSchedule" class="col-md-12 center-margin center-block">
+    <div id="divCargandoSchedule" class="col-md-offset-2 div-hide">
+        <img src="~/Images/efectos/ajax-loader3.gif" />
+    </div>
+    <div id="divSchedule" class="">
+
+        @if (ViewData["V_Jefes"] != null)
+        {
+            @(Html.EJS().Schedule("schedule")
+        .Height("500px")
+        .WorkHours(wh =>
+        wh.Highlight(true)
+        .Start("07:00")
+        .End("21:00")
+        )
+        .ShowHeaderBar(false)
+        .FirstDayOfWeek(1)
+        .Timezone("America/Mexico_City")
+        .SelectedDate(new DateTime(2018, 1, 1))
+        .EventSettings(new ScheduleEventSettings { DataSource = ViewBag.datasource })
+        .Views(view =>
+        {
+        view.Option(View.Week).FirstDayOfWeek(1).Interval(1).Add();
+        })
+        .Readonly(true)
+        .Created("stylex")
+        .Render()
+
+        )
+        }
+    </div>
+
+</div>
+@Html.EJS().ScriptManager()

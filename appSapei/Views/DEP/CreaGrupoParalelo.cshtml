@@ -1,0 +1,86 @@
+﻿@using Sapei.Framework.Utilerias;
+@{
+    System.Data.DataRow loFila = null;
+    string lsPeriodo = "";
+    string lsCarrera_Reticula = "";
+    string lsMateria = "";
+    string lsNomMateria = "";
+    string lsCarrera = "";
+    string lsReticula = "";
+    string lsEspecialidad = "";
+
+    if (ViewData["DatosSeleccion"] != null)
+    {
+        loFila = (ViewData["DatosSeleccion"] as System.Data.DataTable).Rows[0];
+        lsPeriodo = loFila.ItemArray[0].ToString().Trim();
+        lsCarrera_Reticula = loFila.ItemArray[1].ToString().Trim();
+        lsMateria = loFila.ItemArray[2].ToString().Trim();
+        lsNomMateria = loFila.ItemArray[3].ToString().Trim();
+        lsCarrera = loFila.ItemArray[4].ToString().Trim();
+        lsReticula = loFila.ItemArray[5].ToString().Trim();
+        lsEspecialidad = loFila.ItemArray[6].ToString().Trim();
+    }
+}
+<input type="hidden" value="@Html.Raw(lsPeriodo)" id="hidPeriodoParalelo" />
+<input type="hidden" value="@Html.Raw(lsMateria)" id="hidMateriaParalelo" />
+<input type="hidden" value="@Html.Raw(lsCarrera)" id="hidCarreraParalelo" />
+<input type="hidden" value="@Html.Raw(lsReticula)" id="hidReticulaParalelo" />
+<input type="hidden" value="@Html.Raw(lsEspecialidad)" id="hidEspecialidadParalelo" />
+<input type="hidden" value="@Html.Raw(ViewData["DivAct"])" id="hidDivActParalelo" />
+<div class="page-title">
+    <div class="title_left">
+        <h3>Asignacion de Horario </h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="x_panel">
+    <div class="row">
+        <div class="x_title">
+            <h2>Registro</h2>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <div class="form-group ">
+                <label>
+                    Carrera/Reticula
+                </label>
+                <input type="text" class="form-control" id="txtCarrera" value="@lsCarrera_Reticula" placeholder="Capacidad" readonly />
+                <label>
+                    Materia
+                </label>
+                <input type="text" class="form-control" id="txtMateria" value="@lsNomMateria" placeholder="Ingrese Descripcion" readonly />
+                <label>
+                    Grupo
+                </label>
+                <input type="text" class="form-control" id="txtGrupo" value="" placeholder="Ingrese Grupo" />
+                <label>
+                    Capacidad
+                </label>
+                <input type="text" class="form-control" id="txtCapacidad" value="" placeholder="Ingrese Capacidad" />
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+
+    <div class="col-md-2">
+        <button id="btnRegresar" type="submit" onclick="Regresar2('@lsPeriodo', '@lsCarrera', '@lsReticula', '@lsEspecialidad');" class="btn btn-block btn-danger">Regresar</button>
+    </div>
+    <div class="col-md-4">
+        <button type="button" id="btnGuardar" class="btn btn-success div-hide" onclick="GuardarParalelo();"> Guardar Paralelo </button>
+    </div>
+</div>
+<script type="text/javascript">
+
+    var expar = $("#hidRFCExParalelo").val();
+    var espar = $("#hidEspecialidadParalelo").val();
+    if ((expar || typeof expar !== 'undefined') && (espar || typeof espar !== 'undefined')) {
+        $("#btnGuardar").show();
+    }
+
+    function Regresar2(periodo, carrera, reticula, especialidad) {
+        var DivAct = $("#hidDivActParalelo").val();
+        var CarreraReticula = carrera == "0" && reticula == "0" ? "0" : carrera + '_' + reticula;
+        $('#Panel' + DivAct).load('../../../DEP/ReticulaParalelo', { psPeriodo: periodo, psCarreraReticula: CarreraReticula, psEspecialidad: especialidad, psDiv: DivAct });
+    }
+</script>

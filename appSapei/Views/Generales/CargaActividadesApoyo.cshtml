@@ -1,0 +1,395 @@
+﻿@using Syncfusion.EJ2.Schedule
+<style>
+    .custom-event-editor .e-textlabel {
+        padding-right: 15px;
+        text-align: right;
+    }
+
+    .custom-event-editor td {
+        padding: 7px;
+        padding-right: 16px;
+    }
+</style>
+<script type="text/javascript">
+
+    function stylex() {
+        $(".e-header-date").hide();
+    }
+
+    function onRenderer(args) {
+
+        if (args.elementType === "dateHeader" || args.elementType === "monthCells") {
+            ej.base.removeClass(args.element.childNodes, "e-navigate");
+        }
+    }
+
+
+</script>
+<script id="EventEditorTemplate" type="text/template">
+    <table class="custom-event-editor" width="100%" cellpadding="5">
+        <tbody>
+            <tr>
+                <td class="e-textlabel">Status</td>
+                <td colspan="4">
+                    <input type="text" id="EventType" name="EventType" style="width: 100%" />
+                </td>
+            </tr>
+            <tr>
+                <td class="e-textlabel">From</td>
+                <td colspan="4">
+                    <input id="StartTime" type="text" name="StartTime" />
+                </td>
+            </tr>
+            <tr>
+                <td class="e-textlabel">To</td>
+                <td colspan="4">
+                    <input id="EndTime" type="text" name="EndTime" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</script>
+
+
+<script type="">
+    var DialogObj;
+    var dateini = new Date();
+    var datefin = new Date();
+
+    var items = [
+        @if (ViewData["objeto"] != null)
+     {
+
+         foreach (System.Data.DataRow drobjeto in (ViewData["objeto"] as System.Data.DataTable).Rows)
+         {
+            @Html.Raw(drobjeto.ItemArray[0].ToString())
+         }
+     }
+    ];
+
+    function retornovalor(texto) {
+        var retorno;
+        items.forEach(object => {
+            if (object.text === texto) {
+                retorno = object.value;
+            }
+        });
+        return retorno;
+    }
+
+    function onPopupOpen(args) {
+        if (args.type === 'Editor') {
+            var statusElement = args.element.querySelector('#EventType');
+            if (statusElement) {
+
+                var dropDownListObject = new ej.dropdowns.DropDownList({
+                    placeholder: 'Seleccione una actividad', value: (args.data).EventType,
+                    dataSource: items,
+                    fields: { text: "text", value: "value" },
+                });
+                dropDownListObject.appendTo(statusElement);
+            }
+            var startElement = args.element.querySelector('#StartTime');
+            if (!startElement.classList.contains('e-datetimepicker')) {
+                startElement.value = (args.data).StartTime;
+                dateini = new Date(startElement.value);
+                localStorage.setItem("dateini", dateini);
+                new ej.calendars.TimePicker({ value: new Date(startElement.value) || new Date() }, startElement);
+            }
+            var endElement = args.element.querySelector('#EndTime');
+            if (!endElement.classList.contains('e-datetimepicker')) {
+                endElement.value = (args.data).EndTime;
+                datefin = new Date(endElement.value);
+                localStorage.setItem("datefin", datefin);
+                new ej.calendars.TimePicker({ value: new Date(endElement.value) || new Date() }, endElement);
+            }
+        }
+    }
+
+    function onPopupClose(args) {
+        if (args.type === 'Editor' && !ej.base.isNullOrUndefined(args.data)) {
+            var statusElement = args.element.querySelector('#EventType');
+            if (statusElement) {
+                if (statusElement.value === "") {
+                    console.log("uno");
+                    return;
+                }
+                (args.data).Subject = statusElement.value;
+                (args.data).EventType = retornovalor(statusElement.value);
+            }
+            var startElement = args.element.querySelector('#StartTime');
+            if (startElement) {
+                var formattedDate = new Date(localStorage.getItem("dateini"));
+                var d = formattedDate.getDate();
+                var m = formattedDate.getMonth();
+                var y = formattedDate.getFullYear();
+                var hh = 0;
+                var mm = 0;
+                var splited = startElement.value.split(':');
+                var hora = startElement.value;
+                if (hora.includes("PM") === true) {
+                    if (parseInt(splited[0]) != 12) {
+                        hh = parseInt(splited[0]) + 12;
+                    }
+                    else {
+                        hh = parseInt(splited[0]);
+                    }
+                }
+                else if (hora.includes("AM")) {
+                    if (splited[0] == 12) {
+                        hh = "00";
+                    }
+                    else {
+                        console.log("3.b");
+                        hh = splited[0];
+                    }
+                }
+                var alter = splited[1].split(' ');
+                mm = alter[0];
+                var datein = new Date(y, m, d, hh, mm);
+                (args.data).StartTime = datein;
+            }
+
+            var endElement = args.element.querySelector('#EndTime');
+            if (endElement) {
+                var formattedDate2 = new Date(localStorage.getItem("datefin"));
+                var d2 = formattedDate2.getDate();
+                var m2 = formattedDate2.getMonth();
+                var y2 = formattedDate2.getFullYear();
+                var hh2 = 0;
+                var mm2 = 0;
+                var splited2 = endElement.value.split(':');
+                var hora2 = endElement.value;
+                if (hora2.includes("PM") === true) {
+                    if (parseInt(splited2[0]) != 12) {
+                        hh2 = parseInt(splited2[0]) + 12;
+                    }
+                    else {
+                        hh2 = parseInt(splited2[0]);
+                    }
+                }
+                else if (hora2.includes("AM")) {
+                    if (splited2[0] == 12) {
+                        hh2 = "00";
+                    }
+                    else {
+                        hh2 = splited2[0];
+                    }
+                }
+                var alter2 = splited2[1].split(' ');
+                mm2 = alter2[0];
+                var datefi = new Date(y2, m2, d2, hh2, mm2);
+                (args.data).EndTime = datefi;
+            }
+        }
+
+
+    }
+
+        function onActionBegin(args) {
+            if (args.requestType === 'eventCreate' || args.requestType === 'eventChange') {
+                var data;
+                if (args.requestType === 'eventCreate') {
+                    data = args.data[0];
+                } else if (args.requestType === 'eventChange') {
+                    data = args.data;
+                }
+                if (!this.isSlotAvailable(data)) {
+                    args.cancel = true;
+                    var dialog = document.getElementById("dialog").ej2_instances[0]
+                    dialog.show();
+                }
+            }
+
+            if (args.requestType === 'eventRemove') {
+                if (args.deletedRecords.length > 0) {
+                    var Id;
+                    Id = args.data[0].Id;
+                    var RFC = "@Html.Raw(ViewData["rfc"])";
+                    var Periodo = "@Html.Raw(ViewData["periodo"])";
+                    $.ajax({
+                        url: '../../../Generales/EliminaHorarioActividadApoyoJSON',
+                        type: 'POST',
+                        dataType: 'json',
+                        data: { psIdHorario: Id, psRFC: RFC, psPeriodo: Periodo }
+                    })
+                        .done(function (data) {
+                            if (typeof (data.Success) !== "undefined" && !data.Success) {
+                                MensajesToastr("warning", "Error de proceso", data.Mensaje);
+                            }
+                            else {
+                                if (data.Mensaje === "delete") {
+                                    MensajesToastr("info", "Solicitud Procesada", "Horario Eliminado");
+                                }
+
+                                else if (data.Mensaje === "NE") {
+                                    MensajesToastr("info", "Solicitud Procesada", "Horario Eliminado");
+                                }
+                                }
+                            })
+                        .fail(function (data) {
+                            MensajesToastrErrorConexion();
+                        });
+                }
+            }
+        }
+
+    function dlgButtonClick() {
+        var dialogObj = document.getElementById('dialog').ej2_instances[0];
+        dialogObj.hide();
+    }
+
+    function onOverlayClick() {
+        var dialog = document.getElementById("dialog").ej2_instances[0];
+        dialog.hide();
+    }
+
+    function Guardar() {
+        var scheduleObj = document.getElementById('schedule').ej2_instances[0];
+        var objeto = scheduleObj.getCurrentViewEvents();
+        var objeto2 = JSON.stringify(objeto);
+        var RFC = "@Html.Raw(ViewData["rfc"])";
+        var Periodo = "@Html.Raw(ViewData["periodo"])";
+        console.log(JSON.stringify(objeto2));
+
+        $.ajax({
+            url: '../../../Generales/RegistraHorarioActividadesApoyoJSON',
+            type: 'POST',
+            dataType: 'json',
+            data: { lsobjeto: objeto2, psRFC: RFC, psPeriodo: Periodo }
+        })
+            .done(function (data) {
+                if (typeof (data.Success) !== "undefined" && !data.Success) {
+                    MensajesToastr("warning", "Error de proceso", data.Mensaje);
+                }
+                else {
+                    MensajesToastr("info", "Solicitud Procesada", "Horario Guardado");
+                        $('#BodyPrincipal').load('../../../../Generales/ActividadesApoyo');
+                }
+            })
+            .fail(function (data) {
+                MensajesToastrErrorConexion();
+            });
+
+    }
+
+    function Cancelar() {
+            $('#BodyPrincipal').load('../../../../Generales/ActividadesApoyo');
+    }
+
+    function Liberar() {
+
+        DialogObj = ej.popups.DialogUtility.confirm({
+            title: 'Confirmación',
+            content: "Esta seguro que desea liberar este horario?",
+            okButton: { text: 'Si', click: Eliminar.bind(this) },
+            cancelButton: { text: 'No'},
+            closeOnEscape: true,
+            animationSettings: { effect: 'Zoom' }
+        });
+
+        function Eliminar() {
+        DialogObj.hide();
+        var RFC = "@Html.Raw(ViewData["rfc"])";
+        var Periodo = "@Html.Raw(ViewData["periodo"])";
+        $.ajax({
+            url: '../../../Generales/LiberaActividadesApoyo',
+            type: 'POST',
+            dataType: 'json',
+            data: { psRFC: RFC, psPeriodo: Periodo }
+        })
+            .done(function (data) {
+                if (typeof (data.Success) !== "undefined" && !data.Success) {
+                    MensajesToastr("warning", "Error de proceso", data.Mensaje);
+                }
+                else {
+                    MensajesToastr("info", "Solicitud Procesada", "Horario Guardado");
+                    $('#BodyPrincipal').load('../../../../Generales/ActividadesApoyo');
+                }
+            })
+            .fail(function (data) {
+                MensajesToastrErrorConexion();
+            });
+        }
+    }
+
+
+
+</script>
+
+@{
+    bool muestra = false;
+    if (ViewData["RH"].ToString() == "S")
+    {
+        muestra = true;
+    }
+}
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>Asignación de actividades<small> de apoyo a la docencia</small></h3>
+    </div>
+</div>
+
+<div class="clearfix"></div>
+<div class="x_panel">
+    <div class="x_content">
+        <div id="divVisorSchedule" class="col-md-12 center-margin center-block">
+
+
+            @(Html.EJS().Schedule("schedule")
+            .Width("100%")
+            .Height("500px")
+            .WorkHours(wh =>
+            wh.Highlight(true)
+            .Start("07:00")
+            .End("21:00")
+            )
+            .PopupOpen("onPopupOpen")
+            .PopupClose("onPopupClose")
+            .EditorTemplate("#EventEditorTemplate")
+            .FirstDayOfWeek(1)
+            .EventSettings(new ScheduleEventSettings { DataSource = ViewBag.datasource })
+            .Views(view =>
+            {
+                view.Option(View.Week).FirstDayOfWeek(1).Interval(1).Add();
+            })
+            .ShowHeaderBar(false)
+            .ShowQuickInfo(false)
+            .Readonly(muestra)
+            .Created("stylex")
+            .ActionBegin("onActionBegin")
+            .SelectedDate(new DateTime(2018, 1, 1))
+            .Render()
+            )
+
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="form-group">
+
+        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-1" id="btnpersonal">
+
+            &nbsp;
+            @{
+                if (muestra == true && ViewData["User"].ToString() == "N")
+                {
+                    <button type="submit" class="btn btn-success" id="Guardar" onclick="Liberar();"> Liberar</button>
+                }
+                else if(ViewData["User"].ToString() == "N")
+                {
+                    <button type="submit" class="btn btn-success" id="Guardar" onclick="Guardar();"> Guardar</button>
+                }
+            }
+            <button type="submit" class="btn btn-danger" id="Cancelar" onclick="Cancelar();"> Cancelar</button>
+        </div>
+    </div>
+</div>
+
+<div id="container" style="height:400px;">
+    @Html.EJS().Dialog("dialog").Header("Alert").AnimationSettings(e => e.Effect(Syncfusion.EJ2.Popups.DialogEffect.Zoom).Duration(400).Delay(0)).Visible(false).IsModal(true).OverlayClick("onOverlayClick").Content("Los eventos no se pueden programar dentro del intervalo de tiempo bloqueado.").Width("300px").Target("#container").Buttons(btn => { btn.Click("dlgButtonClick").ButtonModel(ViewBag.DialogButtons1).Add(); }).Render()
+</div>
+
+@Html.EJS().ScriptManager()
+

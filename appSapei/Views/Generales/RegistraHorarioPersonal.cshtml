@@ -1,0 +1,346 @@
+﻿@using Syncfusion.EJ2.Schedule
+<style>
+    .control-section {
+        padding-left: 10px;
+    }
+
+    #target {
+        height: 100%;
+        min-height: 350px;
+    }
+
+    span.close-icon {
+        width: 24px;
+        height: 24px;
+        position: relative;
+        display: inline-block;
+    }
+
+    span.error-msg {
+        color: #66afe9;
+        display: inline-block;
+        position: relative;
+    }
+
+    .error-detail.col-lg-8 {
+        position: relative;
+        left: 45px;
+        margin: 20px 0px 21px;
+    }
+
+    .e-icons.close-icon.col-lg-2:before {
+        content: '\e7e9';
+        font-size: 26px;
+        color: #d9534f;
+        position: relative;
+        left: -12px;
+    }
+
+    .e-dialog .e-footer-content {
+        background-color: #f8f8f8;
+    }
+
+    .e-dialog.e-control.e-popup, .e-dialog.e-control.e-popup .e-dlg-header-content {
+        background-color: #d9edf7;
+    }
+
+    .e-dialog.e-control.e-popup {
+        padding: 3px;
+    }
+
+    .e-dialog.e-control .e-dlg-header-content {
+        padding: 10px;
+    }
+
+    .e-dialog.e-control .e-footer-content {
+        padding: 8px 12px;
+    }
+
+    .e-dialog.e-control .e-dlg-content {
+        padding: 15px 0px 0px;
+    }
+</style>
+<script type="text/javascript">
+
+    function PreparaFirma() {   
+        $('#divModalFirmaElectronica').modal('show');
+    }
+
+    $("#btnEnviarFirmar").click(function () {
+        var firma = $("#txtFirma").val();
+        $('#divModalFirmaElectronica').modal('hide');
+        $.ajax({
+            asyn: false,
+            url: '../../../Generales/FirmaHorarioPersonal',
+            type: 'POST',
+            dataType: 'json',
+            data: { psFirma: firma},
+        })
+            .done(function (data) {
+                if (typeof (data.Success) === "undefined" || !data.Success) {
+                    MensajesToastr("error", "Solicitud Procesada", data.Mensaje);
+                }
+                else {
+                    Guardar();
+                }
+            })
+            .fail(function (data) {
+                MensajesToastrErrorConexion();
+            }).always(function () {
+            });
+        event.preventDefault();
+    });
+
+    function NoClick() {
+        var dialogObj = document.getElementById('dialog').ej2_instances[0];
+        dialogObj.hide();
+    }
+
+    function SiClick() {
+        var id = parseInt($("#idHorario").val());
+        var ID = $("#txtID").val();
+
+        $.ajax({
+            url: '../../../Generales/EliminaHorarioJSON',
+            type: 'POST',
+            dataType: 'json',
+            data: { psIdHorario: id, psID: ID }
+        })
+            .done(function (data) {
+                if (typeof (data.Success) !== "undefined" && !data.Success) {
+                    MensajesToastr("warning", "Error de proceso", data.Mensaje);
+                }
+                else {
+
+                    if (data.Mensaje === "delete") {
+                        MensajesToastr("info", "Solicitud Procesada", "Horario Eliminado");
+                        var scheduleObj = document.querySelector("schedule").ej2_instances[0];
+                        scheduleObj.deleteEvent(id);
+                        var dialogObj = document.getElementById('dialog').ej2_instances[0];
+                        dialogObj.hide();
+                    }
+
+                    else if (data.Mensaje === "NE") {
+                        var scheduleObj = document.querySelector("schedule").ej2_instances[0];
+                        scheduleObj.deleteEvent(id);
+                        var dialogObj = document.getElementById('dialog').ej2_instances[0];
+                        dialogObj.hide();
+                    }
+                }
+            })
+            .fail(function (data) {
+                MensajesToastrErrorConexion();
+            });
+    }
+
+    function stylex() {
+        $(".e-header-date").hide();
+    }
+
+    function onRenderer(args) {
+
+        if (args.elementType === "dateHeader" || args.elementType === "monthCells") {
+            ej.base.removeClass(args.element.childNodes, "e-navigate");
+        }
+    }
+
+    function onEventRendered(args) {
+
+        var selected = args.data.Selected;
+        if (selected === "S") {
+            args.element.style.backgroundColor = "#00bdae";
+        }
+        else {
+            args.element.style.backgroundColor = "#5d5d5d";
+        }
+
+    }
+
+    function Cancelar(id) {
+        if (id === '1') {
+            $('#BodyPrincipal').load('../../../../Generales/HorariosAdministrativos');
+        }
+        else {
+            $('#BodyPrincipal').load('../../../../Home/Bienvenida');
+        }
+
+        //evento.preventDefault();
+    }
+
+    function Guardar() {
+        var scheduleObj = document.getElementById('schedule').ej2_instances[0];
+        var objeto = scheduleObj.getCurrentViewEvents();
+        var objeto2 = JSON.stringify(objeto);
+        var ID = $("#txtID").val();
+        var Puesto = $("#puesto").val();
+        var RFC = $("#txtRFC").val();
+
+        //console.log(JSON.stringify(objeto));
+
+        $.ajax({
+            url: '../../../Generales/RegistraHorarioJSON',
+            type: 'POST',
+            dataType: 'json',
+            data: { lsobjeto: objeto2, psID: ID, psPuesto: Puesto, psRFC: RFC }
+        })
+            .done(function (data) {
+                if (typeof (data.Success) !== "undefined" && !data.Success) {
+                    MensajesToastr("warning", "Error de proceso", data.Mensaje);
+                }
+                else {
+                    MensajesToastr("info", "Solicitud Procesada", "Horario Guardado");
+                    if (RFC.length > 2) {
+                        $('#BodyPrincipal').load('../../../../Generales/HorarioJefe');
+                    }
+                    else {
+                        $('#BodyPrincipal').load('../../../../Generales/HorariosAdministrativos');
+                    }
+                }
+            })
+            .fail(function (data) {
+                MensajesToastrErrorConexion();
+            });
+
+    }
+
+    function clicked(args) {
+
+        if ($("#txtRFC").val().length < 2) {
+            args.cancel = true;
+            var event = args.event;
+            var id = event.Id;
+            $("#idHorario").val(id);
+            var dialog = document.getElementById("dialog").ej2_instances[0];
+            $(".dialog-content").show();
+            dialog.show();
+        }
+    }
+
+    function clicked2(args) {
+        args.cancel = true;
+        var back = args.element.style.backgroundColor;
+        console.log(back);
+        if (back === "rgb(93, 93, 93)") {
+            args.event.Selected = "S";
+            args.element.style.backgroundColor = "#00bdae";
+        }
+        else {
+            args.event.Selected = "N";
+            args.element.style.backgroundColor = "#5d5d5d";
+        }
+
+    }
+</script>
+@{
+    bool muestra = false;
+    if (ViewData["Verificacion"].ToString() == "1")
+    {
+        muestra = true;
+    }
+}
+<input type="hidden" id="idHorario" value="" />
+<input type="hidden" id="ClaveArea" value="" />
+<input type="hidden" id="txtID" value="@ViewData["ID"]" />
+<input type="hidden" id="txtRFC" value="@ViewData["RFC"]" />
+<input type="hidden" id="usuario" value="@ViewData["Usuario"]" />
+<input type="hidden" id="periodo" value="@ViewData["Periodo"]" />
+<input type="hidden" id="puesto" value="@ViewData["Puesto"]" />
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>Horario <small>Administrativo</small></h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+
+<div id="main">
+
+    @if (ViewData["ID"] != null)
+    {
+        if (ViewData["Puesto"] != null)
+        {
+
+            @(Html.EJS().Schedule("schedule")
+                                .Height("500px")
+                                .WorkHours(wh =>
+                                    wh.Highlight(true)
+                                    .Start("07:00")
+                                    .End("21:00")
+                                )
+                                .ShowHeaderBar(false)
+                                .FirstDayOfWeek(1)
+                                .Timezone("America/Mexico_City")
+                                .SelectedDate(new DateTime(2018, 1, 1))
+                                .EventSettings(new ScheduleEventSettings { DataSource = ViewBag.datasource, EnableTooltip = false })
+                                 .Views(view =>
+                                 {
+                                     view.Option(View.Week).FirstDayOfWeek(1).Interval(1).Add();
+                                 })
+                                 .Created("stylex")
+                                 .Readonly(true)
+                                 .EventClick("clicked2")
+                                 .EventRendered("onEventRendered")
+                                 .Render()
+                                )
+        }
+        else
+        {
+            @(Html.EJS().Schedule("schedule")
+                .Height("500px")
+                .WorkHours(wh =>
+                    wh.Highlight(true)
+                    .Start("07:00")
+                    .End("21:00")
+                )
+                .ShowHeaderBar(false)
+                .FirstDayOfWeek(1)
+                .Timezone("America/Mexico_City")
+                .SelectedDate(new DateTime(2018, 1, 1))
+                .EventSettings(new ScheduleEventSettings { DataSource = ViewBag.datasource })
+                 .Views(view =>
+                 {
+                     view.Option(View.Week).FirstDayOfWeek(1).Interval(1).Add();
+                 })
+                 .Readonly(muestra)
+                 .Created("stylex")
+                 .EventClick("clicked")
+                .Render()
+
+                )
+
+        }
+    }
+
+
+    <br />
+    <div class="form-group">
+
+        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-1 @if(ViewData["RFC"].ToString() != "0"){@Html.Raw("div-hide");}" id="btnpersonal">
+            <button type="submit" class="btn btn-success" id="Guardar" onclick="Guardar();"> Guardar</button>
+            &nbsp;
+            <button type="submit" class="btn btn-danger" id="Cancelar" onclick="Cancelar('1');"> Cancelar</button>
+        </div>
+        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-1 @if(ViewData["RFC"].ToString() == "0"){@Html.Raw("div-hide");}" id="btnjefes">
+            <button type="submit" class="btn btn-info @if(ViewData["Verificacion"].ToString() != "0"){@Html.Raw("div-hide");}"  onclick="PreparaFirma();"> Firmar Horario</button>
+            &nbsp;
+            <button type="submit" class="btn btn-danger" id="Cancelar" onclick="Cancelar('2');"> Cancelar</button>
+        </div>
+    </div>
+
+    @Html.EJS().Dialog("dialog").IsModal(true).Visible(false).AnimationSettings(e => e.Effect(Syncfusion.EJ2.Popups.DialogEffect.Zoom)).Header("Eliminar Horario").ShowCloseIcon(true).Width("400px").Target("#main").Buttons(btn =>
+    {
+        btn.Click("SiClick").ButtonModel(ViewBag.button1).Add();
+        btn.Click("NoClick").ButtonModel(ViewBag.button2).Add();
+    }).ContentTemplate(@<div class='dialog-content div-hide'>
+            <div class='msg-wrapper  col-lg-12'>
+                <span class='e-icons close-icon col-lg-2'></span>
+                <span class='error-msg col-lg-10'>Está por eliminar el horario seleccionado</span>
+            </div><div class='error-detail col-lg-8'><span>¿esta seguro de eliminarlo? </span> </div>
+        </div>).Render()
+
+
+
+    @Html.EJS().ScriptManager()
+
+</div>
+@Html.Partial("../Generales/FirmaElectronica")

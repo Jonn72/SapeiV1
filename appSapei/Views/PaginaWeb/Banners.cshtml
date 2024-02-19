@@ -1,0 +1,91 @@
+﻿<link href="~/Content/Controles/Dropzone.css" rel="stylesheet" />
+
+    <div style="margin-bottom:70px" class="col-md-4 col-sm-4 col-xs-12" id="form">
+        <div class="x_panel">
+            <div class="x_title">
+                <h3>Nueva Noticia (Banner) </h3>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                    <label for="titulotxt">Título de la publicación</label>
+                    <input type="text" class="form-control required" name="titulo" id="titulo" placeholder="Introduce el título de la Publicación" required>
+                </div>
+                <div class="dropzone_form col-md-12 col-sm-12 col-xs-12 form-group">
+                    <label>Imagen del banner</label>
+                    <form id="dropzone_banner" style="margin-left:10px; margin-right:10px;" action="#" method="post" enctype="multipart/form-data" class="dropzone needsclick dz-clickable" required>
+                        <div class="dz-default dz-message">
+                            <span>Haz clic aquí o arrastra una imagenes.</span>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                    <label for="tags">
+                        Tipo de publicación
+                    </label>
+                    <div class="radio">
+                        <label for="tags">
+                            <input type="radio" name="rbtPublicacion" id="rdbArchivo" value="A" checked="checked" >
+                            Archivo (Imagen o PDF)
+                        </label>
+                        <label for="tags">
+                            <input type="radio" name="rbtPublicacion" id="rdbURL" value="U" >
+                            URL
+                        </label>
+                    </div>
+                </div>
+                <div id="divUrl" class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                    <label for="videotxt">Video</label>
+                    <input type="text" class="form-control required" name="urlvideo" id="urlvideo" placeholder="Introduce la url del video" required>
+                </div>
+                <div id="divArchivo" class="dropzone_form col-md-12 col-sm-12 col-xs-12 form-group">
+                    <label>Archivo</label>
+                    <form id="dropzone_archivo"  style="margin-left:10px; margin-right:10px;" method="post" enctype="multipart/form-data" class="dropzone needsclick dz-clickable" required>
+                        <div class="dz-default dz-message">
+                            <span>Haz clic aquí o arrastra una imagenes.</span>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                    <label>Prioridad</label>
+                    <div class="radio">
+                        <label for="tags">
+                            <input type="radio" name="rbtPrioridad" id="rbdBaja" value="1" checked="checked">
+                            Baja
+                        </label>
+                        <label for="tags">
+                            <input type="radio" name="rbtPrioridad" id="rbdMedia" value="2">
+                            Media
+                        </label>
+                        <label for="tags">
+                            <input type="radio" name="rbtPrioridad" id="rbdAlta" value="3">
+                            Alta
+                        </label>
+                        <label for="tags">
+                            <input type="radio" name="rbtPrioridad" id="rbdMAlta" value="4">
+                            Muy Alta
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                    <label>Publicar</label>
+                    <input type="checkbox" class="form-control" id="cbxPublicar">
+                </div>
+
+
+                <div style="margin-top:30px;" class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                    <button id="btnEnviar" type="submit" class="btn btn-block btn-success" disabled>Generar Banner</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="margin-bottom:70px" class="col-md-8 col-sm-8 col-xs-12">
+        @Html.Partial("../Generales/TablaJson")
+    </div>
+
+
+    <script src="~/Scripts/ManejoDatos/Gnosis/dropzone.js"></script>
+    <script src="~/Scripts/ManejoDatos/Pagina/Banner.js"></script>
+

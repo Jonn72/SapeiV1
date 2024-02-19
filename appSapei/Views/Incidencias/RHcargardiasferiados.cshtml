@@ -1,0 +1,80 @@
+﻿
+<div class=" page-title">
+    <div class="title_right">
+    </div>
+</div>
+<div class="x_panel">
+    <div class="x_title">
+        <h3>RH carga de días feriados</h3>
+    </div>
+    <div class=" x_content">
+
+        <div class="col-md-4 col-xs-12 col-sm-12">
+            <div class="control-group">
+                <label for="Periodo_txt">Fecha:</label>
+
+                <div class='input-group date' id='dtpFecha'>
+                    <input type='text' id="txtFecha" placeholder="Ingrese fecha de inicio" class="form-control" required />
+                    <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="col-md-4 col-xs-12 col-sm-12">
+            <div class="form-group">
+                <label>Periodo</label>
+                @{
+                    ViewData["NombreCombo"] = "idPeriodo";
+                    ViewData["DatosCombo"] = ViewData["periodos"];
+                }
+                @Html.Partial("../Generales/ListaDesplegable")
+            </div>
+        </div>
+        <div class="col-md-4 col-xs-12 col-sm-12">
+            <div class="form-group">
+                <label class="control-label">
+                    Descripción
+                </label>
+                <textarea class="form-control" id="txtDescripcion" placeholder="Introduzca Descripción"></textarea>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+        <br />
+        <div class="col-md-offset-8 col-md-4 col-xs-12 col-sm-12">
+            <button type="button" name="cargar_btn" id="cargar_btn" class="btn btn-block btn-info guardar">Guardar</button>
+        </div>
+
+
+    </div>
+</div>
+<div id="tablag">
+    
+</div>
+<div id="seccionModal">
+    <div id="modalEliminar" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel2">Eliminar Registro</h4>
+                </div>
+                <div class="modal-body">
+                    <h4>¿Esta seguro que desea eliminar este registro?</h4>
+                    <p>Una vez eliminado el registor no se podra recuperar la informacion.</p>
+                                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger eleminarDiaFeriado">Eliminar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/ManejoDatos/Incidencias/DiaFeriado.js"></script>

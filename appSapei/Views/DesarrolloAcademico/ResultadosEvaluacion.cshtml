@@ -1,0 +1,139 @@
+﻿<input type="hidden" id="hidPeriodo" value="@ViewData["periodo"]"/>
+<div class="clearfix"></div>
+<div class="page-title">
+    <div class="title_left">
+        <h3>Evaluación Docente</h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+
+    <div class="x_panel">
+        <div class="x_title">
+            <h4>Estadisticas de Evaluación Docente</h4>
+            <div class="clearfix"></div>
+            <div class="x_content">
+                <p>
+                    Este modulo genera las estadisticas de la evaluacion docente y las imprime.
+                </p>
+                <p>
+                    Los archivos generados se encuentran en formato PDF.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5 col-sm-2 col-xs-12 text-center">
+
+            </div>
+
+            <div class="col-md-2 col-sm-2 col-xs-12 form-group center top_search">
+
+                <label for="cboPeriodo" class="center">
+                    Periodo
+                </label>
+                <select class="form-control" id="cboPeriodo"></select>
+
+            </div>
+
+        </div>
+        <div class="row">
+
+            <div class="col-sm-1 col-sm-2 col-xs-12 text-center">
+
+            </div>
+
+            <div class="col-sm-2 col-sm-4 col-xs-12 text-center" onclick="armar('pl')">
+                <div class="card text-white bg-secondary mb-3">
+                    <div class="card-header">Del Plantel</div>
+                </div>
+            </div>
+
+            <div class="col-sm-2 col-sm-4 col-xs-12 text-center" onclick="armar('cr')">
+                <div class="card text-white bg-info mb-3">
+                    <div class="card-header">Por Carrera</div>
+                </div>
+            </div>
+
+            <div class="col-sm-2 col-sm-4 col-xs-12 text-center" onclick="armar('dp')">
+                <div class="card text-white bg-green mb-3">
+                    <div class="card-header">Por Departamento</div>
+                </div>
+            </div>
+
+            <div class="col-sm-2 col-sm-4 col-xs-12 text-center" onclick="armar('dc')">
+                <div class="card text-white bg-purple mb-3">
+                    <div class="card-header">Por Docente</div>
+                </div>
+            </div>
+
+            <div class="col-sm-2 col-sm-4 col-xs-12 text-center" onclick="armar('mt')">
+                <div class="card text-white bg-orange mb-3">
+                    <div class="card-header">Por Materia</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div id="hidTabla" class="div-hide">
+</div>
+<div class="clearfix"></div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        var periodo;
+        periodo = $("#hidPeriodo").val()
+        CargaComboPeriodo(6, 0, periodo);
+    });
+
+    function armar(opc, depto = null) {
+
+        var periodo = "";
+        periodo = $('#cboPeriodo').val();
+        var url;
+
+        if (opc === 'dc' || opc === 'mt' || opc === 'dp' || opc === 'cr') {
+            url = '../../../../DesarrolloAcademico/ListaEspecifica?psOpc=' + opc + '&psPeriodo=' + periodo;
+        }
+        else if (opc === 'mt2' || opc === 'dc2') {
+            url = '../../../../DesarrolloAcademico/ListaEspecifica?psOpc=' + opc + '&psPeriodo=' + periodo + '&psDepto=' + depto;
+        }
+        else if (opc === 'pl')
+        {
+            $('#BodyPrincipal').load('../../../../DesarrolloAcademico/PorPlantel?psPeriodo=' + periodo);
+            return;
+        }
+        
+        $('#hidTabla').load(url);
+        $("#hidTabla").show();
+
+    }
+
+    function VistaCarrera(periodo, carrera, reticula) {
+
+        $('#BodyPrincipal').load('../../../../DesarrolloAcademico/PorCarrera?psPeriodo=' + periodo + '&psCarrera=' + carrera + '&psReticula=' + reticula);
+
+    }
+
+    function VistaDepto(periodo, depto) {
+
+        $('#BodyPrincipal').load('../../../../DesarrolloAcademico/PorDepartamento?psPeriodo=' + periodo + '&psDepto=' + depto);
+
+    }
+
+    function VistaDocente(periodo, rfc) {
+
+        $('#BodyPrincipal').load('../../../../DesarrolloAcademico/PorDocente?psPeriodo=' + periodo + '&psRFC=' + rfc);
+
+    }
+
+    function VistaMateria(periodo, materia) {
+
+        $('#BodyPrincipal').load('../../../../DesarrolloAcademico/PorMateria?psPeriodo=' + periodo + '&psMateria=' + materia);
+
+    }
+
+</script>

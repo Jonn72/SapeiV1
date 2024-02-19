@@ -1,0 +1,485 @@
+﻿
+<div class="page-title">
+    <div class="title_left">
+        <h3>Mantenimiento</h3>
+    </div>
+</div>
+<div class="x_panel">
+    <div class="x_title">
+        <h3>Reticulas</h3>
+    </div>
+    <div class="x_content" id="cards_reticulas">
+        <div class="row center-block">
+            <div class="col-sm-4 text-center">
+                <div class="card text-white bg-success mb-3" style="min-height:10rem;">
+                    <div class="card-header">Materias</div>
+                    <div class="card-body">
+                        <p class="card-text"></p>
+                        <a class="btn btn-dark" data-toggle="modal" data-target="#nuevo_materias" id="nuevo">
+                            Nuevo
+                        </a>
+                        <a class="btn btn-dark" data-toggle="modal" data-target="#modificar_materias" id="modificar">
+                            Modificar
+                        </a>
+                        <a class="btn btn-dark" data-toggle="modal" data-target="#modificar_materias" id="eliminar">
+                            Eliminar
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 text-center" text-white>
+                <div class="card text-white bg-info mb-3">
+                    <div class="card-header">Carreras</div>
+                    <div class="card-body">
+                        <p class="card-text"></p>
+                        <a class="btn btn-dark" data-toggle="modal" data-target="#nuevo_carrera" id="carrera_nuevo">
+                            Nuevo
+                        </a>
+                        <a class="btn btn-dark" data-toggle="modal" data-target="#modificar_carreras" id="carera_modificar">
+                            Modificar
+                        </a>
+                        <a class="btn btn-dark" data-toggle="modal" data-target="#modificar_carreras" id="carrera_eliminar">
+                            Eliminar
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 text-center">
+                <div class="card text-white bg-green mb-3">
+                    <div class="card-header">Reticula</div>
+                    <div class="card-body">
+                        <p class="card-text"></p>
+                        <a class="btn btn-dark" data-toggle="modal" data-target="#buscar_reticula">
+                            Modificar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row center-block">
+            <div class="col-sm-4 text-center">
+                <div class="card text-white bg-blue-sky mb-3">
+                    <div class="card-header">Especialidad</div>
+                    <div class="card-body">
+                        <p class="card-text"></p>
+                        <a class="btn btn-dark" data-toggle="modal" data-target="#nuevo_especialidad" id="especialidad_nuevo">
+                            Nuevo
+                        </a>
+                        <a class="btn btn-dark" data-toggle="modal" data-target="#modificar_especialidad" id="especialidad_modificar">
+                            Modificar
+                        </a>
+                        <a class="btn btn-dark" data-toggle="modal" data-target="#modificar_especialidad" id="especialidad_eliminar">
+                            Eliminar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!--Materias-->
+<div class="modal fade" id="nuevo_materias" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Nuevo Materias</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="form-group bg-tecnm">
+                    <label>Clave de la Materia</label>
+                    <input type="text" class="form-control" id="clv_materia" placeholder="Clave de la Materia" maxlength="7" required />
+                </div>
+                <div class="form-group bg-tecnm">
+                    <label>Clave de área</label>
+                    @if (ViewData["cboClaveArea"] != null)
+                    {
+                        <select class="form-control" id="cboClaveArea">
+                            <option value="0">-- Seleccione --</option>
+                            @foreach (System.Data.DataRow dr in (ViewData["cboClaveArea"] as System.Data.DataTable).Rows)
+                            {
+                                <option value="@dr.ItemArray[0].ToString().Trim()">@dr.ItemArray[1].ToString().Trim()</option>
+                            }
+                        </select>
+                    }
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6 bg-tecnm">
+                        <label>Nivel Escolar</label>
+                        @if (ViewData["cboNivEscolar"] != null)
+                        {
+                            <select class="form-control" id="cboNivEscolar">
+                                <option value="0">-- Seleccione --</option>
+                                @foreach (System.Data.DataRow dr in (ViewData["cboNivEscolar"] as System.Data.DataTable).Rows)
+                                {
+                                    <option value="@dr.ItemArray[0].ToString().Trim()">@dr.ItemArray[1].ToString().Trim()</option>
+                                }
+                            </select>
+                        }
+                    </div>
+                    <div class="form-group col-md-6 bg-tecnm">
+                        <label>Tipo de Materia</label>
+                        @if (ViewData["cboTipoMateria"] != null)
+                        {
+                            <select class="form-control" id="cboTipoMateria">
+                                <option value="0">-- Seleccione --</option>
+                                @foreach (System.Data.DataRow dr in (ViewData["cboTipoMateria"] as System.Data.DataTable).Rows)
+                                {
+                                    <option value="@dr.ItemArray[0].ToString().Trim()">@dr.ItemArray[1].ToString().Trim()</option>
+                                }
+                            </select>
+                        }
+                    </div>
+                </div>
+                <div class="form-group bg-tecnm">
+                    <label>Nombre de la Materia</label>
+                    <input type="text" class="form-control" id="nombre_mteria" placeholder="Nombre de la Materia" maxlength="49" required />
+                </div>
+                <div class="form-group bg-tecnm">
+                    <label>Nombre abreviado de la Materia</label>
+                    <input type="text" class="form-control" id="nombre_abrv_materia" placeholder="Nombre abreviado de la Materia" maxlength="49" required />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" id="btnClr">Cancelar</button>
+                <button type="button" class="btn btn-success" id="btnGrd">Guardar</button>
+                <button type="button" class="btn btn-success" id="btnMdf">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modificar_materias" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="txtmodmateria">Modificar Materias</h5>
+                <h5 class="modal-title" id="txteliminarmateria">Eliminar Materias</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group bg-tecnm">
+                    <label>Buscar Materia</label>
+                    @if (ViewData["cboClaveMateria"] != null)
+                    {
+
+                        <input id="cboClaveMateria" list="txtMaterias" class="form-control" required>
+                        <datalist id="txtMaterias">
+                            @foreach (System.Data.DataRow dr in (ViewData["cboClaveMateria"] as System.Data.DataTable).Rows)
+                            {
+                                <option value="@dr.ItemArray[0].ToString().Trim()">@dr.ItemArray[1].ToString().Trim()</option>
+                            }
+                        </datalist>
+                    }
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" id="btnClrMod">Cancelar</button>
+                <button class="btn btn-success" type="button" id="buscarMod">Buscar</button>
+                <button class="btn btn-success" type="button" id="btnElmn">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Materias-->
+<!--Carreras-->
+<div class="modal fade" id="nuevo_carrera" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="txtNuevoCarrera">Nuevo Carrera</h5>
+                <h5 class="modal-title" id="txtModCarrera">Modificar Carrera</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group col-md-6 bg-tecnm">
+                        <label>Carrera</label>
+                        <input type="text" class="form-control" id="carrera_id" placeholder="Carrera" maxlength="3" required />
+                    </div>
+                    <div class="form-group col-md-6 bg-tecnm">
+                        <label>Nivel Escolar</label>
+                        @if (ViewData["cboNivEscolar"] != null)
+                        {
+                            <select class="form-control" id="cboNivEscolarCarrera">
+                                <option value="0">-- Seleccione --</option>
+                                @foreach (System.Data.DataRow dr in (ViewData["cboNivEscolar"] as System.Data.DataTable).Rows)
+                                {
+                                    <option value="@dr.ItemArray[0].ToString().Trim()">@dr.ItemArray[1].ToString().Trim()</option>
+                                }
+                            </select>
+                        }
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6 bg-tecnm">
+                        <label>Clave Oficial</label>
+                        <input type="text" class="form-control" id="clv_oficial" placeholder="Clave Oficial de la carrera" maxlength="13" required />
+                    </div>
+                    <div class="form-group col-md-6 bg-tecnm">
+                        <label>Siglas de la Carrera</label>
+                        <input type="text" class="form-control" id="siglas_carrera" placeholder="Carrera" maxlength="10" required />
+                    </div>
+                </div>
+                <div class="form-group bg-tecnm">
+                    <label>Nombre de la carrera</label>
+                    <input type="text" class="form-control" id="nombre_carrera" placeholder="Nombre de la carrera" maxlength="49" required />
+                </div>
+                <div class="form-group bg-tecnm">
+                    <label>Nombre de la carrera abreviada</label>
+                    <input type="text" class="form-control" id="nombre_abrv_carrera" placeholder="Nombre de la carrera abreviada" maxlength="49" required />
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6 bg-tecnm">
+                        <label for="tags">
+                            Fecha de Inicio
+                        </label>
+                        <div class='input-group date' id='dtpFechaInicioCarrera'>
+                            <input type='text' id="txtFechaInicioCarrera" class="form-control" required />
+                            <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+                        </div>
+
+                    </div>
+                    <div class="form-group col-md-6 bg-tecnm">
+                        <label for="tags">
+                            Fecha de Termino
+                        </label>
+                        <div class='input-group date' id='dtpFechaFinCarrera'>
+                            <input type='text' id="txtFechaFinCarrera" class="form-control" required />
+                            <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6 bg-tecnm">
+                        <label>Créditos totales</label>
+                        <input type="text" class="form-control" id="creditos_totales" placeholder="Créditos totales" maxlength="4" required />
+                    </div>
+                    <div class="form-group col-md-6 bg-tecnm">
+                        <label>Clave de área</label>
+                        @if (ViewData["cboClaveArea"] != null)
+                        {
+                            <select class="form-control" id="cboClaveArea_Carrera">
+                                <option value="0">-- Seleccione --</option>
+                                @foreach (System.Data.DataRow dr in (ViewData["cboClaveArea"] as System.Data.DataTable).Rows)
+                                {
+                                    <option value="@dr.ItemArray[0].ToString().Trim()">@dr.ItemArray[1].ToString().Trim()</option>
+                                }
+                            </select>
+                        }
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" id="btnClrCarrera">Cancelar</button>
+                <button type="button" class="btn btn-success" id="btnGrdCarrera">Guardar</button>
+                <button type="button" class="btn btn-success" id="btnMdfCarrera">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modificar_carreras" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="txtbuscarcarrera">Buscar Carreras</h5>
+                <h5 class="modal-title" id="txteliminarcarrera">Eliminar Carreras</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="buscarCarrera">
+                    <div class="input-group bg-tecnm">
+                        <label>Buscar Carrera</label>
+                        @if (ViewData["cboCarreras"] != null)
+                        {
+
+                            <input id="cboCarreras" list="txtCarrera" class="form-control" required>
+                            <datalist id="txtCarrera">
+                                @foreach (System.Data.DataRow dr in (ViewData["cboCarreras"] as System.Data.DataTable).Rows)
+                                {
+                                    <option value="@dr.ItemArray[0].ToString().Trim()">@dr.ItemArray[1].ToString().Trim()</option>
+                                }
+                            </datalist>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" id="btnClrModCarreras">Cancelar</button>
+                <button class="btn btn-success" type="button" id="buscarModCarreras">Buscar</button>
+                <button class="btn btn-success" type="button" id="btnElmnCarreras">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Carreras-->
+<!--Especialidades-->
+<div class="modal fade" id="nuevo_especialidad" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Nuevo Especialidad</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group col-md-6 bg-tecnm">
+                        <label>Especialidad</label>
+                        <input type="text" class="form-control" id="especialidad" placeholder="Especialidad" maxlength="5" required />
+                    </div>
+                    <div class="form-group col-md-6 bg-tecnm" id="cboCar">
+                        <label>Carrera</label>
+                        @if (ViewData["cboCarreras"] != null)
+                        {
+                            <select class="form-control" id="cboCarrerasEspecialidadC">
+                                <option value="0">-- Seleccione --</option>
+                                @foreach (System.Data.DataRow dr in (ViewData["cboCarreras"] as System.Data.DataTable).Rows)
+                                {
+                                    <option value="@dr.ItemArray[0].ToString().Trim()">@dr.ItemArray[1].ToString().Trim()</option>
+                                }
+                            </select>
+                        }
+                    </div>
+                    <div class="form-group col-md-6 bg-tecnm" id="cboCarMod">
+                        <label>Carrera</label>
+                        @if (ViewData["cboCarrerasEspecialidad"] != null)
+                        {
+                            <select class="form-control" id="cboCarrerasEspecialidad">
+                                @foreach (System.Data.DataRow dr in (ViewData["cboCarrerasEspecialidad"] as System.Data.DataTable).Rows)
+                                {
+                                    <option value="@dr.ItemArray[0].ToString().Trim()">@dr.ItemArray[1].ToString().Trim()</option>
+                                }
+                            </select>
+                        }
+                    </div>
+                </div>
+                <div class="form-group bg-tecnm">
+                    <label>Nombre Especialidad</label>
+                    <input type="text" class="form-control" id="nombre_especialidad" placeholder="Nombre Especialidad" maxlength="49" required />
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6 bg-tecnm">
+                        <label>Periodo Inicio</label>
+                        <input type="text" class="form-control" id="periodo_inicio_es" placeholder="Periodo Inicio" maxlength="5" required />
+                    </div>
+                    <div class="form-group col-md-6 bg-tecnm">
+                        <label>Periodo Fin</label>
+                        <input type="text" class="form-control" id="periodo_fin_es" placeholder="Periodo Fin" maxlength="5" required />
+                    </div>
+                </div>
+                <div class="row"> 
+                    <div class="form-group col-md-6 bg-tecnm">
+                        <label>Créditos Optativos</label>
+                        <input type="text" class="form-control" id="creditos_optativos" placeholder="Créditos Optativos" maxlength="3" required />
+                    </div>
+                    <div class="form-group col-md-6 bg-tecnm">
+                        <label>Créditos Especialidad</label>
+                        <input type="text" class="form-control" id="creditos_especialidad" placeholder="Créditos Especialidad" maxlength="3" required />
+                    </div>
+                </div>
+                <div class="form-group bg-tecnm">
+                    <label>Clave Especialidad</label>
+                    <input type="text" class="form-control" id="clave_especialidad" placeholder="Clave Especialidad" maxlength="17" required />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" id="btnClr">Cancelar</button>
+                <button type="button" class="btn btn-success" id="btnGrdEspecialidad">Guardar</button>
+                <button type="button" class="btn btn-success" id="btnModEspecialidad">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modificar_especialidad" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="txtmodespecialidad">Modificar Especialidad</h5>
+                <h5 class="modal-title" id="txteliminarespecialidad">Eliminar Especialidad</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="buscar">
+                    <div class="input-group bg-tecnm">
+                        <label>Buscar Especialidad</label>
+                        @if (ViewData["cboEspecialidades"] != null)
+                        {
+                            <input id="cboEspecialidades" list="txtEspecialidades" class="form-control" required>
+                            <datalist id="txtEspecialidades">
+                                @foreach (System.Data.DataRow dr in (ViewData["cboEspecialidades"] as System.Data.DataTable).Rows)
+                                {
+                                    <option value="@dr.ItemArray[0].ToString().Trim()">@dr.ItemArray[1].ToString().Trim()</option>
+                                }
+                            </datalist>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" id="btnClrMod">Cancelar</button>
+                <button class="btn btn-success" type="button" id="buscarModEspecialidad">Buscar</button>
+                <button class="btn btn-success" type="button" id="btnElmnEspecialidad">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Especialidades-->
+<!--Reticula-->
+<div class="modal fade" id="buscar_reticula" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Buscar Reticula Carrera</h5>
+            </div>
+            <div class="modal-body">
+                <div id="buscarCarrera">
+                    <div class="input-group bg-tecnm">
+                        <label>Buscar Carrera</label>
+                        @if (ViewData["cboCarreras"] != null)
+                        {
+
+                            <input id="cboCarreras_reticula" list="txtCarrera_reticula" class="form-control" required>
+                            <datalist id="txtCarrera_reticula">
+                                @foreach (System.Data.DataRow dr in (ViewData["cboCarreras"] as System.Data.DataTable).Rows)
+                                {
+                                    <option value="@dr.ItemArray[0].ToString().Trim()">@dr.ItemArray[1].ToString().Trim()</option>
+                                }
+                            </datalist>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success" type="button" id="nueva_reticula">Aceptar</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" id="btn_cancelar_reticula">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/ManejoDatos/Mantenimiento/MateriasReticula.js"></script>
+<script src="~/Scripts/ManejoDatos/Mantenimiento/CarrerasReticula.js"></script>
+<script src="~/Scripts/ManejoDatos/Mantenimiento/EspecialidadReticula.js"></script>
+<script src="~/Scripts/ManejoDatos/Mantenimiento/ReticulaMantenimiento.js"></script>
+

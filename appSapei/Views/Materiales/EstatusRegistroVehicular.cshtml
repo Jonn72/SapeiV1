@@ -1,0 +1,47 @@
+﻿<div class="clearfix"></div>
+<form class="form-horizontal form-label-left" action="#" id="frmEstadoRegistroVehicular" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+    <div class="page-title">
+        <div class="">
+            <h3>Estado del proceso de registro vehícular del periodo <small>@ViewData["txtDescPeriodo"]</small></h3>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="x_panel">
+        <div class="x_title">
+            <h4>Vehículos</h4>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <h5>De acuerdo al estatus del proceso de sus vehículos registrados es la información que ve en la tabla inferior.</h5>
+        </div>
+    </div>
+
+    @Html.Partial("../Generales/TablaGeneral")
+    @Html.Partial("../Generales/ModalVisorPDF")
+
+</form>
+
+<script type="text/javascript">
+     $(document).ready(function () {
+          DesactivaBotones();
+          QuitaBuscar();
+     });
+
+    function GeneraFicha(servicio) {
+        $('#divPDF').load('../../../../Reportes/FichaPagoServicios', { psServicio: servicio }, displaySection());
+        event.preventDefault();
+    }
+
+    $('#datatable-buttons tbody').on('click', 'a.AUTO', function (event) {
+        GeneraFicha("B004040");
+    });
+    $('#datatable-buttons tbody').on('click', 'a.MOTO', function (event) {
+        GeneraFicha("B004041");
+    });
+    function displaySection() {
+        genera = false;
+        $('#divModalVisorPDF').modal('show');
+        $("#divCargando").hide();
+        $("#divPDF").show();
+    }
+</script>

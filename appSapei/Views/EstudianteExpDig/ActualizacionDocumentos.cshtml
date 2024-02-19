@@ -1,0 +1,52 @@
+﻿@using Sapei.Framework.Utilerias;
+
+<div class="modal fade" id="divModalActualizacionDocumentos" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">ACTUALIZACIÓN DE DOCUMENTOS</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5>Selecciona la opción del documento que desees actualizar.</h5>
+                <div class="col-md-6 col-sm-12 col-xs-12 center-margin">
+                    <input type="radio" name="inlineRadioOptions" id="ComDomActualizacion" value="4" /> Comprobante de Domicilio.
+                    <br />
+                    <input type="radio" name="inlineRadioOptions" id="CURPActualizacion" value="5" /> CURP.
+                    <br />
+                    <input type="radio" name="inlineRadioOptions" id="INEActualizacion" value="3" /> INE.
+                    <br />
+                    <input type="radio" name="inlineRadioOptions" id="INEActualizacion" value="9"> INE de Autorización a expediente.
+                    <br />
+                    <br />
+                </div>
+
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <h5 class="dt-body-justify">
+                        Si deseas cambiar la opción de autorización a expediente da click en el siguiente botón.
+                        Asi mismo, si realizas el cambio es necesario que actualizes la INE de la persona a quién autorizas la consulta a tu expediente.
+                    </h5>
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <input type="button" class="btn btn-success" id="btnAutorizacionExp" data-toggle="modal" data-target="#divModalAutorizacionExpediente" onclick="OcultaDiv(10);" value="Autorización a Expediente." />
+                    </div>
+                    <br />
+                    <br />
+                    <h5>
+                        NOTA: Una vez realizado el cambio, deberas de volver a firmar el documumento de Autorización.
+                    </h5>
+                </div>
+                <br />
+                <br />
+          
+                <div class="col-md-6 col-sm-12 col-xs-12 center-margin">
+                    <div class="row">
+                        <button type="submit" data-dismiss="modal" id="btnRealizarCambio" class="btn btn-info btn-block">Enviar</button>
+                        <button type="button" data-dismiss="modal" id="btnCancelar" class="btn btn-danger btn-block">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

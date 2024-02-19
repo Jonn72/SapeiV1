@@ -1,0 +1,64 @@
+﻿<div class="page-title">
+    <div class="col-md-8 col-sm-8 col-xs-12 form-group pull-left">
+        <h3>Consulta de Información General del Estudiante</h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+
+<div class="x_panel">
+    <form class="form-horizontal form-label-left" action="#" id="frmAspirantes2Estudiantes" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+        <div class="col-md-8 center-margin">
+            <div id="divCombo">
+                <div class="x_content">
+                    <label for="cboPeriodo">
+                        Seleccione el Periodo
+                    </label>
+                    <select class="form-control" id="cboPeriodo"></select>
+                </div>
+                <div class="form-group ">
+                    <button id="btnBuscar" type="submit" class="btn btn-info">Buscar</button>
+                </div>
+            </div>
+        </div>
+        <div id="divTabla">
+            @{
+                if (ViewData["Encabezados"] != null)
+                {
+                    <h1>@ViewData["Encabezados"].ToString()</h1>
+                    @Html.Partial("../Generales/TablaGeneral")
+                }
+
+            }
+        </div>
+        <div id="divBotones" class="form-group alignright div-hide">
+            <button id="btnAtras" type="submit" class="btn btn-success">Atras</button>
+            <button id="btnProcesar" type="submit" class="btn btn-info">Procesar</button>
+        </div>
+        <div id="divProcesar" class="col-md-10 center-margin center-block div-hide">
+            <div class="x_title">
+                <h3>Transferir Aspirantes Aceptados a Estudiantes Nuevos</h3>
+            </div>
+            <div class="x_content">
+                <p>
+                    Este proceso se encarga de dar de alta a los Aspirantes aceptados como nuevos Estudiantes, transfiriendo los datos personales, así como la asignación su número de control y nip.
+                </p>
+                <p>
+                    Este proceso puede tardar varios minutos, por favor, sea paciente.
+                </p>
+                <div class="form-group alignright">
+                    <button id="btnIniciar" type="submit" class="btn btn-info">Iniciar Proceso</button>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
+@if (ViewData["Mensaje"] != null)
+{
+    <script>
+                MensajesToastr("error", "Solicitud Procesada", "@ViewData["Mensaje"].ToString()");
+    </script>
+}
+<script src="~/Scripts/Componentes/DataTable/init_datatable.js"></script>
+<script src="~/Scripts/ManejoDatos/Escolares/Aspirantes2Estudiantes.js"></script>
+

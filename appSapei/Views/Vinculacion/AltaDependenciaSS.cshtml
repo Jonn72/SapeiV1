@@ -1,0 +1,139 @@
+﻿<input type="hidden" id="hidColonia" value="@ViewData["colonia"]" />
+
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2>Dependencias </h2>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <div class="col-md-4 col-sm-4 col-xs-12">
+            <h2>Generar Registro</h2>
+        </div>
+        <div class="col-md-4 dol-sm-4 col-xs-12">
+            <a class="btn btn-info btn-lg" id="NewDependencia"><span class="fa fa-plus"></span> Nuevo</a>            
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" id="MyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Dependencias</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="frmAltaDependencia" data-parsley-validate class="form-horizontal form-label-left">
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <label for="txtDependencia">
+                            RFC o Clave de dependencia
+                        </label>
+                        <input type="text" onkeyup="mayus(this);" id="txtRfc" required maxlength="13" value="@ViewData["txtRfc"]" class="form-control">
+                    </div>
+                    <div class="col-md-8 col-sm-8 col-xs-12 form-group">
+                        <label for="txtDependencia">
+                            Nombre de la Dependencia
+                        </label>
+                        <input type="text" onkeyup="mayus(this);"  id="txtDependencia" required value="@ViewData["txtDependencia"]" class="form-control">
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                        <label for="txtCalle">
+                            Domicilio Actual
+                        </label>
+                        <input type="text" onkeyup="mayus(this);" class="form-control" id="txtCalle" value="@ViewData["txtCalle"]" placeholder="Calle" required />
+
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                        <label for="txtNoDomicilio">
+                            Número Domicilio
+                        </label>
+                        <input type="number"  class="form-control" id="txtNoDomicilio" value="@ViewData["txtNoDomicilio"]" placeholder="Número" required />
+
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                        <label for="txtCodPostal">
+                            Código Postal
+                        </label>
+                        <input type="number" class="form-control" id="txtCodPostal" value="@ViewData["txtCodPostal"]" maxlength="5" placeholder="Código Postal" onblur="autocompleta('Estudiante', '')" required />
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-8 form-group">
+                        <label for="cboColonia">
+                            Colonia
+                        </label>
+                        <select class="form-control" id="cboColonia"></select>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                        <label for="txtCiudad">
+                            Ciudad o Localidad
+                        </label>
+                        <input type="text" class="form-control" id="txtCiudad" disabled placeholder="Ciudad o Localidad" />
+
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                        <label for="txtEstado">
+                            Entidad Federativa
+                        </label>
+                        <input type="text" class="form-control" id="txtEstado" disabled placeholder="Entidad Federativa" />
+
+                    </div>
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                        <label for="txtDependencia">
+                            Titular de la Dependencia
+                        </label>
+                        <input type="text" onkeyup="mayus(this);"  id="txtTitular" required value="@ViewData["txtTitular"]" class="form-control">
+                    </div>
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                        <label for="txtDependencia">
+                            Cargo del Titular de la Dependencia
+                        </label>
+                        <input type="text" onkeyup="mayus(this);"  id="txtCargoTitular" required value="@ViewData["txtCargoTitular"]" class="form-control">
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <label for="txtDependencia">
+                            Teléfono
+                        </label>
+                        <input type="number" id="txtTelefono" maxlength="20" required value="@ViewData["txtTelefono"]" class="form-control">
+                    </div>
+                    <div class='col-md-12 col-sm-12 col-xs-12'>
+                        <button type="submit" id="btnGuardar" class="btn btn-success" style="margin-top:10px">Guardar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="margin-top:10px">Cerrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="ModalEleminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog role=" document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirmacion</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="frmEleminarDependencia" data-parsley-validate class="form-horizontal form-label-left">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <h3>¿Deseas eliminar este registro?</h3>
+                        <input type="text" id="RfcEtxt" disabled class="form-control">
+                    </div>
+                    <div class='col-md-12 col-sm-12 col-xs-12'>
+                        <button type="submit" id="btnEleminar" class="btn btn-danger" style="margin-top:10px">Eliminar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="margin-top:10px">Cerrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@Html.Partial("../Generales/TablaGeneral")
+<script src="~/Scripts/ManejoDatos/Vinculacion/AltaDependenciaSS.js"></script>
+<script src="~/Scripts/ManejoDatos/Domicilio.js"></script>
+

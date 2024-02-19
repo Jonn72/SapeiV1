@@ -1,0 +1,71 @@
+﻿<div class="page-title">
+    <div class="title_left">
+        <h3>Calificaciones <small>@ViewData["periodo_desc"]</small></h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="x_panel">
+    <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+        <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+            @Html.Partial("../Generales/TablaGeneral")
+        </div>
+
+        <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h3>
+                        Reporte Final
+                    </h3>
+                    <div class="clearfix"></div>
+                </div>
+
+                Una vez que capture las calificaciones de todos los grupos, puede revisar el reporte final dando click en el siguiente boton.
+
+                <center>
+                    @foreach (System.Data.DataRow dr2 in (ViewData["boton"] as System.Data.DataTable).Rows)
+
+                    {
+                        @Html.Raw(@dr2.ItemArray[0])
+
+                    }
+                </center>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+            <div class="x_panel">
+                @Html.Raw(ViewData["botonperiodo"])
+            </div>
+        </div>
+    </div>
+</div>
+
+@Html.Partial("../Generales/ModalVisorPDF")
+<script type="text/javascript">
+
+    DesactivaBotones();
+    ocultar_buscar();
+    MostrarTodos();
+    QuitarMostrar();
+    function displaySection() {
+        $('#divModalVisorPDF').modal('show');
+        $("#divCargando").hide();
+        $("#divPDF").show();
+    }
+
+
+    function vistaReporte(periodo, usuario) {
+
+        $("#divCargando").show();
+        $("#divPDF").hide();
+        $('#divPDF').load('../../../../Reportes/ReporteFinal?psPeriodo=' + periodo + '&psUsuario=' + usuario, displaySection());
+    }
+
+    function vistaActa(periodo, materia, grupo) {
+
+        $("#divCargando").show();
+        $("#divPDF").hide();
+        $('#divPDF').load('../../../../Reportes/ActaPDF?psPeriodo=' + periodo + '&psMateria=' + materia + '&psGrupo=' + grupo, displaySection());
+    }
+
+
+</script>

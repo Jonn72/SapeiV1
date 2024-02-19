@@ -1,0 +1,84 @@
+﻿ <link rel="stylesheet" href="~/Content/checkbox.css" />
+
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>
+            Asignación
+        </h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+
+
+<div class="x_panel" id="divOtorgaPermisos">
+    <div class="x_title">
+        <h4>Permisos a Usuarios</h4>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="x_content">
+        <div class="col-md-8 col-sm-8 col-xs-12 form-group" id="PermisosUsuarios">
+
+            @{
+                if (ViewData["PermisosUsuario"] != null)
+                {
+                    <div class="col-xs-12 col-sm-6 col-md-6" id="CheckSelect">
+                        @foreach (System.Data.DataRow dr in (ViewData["PermisosUsuario"] as System.Data.DataTable).Rows)
+                        {
+                            if (dr.ItemArray[5].ToString().Trim() == "0")
+                            {
+                                <label>@dr.ItemArray[2].ToString().Trim()</label>
+                                <br />
+                            }
+
+                            else if (dr.ItemArray[3].ToString().Trim() == "2")
+                            {
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        @dr.ItemArray[2].ToString().Trim()
+                                        <div class="material-switch pull-right" value="@dr.ItemArray[0].ToString().Trim()">
+                                            <input id="@dr.ItemArray[2].ToString().Trim()" value="@dr.ItemArray[0].ToString().Trim()" type="checkbox" style="visibility:hidden" />
+                                            <label for="@dr.ItemArray[2].ToString().Trim()" class="label-success"></label>
+                                        </div>
+                                    </li>
+                                </ul>
+                            }
+                            else if (dr.ItemArray[3].ToString().Trim() == "3")
+                            {
+                                <div class="col-md-offset-3">
+                                    <ul class="list-group">
+                                        <li class="list-group-item">
+                                            @dr.ItemArray[2].ToString().Trim()
+                                            <div class="material-switch pull-right"  value="@dr.ItemArray[0].ToString().Trim()">
+                                                <input id="@dr.ItemArray[2].ToString().Trim()" value="@dr.ItemArray[0].ToString().Trim()" type="checkbox" style="visibility:hidden"/>
+                                                <label for="@dr.ItemArray[2].ToString().Trim()" class="label-success"></label>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            }
+
+                        }
+                    </div>
+                }
+            }
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-2 col-xs-12">
+            <input type="button" id="btnRegresar" class="btn btn-info" value="Regresar">
+        </div>
+
+        <div class="col-md-2 col-xs-12">
+            <input type="button" id="btnAssignaPermiso" class="btn btn-info" value="Otorgar" />
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="~/Scripts/ManejoDatos/ControlUsuario/CrearUsuario.js"></script>
+
+

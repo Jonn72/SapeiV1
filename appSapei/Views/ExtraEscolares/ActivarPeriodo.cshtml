@@ -1,0 +1,41 @@
+﻿<div class="clearfix"></div>
+<div class="x_panel">
+     <form class="form-horizontal form-label-left" action="#" id="frmPeriodosActividades" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+          <input type="hidden" id="hidPeriodo" value="@ViewData["txtPeriodo"]" />
+          <div class="col-md-6 center-margin">
+               <h2 class="text-center">Registrar Fechas</h2>
+               <div class="form-group ">
+                    <label for="tags">
+                         Periodo
+                    </label>
+                    <input type="text" class="form-control" id="txtPeriodo" value="@ViewData["txtDescPeriodo"]" required disabled />
+                    <div class="help-block with-errors"></div>
+
+                    <label>
+                         Fecha de Inicio
+                    </label>
+                    <div class='input-group date' id='dtpFechaIni'>
+                         <input type='text' id="txtFechaIni" class="form-control" value="@ViewData["txtFechaIni"]" required />
+                         <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+                    </div>
+
+                    <label>
+                         Fecha de Termino
+                    </label>
+                    <div class='input-group date' id='dtpFechaFin'>
+                         <input type='text' id="txtFechaFin" class="form-control" value="@ViewData["txtFechaFin"]" required />
+                         <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+                    </div>
+               </div>
+               <div class="form-group ">
+                    <button id="btnGuardar" type="submit" class="btn btn-info">Guardar</button>
+               </div>
+          </div>
+
+          <div class="col-md-10 center-margin">
+               @Html.Partial("../Generales/TablaGeneral")
+          </div>
+
+     </form>
+</div>
+<script src="~/Scripts/ManejoDatos/ExtraEscolares/ActivarPeriodo.js"></script>

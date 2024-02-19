@@ -1,0 +1,30 @@
+﻿
+@Html.Partial("../Generales/TablaGeneral")
+<div class="modal fade" id="ModalAutorizar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirmacion</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="frmAutorizaResidencia" data-parsley-validate class="form-horizontal form-label-left">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <h3>¿Deseas autorizar el siguiente número de control?</h3>
+                        <input type="text" id="txtNoControl" disabled class="form-control">
+                    </div>
+                    <div class='col-md-12 col-sm-12 col-xs-12'>
+                        <button type="submit" class="btn btn-success" style="margin-top:10px">Aceptar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="margin-top:10px">Cerrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<a class="btn btn-info" data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#BodyPrincipal" href="/DEP/ControlEscolarRP">
+    Regresar al menú
+</a>
+<script src="~/Scripts/ManejoDatos/DEP/AutorizacionResidenciasRP.js"></script>

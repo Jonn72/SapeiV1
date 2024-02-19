@@ -1,0 +1,120 @@
+﻿
+
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>Editoriales</h3>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <form class="form-horizontal form-label-left" action="#" id="frmMaterial" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Nuevo</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+
+                        <input type="hidden" id="hidId" value="0" />
+                        <div class="form-group col-md-6 ">
+                            <label for="txtAutor">
+                                Autor
+                            </label>
+                            <input type="text" class="form-control" id="txtAutor" name="txtAutor" placeholder="Ingrese autor" required />
+                        </div>
+                        <div class="form-group col-md-6 ">
+                            <label for="txtCarrera">
+                                Carrera
+                            </label>
+                            <input type="text" class="form-control" id="txtCarrera" name="Carrera" placeholder="Ingrese Edición" required />
+                        </div>
+                        <div class="form-group col-md-6 ">
+                            <label for="txtEditorial">
+                                Editorial
+                            </label>
+                            <input type="text" class="form-control" id="txtEdicion" placeholder="Ingrese Edición" required />
+                        </div>
+                        <div class="form-group col-md-6 ">
+                            <label for="txtCategoria">
+                                Tipo categoria
+                            </label>
+                            <input type="text" class="form-control" id="txtCategoria" name="txtCategoria" placeholder="Ingrese Edición" required />
+                        </div>
+                        <div class="form-group col-md-6 ">
+                            <label for="txtTitulo">
+                                Título
+                            </label>
+                            <input type="text" class="form-control" id="txtTitulo" placeholder="Ingrese Titulo" required />
+                        </div>
+                        <div class="form-group col-md-6 ">
+                            <label for="txtFecha">
+                                Fecha ingreso
+                            </label>
+                            <input type="date" class="form-control" id="txtFecha" placeholder="Ingrese Fecha" required />
+                        </div>
+                        <div class="form-group col-md-6 ">
+                            <label for="txtExistencia">
+                                Existencia
+                            </label>
+                            <input type="text" class="form-control" id="txtExistencia" placeholder="Existencia" required />
+                        </div>
+                        <div class="form-group col-md-6 ">
+                            <label for="txtTipo">
+                                Tipo de Material
+                            </label>
+                            <select id="sTipoMaterial">
+                                <option value="1">Memorias de Residencias</option>
+                                <option value="2">Libros</option>
+                                <option value="3">Cd's</option>
+                                <option value="4">Revistas</option>
+                                <option value="5">Tesis</option>
+                            </select>
+                        </div>
+
+                        <div id="pfrmLibros" hidden>
+                            <input type="hidden" id="hidIdLibro" value="0" />
+
+                            <div class="form-group col-md-4 ">
+                                <label for="txtClaveIsb">
+                                    Clave
+                                </label>
+                                <input type="text" class="form-control" id="txtClaveIsbn" name="txtClaveIsb" placeholder="Ingrese clave" required />
+                            </div>
+                            <div class="form-group col-md-4 ">
+                                <label for="txtNoPaginas">
+                                    No. de Páginas
+                                </label>
+                                <input type="number" class="form-control" id="txtNoPaginas" name="txtNoPaginas" placeholder="Numero de páginas" min=" 1" />
+                            </div>
+                            <div class="form-group col-md-4 ">
+                                <label for="txtCapitulos">
+                                    Capítulos
+                                </label>
+                                <input type="number" class="form-control" id="txtCapitulos" name="txtCapitulos" placeholder="Ingrese la descripción" min="1" />
+                            </div>
+                            <div class="form-group col-md-4 ">
+                                <label for="sTitulo">
+                                    Título
+                                </label>
+
+                                <select class="form-control" id="sTitulo" data-bind="options: materialViewModel.select,optionsValue:'clave',optionsText:'Titulo',value:materialViewModel.selectedItem"></select>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <button id="btnGuardar" type="submit" class="btn btn-info">Guardar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    @Html.Partial("ModalElimina")
+    <script src="~/Scripts/ManejoDatos/CentroInformacion/MaterialBibliografico.js"></script>
+
+</div>
+@Html.Partial("../Generales/TablaGeneral")

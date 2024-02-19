@@ -1,0 +1,231 @@
+﻿@using Sapei.Framework.Utilerias;
+<div class="page-title">
+    <div class="title_left">
+        <h3>Liberación de Evaluación Docente<small> @ViewData["periodo_desc"]</small></h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="x_panel" id="maniNC">
+    <div class="clearfix"></div>
+    @Html.Partial("../Generales/BuscaNoControl")
+
+    @{
+        bool lbEncontrado = false;
+        string lsControl = "";
+        string lsNombre = "";
+        string lsCarrera = "";
+        string lsREval = "";
+        string lsEvalBlock = "";
+        if (ViewData["DatosEstudiante"] != null)
+        {
+            System.Data.DataTable loDt = null;
+            loDt = ViewData["DatosEstudiante"] as System.Data.DataTable;
+            if (loDt.Columns.Count > 1)
+            {
+                System.Data.DataRow dr = loDt.Rows[0];
+                lsControl = Convert.ToString(dr.RegresaValor<string>("no_de_control"));
+                lsNombre = Convert.ToString(dr.RegresaValor<string>("nombre"));
+                lsCarrera = Convert.ToString(dr.RegresaValor<string>("carrera"));
+                lsREval = Convert.ToString(dr.RegresaValor<string>("r_evaluacion"));
+                lsEvalBlock = Convert.ToString(dr.RegresaValor<string>("evaluacion_b"));
+                lbEncontrado = true;
+            }
+        }
+    }
+
+
+    <div class="col-md-10 center-margin center-block">
+        @if (lbEncontrado)
+        {
+            <input type="hidden" id="hidNoControl" value="@lsControl" />
+            <div class="row">
+                <div class="col-md-8 center-margin center-block">
+                    <ul class="stats-overview">
+
+                        <li>
+                            <span class="name">No. Control</span>
+                            <span class="value text-success"> @lsControl </span>
+                        </li>
+                        <li>
+                            <span class="name"> Nombre </span>
+                            <span class="value text-success"> @lsNombre </span>
+                        </li>
+                        <li>
+                            <span class="name"> Carrera</span>
+                            <span class="value text-success"> @lsCarrera </span>
+                        </li>
+                        <li>
+                            <span class="name"> ¿Realizó Evaluacion Docente?</span>
+                            <span class="value text-success"> @lsREval </span>
+                        </li>
+                        <li>
+                            <span class="name"> ¿Tiene evaluación liberada? </span>
+                            <span class="value text-success"> @lsEvalBlock </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 center-margin center-block">
+                    <div class="alert alert-info alert-dismissible fade in" role="alert">
+                        @{
+                            if (lsREval.Trim().ToUpper() == "SI")
+                            {
+                                if (lsEvalBlock.Trim().ToUpper() == "SI")
+                                {
+                                    <h4 class="title text-center">
+                                        Ya se ha liberado la evaluación docente a este estudiante, no es posible realizar movimientos.
+                                    </h4>
+
+                                }
+                                else
+                                {
+                                    <h4 class="title text-center">
+                                        No se puede liberar a este estudiante porque ya presento la evaluación docente.
+                                    </h4>
+                                }
+                            }
+                            else
+                            {
+                                <h4 class="title text-center">
+                                    Esta función permite liberar al estudiante de la evaluación docente sin afectar su reinscripción.
+
+                                </h4>
+
+                                <label for="tags">
+                                    Motivo de Liberación
+                                </label>
+                                <textarea name="txtMotivo" id="txtMotivo" class="form-control" rows="6"></textarea>
+                                <p id="contadorTaComentario">0/240</p>
+
+                                <div class="form-group text-center">
+                                    <button id="btnLiberar" type="submit" class="btn btn-success">Liberar Evaluación</button>
+                                </div>
+                            }
+
+                        }
+
+                    </div>
+                </div>
+            </div>
+
+        }
+
+    </div>
+
+</div>
+
+<div style="@ViewData["display"]">
+    @Html.Partial("../Generales/TablaGeneral")
+</div>
+
+@Html.Partial("../Generales/FirmaElectronica")
+<script type="text/javascript">
+    DesactivaBotones();
+    ocultar_buscar();
+ 
+
+    function BuscaNoControl(control) {
+        $('#BodyPrincipal').load('../../../../DesarrolloAcademico/LiberacionEvaluacionDocente/',
+            { psNoControl: control });
+    }
+
+    $("#btnLiberar").click(function () {
+        var motivo = $("#txtMotivo").val();
+        if (motivo === null || motivo === "") {
+            MensajesToastr("info", "Solicitud no Procesada", "Debe escribir un motivo por el cual se da la liberación");
+        }
+        else {
+            $('#divModalFirmaElectronica').modal('show');
+        }
+    });
+
+
+    $("#btnEnviarFirmar").click(function () {
+
+        var firma = $("#txtFirma").val();
+        var no_de_control = $("#hidNoControl").val();
+        var motivo = $("#txtMotivo").val();
+
+        $.ajax({
+            url: '../../../../DesarrolloAcademico/FirmaLiberacionEvaluacionDocente',
+            type: 'POST',
+            dataType: 'json',
+            data: { psFirma: firma, psNoControl: no_de_control, psMotivo: motivo },
+        })
+            .done(function (data) {
+                if (typeof (data.Success) !== "undefined" && !data.Success) {
+                    MensajesToastr("info", "Solicitud Procesada", data.Mensaje);
+                }
+                else {
+                    MensajesToastr("info", "Solicitud Procesada", "Liberación Registrada");
+                    $('#BodyPrincipal').load('../../../../DesarrolloAcademico/LiberacionEvaluacionDocente');
+                    $('.modal-backdrop').remove();
+                }
+            })
+            .fail(function (data) {
+                MensajesToastrErrorConexion();
+            });
+    });
+
+    function Eliminar(periodo, no_de_control) {
+
+        var opcion = confirm("Esta Seguro(a) que desea eliminar esta liberación?");
+        if (opcion == true) {
+            $.ajax({
+                asyn: false,
+                url: '../../../DesarrolloAcademico/EliminarLiberacion',
+                type: 'POST',
+                dataType: 'json',
+                data: { psPeriodo: periodo, psNoControl: no_de_control },
+            })
+                .done(function (data) {
+
+                    if (typeof (data.Success) === "undefined" || !data.Success) {
+                        MensajesToastr("error", "Solicitud Procesada", "Error al Guardar");
+                    }
+                    else {
+                        MensajesToastr("success", "Solicitud Procesada", "Registro Eliminado");
+                        $('#BodyPrincipal').load('../../../../DesarrolloAcademico/LiberacionEvaluacionDocente');
+                    }
+                })
+                .fail(function (data) {
+                    MensajesToastrErrorConexion();
+                });
+
+            event.preventDefault();
+        }
+    }
+
+    init_contadorTa("txtMotivo", "contadorTaComentario", 240);
+
+    function init_contadorTa(idtextarea, idcontador, max) {
+        $("#" + idtextarea).keyup(function () {
+            updateContadorTa(idtextarea, idcontador, max);
+        });
+
+        $("#" + idtextarea).change(function () {
+            updateContadorTa(idtextarea, idcontador, max);
+        });
+
+    }
+
+    function updateContadorTa(idtextarea, idcontador, max) {
+        var contador = $("#" + idcontador);
+        var ta = $("#" + idtextarea);
+        contador.html("0/" + max);
+
+        contador.html(ta.val().length + "/" + max);
+        if (parseInt(ta.val().length) > max) {
+            ta.val(ta.val().substring(0, max - 1));
+            contador.html(max + "/" + max);
+        }
+
+    }
+
+    function Cancelar() {
+        $('#BodyPrincipal').load('../../../../DesarrolloAcademico/LiberacionEvaluacionDocente');
+        evento.preventDefault();
+    }
+
+</script>

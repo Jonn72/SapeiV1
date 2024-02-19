@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <title>Instituto Tecnológico de Tlahuac - SAPEI</title>
+    <link rel="icon" type="image/png" href="~/Images/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="~/Content/bootstrap3.3.7.min.css" rel="stylesheet" />
+    @Styles.Render("~/Content/controlescss")
+    @Styles.Render("~/Content/fontcss")
+    @Styles.Render("~/Content/captchacss")
+    <link href="~/Content/themes/css_SII.css" rel="stylesheet" />
+    <link href="~/Scripts/Captcha/jquery.motionCaptcha.0.2.css" rel="stylesheet" />
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        ul {
+            list-style-type: none;
+        }
+    </style>
+
+</head>
+<body class="nav-md">
+     <div class="container body">
+          <div class="main_container">
+               <header>
+                   @Html.Partial("_NewHeaderSimple")
+               </header>
+               <div class="right_col" role="main">
+                    <div id="body">
+                         <section>
+                              @RenderBody()
+                         </section>
+                    </div>
+               </div>
+               <footer>
+                    <div class="text-center page-footer">
+                         @Html.Partial("_NewFooter")
+                    </div>
+               </footer>
+
+
+
+          </div>
+     </div>
+     <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+     <script src="~/Scripts/bootstrap3.3.7.min.js"></script>
+     @Scripts.Render("~/bundles/controles")
+     @Scripts.Render("~/bundles/herramientas")
+     <script src="~/Scripts/ini_SII.js"></script>
+</body>
+
+</html>
+

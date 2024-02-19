@@ -1,0 +1,8 @@
+﻿
+@Html.Partial("../Generales/TablaGeneral")
+<script>
+    $(document).ready(function () {
+        $('#datatable-buttons').DataTable().column(0).visible(false);
+        $('#datatable-buttons').DataTable().column(6).visible(false);
+    });
+</script>

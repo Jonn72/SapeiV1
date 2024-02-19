@@ -1,0 +1,66 @@
+﻿<link href="~/Content/Controles/Dropzone.css" rel="stylesheet" />
+
+<div style="margin-bottom:70px" class="col-md-4 col-sm-4 col-xs-12" id="form">
+    <div class="x_panel">
+        <div class="x_title">
+            <h3>Nuevo URL de Interés </h3>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+
+            <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                <label for="titulotxt">Título de la publicación</label>
+                <input type="text" class="form-control required" name="titulo" id="titulo" placeholder="Introduce el título de la Publicación" required>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                <label id="titulotxts" for="titulotxt">Archivo o URL cargada (Copiar y pegar en url si no es necesario el cambio)</label>
+                <input type="text" class="form-control required" name="urlcargada" id="urlcargada" placeholder="URL cargada" disabled>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                <label for="tags">
+                    Tipo de publicación
+                </label>
+                <div class="radio">
+                    <label for="tags">
+                        <input type="radio" name="rbtPublicacion" id="rdbArchivo" value="A" checked="checked">
+                        Archivo (Imagen o PDF)
+                    </label>
+                    <label for="tags">
+                        <input type="radio" name="rbtPublicacion" id="rdbURL" value="U">
+                        URL
+                    </label>
+                </div>
+            </div>
+            <div id="divUrl" class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                <label for="videotxt">URL</label>
+                <input type="text" class="form-control required" name="urlvideo" id="urlvideo" placeholder="Introduce la url" required>
+            </div>
+            <div id="divArchivo" class="dropzone_form col-md-12 col-sm-12 col-xs-12 form-group">
+                <label>Archivo</label>
+                <form id="dropzone_archivo" style="margin-left:10px; margin-right:10px;" method="post" enctype="multipart/form-data" class="dropzone needsclick dz-clickable" required>
+                    <div class="dz-default dz-message">
+                        <span>Haz clic aquí o arrastra una imagenes.</span>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                <label>Publicar</label>
+                <input type="checkbox" class="form-control" id="cbxPublicar">
+            </div>
+
+
+            <div style="margin-top:30px;" class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                <button id="btnEnviar" type="submit" class="btn btn-block btn-success">Generar publicación</button>
+                <button id="btnEnviarEditar" type="submit" class="btn btn-block btn-success">Aceptar cambios</button>
+                <button id="btnCancelar" type="submit" class="btn btn-block btn-danger">Cancelar</button>
+            </div>
+        </div>
+        </div>
+</div>
+<div style="margin-bottom:70px" class="col-md-8 col-sm-8 col-xs-12">
+    @Html.Partial("../Generales/TablaJson")
+</div>
+
+<script src="~/Scripts/ManejoDatos/Pagina/Links_Interes.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+

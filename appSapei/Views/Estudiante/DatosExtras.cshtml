@@ -1,0 +1,60 @@
+﻿
+<div class="row">
+     <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+          <label for="txtEscuelaProcedencia">
+               Nombre de la Escuela de Procedencia
+          </label>
+          <input type="text" class="form-control" id="txtEscuelaProcedencia" placeholder="Nombre de la Escuela de Procedencia" />
+          <div class="help-block with-errors"></div>
+     </div>
+     <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+          <label for="cboTipoEscuelaProcedencia">
+               Tipo de Escuela
+          </label>
+          <select class="form-control" id="cboTipoEscuelaProcedencia"></select>
+     </div>
+</div>
+<div class="row">
+     <h4>Datos del Documento que Ampara Equivalencia</h4>
+     <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+          <label for="txtAnioEgreso">
+               Autoridad Educativa
+          </label>
+          <input type="text" class="form-control" id="txtAnioEgreso" placeholder="Año de Egreso" oninvalid="ValidaCampo(this, 'NOMBRE');" onblur="ValidaCampo(this, 'AÑO');" />
+          <div class="help-block with-errors"></div>
+     </div>
+     <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+          <label for="txtPromedio">
+               Folio
+          </label>
+          <input type="text" class="form-control" id="txtPromedio" placeholder="Promedio" oninvalid="ValidaCampo(this, 'NOMBRE');" onblur="ValidaCampo(this, 'AVG');" />
+          <div class="help-block with-errors"></div>
+     </div>
+</div>
+<div class="row">
+     <h4>Datos del Documento que Ampara Equivalencia</h4>
+     <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+          <label for="txtAutoridadEducativa">
+               Autoridad Educativa
+          </label>
+          <input type="text" class="form-control" id="txtAutoridadEducativa" placeholder="Autoridad Educativa" />
+          <div class="help-block with-errors"></div>
+     </div>
+     <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+          <label for="txtFolioDocumento">
+               Folio
+          </label>
+          <input type="text" class="form-control" id="txtFolioDocumento" placeholder="Folio" />
+          <div class="help-block with-errors"></div>
+     </div>
+     <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+          <label for="tags">
+               Fecha de elaboración
+          </label>
+          <div class='input-group date' id='dtpFechaElaboracion'>
+               <input type='text' id="txtFechaElaboracion" class="form-control" />
+               <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+          </div>
+          <div class="help-block with-errors"></div>
+     </div>
+</div>

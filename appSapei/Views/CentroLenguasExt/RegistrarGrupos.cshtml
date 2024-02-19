@@ -1,0 +1,101 @@
+﻿<script src="~/Scripts/Componentes/daypilot-all.min.js?v=2018.2.3244"></script>
+
+<input type="hidden" id="hidPeriodo" value="@ViewData["txtPeriodo"]" />
+<div class="">
+     <div class="page-title">
+          <div class="title_left">
+               <h3>Grupos de Inglés Periodo <small>@ViewData["txtDescPeriodo"]</small></h3>
+          </div>
+          @*<div class="title_right">
+               <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                    <div class="form-inline">
+                         <label for="cboPeriodo">
+                              Periodo
+                         </label>
+                         <select class="form-control" id="cboPeriodo"></select>
+                    </div>
+               </div>
+          </div>*@
+     </div>
+
+     <div class="clearfix"></div>
+     <form class="form-horizontal form-label-left" action="#" id="frmCLEGrupos" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+          <div class="row">
+               <div class="col-md-4 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                         <div class="x_title">
+                              <h2>Registro</h2>
+                              <div class="clearfix"></div>
+                         </div>
+                         <div class="x_content">
+                              <div class="form-group ">
+                                   <label>
+                                        Grupo
+                                   </label>
+                                   <input type="text" class="form-control" id="txtGrupo" maxlength="6" placeholder="Ingrese Grupo" required />
+
+                                   <label for="cboNivelesIngles">
+                                        Nivel
+                                   </label>
+                                   @{
+                                        if (ViewData["cboNivelesIngles"] != null)
+                                        {
+                                             <select class="form-control" id="cboNivelesIngles">
+                                                  @foreach (System.Data.DataRow dr in (ViewData["cboNivelesIngles"] as System.Data.DataTable).Rows)
+                                                  {
+                                                  <option value="@dr.ItemArray[0].ToString().Trim()">@dr.ItemArray[0].ToString().Trim()</option>
+                                                  }
+                                             </select>
+                                        }
+                                   }
+
+                                   <label>
+                                        Capacidad
+                                   </label>
+                                   <input type="number" class="form-control" id="txtCapacidad" placeholder="Capacidad" required />
+                                   <label for="Aula">
+                                        Aula
+                                   </label>
+                                   <select class="form-control" id="cboAulas"></select>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+               <div class="col-md-8 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                         <div class="x_title">
+                              <h2>
+                                   Horario Semanal <small>@ViewData["txtAula"]</small>
+                              </h2>
+                              <div class="title_right">
+                                   <div class="col-md-3 col-sm-3 col-xs-12 form-group pull-right top_search">
+                                        <div class="form-inline">
+
+                                        </div>
+                                   </div>
+                              </div>
+                              <div class="clearfix"></div>
+                         </div>
+                         @Html.Partial("../Generales/HorarioSemanal")
+                    </div>
+               </div>
+               <div class="row">
+                    <div class="col-md-4">
+                         <div id="divEliminar" class="div-hide">
+                              <button id="btnEliminar" type="submit" class="btn btn-block btn-danger" disabled>Eliminar</button>
+                         </div>
+                    </div>
+                    <div class="col-md-4">
+                         <button id="btnNuevo" type="submit" class="btn btn-block btn-info">Nuevo</button>
+                    </div>
+                    <div class="col-md-4">
+                         <button id="btnGuardar" type="submit" class="btn btn-block btn-success">Guardar</button>
+                    </div>
+               </div>
+               <div id="TablaGeneral" class="col-md-12 col-sm-12 col-xs-12">
+                    @Html.Partial("../Generales/TablaGeneral")
+               </div>
+          </div>
+     </form>
+</div>
+<script src="~/Scripts/ManejoDatos/CentroLenguasExt/RegistrarGrupos.js"></script>

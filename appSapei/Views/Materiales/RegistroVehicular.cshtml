@@ -1,0 +1,126 @@
+﻿<div class="page-title">
+     <div class="title_left">
+          <h3>Registro Vehícular</h3>
+     </div>
+</div>
+<div class="clearfix"></div>
+<div class="x_panel">
+     <div class="x_title">
+          <form class="form-horizontal form-label-left" action="#" id="frmRegistroVehicular" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+               <div id="divTipoVehiculo">
+                    @if (Sapei.Framework.Utilerias.SesionSapei.Sistema.Sesion.Usuario.RolUsuario == Sapei.Framework.Configuracion.enmRolUsuario.MAT)
+                    {
+                         <div id="divUsuario">
+                              <div class="col-md-8 center-margin">
+                                   <label for="txtUsuario">Usuario</label>
+                                   <input type="text" class="form-control" id="txtUsuario" placeholder="No. de control o  RFC" required>
+                              </div>
+                         </div>
+                    }
+
+
+                    <div class="col-md-8 center-margin">
+                         <label>Tipo de Vehículo a Registrar</label>
+                         @if (ViewData["cboTipoVehiculo"] != null)
+                         {
+                              <select class="form-control" id="cboTipoVehiculo">
+                                   @foreach (System.Data.DataRow dr in (ViewData["cboTipoVehiculo"] as System.Data.DataTable).Rows)
+                                   {
+                                        <option value="@dr.ItemArray[0].ToString().Trim()">@dr.ItemArray[1].ToString().Trim()</option>
+                                   }
+                              </select>
+                         }
+
+                         <div class="form-group">
+                              <button id="btnContinuar" type="submit" class="btn btn-info">Continuar</button>
+                         </div>
+                    </div>
+               </div>
+
+               <div id="divRegistro" class="div-hide">
+                    @if (Sapei.Framework.Utilerias.SesionSapei.Sistema.Sesion.Usuario.RolUsuario == Sapei.Framework.Configuracion.enmRolUsuario.MAT)
+                    {
+                         <div class="col-md-8 center-margin center-block">
+                              <label>
+                                   Nombre
+                              </label>
+                              <input type="text" class="form-control" id="txtNombre" value="@ViewData["txtNombre"]" readonly disabled>
+                         </div>
+                    }
+                    <div class="col-md-12 center-margin center-block">
+                         <div class="row">
+                              <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                                   <label for="tags">
+                                        Marca
+                                   </label>
+
+                                   @if (ViewData["cboMarcasVehiculos"] != null)
+                                   {
+                                        <select class="form-control" id="cboMarcasVehiculos">
+                                             @foreach (System.Data.DataRow dr in (ViewData["cboMarcasVehiculos"] as System.Data.DataTable).Rows)
+                                             {
+                                                  <option value="@string.Format("{0}-{1}", dr.ItemArray[0].ToString().Trim(), dr.ItemArray[2].ToString().Trim())">@dr.ItemArray[1].ToString().Trim()</option>
+                                             }
+                                        </select>
+                                   }
+
+
+                              </div>
+                              <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                                   <label for="tags">
+                                        SubMarca
+                                   </label>
+                                   @if (ViewData["cboSubMarcasVehiculos"] != null)
+                                   {
+                                        <select class="form-control" id="cboSubMarcasVehiculos">
+                                             @foreach (System.Data.DataRow dr in (ViewData["cboSubMarcasVehiculos"] as System.Data.DataTable).Rows)
+                                             {
+                                                  <option value="@string.Format("{0}-{1}", dr.ItemArray[0].ToString().Trim(), dr.ItemArray[2].ToString().Trim())">@dr.ItemArray[1].ToString().Trim()</option>
+                                             }
+                                        </select>
+                                   }
+
+                              </div>
+                              <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                                   <label>
+                                        Placas
+                                   </label>
+                                   <input type="text" class="form-control" id="txtPlacas" maxlength="7" value="@ViewData["txtPlacas"]" required />
+                              </div>
+                         </div>
+                         <div class="row">
+                              <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                                   <label>
+                                        Color
+                                   </label>
+                                   <div class="col-2">
+                                        <input class="form-control" type="color" value="@ViewData["txtColor"]" id="txtColor">
+                                   </div>
+                              </div>
+                              <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                                   <label>
+                                        Modelo
+                                   </label>
+                                   <input type='text' id="txtModelo" class="form-control" oninvalid="ValidaCampo(this, 'AÑO');" onblur="ValidaCampo(this, 'AÑO');" value="@ViewData["txtModelo"]" required />
+                              </div>
+                         </div>
+                    </div>
+                    @if (Sapei.Framework.Utilerias.SesionSapei.Sistema.Sesion.Usuario.RolUsuario != Sapei.Framework.Configuracion.enmRolUsuario.MAT)
+                    {
+                         <h5>Antes de guardar debes verificar los datos de tu vehículo, pues no podrás hacer cambios.</h5>
+                         <h5>Después de guardar debes pasar al Departamento de Recursos Materiales y presentar tu tarjetón vehicular, pues con él se verificaran los datos de tu vehículo.</h5>
+                    }
+                    <div class="form-group">
+                         
+                         @if(Sapei.Framework.Utilerias.SesionSapei.Sistema.Sesion.Usuario.RolUsuario == Sapei.Framework.Configuracion.enmRolUsuario.MAT){
+                              <button id="btnGuardar" type="submit" class="btn btn-info">Guardar y Validar</button>
+                         }
+                         else { 
+                              <button id="btnGuardar" type="submit" class="btn btn-info">Guardar </button>
+                         }
+                    </div>
+               </div>
+          </form>
+     </div>
+</div>
+<script src="~/Scripts/ManejoDatos/Materiales/RegistroVehicular.js"></script>

@@ -1,0 +1,137 @@
+﻿<!-- Modal Ver Anteproyecto -->
+<div class="modal fade" id="verAnteproyecto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="overflow-y: scroll;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Anteproyecto</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="frmComentariosAnteproyecto" data-parsley-validate class="form-horizontal form-label-left">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <b>Nombre del Proyecto</b>
+                            <p id="Proyectotxt"></p>
+                            <input type="hidden" id="idProyecto" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <b>Delimitación</b>
+                            <p id="delimitaciones"></p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <b>Objetivo General</b>
+                            <p id="objetivoG"></p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="control-group">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <b>Objetivos Especificos</b>
+                                <p id="objetivos"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="control-group">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <b>Actividades</b>
+                                <p id="actividades"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <b>Justificación</b>
+                            <p id="justificacion"></p>
+                        </div>
+                    </div>
+                    <div class="form-group" id="Cd">
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <b>Duracion</b>
+                            <p id="Duracion"></p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <b>Ubicacion</b>
+                            <img src="" id="mapa" style="max-width:100%" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <b>Comentarios</b>
+                            <textarea class="form-control" id="Comentariostxt" required rows="2"></textarea>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="margin-top:10px">Cerrar</button>
+                    <button type="submit" class="btn btn-primary" style="margin-top:10px">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Autoriza Anteproyecto -->
+<div class="modal fade" id="ConfirmaAnteproyecto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Confirmación</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <h4>¿Deceas validar los datos del anteproyecto?</h4>
+                        <input type="hidden" id="txtId" />
+                        <input type="text" disabled class="form-control" id="txtProyecto" />
+                    </div>
+                </div>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="margin-top:10px">Cerrar</button>
+                <button type="button" id="btnAcepta" class="btn btn-primary" style="margin-top:10px">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="ActualizaDuracion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Captura</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="frmAltaDuracion" data-parsley-validate class="form-horizontal form-label-left">
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <h4>Captura de duración de proyecto</h4>
+                            <input type="hidden" id="Id" />
+                            <input type="text" disabled class="form-control" id="Proyecto" />
+                            <label>Duración (semanas)</label>
+                            <input type="number" required class="form-control" id="Duraciontxt" />
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="margin-top:10px">Cerrar</button>
+                    <button type="submit" id="btnAcepta" class="btn btn-primary" style="margin-top:10px">Aceptar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@Html.Partial("../Generales/TablaGeneral")
+<a class="btn btn-info" data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#BodyPrincipal" href="/Academicos/ControlEscolarRP">
+    Regresar al menú
+</a>
+<script src="~/Scripts/ManejoDatos/Academicos/SolicitudesAnteproyectoRP.js"></script>

@@ -1,0 +1,37 @@
+﻿<div class="clearfix"></div>
+<div class="x_panel">
+     <div class="x_title">
+          <form class="form-horizontal form-label-left" action="#" id="frmContactanos" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+               <center><strong><font face="Soberana sans" size="6"> Contáctanos </font></strong></center>
+               <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                    <label for="tags">
+                         Nombre (s)
+                    </label>
+                    <input type="text" class="form-control" id="txtNombre" placeholder="Nombre (s)" oninvalid="ValidaCampo(this, 'NOMBRE');" onblur="ValidaCampo(this, 'NOMBRE');" required />
+               </div>
+               <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                    <label for="txtCorreo">
+                         Correo Electronico
+                    </label>
+                    <input type="email" class="form-control" id="txtCorreo" placeholder="correo@dominio.com" oninvalid=" ValidaCampo(this, 'CORREO');" onblur="     ValidaCampo(this, 'CORREO');" required />
+                    <div class="help-block with-errors"></div>
+               </div>
+               <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                    <label for="txtAsunto">
+                         Asunto
+                    </label>
+                    <input type="text" class="form-control" id="txtAsunto" placeholder="Asunto" required />
+               </div>
+               <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                    <label for="txtComentarios">
+                         Comentarios
+                    </label>
+                    <textarea name="Comentarios" id="txtComentarios" cols="30" rows="10" placeholder="Comentarios" class="input form-control" required></textarea>
+               </div>             
+               <div class="form-group">
+                    <button id="btnGuardar" type="submit" class="btn btn-success">Enviar</button>
+               </div>
+          </form>
+     </div>
+</div>
+<script src="~/Scripts/ManejoDatos/Generales/Contactanos.js"></script>

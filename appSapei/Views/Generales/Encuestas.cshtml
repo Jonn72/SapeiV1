@@ -1,0 +1,55 @@
+﻿<link href="~/Content/Controles/flat/green.css" rel="stylesheet" />
+<div id="divEncuesta">
+
+    @{
+        if (ViewData["encuesta"] != null && !string.IsNullOrEmpty(ViewData["encuesta"].ToString()))
+        {
+            @Html.Raw(ViewData["encuesta"].ToString())
+            <div class="col-md-4">
+                <button id="btnGuardar" type="submit" class="btn btn-block btn-success">Guardar</button>
+            </div>
+            <div class="col-md-4">
+                <button id="btnCancelar" class="btn btn-block btn-info">Regresar</button>
+            </div>
+        }
+    }
+</div>
+
+     <div class="clearfix"></div>
+
+
+
+
+     <script>
+          var respuestasJSON;
+
+          $(document).ready(function () {
+               if ($("input.flat")[0]) {
+                    $(document).ready(function () {
+                         $('input.flat').iCheck({
+                              checkboxClass: 'icheckbox_flat-green',
+                              radioClass: 'iradio_flat-green'
+                         });
+                    });
+               }
+          });
+
+
+          function RegresaJson() {
+               var respuestas = "";
+               var name;
+               var valor;
+               $('input[type="radio"]:checked').each(function () {
+                    respuestas = respuestas + "|" + $(this).val().trim();
+               });
+               $('input[type="text"], textarea').each(function () {
+                    name = $(this).attr("name").trim();
+                    valor = $(this).val().trim();
+                    if (valor.length > 0)
+                         respuestas = respuestas + "|" + $(this).attr('id') + "&" + valor;
+               });
+               respuestas = respuestas.substring(1, respuestas.length)
+               return respuestas;
+          }
+     </script>
+

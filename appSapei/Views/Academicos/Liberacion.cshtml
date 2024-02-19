@@ -1,0 +1,83 @@
+﻿<div class="page-title">
+     <div class="col-md-8 col-sm-8 col-xs-12 form-group pull-left">
+          <h3>Constancias de cumplimiento periodo<small>  @ViewData["DescPeriodo"]</small></h3>
+     </div>
+</div>
+<div class="clearfix"></div>
+<form class="form-horizontal" action="#" id="frmLiberacion" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+     <div class="row">
+          <div id="divControl" class="x_panel col-md-4 col-sm-4 col-xs-12">
+               <div class="x_title">
+                    <h3>Liberación por Estudiante</h3>
+               </div>
+               <div class="x_content">
+                   <div class="row">
+                       <div class="col-md-4">
+                           <label>No. Control</label>
+                           <input type="text" id="txtNoControl" class="form-control" placeholder="Ingrese el no. de control" required>
+                       </div>
+                       <div class="col-md-4">
+                           <label>Promedio</label>
+                           <input type="number" id="txtPromedio" max="4" min="1" value="0" class="form-control" placeholder="Ingrese en valor numérico" required>
+                       </div>
+                       @{
+                           if (Sapei.Framework.Utilerias.SesionSapei.Sistema.Sesion.Usuario.RolUsuario == Sapei.Framework.Configuracion.enmRolUsuario.DAC)
+                           {
+                               <div class="col-md-4">
+                                   <label>Vo. Bo.</label>
+                                   <input type="text" id="txtVoBo" class="form-control" placeholder="Visto bueno de:">
+                               </div>
+                           }
+                           else if (Sapei.Framework.Utilerias.SesionSapei.Sistema.Sesion.Usuario.RolUsuario == Sapei.Framework.Configuracion.enmRolUsuario.EXT)
+                           {
+                               <div class="col-md-4">
+                                   <label>Tipo de Actividad</label>
+                                   <select id="txtVoBo">
+                                       <option value="LEC">Lectura</option>
+                                       <option value="CUL">Cultural</option>
+                                       <option value="DEP">Deportiva</option>
+                                   </select>
+                               </div>
+                           }
+                           else if (Sapei.Framework.Utilerias.SesionSapei.Sistema.Sesion.Usuario.RolUsuario == Sapei.Framework.Configuracion.enmRolUsuario.DAC)
+                           {
+                               <div class="col-md-4">
+                                   <label>Vo. Bo.</label>
+                                   <input type="text" id="txtVoBo" class="form-control" placeholder="Visto bueno de:">
+                               </div>
+                           }
+                           else if (Sapei.Framework.Utilerias.SesionSapei.Sistema.Sesion.Usuario.RolUsuario == Sapei.Framework.Configuracion.enmRolUsuario.GTV)
+                           {
+                               <div class="col-md-4">
+                                   <label>Motivo</label>
+                                   <select id="txtVoBo">
+                                       <option value="SINSISTEMA">Sin Sistema</option>
+                                       <option value="ARTICULO91">Artículo 91</option>
+                                   </select>
+                               </div>
+                           } 
+                           }
+                   </div>
+               </div>
+               <div class="col-md-4 form-group">
+                    <button id="btnGenerar" type="submit" class="btn btn-block btn-success">Liberar</button>
+               </div>
+          </div>
+     </div>
+
+
+</form>
+
+<div id="divVisor" class="row div-hide">
+     <div class="x_panel">
+          <div class="x_title">
+               <h3>Constancia de Cumplimiento</h3>
+               <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+               @Html.Partial("../Generales/VisorPDF")
+          </div>
+     </div>
+</div>
+<script src="~/Scripts/ManejoDatos/Academicos/Liberacion.js"></script>
+

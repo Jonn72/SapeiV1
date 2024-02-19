@@ -1,0 +1,126 @@
+﻿@using Sapei.Framework.Utilerias;
+<div class="page-title">
+    <div class="title_left">
+        <h3>Activación Extémporanea <small>@ViewData["periodo_desc"]</small></h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="x_panel">
+
+    @{
+        bool lbEncontrado = false;
+        bool lbPagosRegistrado = false;
+        bool lbRegistrado_ss = false;
+        bool lbCreditos_requeridos = false;
+        string lsControl = "";
+        string lsNombre = "";
+        string lsCarrera = "";
+        string lsSemestre = "";
+
+        System.Data.DataTable loDt = null;
+
+        if (ViewData["DatosEstudiante"] != null)
+        {
+            loDt = ViewData["DatosEstudiante"] as System.Data.DataTable;
+            if (loDt.Columns.Count > 1 && loDt.Rows.Count > 0)
+            {
+                System.Data.DataRow dr = loDt.Rows[0];
+                lsControl = dr.RegresaValor<string>("no_de_control");
+                lsNombre = dr.RegresaValor<string>("nombre");
+                lsCarrera = dr.RegresaValor<string>("nombre_carrera");
+                lsSemestre = dr.RegresaValor<string>("semestre");
+                lbPagosRegistrado = dr.RegresaValor<bool>("pago_registrado");
+                lbRegistrado_ss = dr.RegresaValor<bool>("registrado_ss");
+                lbCreditos_requeridos = dr.RegresaValor<bool>("creditos_requeridos");
+                lbEncontrado = true;
+            }
+
+
+        }
+    }
+
+    <div id="divDatos" class="col-md-8 center-margin center-block">
+
+
+        @if (lbEncontrado)
+        {
+            <input type="hidden" id="hidNoControl" value="@lsControl" />
+            <div class="row">
+                <div class="col-md-10 center-margin center-block">
+                    <ul class="stats-overview">
+
+                        <li>
+                            <span class="name">No. Control</span>
+                            <span class="value text-success"> @lsControl </span>
+                        </li>
+                        <li style="width:25%">
+                            <span class="name"> Nombre </span>
+                            <span class="value text-success"> @lsNombre </span>
+                        </li>
+                        <li style="width:25%">
+                            <span class="name"> Carrera</span>
+                            <span class="value text-success"> @lsCarrera </span>
+                        </li>
+                        <li>
+                            <span class="name"> Semestre</span>
+                            <span class="value text-success"> @lsSemestre </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-10 center-margin center-block">
+                    <div class="alert alert-info alert-dismissible fade in" role="alert">
+
+                        @{
+                            if (lbPagosRegistrado)
+                            {
+                                if (lbCreditos_requeridos)
+                                {
+                                    if (!lbRegistrado_ss)
+                                    {
+                                        <div class="col-md-10 center-margin text-justify">
+                                            <h4 class="title text-center">
+                                                Valide los datos antes de activar el registro extemporáneo al servicio social.
+                                            </h4>
+                                            <div class="form-group text-center">
+                                                <button id="btnAutorizarRegistro" type="submit" class="btn btn-success">Autorizar</button>
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="col-md-10 center-margin text-justify">
+                                            <h4 class="title text-center">
+                                                Ya tiene un registro del Servicio Social.
+                                            </h4>
+                                        </div>
+                                    }
+                                }
+                                else
+                                {
+                                    <div class="col-md-10 center-margin text-justify">
+                                        <h4 class="title text-center">
+                                            No cuenta con los creditos mínimos requeridos.
+                                        </h4>
+                                    </div>
+                                }
+
+                            }
+                            else
+                            {
+                                <div class="col-md-10 center-margin text-justify">
+                                    <h4 class="title text-center">
+                                        No cuenta con registro de pago.
+                                    </h4>
+                                </div>
+                            }
+                        }
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<script src="~/Scripts/ManejoDatos/Vinculacion/RegistroExtemporaneoSS.js"></script>

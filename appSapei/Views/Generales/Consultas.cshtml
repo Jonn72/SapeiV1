@@ -1,0 +1,87 @@
+﻿<div class="page-title">
+    <div class="title_left">
+        @{
+            string lsTitulo = "";
+            if (ViewData["Modulo"] != null)
+            {
+                switch (ViewData["Modulo"].ToString())
+                {
+                    case "CON":
+                        lsTitulo = "Consultas Generales";
+                        break;
+                    case "IND":
+                        lsTitulo = "Índices e Indicadores";
+                        break;
+                }
+            }
+        }
+        <h3>@lsTitulo</h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="x_panel">
+    <form class="form-horizontal form-label-left" action="#" id="frmConsultas" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+        <input type="hidden" id="hidId" value="0" />
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                @{
+                    <label for="cboPeriodos">
+                        Seleccione el Periodo
+                    </label>
+                    if (ViewData["cboPeriodos"] != null)
+                    {
+                        <select class="form-control" id="cboPeriodos">
+                            @foreach (System.Data.DataRow dr in (ViewData["cboPeriodos"] as System.Data.DataTable).Rows)
+                            {
+                                <option value="@dr.ItemArray[0].ToString().Trim()">@dr.ItemArray[1].ToString().Trim()</option>
+                            }
+                        </select>
+                    }
+                }
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                @{
+                    <label for="cboPeriodos">
+                        Seleccione la consulta
+                    </label>
+                    if (ViewData["cboConsultas"] != null)
+                    {
+                        <select class="form-control" id="cboConsultas">
+                            @foreach (System.Data.DataRow dr in (ViewData["cboConsultas"] as System.Data.DataTable).Rows)
+                            {
+                                <option value="@dr.ItemArray[0].ToString().Trim()">@dr.ItemArray[1].ToString().Trim()</option>
+                            }
+                        </select>
+                    }
+                }
+            </div>
+        </div>
+        <div class="form-group ">
+            <button id="btnConsultar" type="submit" class="btn btn-info">Consultar</button>
+        </div>
+    </form>
+</div>
+<div class="clearfix"></div>
+
+<div id="divTabla" class="div-hide">
+    @Html.Partial("../Generales/TablaGeneral")
+</div>
+<script>
+    $(document).ready(function () {
+             });
+
+    $("#frmConsultas").submit(function (event) {
+         var tipo = $("#cboConsultas").val();
+         var periodo = $("#cboPeriodos").val();
+
+        $("#divTabla").hide();
+        $(':input[type="submit"]').prop('disabled', true);
+        $('#divTabla').load('../../../Consultas/RegresaDatos/',
+            { psTipo: "@ViewData["Modulo"]", piID: tipo, psPeriodo: periodo }, function () {
+              $(':input[type="submit"]').prop('disabled', false);
+              $("#divTabla").show("slow");
+            });
+
+         event.preventDefault();
+    })
+</script>

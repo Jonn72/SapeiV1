@@ -1,0 +1,111 @@
+﻿@using Sapei.Framework.Utilerias;
+<div class="page-title">
+    <div class="title_left">
+        <h3>Control de pagos <small>@ViewData["periodo_desc"]</small></h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="x_panel">
+
+    @Html.Partial("../Generales/BuscaNoControl")
+
+    @{
+        bool lbEncontrado = false;
+        string lsControl = "";
+        string lsNombre = "";
+        string lsNivel = "";
+        string lsAutorizado = "";
+        string lsPagado = "";
+        if (ViewData["DatosEstudiante"] != null)
+        {
+            System.Data.DataTable loDt = null;
+            loDt = ViewData["DatosEstudiante"] as System.Data.DataTable;
+            if (loDt.Columns.Count > 1)
+            {
+                System.Data.DataRow dr = loDt.Rows[0];
+                lsControl = Convert.ToString(dr.RegresaValor<string>("no_de_control"));
+                lsNombre = Convert.ToString(dr.RegresaValor<string>("nombre"));
+                lsNivel = Convert.ToString(dr.RegresaValor<string>("nivel"));
+                lsAutorizado = Convert.ToString(dr.RegresaValor<string>("autorizado"));
+                lsPagado = Convert.ToString(dr.RegresaValor<string>("pagado"));
+                lbEncontrado = true;
+            }
+        }
+    }
+
+    <div class="col-md-10 center-margin center-block">
+        @if (lbEncontrado)
+        {
+            <input type="hidden" id="hidNoControl" value="@lsControl" />
+            <div class="row">
+                <div class="col-md-8 center-margin center-block">
+                    <ul class="stats-overview">
+
+                        <li>
+                            <span class="name">No. Control</span>
+                            <span class="value text-success"> @lsControl </span>
+                        </li>
+                        <li>
+                            <span class="name"> Nombre </span>
+                            <span class="value text-success"> @lsNombre </span>
+                        </li>
+                        <li>
+                            <span class="name"> Nivel</span>
+                            <span class="value text-success"> @lsNivel </span>
+                        </li>
+                        <li>
+                            <span class="name"> Cuenta con registro de pago</span>
+                            <span class="value text-success"> @lsAutorizado </span>
+                        </li>
+                        <li>
+                            <span class="name"> Pagado </span>
+                            <span class="value text-success"> @lsPagado </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 center-margin center-block">
+                    <div class="alert alert-info alert-dismissible fade in" role="alert">
+                        @{
+                            if (lsAutorizado.Trim().ToUpper() == "SI")
+                            {
+                                if (lsPagado.Trim().ToUpper() == "SI")
+                                {
+                                    <h4 class="title text-center">
+                                        Ya se ha registrado el pago, no es posible realizar movimientos.
+                                    </h4>
+
+                                }
+                                else
+                                {
+                                    <h4 class="title text-center">
+                                        Esta función permite cancelar el pago del curso de inglés, lo cual eliminará el pago obligatorio.
+
+                                    </h4>
+                                    <div class="form-group text-center">
+                                        <button id="btnEliminarPago" type="submit" class="btn btn-success">Eliminar Pago</button>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <h4 class="title text-center">
+                                    Esta función permite cancelar el pago del curso de inglés, lo cual eliminará el pago obligatorio.
+                                </h4>
+                                <div class="form-group text-center">
+                                    <button id="btnActivarPago" type="submit" class="btn btn-success">Activar Pago</button>
+                                </div>
+                            }
+
+                        }
+
+                    </div>
+                </div>
+            </div>
+
+        }
+
+    </div>
+</div>
+<script src="~/Scripts/ManejoDatos/CentroLenguasExt/ActivaDesactivaPago.js"></script>

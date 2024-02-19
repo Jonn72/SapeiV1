@@ -1,0 +1,46 @@
+﻿
+<div class="page-title">
+     <div class="title_left">
+          <h3>Cambio de Estatus Aspirantes</h3>
+     </div>
+</div>
+<div class="clearfix"></div>
+<div class="x_panel">
+     <div class="x_title">
+          <form class="class=" form-horizontal form-label-left input_mask" id="frmModificaEstatusAspirante" action="" method="post" accept-charset="utf-8">               
+               <div class="row" id="divDatos">
+                    <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                         <label for="txtFolio">Folio:<span class="required">*</span></label>
+                         <input type="text" class="form-control" name="txtFolio" id="txtFolio" placeholder="Folio" oninvalid="ValidaExisteFolio();" onblur="ValidaExisteFolio();" required="required">
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                         <label for="txtNombreCompleto">
+                              Nombre Completo
+                         </label>
+                         <input type="text" class="form-control" id="txtNombreCompleto" placeholder="Nombre del Aspirante" readonly />
+                    </div>          
+                    <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                         <label for="txtEstatus">
+                              Estatus Actual
+                         </label>
+                         <input type="text" class="form-control" id="txtEstatus" readonly />
+                    </div>         
+               </div>
+               <div class="row">
+                    
+                    <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                         <label for="tags">
+                              Seleccione el Estatus del Aspirante
+                         </label>
+                         <select class="form-control" id="cboEstatusAspirante" required></select>
+                    </div>               
+               </div>
+
+               <div class="form-group">
+                    <button id="btnGuardar" type="submit" class="btn btn-success">Guardar</button>
+               </div>
+          </form>
+     </div>
+</div>
+<script src="~/Scripts/ManejoDatos/Aspirantes/Validaciones.js"></script>
+<script src="~/Scripts/ManejoDatos/Aspirantes/CambiarEstatus.js"></script>

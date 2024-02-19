@@ -1,0 +1,442 @@
+﻿<link href="~/Content/Controles/avance.css" rel="stylesheet" />
+<input type="hidden" id="hidControl" value="@ViewData["no_de_control"]" />
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>Avance de Cursos de Inglés</h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="x_panel">
+    <div class="x_title">
+        <h2>Selección de cursos</h2>
+        <div class="clearfix"></div>
+    </div>
+    @{
+        if (Sapei.Framework.Utilerias.SesionSapei.Sistema.Sesion.Usuario.RolUsuario == Sapei.Framework.Configuracion.enmRolUsuario.CLE && string.IsNullOrEmpty(Convert.ToString(ViewData["no_de_control"])))
+        {
+            if (!string.IsNullOrEmpty(Convert.ToString(ViewData["mensaje"])))
+            {
+                <script type="text/javascript">
+                         MensajesToastr("info", "Solicitud Procesada", "@Convert.ToString(ViewData["mensaje"])");
+                </script>
+            }
+            <div id="divBuscaEstudiante">
+                <form class="form-horizontal form-label-left" action="#" id="frmValidaControl" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+                    <div id="divUsuario">
+                        <div class="col-md-8 center-margin">
+                            <label for="txtNoControl">
+                                No. de Control
+                            </label>
+                            <input type="text" class="form-control" id="txtNoControl" placeholder="Ingrese el no. de control" oninvalid="ValidaCampo(this, 'NOCONTROL');" onblur="ValidaCampo(this, 'NOCONTROL');" required />
+                        </div>
+                    </div>
+                    <div class="col-md-8 center-margin">
+                        <div class="form-group">
+                            <button id="btnContinuar" type="submit" class="btn btn-info">Continuar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        }
+        else
+        {
+            <form class="form-horizontal form-label-left" action="#" id="frmRegistroEstudianteIngles" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+                <div id="divRegistro" class="col-md-10 center-margin">
+                    <div class="x_content">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <p><i class="fa fa-square cursado"></i> Cursada</p>
+                            </div>
+                            <div class="col-md-2">
+                                <p><i class="fa fa-square cursando"></i> Cursando</p>
+                            </div>
+                            <div class="col-md-3">
+                                <p><i class="fa fa-square seleccionar"></i> Próxima a cursar</p>
+                            </div>
+                            <div class="col-md-2">
+                                <p><i class="fa fa-square noacreditada"></i> No Acreditada</p>
+                            </div>
+
+                            <div class="col-md-3">
+                                <p><i class="fa fa-square nopermitida"></i> No Permitido hasta avance</p>
+                            </div>
+                        </div>
+                        <div class="ln_solid"></div>
+                        <div class="stepwizard arrowText arrowRight ">
+                            <div class="stepwizard-row setup-panel">
+                                <div class="stepwizard-step">
+                                    <a href="#step-A1-A" id="sA1-A" type="button" class="btn btn-circle btn-circle-nopermitida">A1-A</a>
+                                </div>
+
+                                <div class="stepwizard-step">
+                                    <a href="#step-A1-B" id="sA1-B" type="button" class="btn btn-circle btn-circle-nopermitida">A1-B</a>
+                                </div>
+
+                                <div class="stepwizard-step">
+                                    <a href="#step-A2" id="sA2" type="button" class="btn btn-circle btn-circle-nopermitida">A2</a>
+                                </div>
+                                <div class="stepwizard-step">
+                                    <a href="#step-B1-A" id="sB1-A" type="button" class="btn btn-circle btn-circle-nopermitida">B1-A</a>
+                                </div>
+
+                                <div class="stepwizard-step">
+                                    <a href="#step-B1-B" id="sB1-B" type="button" class="btn btn-circle btn-circle-nopermitida">B1-B</a>
+                                </div>
+                            </div>
+                        </div>
+                        @{if (ViewData["niveles"] != null && ViewData["historia_cursos"] != null)
+                            {
+                                bool lbColocacion = true;
+                                string idStep;
+
+                                foreach (System.Data.DataRow drNivel in (ViewData["niveles"] as System.Data.DataTable).Rows)
+                                {
+                                    string lsNivel = "step-" + drNivel.ItemArray[0].ToString().Trim();
+                                    <div class="row setup-content" id="@lsNivel">
+                                        <div class="col-xs-12">
+                                            <div class="col-md-12">
+                                                <h3>Nivel @drNivel.ItemArray[0].ToString().Trim()</h3>
+
+                                                @{
+                                                    string lsPanelCSS = "cursado";
+                                                    string lsStepCSS;
+                                                    bool lbCursado = false;
+                                                    bool lbEnCurso = false;
+                                                    bool lbSeleccionar = false;
+                                                    idStep = "#s" + drNivel.ItemArray[0].ToString().Trim();
+                                                    if ((ViewData["historia_cursos"] as System.Data.DataTable).Rows.Count == 0)
+                                                    {
+                                                        lbColocacion = false;
+                                                    }
+                                                    else
+                                                    {
+                                                        foreach (System.Data.DataRow dr in (ViewData["historia_cursos"] as System.Data.DataTable).Rows)
+                                                        {
+
+                                                            if (dr.ItemArray[2].ToString().Trim() == drNivel.ItemArray[0].ToString().Trim())
+                                                            {
+                                                                lbEnCurso = false;
+                                                                lbColocacion = false;
+                                                                lbCursado = true;
+                                                                lbSeleccionar = false;
+                                                                lsStepCSS = "btn-circle-nopermitida";
+
+
+                                                                if (dr.ItemArray[9].ToString().Trim() == "0")
+                                                                {
+                                                                    <div class="panel-group" id="accordion">
+                                                                        @if (Convert.ToInt32(dr.ItemArray[11]) == 0)
+                                                                        {
+                                                                            lsPanelCSS = "cursando";
+                                                                            lsStepCSS = "btn-circle-cursando";
+                                                                            lbEnCurso = true;
+
+                                                                        }
+                                                                        else if (Convert.ToInt32(dr.ItemArray[11]) == 2)
+                                                                        {
+                                                                            lsPanelCSS = "seleccionar";
+                                                                            lsStepCSS = "btn-circle-seleccionar";
+                                                                            lbSeleccionar = true;
+                                                                        }
+                                                                        else if (Convert.ToInt32(dr.ItemArray[3]) < 70)
+                                                                        {
+                                                                            lsPanelCSS = "noacreditada";
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            lsPanelCSS = "cursado";
+                                                                            lsStepCSS = "btn-circle-cursado";
+                                                                        }
+                                                                        <script type="text/javascript">
+                                                                      $("@idStep").removeClass("btn-circle-nopermitida");
+                                                                      $("@idStep").addClass("@lsStepCSS");
+                                                                        </script>
+
+                                                                        <div class="panel @lsPanelCSS" style="color: #000000;">
+                                                                            <div class="panel-heading">
+                                                                                <h4 class="panel-title">
+                                                                                    <a data-toggle="collapse" data-parent="#accordion" href="#@dr.ItemArray[0].ToString()">Periodo @dr.ItemArray[1].ToString()</a>
+                                                                                </h4>
+                                                                            </div>
+                                                                            <div id="@dr.ItemArray[0].ToString()" class="panel-collapse collapse">
+                                                                                <div class="panel-body">
+                                                                                    @if (!lbEnCurso && !lbSeleccionar)
+                                                                                    {
+                                                                                        <div>
+                                                                                            <div class="col-md-10">
+                                                                                                <h3>Registrado el <small>@dr.ItemArray[10].ToString().Substring(0, 10)</small></h3>
+                                                                                            </div>                                                                 <div class="col-xs-12 bg-white progress_summary text-center">
+                                                                                                <h4>Resultados</h4>
+                                                                                                <div class="row">
+                                                                                                    <div class="col-xs-2">
+                                                                                                        <span>Asistencia</span>
+                                                                                                    </div>
+                                                                                                    <div class="col-xs-8">
+                                                                                                        <div class="progress progress_sm">
+                                                                                                            <div class="progress-bar bg-blue" role="progressbar" style="width: @dr.ItemArray[4].ToString()%;"></div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div class="col-xs-2 more_info">
+                                                                                                        <span>@dr.ItemArray[4].ToString()%</span>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="row">
+                                                                                                    <div class="col-xs-2">
+                                                                                                        <span>Promedio</span>
+                                                                                                    </div>
+                                                                                                    <div class="col-xs-8">
+                                                                                                        <div class="progress progress_sm">
+                                                                                                            <div class="progress-bar bg-orange" role="progressbar" style="width: @dr.ItemArray[3].ToString()%;"></div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div class="col-xs-2 more_info">
+                                                                                                        <span>@dr.ItemArray[3].ToString()%</span>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="ln_solid"></div>
+                                                                                            </div>
+                                                                                            <div class="col-xs-12 bg-white progress_summary text-center">
+                                                                                                <h4>Habilidades</h4>
+                                                                                                <div class="row">
+                                                                                                    <div class="col-xs-2">
+                                                                                                        <span>Speaking</span>
+                                                                                                    </div>
+                                                                                                    <div class="col-xs-8">
+                                                                                                        <div class="progress progress_sm">
+                                                                                                            <div class="progress-bar bg-green" role="progressbar" style="width: @dr.ItemArray[5].ToString()%;"></div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div class="col-xs-2 more_info">
+                                                                                                        <span>@dr.ItemArray[5].ToString()%</span>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="row">
+                                                                                                    <div class="col-xs-2">
+                                                                                                        <span>Writing</span>
+                                                                                                    </div>
+                                                                                                    <div class="col-xs-8">
+                                                                                                        <div class="progress progress_sm">
+                                                                                                            <div class="progress-bar bg-green" role="progressbar" style="width: @dr.ItemArray[6].ToString()%;"></div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div class="col-xs-2 more_info">
+                                                                                                        <span>@dr.ItemArray[6].ToString()%</span>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="row">
+                                                                                                    <div class="col-xs-2">
+                                                                                                        <span>Listening</span>
+                                                                                                    </div>
+                                                                                                    <div class="col-xs-8">
+                                                                                                        <div class="progress progress_sm">
+                                                                                                            <div class="progress-bar bg-green" role="progressbar" style="width: @dr.ItemArray[7].ToString()%;"></div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div class="col-xs-2 more_info">
+                                                                                                        <span>@dr.ItemArray[7].ToString()%</span>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="row">
+                                                                                                    <div class="col-xs-2">
+                                                                                                        <span>Reading</span>
+                                                                                                    </div>
+                                                                                                    <div class="col-xs-8">
+                                                                                                        <div class="progress progress_sm">
+                                                                                                            <div class="progress-bar bg-green" role="progressbar" style="width: @dr.ItemArray[8].ToString()%;"></div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div class="col-xs-2 more_info">
+                                                                                                        <span>@dr.ItemArray[8].ToString()%</span>
+                                                                                                    </div>
+                                                                                                </div>
+
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    }
+                                                                                    else if (lbSeleccionar)
+                                                                                    {
+                                                                                        <div class="col-md-12">
+                                                                                            <h3>Fecha de Servidor <small style="color: #aef6c1;">@dr.ItemArray[10].ToString().Substring(0, 16)</small></h3>
+                                                                                            <div class="bg-white ">
+
+                                                                                                <div>
+                                                                                                    @if (ViewData["cursos_validos"] != null)
+                                                                                                    {
+                                                                                                        <script type="text/javascript">
+                                                                                                              $("#@dr.ItemArray[0].ToString()").addClass("in");
+                                                                                                        </script>
+                                                                                                        foreach (System.Data.DataRow drCursos in (ViewData["cursos_validos"] as System.Data.DataTable).Rows)
+                                                                                                        {
+                                                                                                            if (drCursos.ItemArray[0].ToString() == "1")
+                                                                                                            {
+                                                                                                                string lsCursos = drCursos.ItemArray[1].ToString();
+                                                                                                                string[] lasCursos = lsCursos.Split('|');
+
+                                                                                                                <div class="col-md-8 center-margin ScrollDiv">
+                                                                                                                    <h4>Selección de cursos</h4>
+                                                                                                                    <h5>A continuación se presentan los grupos disponibles según tu horario de materias seleccionadas en este periodo. Si tienes alguna duda preséntate en el CLE del Instituto</h5>
+                                                                                                                    <div class="ln_solid"></div>
+                                                                                                                    @if (lasCursos.Length > 0)
+                                                                                                                    {
+                                                                                                                        string lsColor = "#E9F7EF";
+                                                                                                                        bool lbColor = true;
+                                                                                                                        foreach (string lsGrupo in lasCursos)
+                                                                                                                        {
+                                                                                                                            string[] horario = lsGrupo.Split('!');
+                                                                                                                            <div class="col-md-offset-3 form-group" style="background:@lsColor">
+                                                                                                                                <label>
+                                                                                                                                    <input type="radio" name="rbtCurso" class="icheckbox_flat-green " id="@horario[0]" value="@horario[0]">
+
+                                                                                                                                    Grupo @Sapei.Framework.Utilerias.ManejoCadenas.Base64Decode(horario[0]) <small>@horario[1]</small>
+                                                                                                                                </label>
+                                                                                                                            </div>
+                                                                                                                            if (lbColor)
+                                                                                                                            {
+                                                                                                                                lbColor = false;
+                                                                                                                                lsColor = "";
+                                                                                                                            }
+                                                                                                                            else
+                                                                                                                            {
+                                                                                                                                lbColor = true;
+                                                                                                                                lsColor = "#E9F7EF";
+                                                                                                                            }
+                                                                                                                        }
+                                                                                                                        <div class="ln_solid"></div>
+
+                                                                                                                        <h5>Antes de guardar debes estar seguro del horario que has seleccionado, pues una vez guardado el grupo de inglés, no podrás hacer cambio alguno. Despúes de guarar podras descargar tu carga horaria de inglés</h5>
+                                                                                                                        <button id="btnGuardarGrupo" type="submit" class="btn btn-block btn-success">Aceptar y Guardar</button>
+
+                                                                                                                        <div class="clearfix"></div>
+
+                                                                                                                    }
+
+                                                                                                                </div>
+                                                                                                            }
+                                                                                                            else
+                                                                                                            {
+                                                                                                                <div>
+                                                                                                                    <h3>@drCursos.ItemArray[0].ToString()</h3>
+                                                                                                                </div>
+                                                                                                            }
+                                                                                                        }
+
+                                                                                                    }
+                                                                                                    <span>@dr.ItemArray[12].ToString()</span>
+                                                                                                    @if (!string.IsNullOrEmpty(Convert.ToString(ViewData["mensaje"])))
+                                                                                                    {
+                                                                                                        <div>
+                                                                                                            <h3>@Convert.ToString(ViewData["mensaje"])</h3>
+                                                                                                        </div>
+                                                                                                    }
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        <div class="col-md-12">
+                                                                                            <h3>Fecha de selección <small>@dr.ItemArray[10].ToString().Substring(0, 10)</small></h3>
+                                                                                            <div class="bg-white progress_summary text-center">
+                                                                                                <h4>Cursando</h4>
+                                                                                                <div class="row">
+                                                                                                    <span>@dr.ItemArray[12].ToString()</span>
+                                                                                                </div>
+                                                                                                <div class="row">
+                                                                                                    <div class="col-md-offset-2 col-md-8">
+                                                                                                        <button id="btnDescargarHorario" type="submit" class="btn btn-block btn-success">Descargar Horario</button>
+                                                                                                    </div>
+
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    }
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                }
+                                                                else if (dr.ItemArray[9].ToString().Trim() == "1")
+                                                                {
+                                                                    <br>
+                                                                    <h3>Asignación por colocación</h3>
+                                                                    <script type="text/javascript">
+                                                                 $("@idStep").removeClass("btn-circle-nopermitida");
+                                                                 $("@idStep").addClass("btn-circle-cursado");
+                                                                    </script>
+                                                                }
+                                                            }
+                                                        }
+                                                        if (lbColocacion)
+                                                        {
+                                                            <script type="text/javascript">
+                                                       $("@idStep").removeClass("btn-circle-nopermitida");
+                                                       $("@idStep").addClass("btn-circle-cursado");
+                                                            </script>
+                                                            <br>
+                                                            <h3>Asignación por colocación</h3>
+
+                                                        }
+                                                        else if (!lbCursado && !lbColocacion)
+                                                        {
+                                                            <br>
+                                                            <h3>Sin Cursar</h3>
+                                                        }
+
+                                                    }
+
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        }
+
+
+
+                    </div>
+                </div>
+            </form>
+        }
+    }
+</div>
+<div id="divVisor" class="row div-hide">
+    <div class="col-md-12 center-margin center-block">
+        <div class="x_panel">
+            <div class="x_title">
+                <h3>Horario</h3>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                @Html.Partial("../Generales/VisorPDF")
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/ManejoDatos/CentroLenguasExt/RegistroEstudiante.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var navListItems = $('div.setup-panel div a'), // tab nav items
+            allWells = $('.setup-content'), // content div
+            allNextBtn = $('.nextBtn'); // next button
+
+        allWells.hide(); // hide all contents by defauld
+
+        navListItems.click(function (e) {
+            e.preventDefault();
+            var $target = $($(this).attr('href')),
+                $item = $(this);
+
+            if (!$item.hasClass('disabled')) {
+                allWells.hide();
+                $target.show();
+                $target.find('input:eq(0)').focus();
+            }
+        });
+
+        $('div.setup-panel div a.btn-circle-cursando').trigger('click');
+        $('div.setup-panel div a.btn-circle-seleccionar').trigger('click');
+
+    });
+</script>  

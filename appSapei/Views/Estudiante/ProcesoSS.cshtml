@@ -1,0 +1,992 @@
+﻿<input type="hidden" id="hidEstado" value="@ViewData["estado"]" />
+<input type="hidden" id="hidModalidad" value="@ViewData["modalidad"]" />
+<div class="">
+    <div class="row">
+        <div class="col-12 col-lg-6 col-sm-12 hidden">
+            <select id="theme_selector" class="custom-select col-lg-6 col-sm-12">
+                <option value="arrows"></option>
+            </select>
+        </div>
+    </div>
+    <!-- SmartWizard html -->
+    <div id="smartwizard">
+        <ul>
+            <li><a href="#ss-1">Curso de<br /> Inducción</a></li>
+            <li><a href="#ss-2">Modalidad de<br /> Servicio Social</a></li>
+            <li><a href="#ss-3">Carta de<br /> Presentación</a></li>
+            <li><a href="#ss-4">Carta de<br /> Aceptación</a></li>
+            <li><a href="#ss-5">Solicitud de<br /> Servicio</a></li>
+            <li><a href="#ss-6">Carta de <br /> Compromiso</a></li>
+            <li><a href="#ss-7">Plan de <br /> Trabajo</a></li>
+            <li><a href="#ss-8">Reporte <br />Bimestral 1</a></li>
+            <li><a href="#ss-9">Reporte <br />Bimestral 2</a></li>
+            <li><a href="#ss-10">Reporte <br />Bimestral 3</a></li>
+            <li><a href="#ss-11">Reporte <br />Final</a></li>
+            <li><a href="#ss-12">Carta de <br /> Término</a></li>
+            <li><a href="#ss-13">Constancia de<br />  Término</a></li>
+
+        </ul>
+
+        <div>
+            <div id="ss-1" class="">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>@ViewData["txtTitulo"]</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="col-md-2 col-sm-2 col-xs-12"></div>
+                        <div class="col-md-8 col-sm-8 col-xs-12">
+                            <iframe width="560" height="315" src="@ViewData["txtUrl"]" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <form name="formulario">
+                                @{
+                                    if (Convert.ToInt32(ViewData["estado"]) >= 1)
+                                    {
+                                        <p>Al dar clic aceptas que has tomado el curso de inducción y estas enterado del curso de inducción</p>
+                                    }
+                                    else
+                                    {
+                                        <p>
+                                            <input type="checkbox" value="1" name="pepe" onclick="boton.disabled = !this.checked">
+                                            Al dar clic aceptas que has tomado el curso de inducción y estas enterado del curso de inducción
+                                            <input id="btnCurso" type="button" value="Continuar" name="boton" disabled class="btn btn-primary">
+                                        </p>
+                                    }
+                                }
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="ss-2" class="">
+                <div class="x_panel">
+                    <div class="x_content">
+                        <div class="col-md-2 col-sm-2 col-xs-12"></div>
+                        <form id="sfs" data-parsley-validate class="form-horizontal form-label-left">
+                            <p><h3>¿Selecciona la modalidad de tu Servicio Social?</h3></p>
+                            @{
+                                if (Convert.ToInt32(ViewData["estado"]) >= 2)
+                                {
+
+                                }
+                                else
+                                {
+                                    <a class="btn btn-primary" id="btnExterno">Externo</a>
+                                    <a class="btn btn-success" id="btnInterno">Interno</a>
+                                }
+                            }
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div id="ss-3" class="">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Carta de Presentación</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                            <p><b>Debes acudir a Gestión Tecnológica y Vinculación a solicitar tu carta de presentación.</b></p>
+                            @if (Convert.ToString(ViewData["modalidad"]) == "ext")
+                            {
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#MensajeDatos">
+                                    Datos requeridos!!
+                                </button>
+                            }
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div id="ss-4" class="">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Carta de Aceptación</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="x_content">
+                            <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                                <p><b>El departamento de Gestión Tecnológica y Vinculación esta en espera de tu Carta de Aceptación.</b></p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="ss-5" class="">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Solicitud de Servicio Social</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <form id="frmSolicitudServicioSocial" data-parsley-validate class="form-horizontal form-label-left">
+                            @{
+                                if (Convert.ToInt32(ViewData["estado"]) >= 5)
+                                {
+                                    <p><b>Solicitud Generada.</b></p>
+                                }
+                                else
+                                {
+                                    if (Convert.ToString(ViewData["modalidad"]) == "ext")
+                                    {
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <label for="txtRfc">Selecciona tu Dependencia</label>
+                                        @{
+                                            if (ViewData["Dependencias"] != null)
+                                            {
+                                        <select class="form-control" id="cboDependencia" onchange="autocompletaDep();">
+                                            <option selected></option>
+                                            @foreach (System.Data.DataRow dr in (ViewData["Dependencias"] as System.Data.DataTable).Rows)
+                                            {
+                                                <option value="@dr.ItemArray[0].ToString().Trim()">@dr.ItemArray[1].ToString().Trim()</option>
+                                            }
+                                        </select>
+                                            }
+                                        }
+                                        @*<input type="text" onkeyup="mayus(this);" id="txtRfc" required maxlength="13" value="@ViewData["txtRFC"]" class=" form-control" placeholder="rfc" onblur="autocompletaDep();" />*@
+                                    </div>
+                                        <div class="form-group">
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <label for="txtTitular">
+                                                    Titular de la Dependencia
+                                                </label>
+                                                <input type="text" class="form-control" id="txtTitular" disabled placeholder="Titular de la dependencia" required />
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <label for="txtCargoTitular">
+                                                    Cargo del titular de la dependencia
+                                                </label>
+                                                <input type="text" class="form-control" id="txtCargoTitular" disabled placeholder="Cargo del titular de la dependencia" required />
+                                            </div>
+                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                <label for="txtTelefono">
+                                                    Teléfono
+                                                </label>
+                                                <input type="text" class="form-control" id="txtTelefono" disabled placeholder="Teléfono" required />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-6 col-sm-6 col-xs-12 ">
+                                                <label>
+                                                    Nombre del programa
+                                                </label>
+                                                <select class="form-control" id="cboPrograma" placeholder="Nombre Programa" required onchange="autocompletaPro();"></select>
+                                            </div>
+                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                <a class="btn btn-info btn-lg" id="agregar_programa" style="margin-top:10px"><span class="fa fa-plus"></span> Nuevo</a>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                <label>
+                                                    Objetivo del Programa
+                                                </label>
+                                                <textarea type="text" class="form-control" id="txtObjetivo" disabled placeholder="Objetivo del Programa" required></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <label for="txtResponsable">
+                                                    Nombre del responsable del programa
+                                                </label>
+                                                <input type="text" class="form-control" id="txtResponsable" disabled placeholder="Nombre del responsable del programa" required />
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <label for="txtCargoResponsablePrograma">
+                                                    Cargo del responsable del programa
+                                                </label>
+                                                <input type="text" class="form-control" id="txtCargoResponsablePrograma" disabled placeholder="Cargo del responsable del programa" required />
+                                            </div>
+   
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                <label for="txtCorreo">
+                                                    Correo Electrónico
+                                                </label>
+                                                <input type="email" class="form-control" id="txtCorreo" disabled placeholder="correo@dominio.com" oninvalid=" ValidaCampo(this, 'CORREO');" onblur="     ValidaCampo(this, 'CORREO');" required />
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                <label for="txtDepartamento">
+                                                    Departamento Solicitado
+                                                </label>
+                                                <input type="text" class="form-control" id="txtDepartamento" placeholder="Departamento Solicitado" disabled required />
+                                            </div>
+                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                <label>Tipo de Programa</label>
+                                                <select class="form-control" disabled id="TipoProgramatxt" required>
+                                                    <option value="ACTCI">Actividades cívicas</option>
+                                                    <option value="ACTCU">Actividades culturales</option>
+                                                    <option value="ACTDE">Actividades deportivas</option>
+                                                    <option value="APOSA">Apoyo a la salud</option>
+                                                    <option value="DESCO">Desarrollo de comunidad</option>
+                                                    <option value="DESUS">Desarrollo Sustentable</option>
+                                                    <option value="EDUCA">Educación para adultos</option>
+                                                    <option value="MEDAM">Medio ambiente</option>
+                                                    <option value="OTROS">Otros</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    }
+                                    <div class="form-group">
+                                        <p><b>Actividades</b></p>
+                                        <div class="control-group">
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                <p>
+                                                    En el siguiente campo agregar tus actividades de servicio social (presiona la tecla "tab" para agregar mas actividades).
+                                                </p>
+                                                <input id="tags_1" type="text" maxlength="500" requeried class="tags form-control" />
+                                                <div id="suggestions-container" onkeyup="mayus(this);" style="position: relative; float: left; width: 250px; margin: 10px;"></div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                <label>Tipo de Actividades</label>
+                                                @{
+                                                    if (ViewData["Descripcion"] != null)
+                                                    {
+                                                        <select class="form-control" id="selectTipoActividades" required>
+                                                            @foreach (System.Data.DataRow dr in (ViewData["Descripcion"] as System.Data.DataTable).Rows)
+                                                            {
+
+                                                                <option value="@dr.ItemArray[0].ToString().Trim()">@dr.ItemArray[1].ToString().Trim()</option>
+                                                            }
+                                                        </select>
+                                                    }
+                                                }
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <button type="submit" id="btnGuardar" class="btn btn-success">Guardar</button>
+                                        </div>
+                                    </div>
+                                }
+                            }
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div id="ss-6" class="">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Carta Compromiso de Servicio Social</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <form name="formulario">
+                            @{
+                                if (Convert.ToInt32(ViewData["estado"]) >= 6)
+                                {
+                                    <p>Me comprometo a realizar el Servicio Social acatando el reglamento emitido por el Tecnológico Nacional de México y llevarlo a cabo en el lugar y periodos manifestados, así como a participar con mis conocimientos e iniciativa en las actividades que desempeñe,  procurando dar una imagen positiva del Instituto Tecnológico en el organismo o dependencia  oficial. De no hacerlo así, quedo enterado (a) de la cancelación respectiva, la cual procederá automáticamente.</p>
+                                }
+                                else
+                                {
+                                    <p>
+                                        <input type="checkbox" value="1" name="compromiso" onclick="boton.disabled = !this.checked">
+                                        Me comprometo a realizar el Servicio Social acatando el reglamento emitido por el Tecnológico Nacional de México y llevarlo a cabo en el lugar y periodos manifestados, así como a participar con mis conocimientos e iniciativa en las actividades que desempeñe,  procurando dar una imagen positiva del Instituto Tecnológico en el organismo o dependencia  oficial. De no hacerlo así, quedo enterado (a) de la cancelación respectiva, la cual procederá automáticamente.<br><br>
+                                        <input id="btnCartaCompromiso" type="button" value="Continuar" name="boton" disabled class="btn btn-primary sw-btn-next">
+                                    </p>
+                                }
+                            }
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <div id="ss-7" class="">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Plan de Trabajo de Servicio Social</h2>
+                        <div class="clearfix">                           
+                            
+                        </div>
+                    </div>
+                    <div class="x_content">
+                        <h4>Descarga e imprime tu plan de trabajo y entregalo en el departamento de Gestión Tecnológica y Vinculación</h4>
+                        <a href="@Url.Action("ReportePlanTrabajoSS", "DocumentosOficiales")" class="btn btn-success" id="btnSolicitud">Descargar <span class="fa fa-download"></span></a>
+                    </div>
+                </div>
+            </div>
+            <div id="ss-8" class="">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Reportes</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                            <p><b>Bimestre 1</b></p>
+                            <ul class="to_do">
+                                <li>
+                                    <div class="form-group">
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            Autoevaluación Cualitativa
+                                        </div>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            Evaluación Cualitativa
+                                        </div>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            Reporte Bimestral
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @if (Convert.ToInt32(ViewData["Reporte"]) >= 1)
+                                        {
+                                            <div class="fa-hover col-md-4 col-sm-4 col-xs-12">
+                                                <a href="#" id="ReporteB1-3" class="fa fa-download"> Descargar PDF</a>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="fa-hover col-md-4 col-sm-4 col-xs-12">
+                                                <a href="#" data-toggle="modal" data-target="#generar" id="btnReporte1"><i class="fa fa-pencil"></i> Generar</a>
+                                            </div>
+                                        }
+                                        <div class="fa-hover col-md-4 col-sm-4 col-xs-12">
+                                            <a href="#" id="ReporteB1-2" class="fa fa-download"> Descargar PDF</a>
+                                        </div>
+                                        <div class="fa-hover col-md-4 col-sm-4 col-xs-12">
+                                            <a href="#" id="ReporteB1-1" class="fa fa-download"> Descargar PDF</a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <h4>Genera tu autoevaluación cualitativa, descarga los tres formatos y entregalos en Gestión Tecnológica y Vinculación</h4>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div id="ss-9" class="">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Reportes</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                            <p><b>Bimestre 2</b></p>
+                            <ul class="to_do">
+                                <li>
+                                    <div class="form-group">
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            Autoevaluación Cualitativa
+                                        </div>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            Evaluación Cualitativa
+                                        </div>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            Reporte Bimestral
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @if (Convert.ToInt32(ViewData["Reporte"]) == 1)
+                                        {
+                                            <div class="fa-hover col-md-4 col-sm-4 col-xs-12">
+                                                <a href="#" data-toggle="modal" data-target="#generar" id="btnReporte1"><i class="fa fa-pencil"></i> Generar</a>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="fa-hover col-md-4 col-sm-4 col-xs-12">
+                                                <a href="#" id="ReporteB2-3" class="fa fa-download"> Descargar PDF</a>
+                                            </div>
+                                        }
+                                        <div class="fa-hover col-md-4 col-sm-4 col-xs-12">
+                                            <a href="#" id="ReporteB2-2" class="fa fa-download"> Descargar PDF</a>
+                                        </div>
+                                        <div class="fa-hover col-md-4 col-sm-4 col-xs-12">
+                                            <a href="#" id="ReporteB2-1" class="fa fa-download"> Descargar PDF</a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <h4>Genera tu autoevaluación cualitativa, descarga los tres formatos y entregalos en Gestión Tecnológica y Vinculación</h4>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div id="ss-10" class="">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Reportes</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                            <p><b>Bimestre 3</b></p>
+                            <ul class="to_do">
+                                <li>
+                                    <div class="form-group">
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            Autoevaluación Cualitativa
+                                        </div>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            Evaluación Cualitativa
+                                        </div>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            Reporte Bimestral
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @if (Convert.ToInt32(ViewData["Reporte"]) == 2)
+                                        {
+                                            <div class="fa-hover col-md-4 col-sm-4 col-xs-12">
+                                                <a href="#" data-toggle="modal" data-target="#generar" id="btnReporte1"><i class="fa fa-pencil"></i> Generar</a>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="fa-hover col-md-4 col-sm-4 col-xs-12">
+                                                <a href="#" id="ReporteB3-3" class="fa fa-download"> Descargar PDF</a>
+                                            </div>
+                                        }
+                                        <div class="fa-hover col-md-4 col-sm-4 col-xs-12">
+                                            <a href="#" id="ReporteB3-2" class="fa fa-download"> Descargar PDF</a>
+                                        </div>
+                                        <div class="fa-hover col-md-4 col-sm-4 col-xs-12">
+                                            <a href="#" id="ReporteB3-1" class="fa fa-download"> Descargar PDF</a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <h4>Genera tu autoevaluación cualitativa, descarga los tres formatos y entregalos en Gestión Tecnológica y Vinculación</h4>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div id="ss-11" class="">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Reporte Final</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <h4>Genera tu evaluación de actividades y descarga el formato.</h4>
+                        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                            <ul class="to_do">
+                                <li>
+                                    <div class="form-group">
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            Evaluación de Actividades
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @if (Convert.ToInt32(ViewData["Reporte"]) <= 3)
+                                        {
+                                            <div class="fa-hover col-md-4 col-sm-4 col-xs-12">
+                                                <a href="#" data-toggle="modal" data-target="#generar" id="btnReporteActividades"><i class="fa fa-pencil"></i> Generar</a>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="fa-hover col-md-4 col-sm-4 col-xs-12">
+                                                <a href="#" id="ReporteB4-4" class="fa fa-download"> Descargar PDF</a>
+                                            </div>
+                                        }
+                                    </div>
+                                </li>
+                            </ul>
+                        </form>
+                        <h4><b>El departamento de Gestión Tecnológica y Vinculación esta en espera de tu reporte final.</b></h4>
+                        <div class="alert alert-success alert-dismissible fade in" role="alert">
+                            <strong>Nota:</strong> Debes solitar tu carta de terminó a la dependencia o departamento donde realizaste tu servicio social e integrarla al reporte final.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="ss-12" class="">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Carta Término</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <h4><strong>Nota:</strong> Debes solitar tu carta de terminó a la dependencia o departamento donde realizaste tu servicio social.</h4>
+                    </div>
+                </div>
+            </div>
+            <div id="ss-13" class="">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Constancia de Término</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <h4>Debes acudir a Gestión Tecnológica y Vinculación a recoger tu constancia. Para concluir tu proceso, entrega copia de la constancia de termino en el Depto. de Servicios Escolares.</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style type="text/css">
+    input[type="radio"] {
+        margin-left: 39px;
+    }
+
+    .inhabilitado {
+        color: #808080;
+        cursor: default;
+    }
+
+    .sw-theme-arrows > ul.step-anchor > li > a, .sw-theme-arrows > ul.step-anchor > li > a:hover {
+        padding: 10px 0px 10px 32px !important;
+        text-align: justify;
+    }
+</style>
+<!--STEP-2-->
+@* MODAL DEL BOTON EXTERNO DE MODALLIDAD DE SERVICIO SOCIAL PARA SOLICTAR CARTA DE PRESENTACION*@
+<div class="modal fade" id="ModalExterno" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="overflow-y:scroll;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel">Solicitud de Servicio Social (turno)</h4>
+            </div>
+                <form id="frmSolicitud" data-parsley-validate class="form-horizontal form-label-left">
+                    <div class="modal-body">
+                        <select class="form-control" id="txtTurno">
+                            <option value="mat">Matutino</option>
+                            <option value="ves">Vespertino</option>
+                            <option value="mix">Mixto</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" href="#step-3" style="margin-top:1px">Guardar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="margin-top:1px">Cerrar</button>
+                    </div>
+                </form>
+        </div>
+    </div>
+</div>
+
+@*MODAL DENTRO DEL MODAL ANTERIOR PARA AGREGAR UN NUEVO PROGRAMA*@
+<div id="ModalAgregarPrograma" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-tittle">Agregar</h4>
+            </div>
+            <div class="modal-body">
+                <form id="frmAltaPrograma" data-parsley-validate class="form-horizontal form-label-left">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <label>Nombre del programa</label>
+                        <input type="hidden" class=" form-control" id="Dependenciatxt" disabled />
+                        <input type="text" onkeyup="mayus(this);" class="form-control" id="Programatxt" placeholder="Nombre del programa" required />
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <label>
+                                Objetivo del Programa
+                            </label>
+                            <textarea type="text" onkeyup="mayus(this);" class="form-control" id="Objetivotxt" placeholder="Objetivo del Programa" required></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <label>Nombre del responsable del programa</label>
+                            <input type="text" onkeyup="mayus(this);" class="form-control" id="Responsabletxt" placeholder="Nombre del responsable del programa" required />
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <label>Cargo del responsable del programa</label>
+                            <input type="text" onkeyup="mayus(this);" class="form-control" id="CargoResponsabletxt" placeholder="Cargo del responsable del programa" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <label>Correo Electrónico</label>
+                            <input type="email" class="form-control" id="Correotxt" placeholder="correo@dominio.com" oninvalid=" ValidaCampo(this, 'CORREO');" onblur="     ValidaCampo(this, 'CORREO');" required />
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <label>Departamento solicitado</label>
+                            <input type="text" onkeyup="mayus(this);" class="form-control" id="Departamentotxt" placeholder="Departamento Solicitado" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <label>Tipo de Programa</label>
+                            @{
+                                if (ViewData["TipoPrograma"] != null)
+                                {
+                                    <select class="form-control" id="selectTipoPrograma" required>
+                                        @foreach (System.Data.DataRow dr in (ViewData["TipoPrograma"] as System.Data.DataTable).Rows)
+                                        {
+
+                                            <option value="@dr.ItemArray[0].ToString().Trim()">@dr.ItemArray[1].ToString().Trim()</option>
+                                        }
+                                    </select>
+                                }
+                            }
+                        </div>
+                    </div>
+                    <div class='col-md-12 col-sm-12 col-xs-12'>
+                        <button type="submit" id="btnGuardar" class="btn btn-success">Guardar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="margin-top:1px">Cerrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*MODAL DEL BOTON INTERNO*@
+<div class="modal fade" id="interno" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Turno</h5>
+            </div>
+            <div class="modal-body">
+                <select class="form-control" id="txtTurnos">
+                    <option value="mat">Matutino</option>
+                    <option value="ves">Vespertino</option>
+                    <option value="mix">Mixto</option>
+                </select>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-success" id="btnsaveinterno">Guardar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--STEP-7,8,9-->
+<!--MODAL AUTOEVALUACION -->
+<div class="modal fade" name="autoevaluacion" id="Reporte1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Autoevaluación Cualitativa</h5>
+            </div>
+            <div class="from-group">
+                <div class="text-right">
+                    <b>Insuficiente </b>
+                    <b> Suficiente </b>
+                    <b> Bueno </b>
+                    <b> Notable </b>
+                    <b> Excelente</b>
+                </div>
+            </div>
+            <div class="modal-body">
+                <form id="radioReporte1" data-parsley-validate class="form-horizontal form-label-left">
+                    <ul class="to_do">
+                        <li>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <b>Cumplí en tiempo y forma con las actividades encomendadas alcanzando los objetivos.</b>
+                                </div>
+                                <div class="text-center">
+                                    <input type="radio" name="rdbcountry" value="0" />
+                                    <input type="radio" name="rdbcountry" value="1" />
+                                    <input type="radio" name="rdbcountry" value="2" />
+                                    <input type="radio" name="rdbcountry" value="3" />
+                                    <input type="radio" name="rdbcountry" value="4" />
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="to_do">
+                        <li>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <b>Trabajé en equipo y me adapté a nuevas situaciones.</b>
+                                </div>
+                                <div class="text-center">
+                                    <input type="radio" name="rdbcountry2" value="0" />
+                                    <input type="radio" name="rdbcountry2" value="1" />
+                                    <input type="radio" name="rdbcountry2" value="2" />
+                                    <input type="radio" name="rdbcountry2" value="3" />
+                                    <input type="radio" name="rdbcountry2" value="4" />
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="to_do">
+                        <li>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <b>Mostré liderazgo en las situaciones encomendadas.</b>
+                                </div>
+                                <div class="text-center">
+                                    <input type="radio" name="rdbcountry3" value="0" />
+                                    <input type="radio" name="rdbcountry3" value="1" />
+                                    <input type="radio" name="rdbcountry3" value="2" />
+                                    <input type="radio" name="rdbcountry3" value="3" />
+                                    <input type="radio" name="rdbcountry3" value="4" />
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="to_do">
+                        <li>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <b>Organicé mi tiempo y trabajé de manera proactiva.</b>
+                                </div>
+                                <div class="text-center">
+                                    <input type="radio" name="rdbcountry4" value="0" />
+                                    <input type="radio" name="rdbcountry4" value="1" />
+                                    <input type="radio" name="rdbcountry4" value="2" />
+                                    <input type="radio" name="rdbcountry4" value="3" />
+                                    <input type="radio" name="rdbcountry4" value="4" />
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="to_do">
+                        <li>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <b>Interpreté la realidad y me sensibilicé aportando soluciones a la problemática con la actividad complementaria.</b>
+                                </div>
+                                <div class="text-center">
+                                    <input type="radio" name="rdbcountry5" value="0" />
+                                    <input type="radio" name="rdbcountry5" value="1" />
+                                    <input type="radio" name="rdbcountry5" value="2" />
+                                    <input type="radio" name="rdbcountry5" value="3" />
+                                    <input type="radio" name="rdbcountry5" value="4" />
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="to_do">
+                        <li>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <b>Realicé sugerencias innovadoras para beneficio o mejora en el programa en el que participa.</b>
+                                </div>
+                                <div class="text-center">
+                                    <input type="radio" name="rdbcountry6" value="0" />
+                                    <input type="radio" name="rdbcountry6" value="1" />
+                                    <input type="radio" name="rdbcountry6" value="2" />
+                                    <input type="radio" name="rdbcountry6" value="3" />
+                                    <input type="radio" name="rdbcountry6" value="4" />
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="to_do">
+                        <li>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <b>Tuve iniciativa para ayudar en las actividades y muestré espíritu de servicio.</b>
+                                </div>
+                                <div class="text-center">
+                                    <input type="radio" name="rdbcountry7" value="0" />
+                                    <input type="radio" name="rdbcountry7" value="1" />
+                                    <input type="radio" name="rdbcountry7" value="2" />
+                                    <input type="radio" name="rdbcountry7" value="3" />
+                                    <input type="radio" name="rdbcountry7" value="4" />
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--MODAL EVALUACION DE ACTIVIDADES-->
+<div class="modal fade" name="autoevaluacion" id="EvaluacionActividades" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Evaluación de Actividades</h5>
+            </div>
+            <div class="from-group">
+                <div class="text-right">
+                    <b>Insuficiente </b>
+                    <b> Suficiente </b>
+                    <b> Bueno </b>
+                    <b> Notable </b>
+                    <b> Excelente</b>
+                </div>
+            </div>
+            <div class="modal-body">
+                <form id="radioEvaluacionActividades" data-parsley-validate class="form-horizontal form-label-left">
+                    <ul class="to_do">
+                        <li>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <b>¿Consideras importante la realización del servicio social?</b>
+                                </div>
+                                <div class="text-center">
+                                    <input type="radio" name="rdbcountry" value="1" id="india" />
+                                    <input type="radio" name="rdbcountry" value="2" id="USA" />
+                                    <input type="radio" name="rdbcountry" value="3" id="Australia" />
+                                    <input type="radio" name="rdbcountry" value="4" id="USAs" />
+                                    <input type="radio" name="rdbcountry" value="5" id="Australias" />
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="to_do">
+                        <li>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <b>¿Consideras que las actividades que realizas son pertinentes a los fines del servicio social?</b>
+                                </div>
+                                <div class="text-center">
+                                    <input type="radio" name="rdbcountry2" value="1" id="india" />
+                                    <input type="radio" name="rdbcountry2" value="2" id="USA" />
+                                    <input type="radio" name="rdbcountry2" value="3" id="Australia" />
+                                    <input type="radio" name="rdbcountry2" value="4" id="USAs" />
+                                    <input type="radio" name="rdbcountry2" value="5" id="Australias" />
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="to_do">
+                        <li>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <b>¿Consideras que las actividades que realizaste contribuyen a tu formación integral?</b>
+                                </div>
+                                <div class="text-center">
+                                    <input type="radio" name="rdbcountry3" value="1" id="india" />
+                                    <input type="radio" name="rdbcountry3" value="2" id="USA" />
+                                    <input type="radio" name="rdbcountry3" value="3" id="Australia" />
+                                    <input type="radio" name="rdbcountry3" value="4" id="USAs" />
+                                    <input type="radio" name="rdbcountry3" value="5" id="Australias" />
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="to_do">
+                        <li>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <b>¿Contribuiste en actividades de beneficio social comunitario?</b>
+                                </div>
+                                <div class="text-center">
+                                    <input type="radio" name="rdbcountry4" value="1" id="india" />
+                                    <input type="radio" name="rdbcountry4" value="2" id="USA" />
+                                    <input type="radio" name="rdbcountry4" value="3" id="Australia" />
+                                    <input type="radio" name="rdbcountry4" value="4" id="USAs" />
+                                    <input type="radio" name="rdbcountry4" value="5" id="Australias" />
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="to_do">
+                        <li>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <b>¿Contribuiste en actividades de protección al medio ambiente?</b>
+                                </div>
+                                <div class="text-center">
+                                    <input type="radio" name="rdbcountry5" value="1" id="india" />
+                                    <input type="radio" name="rdbcountry5" value="2" id="USA" />
+                                    <input type="radio" name="rdbcountry5" value="3" id="Australia" />
+                                    <input type="radio" name="rdbcountry5" value="4" id="USAs" />
+                                    <input type="radio" name="rdbcountry5" value="5" id="Australias" />
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="to_do">
+                        <li>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <b>¿Cómo consideras que las dependencias que adquiriste en la escuela contribuyeron a atender asertivamente las actividades de servicio social?</b>
+                                </div>
+                                <div class="text-center">
+                                    <input type="radio" name="rdbcountry6" value="1" id="india" />
+                                    <input type="radio" name="rdbcountry6" value="2" id="USA" />
+                                    <input type="radio" name="rdbcountry6" value="3" id="Australia" />
+                                    <input type="radio" name="rdbcountry6" value="4" id="USAs" />
+                                    <input type="radio" name="rdbcountry6" value="5" id="Australias" />
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="to_do">
+                        <li>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <b>¿Consideras que sería factible continuar con ese proyecto de servicio social a un proyecto de residencias profesionales, proyecto integrador, proyecto de investigación o desarrollo tecnológico?</b>
+                                </div>
+                                <div class="text-center">
+                                    <input type="radio" name="rdbcountry7" value="1" id="india" />
+                                    <input type="radio" name="rdbcountry7" value="2" id="USA" />
+                                    <input type="radio" name="rdbcountry7" value="3" id="Australia" />
+                                    <input type="radio" name="rdbcountry7" value="4" id="USAs" />
+                                    <input type="radio" name="rdbcountry7" value="5" id="Australias" />
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="to_do">
+                        <li>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <b>¿Recomendarias a otro estudiante realizar su servicio social en la dependencia donde lo realizaste?</b>
+                                </div>
+                                <div class="text-center">
+                                    <input type="radio" name="rdbcountry8" value="1" id="india" />
+                                    <input type="radio" name="rdbcountry8" value="2" id="USA" />
+                                    <input type="radio" name="rdbcountry8" value="3" id="Australia" />
+                                    <input type="radio" name="rdbcountry8" value="4" id="USAs" />
+                                    <input type="radio" name="rdbcountry8" value="5" id="Australias" />
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@*MODAL DATOS GTyV*@
+<div class="modal fade" id="MensajeDatos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLongTitle">Aviso</h3>
+                <button type="button" id="closemodal" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h4>Acude al departamento de Gestion Tecnológica y Vinculación con los siguientes datos de la dependencia donde realizaras tu Servicio Social:</h4>
+                <ul>
+                    <li>RFC de la dependencia</li>
+                    <li>Nombre de la dependencia</li>
+                    <li>Razón social</li>
+                    <li>Misión</li>
+                    <li>Domicilio Actual(Calle, número interno,código postal, colonia, alcaldía)</li>
+                    <li>Titular de la dependencia</li>
+                    <li>Puesto del titular de la dependencia</li>
+                    <li>Teléfono del area donde estaras involucrado</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .sw-theme-arrows > ul.step-anchor > li > a:after {
+        border-top: 28px solid transparent !important;
+        border-bottom: 27px solid transparent !important;
+        top: 51%;
+        margin-top: -29px;
+    }
+
+    .sw-theme-arrows > ul.step-anchor > li > a:before {
+        border-top: 28px solid transparent !important;
+        border-bottom: 27px solid transparent !important;
+        top: 51%;
+        margin-top: -29px;
+    }
+</style>
+
+@Html.Partial("../Generales/ModalVisorPDF")
+<script src="~/Scripts/ManejoDatos/Estudiantes/ProcesoSS.js"></script>
+<script src="~/Scripts/Componentes/jquery.tagsinput.js"></script>
+<script src="~/Scripts/Componentes/jquery.tagsinput.js"></script>

@@ -1,0 +1,232 @@
+﻿<link rel="stylesheet" href="~/Content/themes/ExpedienteDigital.css" />
+
+@using Sapei.Framework.Utilerias;
+
+@{
+    bool lbEncontrado = false;
+    string lsControl = "";
+    string lsNombre = "";
+    string lsCarrera = "";
+    string lsSemestre = "";
+    System.Data.DataTable loDt = null;
+
+    if (ViewData["Datos"] != null)
+    {
+        loDt = ViewData["Datos"] as System.Data.DataTable;
+        if (loDt.Columns.Count > 1)
+        {
+            System.Data.DataRow dr = loDt.Rows[0];
+            lsControl = Convert.ToString(dr.RegresaValor<string>("no_de_control"));
+            lsNombre = Convert.ToString(dr.RegresaValor<string>("nombre_alumno"));
+            lsSemestre = Convert.ToString(dr.RegresaValor<string>("semestre"));
+            lsCarrera = Convert.ToString(dr.RegresaValor<string>("carrera"));
+            lbEncontrado = true;
+            <input type="hidden" id="hidControl" value="@lsControl" />
+        }
+    }
+}
+<div class="x_panel">
+    @if (loDt != null && loDt.Rows.Count > 0)
+    {
+        <div id="divPersonales">
+            <div class="col-md-10 center-margin center-block">
+                @if (lbEncontrado)
+                {
+                    <input type="hidden" id="hidNoControl" value="@lsControl" />
+                    <div class="row">
+                        <div class="col-md-10 center-margin center-block">
+                            <ul class="stats-overview">
+                                <li>
+                                    <span class="name">No. Control</span>
+                                    <span class="value  textoA"> @lsControl </span>
+                                </li>
+                                <li style="width:25%">
+                                    <span class="name"> Nombre </span>
+                                    <span class="value textoA"> @lsNombre </span>
+                                </li>
+                                <li style="width:35%">
+                                    <span class="name"> Carrera</span>
+                                    <span class="value textoA"> @lsCarrera </span>
+                                </li>
+                                <li>
+                                    <span class="name"> Semestre</span>
+                                    <span class="value textoA"> @lsSemestre </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+                }
+            </div>
+
+
+        </div>
+    }
+
+    <div id="DivDocPersonales">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                <div class="row">
+                    <div class="x_title col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                        <a class="btn colorCardII disabled">
+                            <h2>Documentos Personales</h2>
+                        </a>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="x_title col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                        <a class="btn colorCard2" style="float: right" onclick="MuestraDocEsc(1);">
+                            <h2 >Documentos Escolares</h2>
+                        </a>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @if (loDt != null && loDt.Rows.Count > 0)
+        {
+            <div class="form-group col-md-12 center-margin">
+                <div class="row">
+                    @{
+                                int liClaveDoc;
+                                bool lbAutorizado;
+                                int liEstado;
+                                string lsNombreDocumento;
+                                string lsTitulo;
+                                string lsObservaciones;
+                                string lsRevisadoPor;
+                                int lsRequiereValidacion; 
+
+                                foreach (System.Data.DataRow loFila in loDt.Rows)
+                                {
+                                    liClaveDoc = loFila.RegresaValor<int>("clave_documento");
+                                    lbAutorizado = loFila.RegresaValor<bool>("autorizado"); ;
+                                    liEstado = loFila.RegresaValor<int>("estado"); ;
+                                    lsNombreDocumento = loFila.RegresaValor<string>("nombre_documento").Trim();
+                                    lsTitulo = lsNombreDocumento.SeparaFormatoCamello().Trim();
+                                    lsRevisadoPor = loFila.RegresaValor<string>("revisado_por");
+                                    lsObservaciones = loFila.RegresaValor<string>("observaciones");
+                                    lsRequiereValidacion = loFila.RegresaValor<int>("requiere_validacion");
+
+
+                                    if (lsRequiereValidacion == 0)
+                                    {
+
+                                <div id="titulo" class="div-hide">
+                                    <label>
+                                        @lsTitulo
+                                    </label>
+                                </div>
+                            }
+                            else
+                            {
+
+                                <div class="col-md-6 col-sm-6 col-xs-12 text-center">
+                                    <div class="card text-white colorCardExpDig mb-3">
+                                        <div class="card-header textoCard">@lsTitulo</div>
+                                        <div class="card-body">
+                                            <div class="clearfix"></div>
+
+                                            @switch (liEstado)
+                        {
+                                                case 0:
+                                                    <div class="textoCard">
+                                                        <h4>Sin documento</h4>
+                                                    </div>
+                                                    break;
+                                                case 1:
+                                                    <div class="form-group center-text">
+
+                                                        <button class="btn btn-info vista_previa" id="@("btn_vp_"+liClaveDoc)" @*onclick="MuestraDoc('@liClaveDoc');"*@ name="@liClaveDoc">
+                                                            Vista Previa
+                                                        </button>
+                                                        <button class="btn btn-success validar" style="display:none" id="@("btn_validar_"+liClaveDoc)" name="@liClaveDoc" disabled>
+                                                            Validar
+                                                        </button>
+                                                        <button class="btn btn-danger rechazar" style="display:none" id="@("btn_rechazar_"+liClaveDoc)" name="@liClaveDoc" disabled>
+                                                            Rechazar
+                                                        </button>
+                                                        <button class="btn btn-dark rechazar_enviar" style="display:none" id="@liClaveDoc" name="@liClaveDoc" disabled>
+                                                            Enviar
+                                                        </button>
+
+                                                    </div>
+                                                    <div id="@("div_Obs_"+@liClaveDoc)" class="div-hide textoCard">
+                                                        <label>Seleccione porque es rechazado el documento</label>
+                                                        <section>
+                                                            <div>
+                                                                <input id="@("chk1_"+@liClaveDoc)" type="checkbox" name="@liClaveDoc" class="input_ckeck" />
+                                                                <label for="@("chk1_"+@liClaveDoc)" class="label_check">Documento incorrecto.</label>
+                                                            </div>
+                                                            <div>
+                                                                <input id="@("chk2_"+@liClaveDoc)" type="checkbox" name="@liClaveDoc" class="input_ckeck" />
+                                                                <label for="@("chk2_"+@liClaveDoc)" class="label_check">No cumple especificaciones.</label>
+                                                            </div>
+                                                            <div>
+                                                                <input id="@("chk3_"+@liClaveDoc)" type="checkbox" name="@liClaveDoc" class="input_ckeck" />
+                                                                <label for="@("chk3_"+@liClaveDoc)" class="label_check">No es vigente.</label>
+                                                            </div>
+
+                                                            @*<div class="total">
+                                                                    Total checked:
+                                                                </div>*@
+                                                        </section>
+
+                                                    </div>
+                                                    break;
+                                                case 2:
+                                                    <div class="">
+                                                        <div class="alert alert-info textoCard">
+                                                            El fue rechazado, motivo(s):
+                                                            @{
+                                                                if (!string.IsNullOrEmpty(lsObservaciones))
+                                                                {
+                                                                    foreach (var lsObs in lsObservaciones.Trim().Split(';'))
+                                                                    {
+                                                                        if (!string.IsNullOrEmpty(lsObs))
+                                                                        {
+                                                                            <h6> * @lsObs</h6>
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                    break;
+                                                case 3:
+                                                    <div class="form-group  textoCard text-center">
+                                                        <button class="btn btn-info vista_previa" @*onclick="MuestraDoc('@liClaveDoc')"*@ name="@liClaveDoc">
+                                                            Ver Documento Autorizado
+                                                        </button>
+                                                    </div>
+
+                                                    break;
+                                            }
+                                        </div>
+                                    </div>
+                                    &nbsp;
+                                    &nbsp;
+                                    &nbsp;
+                                    &nbsp;
+                                    &nbsp;
+                                    &nbsp;
+                                    <br />
+                                </div>
+                            }
+
+                        }
+                    }
+
+                </div>
+            </div>
+        }
+         </div>
+    <div id="MuestraDocEsc" class="div-hide">
+        @Html.Partial("../ExpedienteDigital/MuestraDocumentosEscolaresEstudiante")
+    </div>
+</div>
+
+
+<script src="~/Scripts/ManejoDatos/ExpedienteDigital/MuestraDocumentosEstudiante.js"></script>

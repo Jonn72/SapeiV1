@@ -1,0 +1,150 @@
+﻿<link href="~/Content/font/font-awesome.min.css" rel="stylesheet" />
+<link href="~/Content/prettify/prettify.min.css" rel="stylesheet" />
+
+<input type="hidden" id="hidticket" value="" />
+<div class="clearfix"></div>
+<div class="x_panel">
+    <div class="col-md-10 center-margin" id="tabla">
+        @Html.Partial("../Generales/TablaGeneral")
+        <button id="nticket" class="btn btn-sm btn-primary" type="button"><i class="fa fa-reply"></i> Nueva Queja o Sugerencia</button>
+    </div>
+
+    <div class="col-xs-12 mail_view" id="Mensajes" style="display:none;">
+        <div class=" inbox-body" style="height: auto;">
+            <div class="mail_heading row">
+                <div class="col-md-8">
+                </div>
+                <div class="col-md-4 text-right">
+                    <p class="date" id="fecha"></p>
+                </div>
+                <div class="col-md-12">
+                    <h4 id="titulo"></h4>
+                </div>
+            </div>
+            <div class="sender-info">
+                <div class="row">
+                    <div class="col-md-12">
+                        <strong id="nombre_completo"></strong>
+                        <span id="no_de_control"></span>
+                        <a class="sender-dropdown"><i class="fa fa-chevron-down"></i></a>
+                    </div>
+                </div>
+            </div>
+            @{if (ViewData["ticket"] != null)
+            {
+                foreach (System.Data.DataRow dr2 in (ViewData["ticket"] as System.Data.DataTable).Rows)
+                {
+                    <div class="view-mail" id="@dr2.ItemArray[0].ToString().Trim()" style="display:none;">
+                        @foreach (System.Data.DataRow dr3 in (ViewData["mensaje"] as System.Data.DataTable).Rows)
+                        {
+                            if (dr2.ItemArray[0].ToString().Trim() == dr3.ItemArray[0].ToString().Trim())
+                            {
+                                if (dr3.ItemArray[1].ToString().Trim() == "True")
+                                {
+                                    <div align="right">
+                                        @if (dr3.ItemArray[3].ToString().Trim() == "True")
+                                        {<div>@dr3.ItemArray[4].ToString().Trim()<i class="fa fa-check-circle"></i></div>}
+                                        else
+                                        {<div>@dr3.ItemArray[4].ToString().Trim()<i class="fa fa-check-circle-o"></i></div>}
+                                        @dr3.ItemArray[2].ToString().Trim()
+                                        <hr />
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div align="left" style="background: rgba(76, 206, 126, 0.58); color: #000000;">
+                                        @if (dr3.ItemArray[3].ToString().Trim() == "True")
+                                        {<div>@dr3.ItemArray[4].ToString().Trim()<i class="fa fa-check-circle"></i></div>}
+                                        else
+                                        {<div>@dr3.ItemArray[4].ToString().Trim()<i class="fa fa-check-circle-o"></i></div>}
+                                        @dr3.ItemArray[2].ToString().Trim()
+                                        <hr />
+                                    </div>
+                                }
+
+                            }
+                        }
+                    </div>
+                }
+            }
+            }                                    <div class="btn-group">
+                <!--<button  class="btn btn-sm btn-success btn-block" type="button">COMPOSE</button>-->
+
+                <button id="compose" class="btn btn-sm btn-primary" type="button" style="display:none;"><i class="fa fa-reply"></i> Responder</button>
+                &nbsp;
+                <button id="cerrar" class="btn btn-sm btn-danger" type="button" style="display:none;"><i class="fa fa-minus-circle"></i> Cerrar Titeck</button>
+                &nbsp;
+                <button id="ocultar" class="btn btn-sm btn-info" type="button"><i class="fa fa-eye-slash"></i></button>
+            
+
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 mail_view" id="frmQuejasySugerencias" style="display:none;">
+        <div class="clearfix"></div>
+        <div class="x_title">
+            <h3>
+                Quejas y Sugerencias
+            </h3>
+            <div class="clearfix"></div>
+        </div>
+            <div class="col-md-10 center-margin">
+                <form class="form-horizontal form-label-left" action="#" id="frmQuejasySugerencias" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+                    <div id="divNoControl">
+                        <div class="col-md-8 center-margin">
+                            <div class="alert text-center font-mensaje hide" role="alert"></div>
+                            <br />
+                            <p align="justify">
+                                En este apartado podras enviar tus quejas y sugerencias al departamento de calidad.
+                                Para validar su queja y/o sugerencia deber&aacute; requisitar algun dato que nos permita localizarlo y darle respuesta,
+                                de lo contrario, no ser&aacute; considerada.<br />
+                                Todo lo que sea registrado en esta secci&oacute;n sera de caracter <strong>CONFIDENCIAL</strong> y sin represalias.<br /> Puedes confiar
+                                en que gracias a tus comentarios el tecnol&oacute;gico mejorar&aacute; en muchos aspectos y as&iacute; brindarte un
+                                servicio y estancia de calidad como lo mereces.
+                            </p>
+                            <br>
+                            Asunto:
+                            <input type="text" class="form-control" name="txtAsunto" id="txtAsunto" placeholder="Asunto" required>
+                            <br />
+                            Mensaje:
+
+                            <textarea name="txtQS" id="txtQS" class="form-control" rows="12"></textarea>
+                            <p id="contadorTaComentario">0/250</p>
+                            <br />
+                            <div align="center">
+                                <button id="btnGuardar" type="submit" class="btn btn-info">Enviar</button>
+                                <button id="btnRegresar" type="button" class="btn btn-info">Cancelar</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+        <!-- compose -->
+        <div class="compose col-md-6 col-xs-12">
+            <div class="compose-header">
+                Nuevo Mensaje
+                <button type="button" class="close compose-close">
+                    <span>X</span>
+                </button>
+            </div>
+
+            <div class="compose-body">
+                <div id="alerts"></div>
+
+                <div>
+                    <textarea name="txtQS" id="txtQSO" class="form-control" rows="5"></textarea>
+                </div>
+            </div>
+            <div id="contadorTaComentario">0/250</div>
+            <div class="compose-footer">
+                <button id="send" class="btn btn-sm btn-success" type="button">Enviar</button>
+            </div>
+        </div>
+        <script src="~/Scripts/ManejoDatos/Mensaje/estudiante.js"></script>
+        <script src="~/Scripts/ManejoDatos/Mensaje/bootstrap-wysiwyg.min.js"></script>
+        <script src="~/Scripts/ManejoDatos/Mensaje/jquery.hotkeys.js"></script>
+        <script src="~/Scripts/ManejoDatos/Mensaje/prettify.js"></script>
+        <script src="~/Scripts/ManejoDatos/Generales/QuejasySugerencias.js"></script>

@@ -1,0 +1,55 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutSimple.cshtml";
+}
+<div class="page-title">
+    <div class="title_left">
+        <h3>Recuperación <small>de contraseña/NIP</small></h3>
+    </div>
+</div>
+<div class="x_panel">
+    <div class="col-md-12 center-margin">
+        <div class="dashboard-widget-content">
+            <ul class="list-unstyled timeline widget">
+                <li>
+                    <h5>
+                        <a>Por este conducto se te informa GUARDIÁN que, para recuperar tu contraseña/NIP:</a>
+                    </h5>
+                    <div class="block col-md-8">
+                        <div class="block_content">
+                            <h5 class="title">
+                                <a>1. Sólo se permite recuperar Contraseña/NIP si te encuentras activo en el sistema.</a>
+                            </h5>
+                            <h5 class="title">
+                                <a>2. La recuperación se envia vía correo eléctronico, el cual esta registrado en tus datos ante el sistema.</a>
+                            </h5>
+                            <label>
+                                3. Ingresa tu No. de Control o RFC
+                            </label>
+                            <input type="text" class="form-control" id="txtValor" value="" required>
+                            <h5 class="title">
+                                <a>4. Antes de iniciar, debemos validar tu correo, por ello presiona el botón de VALIDAR, con ello se enviará un codigo a tu correo registrado</a>
+                            </h5>
+                            &nbsp;
+                            <button id="btnValidar" type="submit" class="btn btn-info btn-block right-aligned">Validar</button>
+                            <h5 class="title">
+                                <a>4. Revisa tu correo regitrado </a>
+                            </h5>
+                            <label>
+                                3. Ingresa el código.
+                            </label>
+                            <input type="text" class="form-control" id="txtCodigo" required>
+                            &nbsp;
+                            <button id="btnSolicitar" type="submit" class="btn btn-info btn-block right-aligned">Solicitar</button>
+
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+<script src="~/Scripts/jquery-1.12.4.min.js"></script>
+<script src="~/Scripts/toastr.min.js"></script>
+<script src="~/Scripts/manejoAlertas.js"></script>
+<script src="~/Scripts/login/Recupera.js"></script>

@@ -1,0 +1,175 @@
+﻿@using Sapei.Framework.Utilerias;
+<div class="page-title">
+    <div class="title_left">
+        <h3>Control de pagos <small>@ViewData["periodo_desc"]</small></h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="x_panel">
+
+    @Html.Partial("../Generales/BuscaNoControl")
+    @{
+        bool lbEncontrado = false;
+        bool lbTienePagos = false;
+        string lsControl = "";
+        string lsNombre = "";
+        string lsCarrera = "";
+        string lsSemestre = "";
+        string lsAutorizado = "";
+        string lsConcepto = "";
+        int liMonto = 0;
+        int liAbonado = 0;
+        int liCondonacion = 0;
+        double ldTotal = 0;
+        System.Data.DataTable loDt = null;
+
+        if (ViewData["DatosEstudiante"] != null)
+        {
+            loDt = ViewData["DatosEstudiante"] as System.Data.DataTable;
+            if (loDt.Columns.Count > 1)
+            {
+                System.Data.DataRow dr = loDt.Rows[0];
+                lsControl = dr.RegresaValor<string>("no_de_control");
+                lsNombre = dr.RegresaValor<string>("nombre");
+                lsCarrera = dr.RegresaValor<string>("nombre_carrera");
+                lsSemestre = dr.RegresaValor<string>("semestre");
+                lsAutorizado = dr.RegresaValor<string>("autorizado");
+                lbEncontrado = true;
+            }
+            if (loDt.Columns.Count > 4)
+            {
+                lbTienePagos = true;
+            }
+
+        }
+    }
+
+    <div id="divDatos" class="col-md-8 center-margin center-block">
+
+
+        @if (lbEncontrado)
+        {
+            <input type="hidden" id="hidNoControl" value="@lsControl" />
+            <div class="row">
+                <div class="col-md-10 center-margin center-block">
+                    <ul class="stats-overview">
+
+                        <li>
+                            <span class="name">No. Control</span>
+                            <span class="value text-success"> @lsControl </span>
+                        </li>
+                        <li style="width:25%">
+                            <span class="name"> Nombre </span>
+                            <span class="value text-success"> @lsNombre </span>
+                        </li>
+                        <li style="width:25%">
+                            <span class="name"> Carrera</span>
+                            <span class="value text-success"> @lsCarrera </span>
+                        </li>
+                        <li>
+                            <span class="name"> Semestre</span>
+                            <span class="value text-success"> @lsSemestre </span>
+                        </li>
+                        <li>
+                            <span class="name"> Autorizado </span>
+                            <span class="value text-success"> @lsAutorizado </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-10 center-margin center-block">
+                    <div class="alert alert-info alert-dismissible fade in" role="alert">
+
+                        @{
+                            if (lbTienePagos)
+                            {
+                                <div class="x_title col-md-10 col-sm-10 col-xs-12 center-margin">
+                                    <div class="col-md-8 col-sm-3 col-xs-6 text-right">
+                                        <h4>Concepto</h4>
+                                    </div>
+                                    <div class="col-md-2 col-sm-2 col-xs-12 text-right">
+                                        <h4>Monto</h4>
+                                    </div>
+                                    <div class="col-md-2 col-sm-2 col-xs-12 text-right">
+                                        <h4>Abonado</h4>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                foreach (System.Data.DataRow loFila in loDt.Rows)
+                                {
+                                    ldTotal += loFila.RegresaValor<int>("monto");
+                                    liMonto = loFila.RegresaValor<int>("monto");
+                                    liAbonado = loFila.RegresaValor<int>("abonado");
+                                    liCondonacion = loFila.RegresaValor<int>("condonacion");
+                                    lsConcepto = loFila.RegresaValor<string>("concepto");
+                                    <div class="col-md-10 center-margin">
+                                        <div class="row">
+                                            <div class=" col-md-8 col-sm-10 col-xs-6 text-right">
+                                                <h5>
+                                                    @lsConcepto
+                                                </h5>
+                                            </div>
+                                            <div class=" col-md-2 col-sm-2 col-xs-6 text-right">
+                                                <h5>
+                                                    @liMonto
+                                                </h5>
+                                            </div>
+                                            <div class=" col-md-2 col-sm-2 col-xs-6 text-right">
+                                                <h5>
+                                                    @liAbonado
+                                                </h5>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                }
+                                <div class="col-md-10 center-margin x_title">
+
+                                </div>
+                                if (lsAutorizado.Trim().ToUpper() == "SI")
+                                {
+                                    <div class="col-md-10 center-margin text-justify">
+                                        <h4 class="title text-center">
+                                            El estudiante ya esta autorizado para selección de materias. Esta función permite bloquear la selección de materias.
+                                        </h4>
+                                        <div class="form-group text-center">
+                                            <button id="btnEliminarPago" type="submit" class="btn btn-success">Bloquear</button>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="col-md-10 center-margin text-justify">
+                                        <h4 class="title text-center">
+                                            Esta función permite autorizar las aportaciones requeridas para la reinscripción, como curso de inglés, cursos especiales o reinscripción.
+                                        </h4>
+                                        <div class="form-group text-center">
+                                            <button id="btnAutorizarPago" type="submit" class="btn btn-success">Autorizar</button>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <div class="col-md-10 center-margin text-justify">
+                                    <h4 class="title text-center">
+                                        El alumno no cuneta con registro de pagos, consulte con la División de Estudios Profesionales.
+                                        Esta función permite autorizar las aportaciones requeridas para la reinscripción, 
+                                        como curso de inglés, cursos especiales o reinscripción.
+                                    </h4>
+                                    <div class="form-group text-center">
+                                        <button id="btnAutorizarPago" type="submit" class="btn btn-success">Autorizar</button>
+                                    </div>
+                                </div>
+                            }
+                        }
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<script src="~/Scripts/ManejoDatos/Financieros/RegistrarPagoAlumno.js"></script>

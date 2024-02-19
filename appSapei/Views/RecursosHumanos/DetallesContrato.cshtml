@@ -1,0 +1,263 @@
+﻿<input type="hidden" value="@ViewData["hidID"]" id="hidID" />
+@Html.Partial("../Generales/ModalVisorPDF")
+<div class="page-title">
+    <div class="title_left">
+        <h3>Detalles <small>de Contrato</small></h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="@ViewData["css1"]">
+    @Html.Partial("../Generales/TablaGeneral")
+</div>
+<div id="main" class="@ViewData["css2"]">
+    <div class="row">
+        <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+            <label for="tags">
+                RFC
+            </label>
+            <input type="text" class="form-control" id="txtRFC" value="@ViewData["txtRFC"]" readonly />
+
+        </div>
+        <div class="col-md-8 col-sm-8 col-xs-12 form-group">
+            <label for="tags">
+                Nombre
+            </label>
+            <input type="text" class="form-control" id="txtNombre" value="@ViewData["txtNombre"]" readonly />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+            <label for="tags">
+                Tipo de Contrato
+            </label>
+            <input type='text' id="txtTipoContrato" value="@ViewData["txtTipoContrato"]" class="form-control" readonly />
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+            <label for="tags">
+                Puesto Asignado
+            </label>
+            <input type='text' id="txtDescripcionPuesto" value="@ViewData["txtDescripcionPuesto"]" class="form-control" readonly />
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+            <label for="tags">
+                Fecha de Inicio
+            </label>
+            <input type='text' id="txtPeriodoInicio" value="@ViewData["txtPeriodoInicio"]" class="form-control" readonly />
+
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+            <label for="tags">
+                Fecha de Termino
+            </label>
+            <input type='text' id="txtPeriodoFin" value="@ViewData["txtPeriodoFin"]" class="form-control" readonly />
+
+        </div>
+    </div>
+    <br />
+
+    @if (ViewData["hid"] != null)
+    {
+        <div class="title_left">
+            <h3>Fechas <small>de Pago</small></h3>
+        </div>
+
+        <div class="row">
+            @foreach (System.Data.DataRow dr2 in (ViewData["hid"] as System.Data.DataTable).Rows)
+            {
+                @Html.Raw(@dr2.ItemArray[0])
+
+            }
+        </div>
+        <br />
+
+    }
+
+
+    @if (ViewData["pago"] != null)
+    {
+        <div class="title_left">
+            <h3>Pago <small>Asignado</small></h3>
+        </div>
+        <div class="row">
+            <div class="col-md-5 col-sm-5 col-xs-12 form-group">
+                <select class="form-control" id="cboIdMonto">
+                    @foreach (System.Data.DataRow dr in (ViewData["pago"] as System.Data.DataTable).Rows)
+                    {
+                        <option value="@dr.ItemArray[0].ToString().Trim()">@dr.ItemArray[1].ToString().Trim()</option>
+                    }
+                </select>
+            </div>
+        </div>
+    }
+
+    <br />
+    <br />
+    <div class="form-group">
+        <div class="col-md-2 col-sm-2 col-xs-12 col-md-offset-1 ">
+            <input type="text" value="ljdhclasdhbvlskbvdaslvkjbflhkvbslhdjkvblkshdjbvlkjsdabvlkjbdvlkjljhdcv" class="div-hide" />
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-12 col-md-offset-1 ">
+            <input type="text" value="ljdhclasdhbvlskbvdaslvkjbflhkvbslhdjkvblkshdjbvlkjsdabvlkjbdvlkjljhdcv" class="div-hide" />
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-12 col-md-offset-1 ">
+            <input type="text" value="ljdhclasdhbvlskbvdaslvkjbflhkvbslhdjkvblkshdjbvlkjsdabvlkjbdvlkjljhdcv" class="div-hide" />
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-12 col-md-offset-1">
+            <input type="button" class="btn btn-success" id="btnGuardar2" onclick="guardarMonto('@ViewData["puesto"]', '@ViewData["tipo_contrato"]');" value="Guardar Datos" />
+        </div>
+    </div>
+</div>
+@Html.Partial("../Generales/ModalAlertaConfirmacion")
+<script type="text/javascript">
+
+    function displaySection() {
+        $('#divModalVisorPDF').modal('show');
+        $("#divCargando").hide();
+        $("#divPDF").show();
+        $("#btnFirmarHorarioPersonal").show();
+
+    }
+
+    function displayAlert(ID) {
+        var html = "¿Esta segura(o) que desea cancelar esta solicitud?"
+        $('#replace').html(html);
+        $('#ModalAlertaConfirmacion').modal('show');
+        $('#hidModalAlertaConfirmacion').val(ID);
+    }
+
+    function vistaContrato(ID) {
+
+        $("#divCargando").show();
+        $("#divPDF").hide();
+        $('#divPDF').load('../../../../Reportes/ContratoGeneralFE?psID=' + ID, displaySection);
+    }
+
+    function vistaContratoFacilitador(ID) {
+
+        $("#divCargando").show();
+        $("#divPDF").hide();
+        $('#divPDF').load('../../../../Reportes/ContratoDocenteHonorarios?psID=' + ID, displaySection);
+    }
+
+    function vistaContratoFacilitadorCLE(ID) {
+
+        $("#divCargando").show();
+        $("#divPDF").hide();
+        $('#divPDF').load('../../../../Reportes/ContratoFacilitadoresCLE?psID=' + ID, displaySection);
+    }
+
+    function vistaHorario(ID) {
+
+        $("#divCargando").show();
+        $("#divPDF").hide();
+        $('#divPDF').load('../../../../Reportes/HorarioRecontratacionPDF?psID=' + ID, displaySection);
+    }
+
+    function vistaHorarioFacilitador(ID) {
+
+        $("#divCargando").show();
+        $("#divPDF").hide();
+        $('#divPDF').load('../../../../Reportes/HorarioRecontratacionFacilitadorPDF?psID=' + ID, displaySection);
+    }
+
+
+    function guardarMonto(puesto, tipo_contrato) {
+
+        var tipomonto = $("#cboIdMonto").val();
+        var ID = $("#hidID").val();
+        var status = 0;
+
+        if (puesto === "13") {
+            if (tipo_contrato === "B") {
+
+            }
+            else {
+
+            }
+        }
+        else {
+            if (tipo_contrato === "B") {
+
+            }
+            else {
+                $.ajax({
+                    url: '../../../RecursosHumanos/GuardaPersonalSolicitudRH',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: { psID: ID, psStatus: status, psIdMonto: tipomonto }
+                })
+                    .done(function (data) {
+                        if (typeof (data.Success) !== "undefined" && !data.Success) {
+                            MensajesToastr("warning", "Error de proceso", data.Mensaje);
+                        }
+                        else {
+                            MensajesToastr("info", "Solicitud Procesada", "Contrato Actualizado");
+                            $('#BodyPrincipal').load('../../../RecursosHumanos/DetallesContrato');
+                        }
+                    })
+                    .fail(function (data) {
+                        MensajesToastrErrorConexion();
+                    });
+            }
+        }
+    }
+    /*
+        function guardar(FechaCreacion, RFC, ClaveArea, TipoContrato) {
+            var status = "6";
+                    $.ajax({
+                        url: '../../../RecursosHumanos/GuardaPersonalSolicitudRH',
+                        type: 'POST',
+                        dataType: 'json',
+                        data: { psFechaCreacion: FechaCreacion, psRFC: RFC, psClaveArea: ClaveArea, psTipoContrato: TipoContrato, psStatus: status }
+                    })
+                        .done(function (data) {
+                            if (typeof (data.Success) !== "undefined" && !data.Success) {
+                                MensajesToastr("warning", "Error de proceso", data.Mensaje);
+                            }
+                            else {
+                                MensajesToastr("info", "Solicitud Procesada", "Contrato Actualizado");
+                                $('#BodyPrincipal').load('../../../RecursosHumanos/DetallesContrato');
+                            }
+                        })
+                        .fail(function (data) {
+                            MensajesToastrErrorConexion();
+                        });
+
+        }*/
+
+
+
+    $("#btnAlertaConfirmar").click(function () {
+        var ID = $('#hidModalAlertaConfirmacion').val();
+
+        $.ajax({
+            url: '../../../Generales/EliminarSolicitud',
+            type: 'POST',
+            dataType: 'json',
+            data: { psID: ID }
+        })
+            .done(function (data) {
+                if (typeof (data.Success) !== "undefined" && !data.Success) {
+                    MensajesToastr("warning", "Error de proceso", data.Mensaje);
+                }
+                else {
+
+                    if (data.Mensaje === "delete") {
+                        MensajesToastr("info", "Solicitud Procesada", "Horario Eliminado, reportelo al departamento correspondiente.");
+                        $('#BodyPrincipal').load('../../../../RecursosHumanos/DetallesContrato');
+                        $('.modal-backdrop').remove();
+                    }
+
+                    else if (data.Mensaje === "NE") {
+                        MensajesToastr("info", "Solicitud Procesada", "El registro no se ha podido eliminar");
+                    }
+                }
+            })
+            .fail(function (data) {
+                MensajesToastrErrorConexion();
+            });
+
+    });
+</script>
+
+

@@ -1,0 +1,134 @@
+﻿<div class="page-title">
+     <div class="title_left">
+          <h3>Registro de Estudiantes</h3>
+     </div>
+</div>
+<div class="clearfix"></div>
+<div class="x_panel">
+     <div class="x_title">
+          <form class="form-horizontal form-label-left" action="#" id="myForm" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+               <!-- SmartWizard html -->
+               <div id="smartwizard">
+                    <ul>
+                         <li><a href="#step-1">Paso 1<br /><small>No. de Control</small></a></li>
+                         <li><a href="#step-2">Paso 2<br /><small>Datos Personales</small></a></li>
+                         <li><a href="#step-3">Paso 3<br /><small>Datos Escolares</small></a></li>
+                         <li><a href="#step-4">Paso 4<br /><small>Datos Familiares</small></a></li>
+                         <li><a href="#step-5">Paso 5<br /><small>Datos de Trabajo del Estudiante</small></a></li>
+                         <li><a href="#step-6">Paso 6<br /><small>Datos Extras</small></a></li>
+                         <li><a href="#step-7">Paso 7<br /><small>Finalizar</small></a></li>
+                    </ul>
+
+                    <div>
+                         <div id="step-1">
+                              <div id="form-step-0" role="form" data-toggle="validator">
+                                   <div class="form-group">
+                                        <div class="col-md-8 center-margin">
+                                             <label for="txtNoControl">No. de Control:</label>
+                                             <input type="text" class="form-control" name="txtNoControl" id="txtNoControl" placeholder="No. de control" required>
+                                             <div class="help-block with-errors"></div> 
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                         <div id="step-2">
+                              <div id="form-step-1" role="form" data-toggle="validator">
+                                   @Html.Partial("../Generales/DatosPersonales")
+                              </div>
+                         </div>
+                         <div id="step-3">
+                              <div id="form-step-2" role="form" data-toggle="validator">
+                                   @Html.Partial("../Estudiante/DatosEscolares")
+                              </div>
+                         </div>
+                         <div id="step-4" class="">
+                              <div id="form-step-3" role="form" data-toggle="validator">
+                                   @Html.Partial("../Generales/DatosFamiliares")
+                              </div>
+                         </div>
+                         <div id="step-5" class="">
+                              <div id="form-step-4" role="form" data-toggle="validator">
+                                   @Html.Partial("../Estudiante/DatosLaborales")
+                              </div>
+                         </div>
+                         <div id="step-6" class="">
+                              <div id="form-step-5" role="form" data-toggle="validator">
+                                   @Html.Partial("../Estudiante/DatosExtras")
+                              </div>
+                         </div>
+                         <div id="step-7" class="">
+                              <div id="form-step-6" role="form" data-toggle="validator">
+                                   <div class="form-group">
+                                        <div class="col-md-8 center-margin">                                            
+                                             <div class="x_title">
+                                                  <h2>Datos del Estudiante: <small><span id="spNoControl"></span></small></h2>
+                                             </div>
+                                             <div class="dashboard-widget-content">
+                                                  <ul class="list-unstyled timeline widget">
+                                                       <li>
+                                                            <div class="block">
+                                                                 <div class="block_content">
+                                                                      &nbsp;
+                                                                      <h2 class="title">
+                                                                           <a>Nombre:</a>
+                                                                      </h2>
+                                                                      <div class="byline">
+                                                                           <span id="spNombreCompleto" /> 
+                                                                      </div>
+                                                                      &nbsp;
+                                                                      <h2 class="title">
+                                                                           <a>Fecha de Nacimiento: </a>
+                                                                      </h2>
+                                                                      <div class="byline">
+                                                                           <span id="spFechaNacimiento" />
+                                                                      </div>
+                                                                      &nbsp;
+                                                                      <h2 class="title">
+                                                                           <a>CURP: </a>
+                                                                      </h2>
+                                                                      <div class="byline">
+                                                                           <span id="spCurp" />
+                                                                      </div>
+                                                                 </div>
+                                                            </div>
+                                                            <div class="block">
+                                                                 <div class="block_content">
+                                                                      &nbsp;
+                                                                      <h2 class="title">
+                                                                           <a>Carrera:</a>
+                                                                      </h2>
+                                                                      <div class="byline">
+                                                                           <span id="spCarrera" />
+                                                                      </div>
+                                                                      &nbsp;
+                                                                      <h2 class="title">
+                                                                           <a>Periodo: </a>
+                                                                      </h2>
+                                                                      <div class="byline">
+                                                                           <span id="spPeriodo" />
+                                                                      </div>
+                                                                      &nbsp;
+                                                                      <h2 class="title">
+                                                                           <a>Plan de Estudios: </a>
+                                                                      </h2>
+                                                                      <div class="byline">
+                                                                           <span id="spPlanEstudios" />
+                                                                      </div>
+                                                                 </div>
+                                                            </div>
+                                                       </li>                                                   
+                                                  </ul>
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
+                              </div>
+                         </div>
+                    </div>
+          </form>
+     </div>
+</div>
+@Scripts.Render("~/bundles/herramientas")
+<script src="~/Scripts/ManejoDatos/Estudiantes/Validaciones.js"></script>
+<script src="~/Scripts/ManejoDatos/DatosEstudiante.js"></script>
+<script src="~/Scripts/ManejoDatos/Domicilio.js"></script>

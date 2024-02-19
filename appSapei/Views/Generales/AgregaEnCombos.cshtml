@@ -1,0 +1,50 @@
+﻿<div class="clearfix"></div>
+<div class="x_panel">
+     <form class="form-horizontal form-label-left" action="#" id="frmAgregaEnCombos" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+          <input type="hidden" id="hidCombo" value="@ViewData["Combo"]" />
+          <input type="hidden" id="hidComboPadre" value="@ViewData["ComboPadre"]" />
+          <input type="hidden" id="hidValor" value="" />
+          <input type="hidden" id="hidValorPadre" value="" />
+          <input type="hidden" id="hidRuta" value="@ViewData["Ruta"]" />
+          <div class="col-md-8 center-margin">
+               <h2 class="text-center">@ViewData["Encabezado"]</h2>
+               @{
+                    if (ViewData["TablaComboPadre"] != null)
+                    {
+                         <div id="divPadre" class="form-group ">
+                              <label>
+                                   Categoria
+                              </label>
+                              @{
+                         if (ViewData["TablaComboPadre"] != null)
+                         {
+                              <select class="form-control" id="cboPadre">
+                                   @foreach (System.Data.DataRow dr in (ViewData["TablaComboPadre"] as System.Data.DataTable).Rows)
+                                   {
+                                        <option value="@dr.ItemArray[0].ToString().Trim()">@dr.ItemArray[1].ToString().Trim()</option>
+                                   }
+                              </select>
+                         }
+                              }
+
+                         </div>
+                    }
+               }
+               <div class="form-group ">
+                    <label>
+                         Descripción
+                    </label>
+                    <input type="text" class="form-control" id="txtDescripcion" placeholder="Descripción" required />
+               </div>
+               <div class="form-group ">
+                    <button id="btnNuevo" type="submit" class="btn btn-success">Nuevo</button>
+                    <button id="btnGuardar" type="submit" class="btn btn-info">Guardar</button>
+               </div>
+               <div id="divTabla" class="form-group ">
+                    @Html.Partial("../Generales/TablaGeneral")
+               </div>
+          </div>
+
+     </form>
+</div>
+<script src="~/Scripts/ManejoDatos/Generales/AgregaEnCombos.js"></script>

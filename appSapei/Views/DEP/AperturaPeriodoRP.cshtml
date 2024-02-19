@@ -1,0 +1,112 @@
+﻿<div class="page-title">
+    <div class="col-md-8 col-sm-8 col-xs-12 form-group pull-left">
+        <h3>Residencias Profesionales<small>@ViewData["txtDescPeriodo"]</small></h3>
+    </div>
+
+    @Html.Partial("../Generales/ComboPeriodo")
+</div>
+<div class="x_panel">
+    <div class="x_content">
+        <div class="x_title">
+            <h2>Selección de Fechas</h2>
+            <div class="clearfix"></div>
+        </div>
+        <form id="frmAperturaPeriodo" data-parsley-validate class="form-horizontal form-label-left">
+            <div class="row">
+                <div class='col-md-4 col-sm-4 col-xs-12'>
+                    Fecha de Inicio
+                    <div class='input-group date' id='rpinicio'>
+                        <input type='text' id="txtInicio" value="@ViewData["txtFechaInicio"]" class="form-control" required />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class='col-md-4 col-sm-4 col-xs-12'>
+                    Fecha de Terminó
+                    <div class='input-group date' id='rpfin'>
+                        <input type='text' id="txtFin" value="@ViewData["txtFechaFin"]" class="form-control" required />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class='col-md-4 col-sm-4 col-xs-12'>
+                    Fecha de inicio 1°er seguimiento 16 semanas
+                    <div class='input-group date' id='primerS16'>
+                        <input type='text' id="txtprimerS16" value="@ViewData["primerS16"]" class="form-control" required />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class='col-md-4 col-sm-4 col-xs-12'>
+                    Fecha de inicio 2°do seguimiento 16 semanas
+                    <div class='input-group date' id='segundoS16'>
+                        <input type='text' id="txtsegundoS16" value="@ViewData["segundoS16"]" class="form-control" required />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class='col-md-4 col-sm-4 col-xs-12'>
+                    Fecha de inicio 3°er seguimiento 16 semanas
+                    <div class='input-group date' id='tercerS16'>
+                        <input type='text' id="txttercerS16" value="@ViewData["tercerS16"]" class="form-control" required />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                
+                <div class='col-md-4 col-sm-4 col-xs-12'>
+                    Fecha de inicio 1°er seguimiento 24 semanas
+                    <div class='input-group date' id='primerS24'>
+                        <input type='text' id="txtprimerS24" value="@ViewData["primerS24"]" class="form-control" required />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class='col-md-4 col-sm-4 col-xs-12'>
+                    Fecha de inicio 2°do seguimiento 24 semanas
+                    <div class='input-group date' id='segundoS24'>
+                        <input type='text' id="txtsegundoS24" value="@ViewData["segundoS24"]" class="form-control" required />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class='col-md-4 col-sm-4 col-xs-12'>
+                    Fecha de inicio 3°er seguimiento 24 semanas
+                    <div class='input-group date' id='tercerS24'>
+                        <input type='text' id="txttercerS24" value="@ViewData["tercerS24"]" class="form-control" required />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    Titulo del curso
+                    <input type="text" id="txtTitulo" value="@ViewData["txtTitulo"]" required class="form-control col-md-7 col-xs-12">
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    Ingrese URL de video
+                    <input type="text" id="txtUrl" value="@ViewData["txtUrl"]" required class="form-control col-md-7 col-xs-12">
+                </div>
+                <div class='col-md-2 col-sm-2 col-xs-12'>
+                    <button type="submit" id="btnGuardar" class="btn btn-success" style="margin-top:10px">Guardar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@Html.Partial("../Generales/TablaGeneral")
+<script src="~/Scripts/ManejoDatos/DEP/ActivarPeriodoRP.js"></script>
+

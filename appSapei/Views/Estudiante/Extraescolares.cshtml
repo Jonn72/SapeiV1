@@ -1,0 +1,93 @@
+﻿<div class="page-title">
+     <div class="title_left">
+          <h3>Registro <small>de actividades extraescolares</small></h3>
+     </div>
+</div>
+<div class="x_panel">
+     <form class="form-horizontal form-label-left" action="#" id="frmRegistraActividad" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+          @if (Sapei.Framework.Utilerias.SesionSapei.Sistema.Sesion.Usuario.RolUsuario == Sapei.Framework.Configuracion.enmRolUsuario.EXT)
+          {
+               <div id="divNoControl">
+                    <div class="col-md-8 center-margin">
+                         <label for="txtNoControl">No. de Control:</label>
+                         <input type="text" class="form-control" name="txtNoControl" id="txtNoControl" placeholder="No. de control" required>
+                         <div class="form-group">
+                              <button id="btnBuscarEstudiante" type="submit" class="btn btn-info">Buscar</button>
+                         </div>
+                    </div>
+               </div>
+          }
+          <div id="divDatos" class="div-hide">
+
+               <div class="col-md-6 center-margin">
+                    <h2 class="text-center">Actividades Extraescolares</h2>
+                    <div class="form-group ">
+                         @if (Sapei.Framework.Utilerias.SesionSapei.Sistema.Sesion.Usuario.RolUsuario == Sapei.Framework.Configuracion.enmRolUsuario.EXT)
+                         {
+                                        <label for="txtNombreCompleto">
+                                             Estudiante
+                                        </label>
+                                        <input type="text" class="form-control" id="txtNombreCompleto" readonly>
+                         }
+                         <label for="cboTipoActividades">
+                              Seleccione el Tipo de Actividad
+                         </label>
+                         <select class="form-control" id="cboTipoActividades"></select>
+                         <label>
+                              Seleccione la Actividad
+                         </label>
+                         <select class="form-control" id="cboActividades"></select>
+                    </div>
+               </div>
+               <div class="col-md-12 center-margin">
+                    <div class="dashboard-widget-content">
+                         <ul class="list-unstyled timeline widget">
+                              <li>
+                                   <h5>
+                                        <a>Por este conducto se te informa GUARDIÁN que, para inscribirte a alguna actividad deportiva, cultural o taller de lectura debes de considerar lo siguiente:</a>
+                                   </h5>
+                                   <div class="block">
+                                        <div class="block_content">
+                                             <h5 class="title">
+                                                  <a>1. Sólo se te permitirá la inscripción a alguna actividad con horario vigente y credencial, en caso de que la actividad se empalme con el horario de alguna materia NO podrás inscribirte.</a>
+                                             </h5>
+                                             <h5 class="title">
+                                                  <a>2. Si tienes algún padecimiento de salud que no te permita desempeñar actividades deportivas deberás notificarlo a este departamento previa inscripción para proponer alternativas de liberación del crédito. En caso de no hacerlo el estudiante es responsable por dicha omisión.</a>
+                                             </h5>
+                                             <h5 class="title">
+                                                  <a>3. No puedes darte de baja de la actividad o cambiarte, por lo que sugerimos revisar bien los horarios y organizar tu tiempo antes de inscribirte.</a>
+                                             </h5>
+                                             <h5 class="title">
+                                                  <a>4. En caso de inscribirte y no asistir o abandonar la actividad complementaria se sancionará con un semestre sin poder registrar actividades extraescolares.</a>
+                                             </h5>
+                                        </div>
+                                   </div>
+                              </li>
+                         </ul>
+                    </div>
+
+                    <h3>
+                         <input type="checkbox" id="cbxAcepto" value="ski" data-parsley-mincheck="2" required class="flat" />
+                         Acepto las condiciones
+                    </h3>
+                    <div class="form-group">
+                         <button id="btnGuardar" type="submit" class="btn btn-info" disabled>Guardar</button>
+                    </div>
+                    @Html.Partial("../Generales/TablaGeneral")
+               </div>
+          </div>
+
+</form>
+</div>
+<script src="~/Scripts/ManejoDatos/Estudiantes/ActividadExtraescolar.js"></script>
+<script src="~/Scripts/ManejoDatos/Estudiantes/RegresaDatosEstudiante.js"></script>
+<script src="~/Scripts/ManejoDatos/Estudiantes/Validaciones.js"></script>
+@if (Sapei.Framework.Utilerias.SesionSapei.Sistema.Sesion.Usuario.RolUsuario == Sapei.Framework.Configuracion.enmRolUsuario.ALU)
+{
+     <script type="text/javascript">
+          $(document).ready(function () {
+               $("#divDatos").show();
+          });
+
+     </script>
+}

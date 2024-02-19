@@ -1,0 +1,42 @@
+﻿@using Sapei.Framework.Utilerias;
+
+<div class="clearfix"></div>
+
+<div class="x_panel">
+    @Html.Partial("../Generales/BuscaNoControl")
+    <div class="col-md-8 center-margin" id="MuestraDetalles">
+        <div class="row">
+            <div class="x_title col-md-12 col-sm-12 col-xs-12 text-center">
+                <h4>
+                    <strong>¿Qué será el Expediente Digital?</strong>
+                </h4>
+            </div>
+            <div class="x_title col-md-12 col-sm-12 col-xs-12 text-justify">
+                <h5>
+                    El expediente digital, será un servicio para almacenar y consultar documentos personales y académicos.
+                </h5>
+                <h5>
+                    a) Documentos Personales. En este apartado, guardí@@n, deberas subir todos los documentos requeridos para tu inscripción.
+                </h5>
+                <h5>
+                    b) Documentos acádemicos. En este apartado, podrás encontrar documentos que iras generando con tu avance académico, como serán: cargas académicas, boletas, kardex y más
+                </h5>
+                <h5>
+                    c) Constancias. Será un espacio reservado para descargar constancias con firmas electrónicas.
+                </h5>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Html.Partial("../Generales/ModalTablaDatos")
+
+<div id="MuestraDocumentos" class="div-hide">
+    @Html.Partial("MuestraDocumentosEstudiante")
+</div>
+
+
+@Html.Partial("../Generales/ModalVisorPDF")
+@Html.Partial("../Generales/ModalAlertaConfirmacion")
+
+<script src="~/Scripts/ManejoDatos/ExpedienteDigital/ValidacionDocumentosEstudiante.js"></script>

@@ -1,0 +1,182 @@
+﻿<div class="page-title">
+    <div class="title_left">
+        <h3>Prorrogas</h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="x_panel">
+    <input type="hidden" id="hidControl" value="@ViewData["NoControl"]" />
+
+    <form class="form-horizontal form-label-left" action="#" id="frmAutoReinscripcion" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+        <div class="x_title">
+            <h2>Registro de prorroga</h2>
+            <div class="clearfix"></div>
+        </div>
+        <div class="col-md-10 center-margin center-block">
+
+            @if (ViewData["DatosPago"] == null)
+            {
+                <div class="x_content">
+                    <div class="col-md-8 center-margin">
+                        <div class="input-group">
+                            <input type="text" id="txtNoControl" class="form-control" placeholder="Ingrese el no. de control">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default btn-success" type="button" id="btnBuscar"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                System.Data.DataTable loDt = null;
+                loDt = ViewData["DatosPago"] as System.Data.DataTable;
+                if (loDt.Columns.Count > 1)
+                {
+                    <div class="x_panel">
+                        <table id="datatable-buttons" class="display nowrap" cellspacing="0" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>No. Pago</th>
+                                    <th>Monto a abonar</th>
+                                    <th>Pagado</th>
+                                    <th>Vigencia</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+
+                                    foreach (System.Data.DataRow dr in loDt.Rows)
+                                    {
+                                        <tr>
+                                            <td>@Html.Raw(@dr.ItemArray[0].ToString().Trim())</td>
+                                            <td>@Html.Raw(@dr.ItemArray[1].ToString().Trim())</td>
+                                            <td>@Html.Raw(@dr.ItemArray[2].ToString().Trim())</td>
+                                            <td>@Html.Raw(@dr.ItemArray[3].ToString().Trim())</td>
+                                        </tr>
+                                    }
+
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+        <div class="col-md-4 col-sm-12 col-xs-12">
+            <button id="btnGuardar" type="submit" class="btn btn-block btn-success">Generar</button>
+        </div>
+                }
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                    <button id="btnAnterior" type="submit" class="btn btn-block btn-info">Regresar</button>
+                </div>
+            }
+
+
+            @*@{
+            double ldPendiente = 0;
+            System.Data.DataTable loDt = null;
+
+            if (ViewData["DatosPago"] != null)
+            {
+                loDt = ViewData["DatosPago"] as System.Data.DataTable;
+                if (loDt.Columns.Count > 1)
+                {
+                    ldPendiente = Double.Parse(loDt.Rows[0].ItemArray.GetValue(7).ToString());
+                    if (ldPendiente > 0)
+                    {
+                        <div class="row">
+                            <div class="col-md-4 text-center form-inline">
+                                <label>
+                                    Monto del pago inicial @loDt.Rows[0].ItemArray.GetValue(8).ToString()
+                                </label>
+                                <input type="number" class="form-control" id="txtMontoInicial" required />
+                            </div>
+                            <div class="col-md-4 text-center form-inline">
+                                <label>
+                                    Fecha limite de pago
+                                </label>
+                                <div class='input-group date' id='dtpFechaLimite'>
+                                    <input type='text' id="txtFechaLimite" class="form-control" required />
+                                    <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <button id="btnAnterior" type="submit" class="btn btn-block btn-info">Regresar</button>
+                                <button id="btnGuardar" type="submit" class="btn btn-block btn-success">Guardar</button>
+                            </div>
+                        </div>
+                    }
+                    <div class="x_panel">
+
+                        <table id="datatable-buttons" class="display nowrap" cellspacing="0" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>No. Pago</th>
+                                    <th>Monto a abonar</th>
+                                    <th>Pagado</th>
+                                    <th>Monto faltante</th>
+                                    <th>Vigencia</th>
+                                    <th>Ficha</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+
+                                    foreach (System.Data.DataRow dr in loDt.Rows)
+                                    {
+                                        <tr>
+                                            <td>@Html.Raw(@dr.ItemArray[1].ToString().Trim())</td>
+                                            <td>@Html.Raw(@dr.ItemArray[2].ToString().Trim())</td>
+                                            <td>@Html.Raw(@dr.ItemArray[3].ToString().Trim())</td>
+                                            <td>@Html.Raw(@dr.ItemArray[6].ToString().Trim())</td>
+                                            <td>@Html.Raw(@dr.ItemArray[4].ToString().Trim())</td>
+                                            <td>@Html.Raw(@dr.ItemArray[5].ToString().Trim())</td>
+                                        </tr>
+                                    }
+
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-md-8 col-sm-12 col-xs-12">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h4>@loDt.Rows[0].ItemArray.GetValue(0).ToString()</h4>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <label>
+                                    Monto del pago inicial
+                                </label>
+                                <input type="number" class="form-control" id="txtMontoInicial" required />
+
+                                <label>
+                                    Fecha limite de pago
+                                </label>
+                                <div class='input-group date' id='dtpFechaLimite'>
+                                    <input type='text' id="txtFechaLimite" class="form-control" required />
+                                    <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                            <button id="btnAnterior" type="submit" class="btn btn-block btn-info">Regresar</button>
+                            <button id="btnGuardar" type="submit" class="btn btn-block btn-success">Guardar</button>
+                    </div>
+                }
+            }
+        }*@
+
+
+        </div>
+
+    </form>
+</div>
+<script src="~/Scripts/ManejoDatos/Financieros/Prorrogas.js"></script>
+<script src="~/Scripts/Componentes/DataTable/init_datatable.js"></script>
+

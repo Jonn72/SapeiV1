@@ -1,0 +1,230 @@
+﻿<link href="~/Content/themes/Reticula.css" rel="stylesheet" />
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>Reticula</h3>
+    </div>
+</div>
+<div class="x_panel">
+    @{
+        System.Data.DataRow loFila = null;
+        string lsCarrera = "";
+        string lsReticula = "";
+        string lsNivelEscolar = "";
+        string lsClaveOficial = "";
+        string lsNombreCarrera = "";
+        string lsFechaInicio = "";
+        string lsFechaTermino = "";
+        string lsCreditosTotales = "";
+        string lsSiglas = "";
+
+
+        if (ViewData["DatosCarrera"] != null)
+        {
+            loFila = (ViewData["DatosCarrera"] as System.Data.DataTable).Rows[0];
+            lsCarrera = loFila.ItemArray[0].ToString().Trim();
+            lsReticula = loFila.ItemArray[1].ToString().Trim();
+            lsNivelEscolar = loFila.ItemArray[2].ToString().Trim();
+            lsClaveOficial = loFila.ItemArray[3].ToString().Trim();
+            lsNombreCarrera = loFila.ItemArray[4].ToString().Trim();
+            lsFechaInicio = loFila.ItemArray[7].ToString().Trim();
+            lsFechaTermino = loFila.ItemArray[8].ToString().Trim();
+            lsCreditosTotales = loFila.ItemArray[9].ToString().Trim();
+            lsSiglas = loFila.ItemArray[10].ToString().Trim();
+
+        }
+    }
+    <div class="row">
+        <div class="col-md-3 col-sm-6 col-xs-12 form-group bg-tecnm">
+            <label>
+                Carrera
+            </label>
+            <input type="text" class="form-control bg-white" value="@lsCarrera" id="carrera" placeholder="Carrera" readonly />
+
+        </div>
+        <div class="col-md-3 col-sm-6 col-xs-12 form-group bg-tecnm">
+            <label for="tags">
+                Reticula
+            </label>
+            <input type="text" class="form-control bg-white" value="@lsReticula" id="reticula" placeholder="Reticula" readonly />
+        </div>
+        <div class="col-md-3 col-sm-6 col-xs-12 form-group bg-tecnm">
+            <label>
+                Nivel Escolar
+            </label>
+            <input type="text" class="form-control bg-white" value="@lsNivelEscolar" placeholder="Nivel Escolar" readonly />
+        </div>
+        <div class="col-md-3 col-sm-6 col-xs-12 form-group bg-tecnm">
+            <label>
+                Clave Oficial
+            </label>
+            <input type="text" class="form-control bg-white" value="@lsClaveOficial" placeholder="Clave Oficial" readonly />
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5 col-sm-12 col-xs-12 form-group bg-tecnm">
+            <label>
+                Nombre Carrera
+            </label>
+            <input type="text" class="form-control bg-white" value="@lsNombreCarrera" placeholder="Nombre Carrera" readonly />
+
+        </div>
+        <div class="col-md-7 col-sm-12 col-xs-12 form-group bg-tecnm">
+            <label for="tags">
+                Créditos Totales
+            </label>
+            <input type="text" class="form-control bg-white" value="@lsCreditosTotales" placeholder="Créditos Totales" readonly />
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-3 col-sm-3 col-xs-6 form-group bg-tecnm">
+            <label for="tags">
+                Fecha de Inicio
+            </label>
+            <input type="text" class="form-control bg-white" value="@lsFechaInicio" placeholder="Fecha de Inicio" readonly />
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-6 form-group bg-tecnm">
+            <label>
+                Fecha de Termino
+            </label>
+            <input type="text" class="form-control bg-white" value="@lsFechaTermino" placeholder="Fecha de Termino" readonly />
+
+        </div>
+
+        <div class="col-md-3 col-sm-3 col-xs-6 form-group" style="visibility:hidden;">
+            <label>
+                Siglas
+            </label>
+            <input type="text" class="form-control bg-white" value="@lsSiglas" id="siglas" placeholder="Fecha de Termino" readonly />
+
+        </div>
+    </div>
+</div>
+
+
+
+<div id="div_reticula" class="x_panel">
+    <div class="x_title">
+        <h3>
+            Retícula Modificar
+        </h3>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content" style="overflow-x: auto;">
+        <div>
+            <div class="row" style="min-width:1000px;">
+                @Html.Raw(ViewData["reticulaMantenimiento"].ToString())
+            </div>
+        </div>
+        <br />
+        <button class="btn btn-danger" id="regresar_cards">Regresar</button>
+    </div>
+</div>
+
+<div class="modal fade" id="agregar_materia" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar Materia</h5>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <div class="form-group col-md-6 bg-tecnm">
+                        <label>Materia</label>
+                        @if (ViewData["cboMaterias"] != null)
+                        {
+
+                            <input id="cboMaterias" list="txtMateria" class="form-control" required>
+                            <datalist id="txtMateria">
+                                @foreach (System.Data.DataRow dr in (ViewData["cboMaterias"] as System.Data.DataTable).Rows)
+                                {
+                                    <option value="@dr.ItemArray[0].ToString().Trim()">@dr.ItemArray[1].ToString().Trim()</option>
+                                }
+                            </datalist>
+                        }
+                    </div>
+                    <div class="form-group col-md-6 bg-tecnm">
+                        <label>Créditos de la Materia</label>
+                        <input type="number" class="form-control" id="creditos_materia" placeholder="Créditos de materia" maxlength="5" required />
+                    </div>
+                    <div class="form-group col-md-6 bg-tecnm">
+                        <label>Horas Teóricas</label>
+                        <input type="number" class="form-control" id="horas_teoricas" placeholder="Horas Teóricas" maxlength="5" required />
+                    </div>
+                    <div class="form-group col-md-6 bg-tecnm">
+                        <label>Horas prácticas</label>
+                        <input type="number" class="form-control" id="horas_practicas" placeholder="Horas Prácticas" maxlength="5" required />
+                    </div>
+                    <div class="form-group col-md-6 bg-tecnm">
+                        <label>Orden Certificado</label>
+                        <input type="number" class="form-control" id="orden_certificado" placeholder="Orden Certificado" maxlength="5" required />
+                    </div>
+                    <div class="form-group col-md-6 bg-tecnm">
+                        <label>Créditos pre-requisito</label>
+                        <input type="number" class="form-control" id="creditos_prerequisito" placeholder="Créditos pre-requisito" maxlength="5" required />
+                    </div>
+                    <div class="form-group col-md-6 bg-tecnm">
+
+                        <label>Especialidad</label>
+                        @if (ViewData["cboEspecialidad"] != null)
+                        {
+
+                            <input id="cboEspecialidad" list="txtEspecialidad" class="form-control" required>
+                            <datalist id="txtEspecialidad">
+                                @foreach (System.Data.DataRow dr in (ViewData["cboEspecialidad"] as System.Data.DataTable).Rows)
+                                {
+                                    <option value="@dr.ItemArray[0].ToString().Trim()">@dr.ItemArray[1].ToString().Trim()</option>
+                                }
+                            </datalist>
+                        }
+                    </div>
+                    <div class="form-group col-md-6 bg-tecnm">
+                        <label>Clave Oficial Materia</label>
+                        <input type="text" class="form-control" id="clave_oficial_materia" placeholder="Clave Oficial Materia" required />
+                    </div>
+                    <div class="form-group col-md-6 bg-tecnm">
+                        <div class="form-check">
+                            <input class="form-check-input"
+                                   type="checkbox"
+                                   value=""
+                                   id="activo" />
+                            <label class="form-check-label" for="activo">
+                                Materia Activa
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" id="cancelar">Cancelar</button>
+                <button type="button" class="btn btn-success" id="guardar_materia">Guardar</button>
+                <button type="button" class="btn btn-success" id="guardar_modificar">Guardar</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="eliminar_materia_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Eliminar Materia</h5>
+            </div>
+            <div class="modal-body">
+                <p>¿Desea eliminar la materia?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" id="cancelar">Cancelar</button>
+                <button type="button" class="btn btn-success eliminar_materia">Aceptar</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/ManejoDatos/Mantenimiento/ReticulaMantenimiento.js"></script>
+

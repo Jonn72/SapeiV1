@@ -1,0 +1,236 @@
+﻿
+<link type="text/css" rel="stylesheet" href="~/Content/Controles/HorarioSemanal/calendar_g.css" />
+
+<div class="x_content">
+     <div class="row">
+          <div class="text-center">
+               <div id='loadingmessage'>
+                    <img src="~/Images/efectos/ajax-loader3.gif" />
+               </div>
+               <div id='divHorario' class="div-hide">
+                    <p><i class="fa fa-square" style="color:#ff0000;"></i> Materias Carrera 
+                    <i class="fa fa-square" style="color:#0000ff;"></i> Curso de Inglés 
+                    <i class="fa fa-square" style="color:#9c9c9c;"></i> Actividad Extra-escolar 
+                    <i class="fa fa-square" style="color:#00ff21;"></i> Tutorias </p>
+                    <div id="dp"></div>
+               </div>
+          </div>
+     </div>
+</div>
+<script type="text/javascript">
+
+     var dp = new DayPilot.Calendar("dp");
+     dp.locale = "es-mx";
+     dp.startDate = DayPilot.Date.today();
+     dp.viewType = "WorkWeek";
+     dp.cellDuration = 30;
+     dp.cellHeight = 14;
+     dp.headerDateFormat = "dddd";
+     dp.businessBeginsHour = 7;
+     dp.businessEndsHour = 16;
+     dp.dayBeginsHour = 7;
+     dp.dayEndsHour = 21;
+     dp.crosshairType = "Header";
+     dp.eventDeleteHandling = "Update";
+     dp.startDate = new DayPilot.Date("2018-01-01");
+     dp.durationBarVisible = true;
+     dp.onEventDelete = function (args) {
+          //alert("deleting: " + args.e.text());
+     };
+     dp.allowEventOverlap = false;
+
+    // event moving
+    dp.onEventOverlap = function (args) {
+        alert("OVER");
+    };
+     
+     
+     // event moving
+     dp.onEventMoved = function (args) {
+          //dp.message("Moved: " + args.e.text());
+     };
+
+     // event resizing
+     dp.onEventResized = function (args) {
+          //dp.message("Resized: " + args.e.text());
+     };
+
+     // event creating
+     dp.onTimeRangeSelected = function (args) {
+          if (0 >= $("#txtGrupo").length)
+               return;
+          var grupo = $("#txtGrupo").val();
+          if (!grupo) {
+               MensajesToastr("info", "Solicitud Procesada", "Debe ingresar primero el grupo");
+               dp.clearSelection();
+               return;
+          }
+          $("#txtGrupo").prop("readonly", true);
+          var e = new DayPilot.Event({
+               start: args.start,
+               end: args.end,
+               id: grupo,
+               resource: args.resource,
+               //backColor: "#008000",
+               barColor: "#008000",
+               text: "<div class=\"text-center\"><h5>" + grupo + "</h5></div>"
+          });
+          dp.events.add(e);
+          //dp.message("Created");
+     };
+
+     dp.onTimeRangeRightClick = function (args) {
+          // window.console && console.log(args);
+     };
+
+     dp.onTimeRangeDoubleClicked = function (args) {
+          //alert("DoubleClick: start: " + args.start + " end: " + args.end + " resource: " + args.resource);
+     };
+
+     dp.onEventClick = function (args) {
+          //alert("clicked: " + args.e.id());
+     };
+
+     //dp.eventDoubleClickHandling = "Enabled";
+     dp.onEventDoubleClick = function (args) {
+          //alert("double click");
+     };
+
+     dp.showEventStartEnd = false;
+     dp.scrollLabelsVisible = true;
+     dp.timeRangeSelectingStartEndEnabled = true;
+
+
+     function AgregaEvento(inicio, fin, titulo, tipo) {
+          var color;
+          if (tipo.trim() == "M")
+               color = "#ff0000";
+          else if (tipo.trim() == "I")
+               color = "#0000ff";
+          else if (tipo.trim() == "X")
+               color = "#9c9c9c";
+          else if (tipo.trim() == "T")
+               color = "#00ff21";
+          var e = new DayPilot.Event({
+               start: inicio,
+               end: fin,
+               id: titulo,
+               text: "<div class=\"text-center\"><h5>" + titulo + "</h5></div>",
+               moveDisabled: true,
+               deleteDisabled: true,
+               clickDisabled: true,
+               doubleClickDisabled: true,
+               resizeDisabled: true,
+               //backColor: "#ffc6c6",
+               barColor: color
+          });
+          dp.events.add(e);
+     }
+     function LimpiaEventos() {
+          dp.events.list = [];
+          dp.update();
+    }
+    function PermiteTraslape(valor) {
+        dp.allowEventOverlap = valor;
+    }
+     function LimpiaEventosAgregados(id) {
+          var e = dp.events.find(id);
+          while (e != null) {
+               dp.events.remove(e).queue();
+               dp.update();
+               e = dp.events.find(id);
+          }
+     }
+     function RegresaCadenaHorarios(id)
+     {
+          var horario = "";
+          $.each(dp.events.list, function (index, value) {
+               if (value.id.trim() == id.trim())
+                    horario += "|" + value.start + "," + value.end;
+          });
+          return horario;
+     }
+     function RegresaCadenaCompletaHorarios(id,tipo) {
+          var horario = "";
+          $.each(dp.events.list, function (index, value) {
+               if (value.id.trim() == id.trim())
+                    horario += "|" + value.id + "," + value.start + "," + value.end + ","+tipo;
+          });
+          return horario;
+     }
+     function RegresaCadenaHorariosCorta(id) {
+          var horario = "";
+          var dia;
+          $.each(dp.events.list, function (index, value) {
+               if (value.id.trim() == id.trim()) {
+                    dia = value.start.value.substring(9, 10);
+                    switch (dia)
+                    {
+                         case "1": dia = "LUN";
+                              break;
+                         case "2": dia = "MAR";
+                              break;
+                         case "3": dia = "MIE";
+                              break;
+                         case "4": dia = "JUE";
+                              break;
+                         case "5": dia = "VIE";
+                              break;
+                         case "6": dia = "SAB";
+                              break;
+                    }
+                    horario += " " + dia + " " + value.start.value.substring(11, 16) + "," + value.end.value.substring(11, 16);
+               }
+          });
+          return horario;
+     }
+     function ValidaTotalHoras(id,n)
+     {
+          var horario = "";
+          var ticks;
+          var suma = 0;
+          $.each(dp.events.list, function (index, value) {
+               if (value.id.trim() == id.trim()) {
+                    //horario += "|" + value.start + "," + value.end;
+                    ticks = value.end.ticks - value.start.ticks;
+                    suma += Math.floor(ticks / 360000);
+               }
+          });
+          if (suma == (n*10))
+               return true;
+          return false;
+     }
+     function RegistraEventosAgregados(id) {
+          $.each(dp.events.list, function (index, value) {
+               if (value.id.trim() == id.trim()) {
+                    value.barColor = "#ffff00";
+                    value.moveDisabled = true;
+                    value.deleteDisabled = true;
+                    value.clickDisabled = true;
+                    value.doubleClickDisabled = true;
+                    value.resizeDisabled = true;
+               }
+          });
+          dp.update();
+     }
+     function ActivaEdicionEventos(id) {
+          $.each(dp.events.list, function (index, value) {
+               if (value.id.trim() == id.trim()) {
+                    value.barColor = "#008000";
+                    value.moveDisabled = false;
+                    value.deleteDisabled = false;
+                    value.clickDisabled = false;
+                    value.doubleClickDisabled = false;
+                    value.resizeDisabled = false;
+                    dp.update();
+               }
+          });
+          
+     }
+
+     dp.init();
+
+
+
+
+</script>

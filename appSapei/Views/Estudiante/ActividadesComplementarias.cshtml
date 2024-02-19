@@ -1,0 +1,213 @@
+﻿<div class="page-title">
+     <div class="title_left">
+          <h3>Actividades Complementarias Acreditadas</h3>
+     </div>
+</div>
+<div class="clearfix"></div>
+
+<div class="col-md-6 col-xs-12">
+     <div class="x_panel">
+          <div class="x_title">
+               <h2>Avance</h2>
+               <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+             @{
+                 string lsPeriodoActual = Sapei.Framework.Utilerias.SesionSapei.Sistema.Sesion.Periodo.PeriodoActual;
+                 string lsPromedio;
+                 string lsTipoActividad = "";
+                 string lsColor = "";
+                 double ldPromedio = 0;
+                 if (ViewData["datos"] != null)
+                 {
+                     foreach (System.Data.DataRow dr in (ViewData["datos"] as System.Data.DataTable).Rows)
+                     {
+                         lsPromedio = dr.ItemArray[3].ToString().Trim();
+                         if (string.IsNullOrEmpty(lsPromedio) && dr.ItemArray[0].ToString().Trim() == lsPeriodoActual)
+                         {
+                             ldPromedio = 0;
+                         }
+                         else if (!string.IsNullOrEmpty(lsPromedio) && Convert.ToDouble(lsPromedio) >= 1)
+                         {
+                             ldPromedio = Convert.ToDouble(lsPromedio);
+                         }
+                         else
+                         {
+                             continue;
+                         }
+                         switch (dr.ItemArray[1].ToString().Trim())
+                         {
+                             case "DEP": lsTipoActividad = "Deportiva";
+                                 break;
+                             case "CUL": lsTipoActividad = "Cultural";
+                                 break;
+                             case "LEC": lsTipoActividad = "Lectura";
+                                 break;
+                             case "TUT": lsTipoActividad = "Tutoría";
+                                 break;
+                             case "ECO": lsTipoActividad = "Ecotec";
+                                 break;
+                             case "ACA": lsTipoActividad = "Académica";
+                                 break;
+                         }
+                         if (ldPromedio >= 3)
+                         {
+                             lsColor = "bg-green";
+                         }
+                         else if (ldPromedio >= 2)
+                         {
+                             lsColor = "bg-blue";
+                         }
+                         else if (ldPromedio >= 1)
+                         {
+                             lsColor = "red";
+                         }
+                         else
+                         {
+                             lsColor = "red";
+                         }
+                         ldPromedio = ldPromedio * 25;
+                              <div class="row">
+                                   <div class="col-xs-2">
+                                        <span>@lsTipoActividad</span>
+                                   </div>
+                                   <div class="col-xs-8">
+                                        <div class="progress progress_wide">
+                                             <div class="progress-bar @lsColor" role="progressbar" style="width: @ldPromedio%;"></div>
+                                        </div>
+                                   </div>
+                                   <div class="col-xs-2 more_info">
+                                        <span>@dr.ItemArray[4].ToString()</span>
+                                   </div>
+                              </div>
+
+                         }
+                    }
+               }
+             
+
+               <div class="divider"></div>
+               <div class="clearfix"></div>
+          </div>
+     </div>
+</div>
+<div class="col-md-6 col-sm-6 col-xs-12">
+     <div class="x_panel">
+          <div class="x_title">
+               <h2>Resumen</h2>
+               <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+               <div class="col-xs-3">
+                    <ul class="nav nav-tabs tabs-left">
+                         @{
+                              lsTipoActividad = "";
+                              string lsActividad = "";
+                              string lsActividades = "";
+                              string lsActivo = "active";
+                              if (ViewData["datos"] != null)
+                              {
+                                   foreach (System.Data.DataRow dr in (ViewData["datos"] as System.Data.DataTable).Rows)
+                                   {
+                                        lsTipoActividad = dr.ItemArray[1].ToString().Trim();
+                                        if (lsActividades.Contains(lsTipoActividad))
+                                        {
+                                             continue;
+                                        }
+
+                                        switch (dr.ItemArray[1].ToString().Trim())
+                                        {
+                                             case "DEP": lsActividad = "Deportiva";
+                                                  break;
+                                             case "CUL": lsActividad = "Cultural";
+                                                  break;
+                                             case "LEC": lsActividad = "Lectura";
+                                                  break;
+                                             case "TUT": lsActividad = "Tutoría";
+                                                  break;
+                                             case "ECO": lsActividad = "Ecotec";
+                                                  break;
+                                             case "ACA": lsActividad = "Académica";
+                                                  break;
+                                        }
+                                        <li class="@lsActivo">
+                                             <a href="#@lsTipoActividad" data-toggle="tab">@lsActividad</a>
+                                        </li>
+                                        lsActivo = "";
+                                        lsActividades = lsActividades + lsTipoActividad + ",";
+                                   }
+                              }
+                         }
+                    </ul>
+               </div>
+
+               <div class="col-xs-9">
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                         @{
+                              string lsActividadRepetida = "";
+                               lsTipoActividad = "";
+                               lsActividad = "";
+                               lsActividades = "";
+                               lsActivo = "active";
+                              if (ViewData["datos"] != null)
+                              {
+                                   foreach (System.Data.DataRow drx in (ViewData["datos"] as System.Data.DataTable).Rows)
+                                   {
+                                        lsActividadRepetida = drx.ItemArray[1].ToString().Trim();
+                                        lsTipoActividad = drx.ItemArray[1].ToString().Trim();
+                                        <div class="tab-pane @lsActivo" id="@lsTipoActividad">
+                                             @foreach (System.Data.DataRow dr in (ViewData["datos"] as System.Data.DataTable).Rows)
+                                             {
+                                                  if (lsActividadRepetida != dr.ItemArray[1].ToString().Trim())
+                                                  {
+                                                       continue; 
+                                                  }
+                                                  lsPromedio = dr.ItemArray[3].ToString().Trim();
+
+                                             if (string.IsNullOrEmpty(lsPromedio) && dr.ItemArray[0].ToString().Trim() == lsPeriodoActual)
+                                             {
+                                                  <p>Actividad en Curso</p>
+                                             <p>Periodo @Sapei.Framework.Utilerias.ManejoPeriodos.RegresaDescripcionLargaPeriodo(dr.ItemArray[0].ToString().Trim())</p>
+     <p>Actividad @dr.ItemArray[6].ToString().Trim()</p>
+                                                  <p>Docente @dr.ItemArray[5].ToString().Trim()</p>
+                                             }
+                                             else if (!string.IsNullOrEmpty(lsPromedio) && Convert.ToDouble(lsPromedio) >= 1)
+                                             {
+                                                  <p>Actividad Concluida</p>
+                                                  <p>Periodo 
+                                             @Sapei.Framework.Utilerias.ManejoPeriodos.RegresaDescripcionLargaPeriodo(dr.ItemArray[0].ToString().Trim())</p>
+     <p>Actividad @dr.ItemArray[6].ToString().Trim()</p>
+                                                  <p>Docente @dr.ItemArray[5].ToString().Trim()</p>
+                                                  <p>Promedio @lsPromedio</p>
+                                                  <p>Desempeño @dr.ItemArray[4].ToString().Trim()</p>
+                                             }
+                                             else
+                                             {
+                                                  <p>Actividad No Concluida</p>
+                                             <p>Periodo @Sapei.Framework.Utilerias.ManejoPeriodos.RegresaDescripcionLargaPeriodo(dr.ItemArray[0].ToString().Trim())</p>
+     <p>Actividad @dr.ItemArray[6].ToString().Trim()</p>
+                                                  <p>Docente @dr.ItemArray[5].ToString().Trim()</p>
+                                             }
+                                             <div class="divider"></div>
+                                             }
+                                        </div>
+                                        lsActivo = "";
+                                        lsActividades = lsActividades + lsTipoActividad + ",";
+                                   }
+                              }
+                         }
+                    </div>
+               </div>
+
+               <div class="clearfix"></div>
+
+          </div>
+     </div>
+</div>
+
+
+<script>
+     
+</script>
+

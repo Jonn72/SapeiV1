@@ -1,0 +1,307 @@
+﻿
+<div class="page-title">
+    <div class="title_left">
+        <h3>Control de Personal</h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+
+
+
+<div class="x_panel">
+    <div class="x_content">
+        <div class="col-md-8 center-margin">
+            <div class="row">
+
+                <div class="x_title col-md-12 col-sm-12 col-xs-12 text-justify">
+                    <h5>
+                        El modulo de control de personal permite llevar un control del personal que labora en la institución, ya sea de base o de honorarios.
+                    </h5>
+                    <h5>
+                        a) Datos del personal. En este apartado, se registra al nuevo personal, de igual manera permite actualizar los datos del personal activo.
+                    </h5>
+                    <h5>
+                        b) Plazas. En este apartado, se realizan funciones como: el registro de plzas o la asignación de plazas al personal.
+                    </h5>
+                    <h5>
+                        c) Horarios. Permite la visualización y descarga de horarios oficiales del personal de plaza.
+                    </h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-10 center-margin">
+                <ul class="stats-overview">
+                    <li style="width:25%">
+                        <span class="name">Personal</span>
+                        <br />
+                        <a class="btn btn-info btn-sm" data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#BodyPrincipal" href="/RecursosHumanos/RegistraPersonal">
+                            Administrar
+                        </a>
+                    </li>
+                    <li style="width:25%">
+                        <span class="name">Categorías de plazas</span>
+                        <br />
+                        <button class="btn-info btn-sm" id="btnAbrirCategorias">
+                            Mostrar
+                        </button>
+                        <a class="btn btn-default btn-sm" data-target="#ModalRegistroPlaza" data-toggle="modal" href="#ModalRegistroPlaza">
+                            Registrar
+                        </a>
+                    </li>
+                    <li style="width:25%">
+                        <span class="name">Plazas</span>
+                        <br />
+                        <button class="btn-info btn-sm" id="btnAbrirPlazas">
+                            Registros
+                        </button>
+                        <a class="btn btn-success btn-sm" data-target="#ModalAsignarPlaza" data-toggle="modal" href="#ModalAsignarPlaza">
+                            Asignar
+                        </a>
+                        <a class="btn btn-info btn-sm" data-target="#ModalEliminarPlaza" data-toggle="modal" href="#ModalEliminarPlaza">
+                            Eliminar
+                        </a>
+                    </li>
+                    <li style="width:20%">
+                        <span class="name">Horarios</span>
+                        <span class="value text-success"> Consultar </span>
+                    </li>
+                </ul>
+                <br />
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@Html.Partial("../Generales/ModalTablaDatos")
+
+<div id="ModalRegistroPlaza" data-backdrop="static" data-keyboard="false" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Registrar Categoría</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-offset-2 col-md-8 col-lg-offset-2 col-lg-8">
+
+                        <div class="row">
+                            <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 text-align-left">
+                                <label>Clave</label>
+                            </div>
+                            <div class="col-lg-8 col-md-9 col-sm-12 col-xs-12 text-align-left">
+                                    <div class="input-icon">
+                                        <input type="text" id="txtClaveCategoria" maxlength="7" autocomplete="nope" placeholder="Ingrese la clave presupuesta" />
+                                        <i class="fa fa-exclamation-circle icon orange"> </i>
+                                    </div>
+                    
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 text-align-left">
+                                <label>Descripción</label>
+                            </div>
+                            <div class="col-lg-8 col-md-9 col-sm-12 col-xs-12 text-align-left">
+                                <div class="input-icon">
+                                    <input type="text" id="txtDescripcionCategoria" autocomplete="nope" placeholder="Ingrese la descripción" />
+                                    <i class="fa fa-exclamation-circle icon orange"> </i>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnGuardarCategoria" class="btn btn-success" data-dismiss="modal">Guardar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="ModalAsignarPlaza" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Asignar Plaza</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-offset-2 col-md-8 col-lg-offset-2 col-lg-8">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 text-align-left">
+                                <label>RFC</label>
+                            </div>
+                            <div class="col-lg-8 col-md-9 col-sm-12 col-xs-12 text-align-left">
+                                <div class="input-icon">
+                                    @if (ViewData["ListaRFC"] != null)
+                                    {
+                                        <div class="input-icon">
+                                            <input type="text" id="txtRFCAsignar" list="listRFC">
+                                            <datalist id="listRFC">
+                                                @foreach (System.Data.DataRow dr in (ViewData["ListaRFC"] as System.Data.DataTable).Rows)
+                                                {
+                                                    <option data-value="@dr.ItemArray[1].ToString().Trim()" value="@dr.ItemArray[0].ToString().Trim()">@dr.ItemArray[1].ToString().Trim()</option>
+                                                }
+                                            </datalist>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 text-align-left">
+                                <label>Categoria</label>
+                            </div>
+                            <div class="col-lg-8 col-md-9 col-sm-12 col-xs-12 text-align-left">
+                                <div class="input-icon">
+                                    @if (ViewData["ListaCategorias"] != null)
+                                    {
+                                        <div class="input-icon">
+                                            <input type="text" id="txtCategoriaAsignar" list="listCategoria">
+                                            <datalist id="listCategoria">
+                                                @foreach (System.Data.DataRow dr in (ViewData["ListaCategorias"] as System.Data.DataTable).Rows)
+                                                {
+                                                    <option data-value="@dr.ItemArray[1].ToString().Trim()" value="@dr.ItemArray[0].ToString().Trim()">@dr.ItemArray[1].ToString().Trim()</option>
+                                                }
+                                            </datalist>
+                                        </div>
+                                    }                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 text-align-left">
+                                <label>Horas</label>
+                            </div>
+                            <div class="col-lg-8 col-md-9 col-sm-12 col-xs-12 text-align-left">
+                                <div class="input-icon">
+                                    <input type="number" id="txtHorasAsignar" autocomplete="nope" placeholder="Ingrese la descripción" />
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 text-align-left">
+                                <label>Interinato</label>
+                            </div>
+                            <div class="col-lg-8 col-md-9 col-sm-12 col-xs-12 text-align-left">
+                                <div class="input-icon">
+                                    <select class="list-dt" id="cboInterinatoAsignar">
+                                        <option selected value="N">No</option>
+                                        <option value="S">Si</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 text-align-left">
+                                <label>Fecha de inicio</label>
+                            </div>
+                            <div class="col-lg-8 col-md-9 col-sm-12 col-xs-12 text-align-left">
+                                <div class="">
+                                    <div class='input-group input-icon date' id='dtpFechaIniPlaza'>
+                                        <input type='text' id="txtFechaAsignar"  required />
+                                        <span class="input-group-addon fa-icon"> <span class="fa fa-calendar"></span> </span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnGuardarAsignacion" class="btn btn-success" data-dismiss="modal">Guardar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div id="ModalEliminarPlaza" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" onclick="LimpiarEliminar();">&times;</button>
+                <h4 class="modal-title">Registrar Categoria</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-offset-2 col-md-8 col-lg-offset-2 col-lg-8">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 text-align-left">
+                                <label>RFC</label>
+                            </div>
+                            <div class="col-lg-8 col-md-9 col-sm-12 col-xs-12 text-align-left">
+                                <div class="input-icon">
+                                    @if (ViewData["ListaRFC"] != null)
+                                    {
+                                        <div class="input-icon">
+                                            <input type="text" id="txtRFCEliminar" list="listRFCEliminar">
+                                            <datalist id="listRFCEliminar">
+                                                @foreach (System.Data.DataRow dr in (ViewData["ListaRFC"] as System.Data.DataTable).Rows)
+                                                {
+                                                    <option data-value="@dr.ItemArray[1].ToString().Trim()" value="@dr.ItemArray[0].ToString().Trim()">@dr.ItemArray[1].ToString().Trim()</option>
+                                                }
+                                            </datalist>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row div-hide" id="row_list">
+                            <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 text-align-left">
+                                <label>Categoria</label>
+                            </div>
+                            <div class="col-lg-8 col-md-9 col-sm-12 col-xs-12 text-align-left">
+                                <div class="input-icon">
+                                    <div class="input-icon">
+                                        <input type="text" id="txtCategoriaEliminar" list="listCategoriaEliminar">
+                                        <datalist id="listCategoriaEliminar">
+                                        </datalist>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+            <div class="modal-footer" id="row_buttons_search">
+                <button type="button" id="btnBuscarPlazas" class="btn btn-sm" onclick="rfcplazas();">Buscar</button>
+            </div>
+            <div class="modal-footer div-hide" id="row_buttons"> 
+                <button type="button" id="btnEliminarAsignacion" class="btn btn-success" data-dismiss="modal">Eliminar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="LimpiarEliminar();">Cerrar</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="~/Scripts/ManejoDatos/RecursosHumanos/ControlPersonal.js"></script>

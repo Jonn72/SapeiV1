@@ -1,0 +1,659 @@
+﻿@using Sapei.Framework.Utilerias;
+@using System.Data;
+<link rel="stylesheet" href="~/Content/themes/ExpedienteDigital.css" />
+
+
+
+@{
+    System.Data.DataTable loDatos = null;
+
+
+
+    string lsNombre = "";
+    string lsControl = "";
+    int liClaveDoc = 0;
+    bool lbAutorizado;
+    int liEstado = 0;
+    string lsNombreDocumento = "";
+    string lsTitulo;
+    string lsExtension;
+    string lsObservaciones;
+    string lsRuta;
+    string lsCarrera = "";
+    string lsFechaRegistro = "";
+    int lsRequiereValidacion = 0;
+    string liNombreDoc = "";
+    int lsEstadoSolicitud = 0;
+    int lsEstadoCartaC = 0;
+    int lsEsatdoCartaR = 0;
+    int lsEsatdoAvispP = 0;
+    int lsEsatdoFormatoNoP = 0;
+    int lsEstadoAutorizacion = 0;
+    string lsPersonaAutorizo = "";
+    bool lbSinPermiso = false;
+    string lsMensaje = "";
+    bool lbDatosGenerales = false;
+
+    if (ViewData["Datos"] != null)
+    {
+        loDatos = ViewData["Datos"] as System.Data.DataTable;
+
+
+        liNombreDoc = loDatos.Rows[0].RegresaValor<string>("nombre_doc");
+
+        if (loDatos.Columns.Count > 1)
+        {
+            lbSinPermiso = true;
+
+            lsControl = loDatos.Rows[0].RegresaValor<string>("no_de_control");
+            lsNombre = loDatos.Rows[0].RegresaValor<string>("nombre_alumno");
+            lsCarrera = loDatos.Rows[0].RegresaValor<string>("carrera");
+            lsFechaRegistro = loDatos.Rows[0].RegresaValor<string>("fecha_registro");
+            lbDatosGenerales = !string.IsNullOrEmpty(loDatos.Rows[0].RegresaValor<string>("entidad"));
+            if (!lbDatosGenerales)
+            {
+                lsMensaje = "No tiene captura de datos personales, acuda a Servicios Escolares";
+            }
+            lbSinPermiso = true;
+
+        }
+        else
+        {
+            lsMensaje = loDatos.Rows[0].RegresaValor<string>("mensaje");
+        }
+
+    }
+}
+
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>
+            Documentos de Inscripción
+        </h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+@if (lbSinPermiso && lbDatosGenerales)
+{
+    <div class="x_panel" id="DocumentosInscripcion">
+        <div class="col-md-9 center-margin">
+            <div class="row">
+
+                @if (liEstado == 3 && lsEstadoAutorizacion == 1)
+                {
+                    <div class="x_title d-12 col-sm-12 col-xs-12 text-center">
+                        <h4>
+                            <strong>Actualiza tus documentos</strong>
+                        </h4>
+                    </div>
+                    <div id="actualizaDoc">
+                        <h5>
+                            Si ya estas a punto de iniciar el proceso de Titulación es necesario que actualices tu de CURP.
+                        </h5>
+                        <h5>
+                            Si realizaste cambio de domicilio, es necesario hacer una actualización de INE y Comprobante de Domicilio.
+                        </h5>
+
+                        <h5>
+                            Seleciona Realizar cambio para actualizar algunos de tus documentos.
+                            <a class="btn" data-toggle="modal" data-target="#divModalActualizacionDocumentos"> Realizar Cambio </a>
+                        </h5>
+                    </div>
+                }
+                else
+                {
+                    <div class="x_title d-12 col-sm-12 col-xs-12 text-center">
+                        <h4>
+                            <strong>Proceso de Inscripción</strong>
+                        </h4>
+                    </div>
+
+                    <div class="x_title col-md-12 col-sm-12 col-xs-12 center-margin text-justify">
+                        <h5>
+                            Estimado Guardián(a), para realizar tu proceso de inscripción deberas de contar con la siguiente documentacion:
+                        </h5>
+                        <h5>
+                            1. Certificado de Bachillerato original o cualquiera de los siguientes documentos:
+                        </h5>
+                        <h5>
+                            ° Constancia de terminación de estudios (original) y carta compromiso en original.
+                        </h5>
+                        <h5>
+                            ° Dictamen de Revalidación del bachillerato concluido original.
+                        </h5>
+                        <h5>
+                            2. Los egresados del CONALEP deberán presentar el certificado equivalente al bachillerato y el certificado técnico otorgado original.
+                        </h5>
+                        <h5>
+                            3. Acta de nacimiento reciente (ambos lados en caso de aplicar).
+                        </h5>
+                        <h5>
+                            ° Los estudiantes con doble nacionalidad refiérase y verifique la Ley sobre Doble Nacionalidad, Diario Oficial 20 de marzo de 1998 para el requerimiento de su acta de nacimiento en el registro civil mexicano.
+                        </h5>
+                        <h5>
+                            ° Los extranjeros, deberán presentar el acta de nacimiento debidamente legalizada por el Servicio Consular Mexicano o apostillado por el Gobierno del País de origen, anexando copia certificada ante notario de su situación migratoria, que compruebe su legal estancia como estudiante en el país.
+                        </h5>
+                        <h5>
+                            4. Certificado médico, con tipo de sangre, de cualquier institución medica.
+                        </h5>
+                        <h5>
+                            5. Identificación oficial (INE) amplificada a media carta, ambos lados en la misma hoja, en caso de haber cumplido la mayoria de edad este año (2021) este documento quedara pendiente para el siguiente año.
+                        </h5>
+                        <h5>
+                            6.  Autorización para la consulta de expediente, anexando una identificación oficial (INE) de la(s) persona(s) autorizada(s) para consultar tu expediente
+                        </h5>
+                        <h5>
+                            7.  El CURP, debera ser descargado de internet. <a href="https://www.gob.mx/curp/" target="_blank">Tramitalo aquí.</a>
+                        </h5>
+                        <h5>
+                            8. Para la Vigencia de derechos debe de ser expedida por el IMSS. <a href="https://serviciosdigitales.imss.gob.mx/gestionAsegurados-web-externo/vigencia" target="_blank">Tramitalo aquí.</a>
+                        </h5>
+                        <h5>9. El Contrato con el estudiante, será un archivo que debes de descargar, firmar y subir a Documentos Personales.<a href="https://drive.google.com/file/d/1YcqwrbHuBxwsFhmJXyRKoFNJnOGD25JR/view" target="_blank"> Descarga aquí.</a></h5>
+                    </div>
+                }
+
+            </div>
+            <div class="row">
+                <a onclick="OcultaDiv(7)" class="btn btn-info" style="float: right">Iniciar</a>
+
+            </div>
+        </div>
+    </div>
+
+    if (loDatos != null && loDatos.Rows.Count > 0)
+    {
+        <div class="x_panel div-hide  overflow-scroll" id="divDocumentosPersonales">
+            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                <div class="row">
+                    <div class="x_title col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                        <a class="btn colorCardI disabled">
+                            <h2>Documentos Personales</h2>
+                        </a>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="x_title col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                        <a class="btn colorCard1" style="float: right" onclick="OcultaDiv(8);">
+                            <h2>Documentos Escolares</h2>
+                        </a>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12 center-margin text-justify">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6 ">
+                    <h5>
+                        Todos los documentos deben de cumplir con las siguientes características:
+                    </h5>
+                    <h5>
+                        1. DEBEN de ser escaneados, NO PUEDEN ser fotografías.
+                    </h5>
+                    <h5>
+                        2. No usar APP de celular que simulen el escaneo.
+                    </h5>
+                    <h5>
+                        3. La resolución del escaneo debe de ser a 300PPP.
+                    </h5>
+                    <h5>
+                        4. Cada documento DEBE de ser escaneado a color.
+                    </h5>
+                    <h5>
+                        5. NO puede ser escaneado de una copia, DEBE ser escaneado del original.
+                    </h5>
+                    <h5>
+                        6. DEBE de venir en forma vertical para fácil lectura.
+                    </h5>
+                    <h5>
+                        7. Se debe de respetar el tamaño de los documentos y no pueden ser escaneado a reducciones.
+                    </h5>
+                </div>
+            </div>
+            <div class="row"></div>
+            <div class="row"></div>
+            <div class="row"></div>
+            <div class="form-group col-md-12 col-lg-12 col-sm-12 col-xs-12 center-margin">
+                <div class="row">
+                    @{
+
+                        foreach (System.Data.DataRow loFila in loDatos.Rows)
+                        {
+                            liClaveDoc = loFila.RegresaValor<int>("clave_documento");
+                            lbAutorizado = loFila.RegresaValor<bool>("autorizado"); ;
+                            liEstado = loFila.RegresaValor<int>("estado"); ;
+                            lsNombreDocumento = loFila.RegresaValor<string>("nombre_documento").Trim();
+                            lsTitulo = lsNombreDocumento.SeparaFormatoCamello().Trim();
+                            lsExtension = loFila.RegresaValor<string>("extension").Trim();
+                            lsObservaciones = loFila.RegresaValor<string>("observaciones");
+                            lsRuta = loFila.RegresaValor<string>("ruta_doc");
+                            lsRequiereValidacion = loFila.RegresaValor<int>("requiere_validacion");
+
+                            if (lsRequiereValidacion == 0)
+                            {
+                                <div id="titulo" class="div-hide">
+                                    <label>
+                                        @lsTitulo
+                                    </label>
+                                </div>
+                            }
+                            else
+                            {
+
+
+                                <div class="col-md-6 col-sm-6 col-xs-12 text-center">
+                                    <div class="card text-white colorCard mb-3">
+                                        <div class="card-header textoCard">@lsTitulo</div>
+                                        <div class="card-body">
+                                            <div class="clearfix"></div>
+                                            @{switch (liEstado)
+                                                {
+                                                    case 0:
+                                                        <p class="card-text textoCard alert alert-link">
+                                                            Debes Subir un documento valido en formato PDF
+                                                        </p>
+                                                        break;
+                                                    case 1:
+
+                                                        if (lsRequiereValidacion == 0)
+                                                        {
+                                                            <div id="Oculto" class="div-hide">
+                                                                <input value="@lsTitulo" />
+                                                                <input id="foto" value="@lsNombreDocumento" />
+                                                            </div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="alert alert-info textoCard text-center">
+                                                                Espera la revisión del documento
+                                                            </div>
+                                                        }
+
+
+                                                        break;
+                                                    case 2:
+                                                        <div class="alert alert-danger textoCard">
+                                                            El documento fue rechazado por:
+                                                            @{
+                                                                if (!string.IsNullOrEmpty(lsObservaciones))
+                                                                {
+                                                                    foreach (var lsObs in lsObservaciones.Trim().Split(';'))
+                                                                    {
+                                                                        if (!string.IsNullOrEmpty(lsObs))
+                                                                        {
+                                                                            <h6 class="textoCard"> * @lsObs</h6>
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                            Debes cargar nuevamente el documento y esperar su validación.
+                                                        </div>
+                                                        break;
+                                                    case 3:
+                                                        <div class="alert alert-success textoCard text-center">
+                                                            El documento fue validado y autorizado
+                                                        </div>
+                                                        break;
+                                                }
+                                                if (liEstado == 0 || liEstado == 2)
+                                                {
+                                                    <div class="file-loading">
+                                                        <input id="input-@lsNombreDocumento" type="file" accept="@lsExtension">
+                                                    </div>
+                                                    <script>
+                                                $(document).ready(function () {
+                                                    $("#input-@lsNombreDocumento").fileinput({
+                                                         uploadAsync: true,
+                                                        uploadUrl: "../../EstudianteExpDig/GuardaDocumento",
+                                                        language: 'es',
+                                                        allowedFileExtensions: ["@lsExtension"],
+                                                        previewClass: "bg-light",
+                                                        overwriteInitial: true,
+                                                        maxFileSize: 2000,
+                                                        minFileCount: 1,
+                                                        maxFileCount: 1,
+                                                        showCancel: false,
+                                                        uploadExtraData: function (previewId, index) {
+                                                            var obj = {};
+                                                            obj['clave_doc'] = @liClaveDoc;
+                                                            return obj;
+                                                        },
+                                                        dropZoneEnabled: false,
+                                                    });
+                                                });
+                                                    </script>
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+                                    &nbsp;
+                                    &nbsp;
+                                    &nbsp;
+                                    &nbsp;
+                                    &nbsp;
+                                    &nbsp;
+                                </div>
+
+                            }
+
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="x_panel div-hide" id="divDocumentosEscolares">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                <div class="row">
+                    <div class="x_title col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                        <a class="btn colorCardI disabled">
+                            <h2>Documentos Escolares</h2>
+                        </a>
+
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="x_title col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                        <a class="btn colorCard1" style="float: right" onclick="OcultaDiv(9);">
+                            <h2>Documentos Personales</h2>
+                        </a>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class=" form-group col-md-12 col-xs-12 col-lg-12 col-sm-12 center-margin">
+
+                @{
+                                foreach (System.Data.DataRow loFila in loDatos.Rows)
+                                {
+                                    liClaveDoc = loFila.RegresaValor<int>("clave_documento");
+                                    lsNombreDocumento = loFila.RegresaValor<string>("nombre_documento").Trim();
+                                    lsTitulo = lsNombreDocumento.SeparaFormatoCamello().Trim();
+                                    lsRequiereValidacion = loFila.RegresaValor<int>("requiere_validacion");
+                                    lsEstadoSolicitud = loFila.RegresaValor<int>("estado_solicitudI");
+                                    lsEstadoCartaC = loFila.RegresaValor<int>("estado_cartaC");
+                                    lsEsatdoCartaR = loFila.RegresaValor<int>("estado_cartaR");
+                                    lsEsatdoAvispP = loFila.RegresaValor<int>("estado_avisoP");
+                                    lsEsatdoFormatoNoP = loFila.RegresaValor<int>("estado_NoPertenecia");
+                                    lsEstadoAutorizacion = loFila.RegresaValor<int>("estado_Autorizacion");
+                                    lsPersonaAutorizo = loFila.RegresaValor<string>("persona_autorizo");
+                                    
+
+
+
+                        if (lsRequiereValidacion == 0)
+                                    {
+
+
+                                        switch (lsNombreDocumento)
+                                        {
+                                            case "SolicitudInscripcion":
+
+
+                                    <div class="col-sm-4  col-md-4 col-xs-12 text-center">
+                                        <div class="card text-white botonesDT1 mb-3">
+                                            <div class="card-header textoCard">@lsTitulo</div>
+                                            <div class="card-body">
+
+
+                                                @if (lsEstadoSolicitud == 1)
+                            {
+                                                    <p class="card-text textoCardBody">Una vez firmado el documento, solo lo podrás descargar.</p>
+                                                    <a class="btn btn-success" onclick="MuestraDocumentosEscolares('@lsNombreDocumento');">
+                                                        Descargar
+                                                    </a>
+                        }
+                        @if (lsEstadoSolicitud == 0)
+                        {
+                                                    <div id="btnVistaPrevia_@lsNombreDocumento">
+                                                        <p class="card-text textoCardBody">Revisa que tus datos sean correctos, antes de firmar el documento.</p>
+                                                        <a class="btn btn-success" data-toggle="modal" data-target="#divModalSolicitudInscripcion">
+                                                            Vista Previa
+                                                        </a>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    break;
+
+                                case "CartaCompromiso":
+                                    <div class="col-sm-4 col-md-4 col-xs-12 text-center">
+                                        <div class="card text-white botonesDT1 mb-3">
+                                            <div class="card-header textoCard">@lsTitulo</div>
+                                            <div class="card-body">
+
+
+                                                @if (lsEstadoCartaC == 1)
+                                                {
+                                                    <p class="card-text textoCardBody">Una vez firmado el documento, solo lo podrás descargar.</p>
+                                                    <a class="btn btn-success" onclick="MuestraDocumentosEscolares('@lsNombreDocumento');">
+                                                        Descargar
+                                                    </a>
+
+                                                }
+                                                @if (lsEstadoCartaC == 0)
+                                                {
+                                                    <div id="btnVistaPrevia_@lsNombreDocumento">
+                                                        <p class="card-text textoCardBody">Revisa que tus datos sean correctos, antes de firmar el documento.</p>
+                                                        <a class="btn btn-success" data-toggle="modal" data-target="#divModalCartaCompromiso">
+                                                            Vista Previa
+                                                        </a>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    break;
+
+
+                                case "CartaResponsiva":
+
+                                    <div class="col-sm-4 col-md-4 col-xs-12 text-center">
+                                        <div class="card text-white botonesDT1 mb-3">
+
+                                            <div class="card-header textoCard"> @lsTitulo</div>
+                                            <div class="card-body">
+
+                                                @if (lsEsatdoCartaR == 1)
+                                                {
+                                                    <p class="card-text textoCardBody">Una vez firmado el documento, solo lo podrás descargar.</p>
+                                                    <a class="btn btn-success" onclick="MuestraDocumentosEscolares('@lsNombreDocumento');">
+                                                        Descargar
+                                                    </a>
+                                                }
+                                                @if (lsEsatdoCartaR == 0)
+                                                {
+                                                    <div id="btnVistaPrevia_@lsNombreDocumento">
+                                                        <p class="card-text textoCardBody">Revisa que tus datos sean correctos, antes de firmar el documento.</p>
+                                                        <a class="btn btn-success" data-toggle="modal" data-target="#divModalCartaResponsiva">
+                                                            Vista Previa
+                                                        </a>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <br />
+
+                                    break;
+
+
+                                case "AvisoDePrivacidad":
+                                    <div class="col-sm-4 col-md-4 col-xs-12 text-center">
+                                        <div class="card text-white botonesDT1 mb-3">
+                                            <div class="card-header textoCard"> @lsTitulo</div>
+                                            <div class="card-body">
+
+                                                @if (lsEsatdoAvispP == 1)
+                                                {
+                                                    <p class="card-text textoCardBody">Una vez firmado el documento, solo lo podrás descargar.</p>
+                                                    <a class="btn btn-success" onclick="MuestraDocumentosEscolares('@lsNombreDocumento');">
+                                                        Descargar
+                                                    </a>
+                                                }
+                                                @if (lsEsatdoAvispP == 0)
+                                                {
+                                                    <div id="btnVistaPrevia_@lsNombreDocumento">
+                                                        <p class="card-text textoCardBody">Revisa que tus datos sean correctos, antes de firmar el documento.</p>
+                                                        <a class="btn btn-success" data-toggle="modal" data-target="#divModalAvisoPrivacidad">
+                                                            Vista Previa
+                                                        </a>
+                                                    </div>
+                                                }
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    break;
+
+
+
+                                case "AutorizacionExpediente":
+                                    
+                                    <div class="col-sm-4 col-md-4 col-xs-12 text-center">
+                                        <div class="card text-white botonesDT1 mb-3">
+
+                                            <div class="card-header textoCard">@lsTitulo</div>
+                                            <div class="card-body">
+                                                
+                                                @if (lsEstadoAutorizacion == 1)
+                                                {
+                                                    <p class="card-text textoCardBody">Una vez firmado el documento, solo lo podrás descargar.</p>
+                                                    <a class="btn btn-success" onclick="MuestraDocumentosEscolares('@lsNombreDocumento');">
+                                                        Descargar
+                                                    </a>
+                                                }
+                                                @if (lsEstadoAutorizacion == 0)
+                                                {
+                                                    <div id="btnVistaPrevia_@lsNombreDocumento">
+                                                        <p class="card-text textoCardBody">Revisa que tus datos sean correctos, antes de firmar el documento.</p>
+                                                        <a class="btn btn-success" data-toggle="modal" data-target="#divModalAutorizacionExpediente">
+                                                            Vista Previa
+                                                        </a>
+                                                    </div>
+                                                }
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    break;
+
+                                case "FormatoNoPertenciaAOtroPlantel":
+                                    <div class="col-sm-4 col-md-4 col-xs-12 text-center">
+                                        <div class="card text-white botonesDT1 mb-3">
+                                            <div class="card-header textoCard"> Formato de NO pertenencia a Otro Plantel</div>
+                                            <div class="card-body">
+
+                                                @if (lsEsatdoFormatoNoP == 1)
+                                                {
+                                                    <p class="card-text textoCardBody">Una vez firmado el documento, solo lo podrás descargar.</p>
+                                                    <a class="btn btn-success" onclick="MuestraDocumentosEscolares('@lsNombreDocumento');">
+                                                        Descargar
+                                                    </a>
+                                                }
+                                                @if (lsEsatdoFormatoNoP == 0)
+                                                {
+                                                    <div id="btnVistaPrevia_@lsNombreDocumento">
+                                                        <p class="card-text textoCardBody">Revisa que tus datos sean correctos, antes de firmar el documento.</p>
+                                                        <a class="btn btn-success" data-toggle="modal" data-target="#divModalNoPertenenciaAOtroTecnologico">
+                                                            Vista Previa
+                                                        </a>
+                                                    </div>
+                                                }
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    break;
+
+                            }
+
+                        }
+                    }
+                }
+
+            </div>
+        </div>
+    </div>
+
+    @Html.Partial("../EstudianteExpDig/SolicitudInscripcion")
+    @Html.Partial("../EstudianteExpDig/CartaCompromiso")
+    @Html.Partial("../EstudianteExpDig/FormatoAvisoPrivacidad")
+    @Html.Partial("../EstudianteExpDig/CartaResponsiva")
+    @Html.Partial("../EstudianteExpDig/NoPertenenciaTecnologico")
+    @Html.Partial("../EstudianteExpDig/FormatoAutorizacionExp")
+
+    @Html.Partial("../Generales/ModalVistasParciales")
+    @Html.Partial("../Generales/ModalVisorPDF")
+
+    @Html.Partial("../EstudianteExpDig/ActualizacionDocumentos")
+
+    @Html.Partial("../Generales/FirmaElectronica")
+
+    <script src="~/Scripts/ManejoDatos/ExpedienteDigital/DocumentosInscripcion.js"></script>
+
+}
+else
+{
+    <div class="x_panel" id="DocumentosInscripcion">
+
+        <div class="col-md-9 center-margin">
+            <div class="col-md-8 center-margin center-block">
+                <div class="alert alert-info alert-dismissible fade in" role="alert">
+                    <h4 class="title text-center">
+                        @Html.Raw(@lsMensaje).
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+<script>
+
+    $('input[type="file"]').on('fileuploaded', function (event, data) {
+        var form = data.form, files = data.files, extra = data.extra,
+            response = data.response, reader = data.reader;
+        if (response.Success == true) {
+            MensajesToastr("info", "Solicitud Procesada", "El archivo se cargo correctamente");
+            $(this).fileinput("clear");
+        }
+        else {
+            MensajesToastr("info", "Solicitud Procesada", response.Mensaje);
+        }
+    });
+
+
+
+    $('input[type="file"]').on('fileimageresizeerror', function (event, data, msg) {
+        console.log(data.id);
+        console.log(data.index);
+        // get message
+        alert(msg);
+    });
+</script>
+
+<script src="~/Scripts/Componentes/fileinput.js"></script>
+
+

@@ -1,0 +1,271 @@
+﻿@using Sapei.Framework.Utilerias;
+@using Newtonsoft.Json;
+<script type="text/javascript">
+    @{
+        string JSONString = string.Empty;
+        if (ViewData["evaluacion"] != null)
+        {
+
+            System.Data.DataTable loDt = null;
+            loDt = ViewData["evaluacion"] as System.Data.DataTable;
+            JSONString = JsonConvert.SerializeObject(loDt);
+
+
+        }
+        }
+    var Guardar = @Html.Raw(JSONString);
+    var point1 = [];
+        //series1.push(point1);
+
+    //console.log(JSON.parse(series1));
+    //console.log(JSON.stringify(Guardar));
+
+    Object.keys(Guardar).forEach(function (key) {
+
+        var indice = { x: (Guardar[key].descripcion === "TOTAL") ? Guardar[key].descripcion : Guardar[key].descripcion.substring(0, 2), y: Guardar[key].Porcentaje.toFixed(2) }
+        point1.push(indice);
+    })
+
+    console.log(JSON.stringify(point1));
+
+
+    var pointRender = function (args) {
+        var selectedTheme = location.hash.split('/')[1];
+        selectedTheme = selectedTheme ? selectedTheme : 'Material';
+        if (selectedTheme && selectedTheme.indexOf('fabric') > -1) {
+            args.fill = fabricColors[args.point.index % 10];
+        }
+        else if (selectedTheme === 'material') {
+            args.fill = materialColors[args.point.index % 10];
+        }
+        else {
+        }
+    };
+</script>
+
+<link href="~/sii/Content/nprogress/nprogress.css" />
+<link href="~/sii/Content/custom/custom.min.css" />
+<div class="page-title">
+    <div class="title_left">
+        <h3>Evaluacion Docente</h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="x_panel">
+
+    @{
+        double temporal = 0;
+        double temp = 0;
+        double temporal2 = 0;
+        double temp2 = 0;
+        double porcentaje = 0;
+/*
+        if (ViewData["encabezado"] != null)
+        {
+            System.Data.DataTable loDt = null;
+            loDt = ViewData["encabezado"] as System.Data.DataTable;
+
+
+            if (loDt.Columns.Count > 1)
+            {
+                System.Data.DataRow dr = loDt.Rows[0];
+                nombre_carrera = Convert.ToString(dr.RegresaValor<string>("nombre_carrera"));
+                materias_activas = Convert.ToString(dr.RegresaValor<string>("materias_activas"));
+                materias_evaluadas = Convert.ToString(dr.RegresaValor<string>("materias_evaluadas"));
+                docentes_activos = Convert.ToString(dr.RegresaValor<string>("docentes_activos"));
+                docentes_evaluados = Convert.ToString(dr.RegresaValor<string>("docentes_evaluados"));
+                alumnos_inscritos = Convert.ToString(dr.RegresaValor<string>("alumnos_inscritos"));
+                alumnos_evaluaron = Convert.ToString(dr.RegresaValor<string>("alumnos_evaluaron"));
+
+            }
+        }
+*/
+    }
+
+
+    <div class="col-md-12 col-sm-12 col-xs-12">
+
+        <div class="row">
+            <div class="row tile_count">
+
+                <center><h3>Docente: @ViewData["nombre_docente"]</h3></center>
+
+                <br />
+
+
+                <center><h2>Periodo: @ViewData["periodo_desc"]</h2></center>
+                <br />
+
+                <table class="table table-striped projects">
+                    <thead>
+                        <tr>
+                            <th style="width: 20%">Clave</th>
+                            <th>Grupo</th>
+                            <th>Nombre Completo de la Materia</th>
+                            <th>Alumnos Inscritos</th>
+                            <th>Alumnos que Evaluaron</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            if (ViewData["encabezado"] != null)
+                            {
+
+
+                                foreach (System.Data.DataRow dr2 in (ViewData["encabezado"] as System.Data.DataTable).Rows)
+                                {
+                                    <tr>
+                                        <td>
+                                            <a>@dr2.ItemArray[0].ToString().Trim()</a>
+                                        </td>
+                                        <td>
+                                            <a>@dr2.ItemArray[1].ToString().Trim()</a>
+                                        </td>
+                                        <td>
+                                            <a>@dr2.ItemArray[2].ToString().Trim()</a>
+                                        </td>
+                                        <td>
+                                            <a>@dr2.ItemArray[3].ToString().Trim()</a>
+                                        </td>
+                                        <td>
+                                            <a>@dr2.ItemArray[4].ToString().Trim()</a>
+                                        </td>
+                                    </tr>
+
+                                    
+                                        //temp = dr.ItemArray[1].ToString();
+                                        bool success = double.TryParse(dr2.ItemArray[3].ToString(), out temp);
+                                        if (success)
+                                        {
+                                            temporal = temporal + temp;
+                                        }
+
+                                        bool success2 = double.TryParse(dr2.ItemArray[4].ToString(), out temp2);
+                                        if (success)
+                                        {
+                                            temporal2 = temporal2 + temp2;
+                                        }
+
+                                    
+                                }
+                            }
+                            
+                                porcentaje = Math.Round((temporal2 * 100) / temporal, 0);
+                            
+                        }
+
+
+                        <tr>
+                            <td colspan="3" align="right">
+                                <a>TOTAL:</a>
+                            </td>
+                            <td>
+                                <a>@temporal</a>
+                            </td>
+                            <td>
+                                <a>@temporal2</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" align="right">
+                                <a>PORCENTAJE EVALUACIÓN:</a>
+                            </td>
+                            <td colspan="2" align="center">
+                                <a>@porcentaje</a>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+                <br/>
+
+            <center><h2>Aspectos a Evaluar</h2></center>
+
+            <table class="table table-striped projects">
+                <thead>
+                    <tr>
+                        <th style="width: 20%">Aspectos Evaluados</th>
+                        <th>Puntaje y Calificación Grafica</th>
+                        <th>Calificación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        if (ViewData["evaluacion"] != null)
+                        {
+
+
+                            foreach (System.Data.DataRow dr in (ViewData["evaluacion"] as System.Data.DataTable).Rows)
+                            {
+                                <tr>
+                                    <td>
+                                        <a>@dr.ItemArray[0].ToString().Trim()</a>
+
+                                    </td>
+                                    <td class="project_progress">
+                                        <div class="progress progress_sm">
+                                            @{
+                                                //temp = dr.ItemArray[1].ToString();
+                                                bool success = double.TryParse(dr.ItemArray[1].ToString(), out temp);
+                                                if (success)
+                                                {
+                                                    temporal = temp;
+                                                }
+                                                temporal = temporal * 100;
+                                                temporal = temporal / 5;
+                                            }
+                                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="@temporal"></div>
+                                        </div>
+                                        <small>@dr.ItemArray[1].ToString().Trim()</small>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-success btn-xs">@dr.ItemArray[2].ToString().Trim()</button>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    }
+
+
+                </tbody>
+            </table>
+
+            <br />
+
+            @Html.EJS().Chart("container").Series(series =>
+        {
+            series.Type(Syncfusion.EJ2.Charts.ChartSeriesType.Column).XName("x").YName("y")
+            .CornerRadius(cr => cr.BottomLeft(10).BottomRight(10).TopLeft(10).TopRight(10))
+            .Marker(mr => mr.DataLabel(dl => dl.Visible(true).Position(Syncfusion.EJ2.Charts.LabelPosition.Top).Font(ff => ff.FontWeight("600").Color("#ffffff"))))
+            .DataSource("point1").Name("Tiger").Add();
+        }
+        ).PrimaryXAxis(px => px.Interval(1).MajorGridLines(mg => mg.Width(0))
+        .LabelStyle(ls => ls.Color("#ffffff")).TickPosition(Syncfusion.EJ2.Charts.AxisPosition.Inside)
+        .LabelPosition(Syncfusion.EJ2.Charts.AxisPosition.Inside).ValueType(Syncfusion.EJ2.Charts.ValueType.Category)
+             ).PrimaryYAxis(py => py.Minimum(0).Maximum(5).Interval(.5)            
+             ).Title("Resultados").ChartArea(area => area.Border(br => br.Color("transparent"))
+             ).Tooltip(tt => tt.Enable(false)).LegendSettings(lg => lg.Visible(false)
+             ).PointRender("pointRender").Render()
+
+            @Html.EJS().ScriptManager()
+
+            <br />
+
+            <div class="ln_solid"></div>
+            <div class="form-group">
+                <!--<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-1">
+                        <button type="button" class="btn btn-success" id="b0">Siguiente</button>
+                    </div>-->
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+    </div>
+    <script src="~/Scripts/Componentes/bootstrap-progressbar.min.js"></script>
+    <script src="~/Scripts/Componentes/nprogress.js"></script>
+    <script src="~/Scripts/Componentes/custom.min.js"></script>
+

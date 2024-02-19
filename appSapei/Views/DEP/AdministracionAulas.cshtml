@@ -1,0 +1,247 @@
+﻿<div class="page-title">
+    <div class="title_left">
+        <h3>Administracion de Aulas</h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="x_panel">
+    <div class="x_title">
+        <h3>Busqueda de Aula</h3>
+    </div>
+    <div class="clearfix"></div>
+
+
+    <div class="x_title">
+        <div class="col-md-6 center-margin">
+            <div class="input-group">
+                <input type="text" id="txtAula" class="form-control" placeholder="Ingrese el Aula" required>
+                <span class="input-group-btn">
+                    <button class="btn btn-default btn-success" type="button" id="btnBuscarAula"><i class="fa fa-search"></i></button>
+                    <button class="btn btn-default btn-info" id="btnBuscarAulaRegresar" title="Regresar al menú anterior" type="button"><i class="fa fa-refresh"></i></button>
+                    <button class="btn btn-default btn-dark" id="btnBuscarAulaTabla" title="Mostrar Datos" type="button"><i class="fa fa-table"></i></button>
+
+                </span>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+    @Html.Partial("../Generales/ModalTablaDatos")
+
+    <div id="frmDatos1" class="div-hide">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                <label for="tags">
+                    Aula
+                </label>
+                <input type="text" id="txtAula2" class="form-control" disabled>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                <label for="tags">
+                    Capacidad
+                </label>
+                <input type="text" id="txCapacidad" class="form-control">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                <label for="tags">
+                    Ubicacion
+                </label>
+                <input type="text" class="form-control" id="txtUbicacion" value="" placeholder="Nombre (s)" required />
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                <label for="tags">
+                    Permite Cruce de Horarios
+                </label>
+                <select class="form-control" id="cboCruce" required>
+                    <option value="N"> No </option>
+                    <option value="S"> Si </option>
+                </select>
+
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                <label for="tags">
+                    Estatus del Aula
+                </label>
+                <select class="form-control" id="cboEstatus" required>
+                    <option value="A"> Activa </option>
+                    <option value="I"> Inactiva </option>
+                </select>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                <input type="hidden" />
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                <label for="tags">
+                    Observaciones
+                </label>
+                <textarea name="txtObs" id="txtObs" class="form-control" rows="3"></textarea>
+                <p id="contadorTaComentario">0/255</p>
+            </div>
+
+        </div>
+
+    </div>
+    <div id="grd" class="div-hide">
+        <div class="col-md-10 col-sm-10 col-xs-12 form-group">
+            <input type="hidden" />
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-12 form-group">
+            <button id="btnGuardar2" type="submit" class="btn btn-info">Guardar</button>
+            &nbsp;
+            <button id="btnEliminar" type="button" class="btn btn-danger" onclick="Eliminar();">Eliminar</button>
+        </div>
+    </div>
+</div>
+
+
+<br />
+<br />
+
+<br />
+<br />
+<br />
+<br />
+
+<script type="text/javascript">
+
+    $("#btnBuscarAula").click(function Nuevo(evento) {
+        var Aula = $("#txtAula").val();
+        Cargar(Aula);
+        evento.preventDefault();
+    });
+
+
+    function Cargar(Aula) {
+        $.ajax({
+            url: '../../../../DEP/RegresaAula                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     ',
+            type: 'POST',
+            dataType: 'json',
+            data: { psAula: Aula }
+        })
+            .done(function (data) {
+                if (typeof (data.Success) !== "undefined" && !data.Success) {
+
+                    MensajesToastr("info", "Solicitud Procesada", "Registre la nueva Aula ");
+                    $("#divRFC").hide();
+                    $("#frmDatos1").show();
+                    $("#txtAula2").val(Aula);
+                    $("#grd").show();
+                }
+                else {
+                    var resultado = JSON.parse(data);
+                    $("#divRFC").hide();
+                    $("#frmDatos1").show();
+                    $("#txtAula2").val(Aula);
+                    $("#txCapacidad").val(resultado.data[0].capacidad_aula);
+                    $("#txtUbicacion").val(resultado.data[0].ubicacion);
+
+                    $("#cboCruce").val($.trim(resultado.data[0].permite_cruce)).change();
+                    $("#cboEstatus").val($.trim(resultado.data[0].estatus)).change();
+
+                    $("#txtObs").val(resultado.data[0].observaciones);
+                    $("#grd").show();
+                }
+            })
+            .fail(function (data) {
+                MensajesToastrErrorConexion();
+            });
+    }
+
+    init_contadorTa("txtObs", "contadorTaComentario", 255);
+
+    function init_contadorTa(idtextarea, idcontador, max) {
+        $("#" + idtextarea).keyup(function () {
+            updateContadorTa(idtextarea, idcontador, max);
+        });
+
+        $("#" + idtextarea).change(function () {
+            updateContadorTa(idtextarea, idcontador, max);
+        });
+
+    }
+
+    function updateContadorTa(idtextarea, idcontador, max) {
+        var contador = $("#" + idcontador);
+        var ta = $("#" + idtextarea);
+        contador.html("0/" + max);
+
+        contador.html(ta.val().length + "/" + max);
+        if (parseInt(ta.val().length) > max) {
+            ta.val(ta.val().substring(0, max - 1));
+            contador.html(max + "/" + max);
+        }
+
+    }
+
+    function Eliminar() {
+        var Aula = $("#txtAula2").val();
+        var opcion = confirm("Esta Seguro(a) que desea eliminar esta Aula?");
+        if (opcion == true) {
+            $.ajax({
+                asyn: false,
+                url: '../../../DEP/EliminarAula',
+                type: 'POST',
+                dataType: 'json',
+                data: { psAula: Aula },
+            })
+                .done(function (data) {
+
+                    if (typeof (data.Success) === "undefined" || !data.Success) {
+                        MensajesToastr("error", "Solicitud Procesada", "Error al Guardar");
+                    }
+                    else {
+                        MensajesToastr("success", "Solicitud Procesada", "Registro Eliminado");
+                        $('#BodyPrincipal').load('../../../../DEP/AdministracionAulas');
+                    }
+                })
+                .fail(function (data) {
+                    MensajesToastrErrorConexion();
+                });
+
+            event.preventDefault();
+        }
+    }
+
+    $("#btnGuardar2").click(function Nuevo(evento) {
+        var Aula = $("#txtAula2").val();
+        var Ubicacion = $("#txtUbicacion").val();
+        var Capacidad = $("#txCapacidad").val();
+        var Observaciones = $("#txtObs").val();
+        var PerCruce = $("#cboCruce").val();
+        var Estatus = $("#cboEstatus").val();
+
+
+        $.ajax({
+            asyn: false,
+            url: '../../../DEP/GuardaAula',
+            type: 'POST',
+            dataType: 'json',
+            data: { psAula: Aula, psUbicacion: Ubicacion, psCapacidad: Capacidad, psObservaciones: Observaciones, psPerCruce: PerCruce, psEstatus: Estatus },
+        })
+            .done(function (data) {
+
+                if (typeof (data.Success) === "undefined" || !data.Success) {
+                    MensajesToastr("error", "Solicitud Procesada", "Error al Guardar");
+                }
+                else {
+                    MensajesToastr("success", "Solicitud Procesada", "Registro Guardado");
+                    $('#BodyPrincipal').load('../../../../DEP/AdministracionAulas');
+                }
+            })
+            .fail(function (data) {
+                MensajesToastrErrorConexion();
+            });
+
+        evento.preventDefault();
+    });
+</script>
+
+@*<script src="~/Scripts/curp.js"></script>
+<script src="~/Scripts/ManejoDatos/DatosPersonales.js"></script>
+<script src="~/Scripts/ManejoDatos/RecursosHumanos/RegistraPersonal.js"></script>*@

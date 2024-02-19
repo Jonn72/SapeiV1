@@ -1,0 +1,162 @@
+﻿<link href="~/Content/Controles/wizard.css" rel="stylesheet" />
+
+<div class="clearfix"></div>
+<div class="page-title">
+    <div class="title_left">
+        <h3>Control de asistencia</h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="x_panel">
+    <div class="x_title">
+        <h4>Registro de asistencia</h4>
+        <div class="clearfix"></div>
+    </div>
+    <div class="col-md-8 center-margin">
+        <div class="row">
+            <div class="x_title col-md-12 col-sm-12 col-xs-12 text-justify">
+                <h5>
+                    Este modulo permite procesar la información registrada en los checadores de la institución. Generado un reporte simplificado, basado en las reglas
+                    de asistencia. El procesamiento se divide en:
+                </h5>
+                <h5>
+                    a) Personal administrativo. En este apartado, procesa la información de personal plaza  y honorario que tienen registro de funciones administrativas en cualquier departamento.
+                </h5>
+                <h5>
+                    b) Docentes. En este apartado, podrás procesar las incidencias de los docenetes con materias asignadas.
+                </h5>
+                <h5>
+                    c) Jefaturas. Finalmente, se tiene el modulo para procesar los registros de entradas y salidas de los jefes de departamento y centros.
+                </h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="x_title col-md-12 col-sm-12 col-xs-12 text-justify">
+                <h5>
+                    Si requiere descargar el concentrado de checadas por personal, seleccione al personal y de clíc en descargar. Cuando
+                </h5>
+                @Html.Partial("../Generales/BuscaRFC")
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="x_panel">
+    <div class="x_title">
+        <h4>Iniciar Procesamiento</h4>
+        <div class="clearfix"></div>
+    </div>
+    <div class="container-fluid" id="grad1">
+        <div class="row justify-content-center mt-0">
+            <div class="col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-lg-offset-2 col-lg-8  text-center p-0 mt-3 mb-2">
+                <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+                    <div class="row">
+                        <div class="col-md-12 mx-0">
+                            <form id="msform">
+                                <!-- progressbar -->
+                                <ul id="progressbar">
+                                    <li id="clipboard" style="width:33%;" class="active"><strong>Periodo</strong></li>
+                                    <li id="account" style="width:33%;"><strong>Procesar</strong></li>
+                                    <li id="confirm" style="width:33%;"><strong>Finalizar</strong></li>
+                                </ul> <!-- fieldsets -->
+                                <fieldset id="fs_0">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-12 col-md-offset-2 col-md-8 col-lg-offset-2 col-lg-8">
+                                            <h2 class="">Seleccione las fechas para procesar</h2>
+                                            <hr />
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 text-align-left">
+                                                    <label>Fecha de Inicio</label>
+                                                </div>
+                                                <div class="col-lg-8 col-md-9 col-sm-12 col-xs-12 text-align-left">
+                                                    <div class='input-group date' id='dtpFechaIni'>
+                                                        <input type='text' id="txtFechaIni" class="form-control" required />
+                                                        <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 text-align-left">
+                                                    <label>Fecha de Fin</label>
+                                                </div>
+                                                <div class="col-lg-8 col-md-9 col-sm-12 col-xs-12 text-align-left">
+                                                    <div class='input-group date' id='dtpFechaFin'>
+                                                        <input type='text' id="txtFechaFin" class="form-control" required />
+                                                        <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 text-align-left">
+                                                    <label>Segunda opción de carrera</label>
+                                                </div>
+                                                <div class="col-lg-8 col-md-9 col-sm-12 col-xs-12 text-align-left">
+                                                    <div class="input-icon">
+                                                        <select class="list-dt" id="cboTipoPersonal">
+                                                            <option value="1" selected>Personal Administrativo</option>
+                                                            <option value="2">Docentes</option>
+                                                            <option value="3">Jefes</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr />
+                                        </div>
+
+
+                                    </div>
+
+
+                                    <input type="button" id="btnPaso1" name="next" class="next btn btn-dark" value="Siguiente" />
+
+
+
+                                </fieldset>
+                                <fieldset id="fs_1">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-12 col-md-offset-2 col-md-8 col-lg-offset-2 col-lg-8">
+                                            <h2 class="">Iniciar Proceso</h2>
+                                            <hr />
+                                            <div class="row">
+                                                <div class="x_title col-md-12 col-sm-12 col-xs-12 text-justify">
+                                                    <h5>
+                                                        Este proceso puede demorar algunos minutos, por lo que al dar clíc en iniciar deberá esperar a que concluya.
+                                                    </h5>
+
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <hr />
+                                    </div>
+
+                                    <input type="button" name="previous" class="previous btn btn-info" value="Atras" />
+                                    <input type="button" id="btnProcesar" class="next btn btn-success" value="Iniciar Proceso" />
+
+                                </fieldset>
+                                <fieldset id="fs_2">
+                                    <div class="form-card">
+                                        <h2 class="fs-title text-center">Proceso Terminado</h2> <br><br>
+                                        <div class="row justify-content-center">
+                                            <div class="col-7 text-center">
+                                                <h5>Ha concluido el proceso de forma satisfactoria, ahora puedes descargar el reporte.</h5>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="button" name="previous" class="previous btn btn-info" value="Atras" />
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#divModal">Mostrar</button>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.Partial("../Generales/ModalTablaDatos")
+
+<script src="~/Scripts/ManejoDatos/RecursosHumanos/ControlAsistencia.js"></script>

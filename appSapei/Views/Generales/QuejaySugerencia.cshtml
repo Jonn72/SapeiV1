@@ -1,0 +1,193 @@
+﻿<input type="hidden" id="hidticket" value="" />
+<style type="text/css" media="screen">
+  .compose {
+    padding: 0;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    background: #fff;
+    border: 1px solid #D9DEE4;
+    border-right: 0;
+    border-bottom: 0;
+    border-top-left-radius: 5px;
+    z-index: 9999;
+    display: none
+}
+.compose .compose-header {
+    padding: 5px;
+    background: #169F85;
+    color: #fff;
+    border-top-left-radius: 5px
+}
+.compose .compose-header .close {
+    text-shadow: 0 1px 0 #ffffff;
+    line-height: .8
+}
+.compose .compose-body .editor.btn-toolbar {
+    margin: 0
+}
+.compose .compose-body .editor-wrapper {
+    height: 100%;
+    min-height: 50px;
+    max-height: 180px;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    overflow: auto
+}
+.compose .compose-footer {
+    padding: 10px
+}
+</style>
+
+<div class="container body" style="height: 550px;">
+        <div class=" clearfix"></div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="x_panel" style="height: 590px; overflow-y:scroll;">
+                    <div class="x_title">
+                        <h2>Mensajes<small>Quejas y sugerencias</small></h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="row">
+                            <div class="col-sm-3 mail_list_column" style="height: 500px; overflow-y: scroll;">
+@{
+    if (ViewData["ticket"] != null)
+    {
+        foreach (System.Data.DataRow dr in (ViewData["ticket"] as System.Data.DataTable).Rows)
+        {
+            <a onclick="cambia_contenido('@dr.ItemArray[0].ToString().Trim()', '@dr.ItemArray[2].ToString().Trim()', '@dr.ItemArray[3].ToString().Trim()', '@dr.ItemArray[4].ToString().Trim()', '@dr.ItemArray[5].ToString().Trim()', '@dr.ItemArray[6].ToString().Trim()');">
+                <div class="mail_list">
+                    <div class="left">
+                        <i class="fa fa-circle"></i> <i class="fa fa-edit"></i>
+                    </div>
+                    <div class="right">
+                        <h3>@dr.ItemArray[2].ToString().Trim()<small>@dr.ItemArray[3].ToString().Trim()</small></h3>
+                        <p>@dr.ItemArray[5].ToString().Trim()</p>
+                    </div>
+                </div>
+            </a>
+        }
+    }
+}
+                            </div>
+                            <!-- /MAIL LIST -->
+                            <!-- CONTENT MAIL -->
+                            <div class="col-sm-9 mail_view" id="Mensajes" style="display:none;">
+                                <div class=" inbox-body" style="height: auto;">
+                                <div class="mail_heading row">
+                                    <div class="col-md-8 text-right">
+                                    </div>
+                                    <div class="col-md-4 text-right">
+                                        <p class="date" id="fecha"></p>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <h4 id="titulo"></h4>
+                                    </div>
+                                </div>
+                                <div class="sender-info">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <strong id="nombre_completo"></strong>
+                                            <span id="no_de_control"></span>
+                                            <a class="sender-dropdown"><i class="fa fa-chevron-down"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                @{if (ViewData["ticket"] != null)
+                                {
+                                    foreach (System.Data.DataRow dr2 in (ViewData["ticket"] as System.Data.DataTable).Rows)
+                                    {
+                                        <div class="view-mail" id="@dr2.ItemArray[0].ToString().Trim()" style="display:none;">
+                                            @foreach (System.Data.DataRow dr3 in (ViewData["mensaje"] as System.Data.DataTable).Rows)
+                                            {
+                                                if (dr2.ItemArray[0].ToString().Trim() == dr3.ItemArray[0].ToString().Trim())
+                                                {
+                                                    if (dr3.ItemArray[1].ToString().Trim() == "True")
+                                                    {
+                                                        <div align="left" style="background: rgba(76, 206, 126, 0.58); color: #000000;">
+                                                            @if (dr3.ItemArray[3].ToString().Trim() == "True")
+                                                            {<div>@dr3.ItemArray[4].ToString().Trim()<i class="fa fa-check-circle"></i></div>}
+                                                            else
+                                                            {<div>@dr3.ItemArray[4].ToString().Trim()<i class="fa fa-check-circle-o"></i></div>}
+                                                            @dr3.ItemArray[2].ToString().Trim()
+                                                            <hr />
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div align="right">
+                                                            @if (dr3.ItemArray[3].ToString().Trim() == "True")
+                                                            {<div>@dr3.ItemArray[4].ToString().Trim()<i class="fa fa-check-circle"></i></div>}
+                                                            else
+                                                            {<div>@dr3.ItemArray[4].ToString().Trim()<i class="fa fa-check-circle-o"></i></div>}
+                                                            @dr3.ItemArray[2].ToString().Trim()
+                                                            <hr />
+                                                        </div>
+                                                    }
+
+                                                }
+                                            }
+                                        </div>
+                                    }
+                                }
+                                }                                    <div class="btn-group">
+                                    <!--<button  class="btn btn-sm btn-success btn-block" type="button">COMPOSE</button>-->
+
+                                    <button id="compose" class="btn btn-sm btn-primary" type="button"><i class="fa fa-reply"></i> Responder Mensaje</button>
+                                    <button id="cerrar" class="btn btn-sm btn-danger" type="button"><i class="fa fa-minus-circle"></i> Titeck Cerrado</button>
+                                </div>
+                            </div>
+
+                            </div>
+                            <!-- /CONTENT MAIL -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- /page content -->
+
+</div>
+
+<!-- compose -->
+<div class="compose col-md-6 col-xs-12" id="compose2">
+    <div class="compose-header">
+        Nuevo Mensaje
+        <button type="button" class="close compose-close">
+            <span>X</span>
+        </button>
+    </div>
+
+    <div class="compose-body">
+        <div id="alerts"></div>
+
+        <div>
+            <textarea name="txtQS" id="txtQS" class="form-control" rows="5"></textarea>
+        </div>
+    </div>
+    <div id="contadorTaComentario">0/250</div>
+    <div class="compose-footer">
+        <button id="send" class="btn btn-sm btn-success" type="button">Enviar</button>
+    </div>
+</div>
+
+<script src="~/Scripts/ManejoDatos/Mensaje/mensaje.js"></script>
+<script type="text/javascript">
+
+     /* COMPOSE */
+
+    function init_compose() {
+
+        if (typeof ($.fn.slideToggle) === 'undefined') { return; }
+        console.log('init_compose');
+
+        $('#compose, .compose-close').click(function () {
+            $('.compose').slideToggle();
+        });
+
+    };
+     init_compose();
+
+</script>

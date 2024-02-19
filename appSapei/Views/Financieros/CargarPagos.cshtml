@@ -1,0 +1,72 @@
+﻿<div class="clearfix"></div>
+<div class="page-title">
+    <div class="title_left">
+        <h3>Registro de Pago</h3>
+    </div>
+</div>
+<div class="x_panel">
+    <form class="form-horizontal form-label-left" action="#" id="frmAutoReinscripcion" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+        <div class="x_title">
+            <h2>Autoriza Reinscripción</h2>
+            <div class="clearfix"></div>
+        </div>
+        <div class="col-md-10 center-margin center-block">
+            <div class="x_content">
+                <p>
+                    Este proceso se encarga de cargar el archivo de Banamex, el cual debe ser descargado de la banca eléctronica.
+                </p>
+                <p>
+                    Los archivos cargados deben estar en formato CSV y codifcicación UTF-8. Así mismo deben tener las columnas y orden siguiente:  NUMERO, FECHA DE CORTE, LIMITE DE PAGO, REFERENCIA 1, REFERENCIA 2, TIPO DE PAGO, SUCURSAL, CAJA, IMPORTE, AUTORIZACION, IDENTIFICACION Y FORMA DE PAGO.
+                </p>
+                <p>
+                    Debe seleccionar y cargar el archivo al corte realizado, despues de cargar será validada la información, si todo es correcto el resumen se mostrará en la tabla inferior, donde se reflejará información de estudiantes registrados.
+                </p>
+                <div class="file-loading">
+                    <input id="txtFile" name="txtFile[]" type="file" multiple>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+@Html.Partial("../Generales/TablaGeneral")
+
+<script src="~/Scripts/ManejoDatos/Financieros/AutorizaReinscripcion.js"></script>
+<script src="~/Scripts/Componentes/fileinput.js"></script>
+<script src="~/Scripts/Idiomas/es.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#txtFile').fileinput('reset');
+    });
+    $('#txtFile').fileinput({
+        uploadAsync: false,
+        language: 'es',
+        showPreview: false,
+        showCaption: true,
+        showUpload: true,
+        minFileCount: 1,
+        maxFileCount: 1,
+        uploadUrl: '../../../Financieros/GuardaPagos',
+        allowedFileExtensions: ['csv']
+    });
+
+    $('#txtFile').on('filebatchuploadsuccess', function (event, data) {
+        var form = data.form, files = data.files, extra = data.extra,
+            response = data.response, reader = data.reader;
+        if (response.Success == true) {
+            MensajesToastr("info", "Solicitud Procesada", "El archivo se cargo correctamente");
+        }
+        else {
+            MensajesToastr("info", "Solicitud Procesada", response.Mensaje);
+        }
+        $('#BodyPrincipal').load('../../../../Financieros/AutorizaReinscripcion');
+
+    });
+    $('#txtFile').on('filebatchuploadcomplete', function (event, files, extra) {
+        //alert('File batch upload complete');
+    });
+    $('#txtFile').on('filebatchuploaderror', function (event, data, msg) {
+        MensajesToastr("info", "Solicitud Procesada", "El archivo no tiene el formato correcto");
+    });
+</script>
+

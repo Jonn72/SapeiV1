@@ -1,0 +1,223 @@
+﻿<!--<input type="hidden" id="fecha_creacion" value="" />
+<input type="hidden" id="RFC" value="" />
+<input type="hidden" id="ClaveArea" value="" />
+<input type="hidden" id="tipocontrato" value="" />
+<div class="container body" style="height: 550px;">
+    <div id="css1" class="@ViewData["CSS1"]">
+        <div class=" clearfix"></div>
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Firma <small>de contratos</small></h3>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        @Html.Partial("../Generales/TablaGeneral")
+    </div>
+    <div id="css2" class="row @ViewData["CSS2"]">
+        <div class="col-md-12">
+
+            <div class="clearfix"></div>
+            <div class="x_panel">
+                <div class="x_title">
+                    <h3>Firma de Contrato</h3>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                        <label for="tags">
+                            RFC
+                        </label>
+                        <input type="text" class="form-control" id="txtRFC" value="@ViewData["txtRFC"]" readonly />
+
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                        <label for="tags">
+                            CURP
+                        </label>
+                        <input type="text" class="form-control" id="txtCURP" value="@ViewData["txtCURP"]" readonly />
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                        <label for="tags">
+                            Nombre
+                        </label>
+                        <input type="text" class="form-control" id="txtNombre" value="@ViewData["txtNombre"]" readonly />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                        <label for="tags">
+                            Calle
+                        </label>
+                        <input type='text' id="txtCalle" value="@ViewData["txtCalle"]" class="form-control" readonly />
+                    </div>
+                    <div class="col-md-2 col-sm-2 col-xs-12 form-group">
+                        <label for="tags">
+                            Número
+                        </label>
+                        <input type='text' id="txtNumero" value="@ViewData["txtNumero"]" class="form-control" readonly />
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                        <label for="tags">
+                            Colonia
+                        </label>
+                        <input type='text' id="txtColonia" value="@ViewData["txtColonia"]" class="form-control" readonly />
+                    </div>
+                </div>
+                    <div class="row">
+                        <div class="col-md-2 col-sm-2 col-xs-12 form-group">
+                            <label for="tags">
+                                C. P.
+                            </label>
+                            <input type='text' id="txtCP" value="@ViewData["txtCP"]" class="form-control" readonly />
+                        </div>
+                        <div class="col-md-2 col-sm-2 col-xs-12 form-group">
+                            <label for="tags">
+                                Ciudad o Localidad
+                            </label>
+                            <input type='text' id="txtCD" value="@ViewData["txtCD"]" class="form-control" readonly />
+                        </div>
+                        <div class="col-md-2 col-sm-2 col-xs-12 form-group">
+                            <label for="tags">
+                                Estado
+                            </label>
+                            <input type='text' id="txtEstado" value="@ViewData["txtEstado"]" class="form-control" readonly />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                            <label for="tags">
+                                Fecha de Inicio
+                            </label>
+                            <input type='text' id="txtPeriodoInicio" value="@ViewData["txtPeriodoInicio"]" class="form-control" readonly />
+
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                            <label for="tags">
+                                Fecha de Termino
+                            </label>
+                            <input type='text' id="txtPeriodoFin" value="@ViewData["txtPeriodoFin"]" class="form-control" readonly />
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2 col-sm-1 col-xs-12 form-group">
+                            <label for="tags">
+                                Horas Semanales
+                            </label>
+                            <input type='text' id="txtHSemanales" value="@ViewData["txtHSemanales"]" class="form-control" readonly />
+                        </div>
+                        <div class="col-md-2 col-sm-2 col-xs-12 form-group">
+                            <label for="tags">
+                                Total Neto $
+                            </label>
+                            <input type='text' id="txtTNeto1" value="@ViewData["txtTNeto1"]" class="form-control" readonly />
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                            <label for="tags">
+                                Cantidad con Letra
+                            </label>
+                            <input type='text' id="txtCLetra" value="@ViewData["txtCLetra"]" class="form-control" readonly />
+                        </div>
+                    </div>
+                    <div><h2>Desglose de Impuestos</h2></div>
+                    <div class="row">
+                        <div class="col-md-2 col-sm-2 col-xs-12 form-group">
+                            <label for="tags">
+                                Total Bruto $
+                            </label>
+                            <input type='text' id="txtTBruto" value="@ViewData["txtTBruto"]" class="form-control" readonly />
+                        </div>
+                        <div class="col-md-2 col-sm-2 col-xs-12 form-group">
+                            <label for="tags">
+                                IVA 16% $
+                            </label>
+                            <input type='text' id="txtIVA" value="@ViewData["txtIVA"]" class="form-control" readonly />
+                        </div>
+                        <div class="col-md-2 col-sm-2 col-xs-12 form-group">
+                            <label for="tags">
+                                Sub Total
+                            </label>
+                            <input type='text' id="txtSTotal" value="@ViewData["txtSTotal"]" class="form-control" readonly />
+                        </div>
+                        <div class="col-md-2 col-sm-2 col-xs-12 form-group">
+                            <label for="tags">
+                                Ret. Iva
+                            </label>
+                            <input type='text' id="txtRIVA" value="@ViewData["txtRIVA"]" class="form-control" readonly />
+                        </div>
+                        <div class="col-md-2 col-sm-2 col-xs-12 form-group">
+                            <label for="tags">
+                                10% Ret. ISR
+                            </label>
+                            <input type='text' id="txtRISR" value="@ViewData["txtRISR"]" class="form-control" readonly />
+                        </div>
+                        <div class="col-md-2 col-sm-2 col-xs-12 form-group">
+                            <label for="tags">
+                                Total Neto
+                            </label>
+                            <input type='text' id="txtTNeto2" value="@ViewData["txtTNeto2"]" class="form-control" readonly />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4 col-xs-12 col-md-offset-1 ">
+                            <input type="text" value="ljdhclasdhbvlskbvdaslvkjbflhkvbslhdjkvblkshdjbvlkjsdabvlkjbdvlkjljhdcv" class="div-hide" />
+                        </div>
+
+                        <div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-1 ">
+                            <input type="text" value="ljdhclasdhbvlskbvdaslvkjbflhkvbslhdjkvblkshdjbvlkjsdabvlkjbdvlkjljhdcv" class="div-hide" />
+                        </div>
+                        <div class="col-md-2 col-sm-2 col-xs-12 col-md-offset-1 ">
+                            <button type="submit" class="btn btn-success" id="btnFirmarHorarioPersonal" onclick="PreparaFirma('@ViewData["txtFechaCreacion"]', '@ViewData["txtRFC"]', '@ViewData["txtClaveArea"]', '@ViewData["txtTipoContrato"]');"> Firmar </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+@Html.Partial("../Generales/FirmaElectronica")
+    -->
+<script type="text/javascript">
+/*    function PreparaFirma(FechaCreacion, RFC, ClaveArea, TipoContrato) {
+        $("#fecha_creacion").val(FechaCreacion);
+        $("#RFC").val(RFC);
+        $("#ClaveArea").val(ClaveArea);
+        $("#tipocontrato").val(TipoContrato);
+        $('#divModalFirmaElectronica').modal('show');
+        $("#btnFirmarCargaAcademica").show();
+    }
+
+    $("#btnEnviarFirmar").click(function () {
+        var firma = $("#txtFirma").val();
+        var FechaCreacion = $("#fecha_creacion").val();
+        var RFC = $("#RFC").val();
+        var ClaveArea = $("#ClaveArea").val();
+        var TipoContrato = $("#tipocontrato").val();
+        var Status = "8";
+        $.ajax({
+            asyn: false,
+            url: '../../../Generales/FirmaContratoGeneral',
+            type: 'POST',
+            dataType: 'json',
+            data: { psFirma: firma, psFechaCreacion: FechaCreacion, psRFC: RFC, psClaveArea: ClaveArea, psTipoContrato: TipoContrato, psStatus: Status },
+        })
+            .done(function (data) {
+
+                if (typeof (data.Success) === "undefined" || !data.Success) {
+                    MensajesToastr("error", "Solicitud Procesada", "Error al Guardar");
+                }
+                else {
+                    MensajesToastr("success", "Solicitud Procesada", "Registro Correcto");
+                    $('#divModalFirmaElectronica').modal('hide');
+                    $('#BodyPrincipal').load('../../../../Generales/FirmaContrato');
+                }
+            })
+            .fail(function (data) {
+                MensajesToastrErrorConexion();
+            }).always(function () {
+            });
+        event.preventDefault();
+    });*/
+</script>
+

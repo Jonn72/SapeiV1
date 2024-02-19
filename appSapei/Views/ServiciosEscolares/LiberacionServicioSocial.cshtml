@@ -1,0 +1,38 @@
+﻿
+<div class="page-title">
+    <div class="title_left">
+        <h3>Liberación de Servicio Social</h3>
+    </div>
+</div>
+<div id="divControl" class="x_panel col-md-4 col-sm-4 col-xs-12">
+    <div class="x_title">
+        <h3>Búsqueda por estudiante</h3>
+    </div>
+    <div class="x_content">
+        <div class="col-md-8 center-margin">
+            <div class="input-group">
+                <input type="text" id="txtNoControl" class="form-control" placeholder="Ingrese el no. de control">
+                <span class="input-group-btn">
+                    <button class="btn btn-default btn-success" type="button" id="btnBuscar"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="divTabla" class="div-hide">
+    @Html.Partial("../Generales/TablaGeneral")
+</div>
+
+<div id="divVisor" class="row div-hide">
+    <div class="x_panel">
+        <div class="x_title">
+            <h3>Constancia de Cumplimiento</h3>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            @Html.Partial("../Generales/VisorPDF")
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/ManejoDatos/Escolares/LiberacionSS.js"></script>

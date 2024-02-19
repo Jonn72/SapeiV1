@@ -1,0 +1,105 @@
+﻿<input type="hidden" id="hidPeriodo" value="@ViewData["periodo"]" />
+<input type="hidden" id="hidOpcion" value="0" />
+
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>Activar Estudiantes a Nivel de Inglés <small>@ViewData["periodo_desc"]</small></h3>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-12 form-group pull-right top_search">
+            <div class="form-inline">
+                <label for="cboPeriodo">
+                    Periodo
+                </label>
+                <select class="form-control" id="cboPeriodo"></select>
+            </div>
+        </div>
+    </div>
+
+     <div class="clearfix"></div>
+     <form class="form-horizontal form-label-left" action="#" id="frmCLEColocacion" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+          <div class="row">
+               <div class="col-sm-4 col-xs-12">
+                    <div class="x_panel">
+                         <div class="x_title">
+                              <h2>Registro Individual</h2>
+                              <div class="clearfix"></div>
+                         </div>
+                         <div class="x_content">
+                              <div class="row center-block">
+                                   <div class="input-group col-xs-12 ">
+                                        <input type="text" id="txtNoControl" class="form-control" placeholder="Ingrese el no. de control">
+                                        <span class="input-group-btn">
+                                             <button class="btn btn-default btn-success" type="button" id="btnBuscar"><i class="fa fa-search"></i></button>
+                                        </span>
+                                   </div>
+                              </div>
+                         </div>
+
+                    </div>
+               </div>
+               <div class="col-sm-8 col-xs-12">
+                    <div id="divDatos" class="div-hide">
+                         <div class="x_panel">
+                              <div class="x_title">
+                                   <h2>Registro Individual</h2>
+                                   <div class="clearfix"></div>
+                              </div>
+                              <div class="x_content">
+                                   <div class="row">
+                                        <div class="form-group col-md-6">
+                                             <div class="input-group col-xs-12 ">
+                                                  <label>
+                                                       Estudiante
+                                                  </label>
+                                                  <input type="text" id="txtNombre" class="form-control" readonly>
+                                             </div>
+                                             <div id="divHorario" class="div-hide">
+                                                  <label>
+                                                       Nuevo horario de registro
+                                                  </label>
+                                                  <div class='input-group date' id='dtpFecha'>
+                                                       <input type='text' id="txtFecha" class="form-control" value="@ViewData["txtIniRegistro"]" required />
+                                                       <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+                                                  </div>
+                                             </div>
+                                             <div id="divReactivar" class="div-hide">
+                                                  <div class="input-group col-xs-12 ">
+                                                       <label>
+                                                            Nivel
+                                                       </label>
+                                                       <input type="text" id="txtNivel" class="form-control" readonly>
+                                                  </div>
+                                             </div>
+                                             <div id="divNuevo" class="div-hide">
+                                                  <label for="cboNivelesIngles">
+                                                       Nivel
+                                                  </label>
+                                                  @{
+                                                       if (ViewData["cboNivelesIngles"] != null)
+                                                       {
+                                                            <select class="form-control" id="cboNivelesIngles" required>
+                                                                 @foreach (System.Data.DataRow dr in (ViewData["cboNivelesIngles"] as System.Data.DataTable).Rows)
+                                                                 {
+                                                                      <option value="@dr.ItemArray[0].ToString().Trim()">@dr.ItemArray[0].ToString().Trim()</option>
+                                                                 }
+                                                            </select>
+                                                       }
+                                                  }
+                                             </div>
+                                        </div>
+                                   </div>
+                                   <div class="row">
+                                        <div class=" col-lg-offset-8 col-md-4">
+                                             <button id="btnGuardar" type="submit" class="btn btn-block btn-info">Guardar y Generar Horario</button>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+     </form>
+</div>
+
+<script src="~/Scripts/ManejoDatos/CentroLenguasExt/ActivarEstudiante.js"></script>

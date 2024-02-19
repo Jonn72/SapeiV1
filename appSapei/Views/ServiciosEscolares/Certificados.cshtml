@@ -1,0 +1,160 @@
+﻿<input type="hidden" id="hidPeriodo" value="@ViewData["periodo"]" />
+
+<div class="page-title">
+    <div class="col-md-8 col-sm-8 col-xs-12 form-group pull-left">
+        <h3>Documentos Oficiales <small>Certificados</small></h3>
+    </div>
+</div>
+<div class="x_panel">
+    <div class="x_title">
+        <h3>Emisión de Certificados</h3>
+    </div>
+    <div class="x_content">
+        <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-12 group-group">
+                <label>
+                    Iniciales del Jefe del DSE
+                </label>
+                <input type="text" id="txtIniciales" class="form-control">
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12 group-group">
+                <label>
+                    Número de registro
+                </label>
+                <input type="text" id="txtNumero" class="form-control">
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12 group-group">
+                <label>
+                    Libro
+                </label>
+                <input type="text" id="txtLibro" class="form-control">
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12 group-group">
+                <label>
+                    A Fojas
+                </label>
+                <input type="text" id="txtFoja" class="form-control">
+            </div>
+        </div>
+        &nbsp;
+        <div class="row">
+            <div class="col-md-4 col-sm-6 col-xs-12 group-group">
+                <label>
+                    No. de Control
+                </label>
+                <input type="text" id="txtNoControl" class="form-control">
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-8 form-group">
+                <label for="cboDirectores">
+                    Director
+                </label>
+                <select class="form-control" id="cboDirectores">
+                    <option value="1" selected>MIGUEL ANGEL LEE RODRIGUEZ</option>
+                    <option value="2">OSCAR CASTELLANOS HERNANDEZ</option>
+                    <option value="3">HERIBERTO HERRERA COLOCIA</option>
+                </select>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-8 form-group">
+                <label>
+                    Inicio
+                </label>
+                <div class='input-group date' id='dtpFecha'>
+                    <input type='text' id="txtFecha" class="form-control" required />
+                    <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                <div class="col-md-2 col-sm-2 col-xs-4 bg-blue form-group">
+                    <label>
+                        Reposición
+                    </label>
+                    <div class="radio center-margin">
+                        <label>
+                            <input type="radio" name="rbtTipo" id="rdbREP" value="REP">
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-4 bg-green  form-group">
+                    <label>
+                        Duplicado
+                    </label>
+                    <div class="radio center-margin">
+                        <label>
+                            <input type="radio" name="rbtTipo" id="rdbDUP" value="DUP">
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-4 bg-warning  form-group">
+                    <label>
+                        Equivalencia
+                    </label>
+                    <div class="radio center-margin">
+                        <label>
+                            <input type="radio" name="rbtTipo" id="rdbEQU" value="EQU">
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-4 form-group">
+                    <label>
+                        Redondeo
+                    </label>
+                    <div class="radio center-margin">
+                        <label>
+                            <input type="checkbox" id="cbxRedondeo" value="ski" data-parsley-mincheck="2" class="flat" />
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+            <div id="divEquivalencia" class="col-md-12 col-sm-12 col-xs-4 form-group div-hide">
+
+                <div class="col-md-4 col-sm-12 col-xs-12 group-group">
+                    <label>
+                        Expedida por:
+                    </label>
+                    <input type="text" id="txtEqExpedida" class="form-control">
+                </div>
+                <div class="col-md-4 col-sm-12 col-xs-12 group-group">
+                    <label>
+                        Folio
+                    </label>
+                    <input type="text" id="txtEqFolio" class="form-control">
+                </div>
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                    Fecha de Inicio
+                    <div class='input-group date' id='dtEqFecha'>
+                        <input type="text" id="txtEqFecha" class="form-control" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-4 alignright">
+                <button id="btnGenerar" type="submit" class="btn btn-block btn-info">Generar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="clearfix"></div>
+
+<div id="divPrevPDF" class="row div-hide">
+    <div class="col-md-12 center-margin center-block">
+        <div class="x_panel">
+            <div class="x_title">
+                <h3>Vista Previa</h3>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                @Html.Partial("../Generales/VisorPDF")
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/ManejoDatos/Escolares/Certificados.js"></script>
+
+

@@ -1,0 +1,71 @@
+﻿<link href="~/sii/Content/font/font-awesome.min.css" rel="stylesheet" />
+<link href="~/sii/Content/prettify/prettify.min.css" rel="stylesheet" />
+<div class="container body" style="height: 550px;">
+    <div class=" clearfix"></div>
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="clearfix"></div>
+            <div class="x_panel">
+                <div class="x_title">
+                    <h3>Verificación de Evaluación Docente</h3>
+                </div>
+
+                <div id="divNoControl" style="display: @ViewData["vista1"]">
+                    <div class="col-md-8 center-margin">
+                        <div class="input-group">
+                            <input type="text" id="txtNoControl" class="form-control" placeholder="Ingrese el no. de control">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default btn-success" type="button" id="btnBuscar"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="frmVerificaEvaluacionDocente" style="display: @ViewData["vista2"]">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                            <label for="txtNombreEstudiante">
+                                Nombre del estudiante
+                            </label>
+                            <input type="text" class="form-control" id="txtNombreEstudiante" value="@ViewData["Nombre"]"/>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                            <label for="txtCarrera">
+                                Carrera
+                            </label>
+                            <input type="text" class="form-control" id="txtCarrera" value="@ViewData["Carrera"]"/>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                            <label for="Semestre">
+                                Semestre
+                            </label>
+                            <input type="text" class="form-control" id="txtSemestre" value="@ViewData["Semestre"]"/>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                            <label for="txtStatus">
+                                Estatus
+                            </label>
+                            <input type="text" class="form-control" id="txtStatus" value="@ViewData["Status"]"/>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                            @Html.Partial("../Generales/TablaGeneral")
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /page content -->
+    </div>
+</div>
+<script src="~/Scripts/ManejoDatos/DesarrolloAcademico/VerificaEvaluacionDocente.js">
+</script>

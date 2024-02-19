@@ -1,0 +1,33 @@
+﻿<input type="hidden" id="hidPeriodo" value="@ViewData["periodo"]" />
+
+<div class="page-title">
+     <div class="col-md-8 col-sm-8 col-xs-12 form-group pull-left">
+          <h3>Listas de grupos con estudiantes inscritos <small>@ViewData["descPeriodo"]</small></h3>
+     </div>
+
+     <div class="col-md-4 col-sm-4 col-xs-12 form-group pull-right top_search">
+          <div class="form-inline">
+               <label for="cboPeriodo">
+                    Periodo
+               </label>
+               <select class="form-control" id="cboPeriodo"></select>
+          </div>
+     </div>
+</div>
+<div class="x_panel">
+     <div class="x_title">
+          <h3>Generar Listas <small>@ViewData["descPeriodo"]</small></h3>
+     </div>
+     <div class="col-md-10 center-margin center-block">
+          <div class="x_content">
+               <p>
+                    Este proceso se encarga de generar las listas por grupo con estudiantes inscritos.
+               </p>
+               <p>
+                    Los archivos generados se encuentran en formato CSV y contienen las columnas y orden siguiente:  periodo, nivel, grupo, control, nombre, carrera, sexo y semestre.
+               </p>
+          </div>
+     </div>
+</div>
+@Html.Partial("../Generales/TablaGeneral")
+<script src="~/Scripts/ManejoDatos/ExtraEscolares/ImprimirListaReinscripcion.js"></script>

@@ -1,0 +1,89 @@
+﻿@using Sapei.Framework.Utilerias;
+<div class="page-title">
+    <div class="title_left">
+        <h3>Control de Horarios</h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="x_panel">
+    <div class="x_content">
+        <div class="col-md-8 center-margin">
+            <div class="row">
+
+                <div class="x_title col-md-12 col-sm-12 col-xs-12 text-justify">
+                    <h5>
+                        El modulo de control de horarios permite llevar un control de los horarios del personal adscrito a su departamento ya sea de base o de honorarios.
+                    </h5>
+                    <h5>
+                        a) Horario del Jefe de departamento. En este apartado, se registra el horario del jefe de departamento.
+                    </h5>
+                    <h5>
+                        b) Adminnistracion de personal. En este apartado se haran solicitudes de recontratacion para personal y se registaran los horarios del personal adscrito al departamento.
+                    </h5>
+                    @if (SesionSapei.Sistema.Sesion.Usuario.RolUsuario == Sapei.Framework.Configuracion.enmRolUsuario.DAC || SesionSapei.Sistema.Sesion.Usuario.RolUsuario == Sapei.Framework.Configuracion.enmRolUsuario.DRH)
+                    {
+                    <h5>
+                        c) Actividades de apoyo a la docencia. Permite la visualización y descarga de horarios oficiales del personal de plaza.
+                    </h5>
+                    }
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 center-margin">
+                <ul class="stats-overview">
+                    <li style="width:33%">
+                        <span class="name">Horario del Jefe de departamento</span>
+                        <br />
+                        <a class="btn btn-info btn-sm" data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#BodyPrincipal" href="/Generales/HorarioJefe">
+                            Registrar
+                        </a>
+                    </li>
+                    <li style="width:33%">
+                        <span class="name">Horarios Administrativos</span>
+                        <br />
+                        <a class="btn btn-info btn-sm" data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#BodyPrincipal" href="/Generales/SolicitudPersonal">
+                            Solicitar
+                        </a>
+                        <a class="btn btn-info btn-sm" data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#BodyPrincipal" href="/Generales/HorariosAdministrativos">
+                            Registrar horario
+                        </a>
+                    </li>
+                    @if (SesionSapei.Sistema.Sesion.Usuario.RolUsuario == Sapei.Framework.Configuracion.enmRolUsuario.DAC)
+                    {
+                <li style="width:33%">
+                    <span class="name">Actividades de apoyo a la docencia</span>
+                    <br />
+                    <a class="btn btn-info btn-sm" data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#BodyPrincipal" href="/Generales/ActividadesApoyo">
+                        Asignar
+                    </a>
+                </li>
+                    }
+                    @if (SesionSapei.Sistema.Sesion.Usuario.RolUsuario == Sapei.Framework.Configuracion.enmRolUsuario.SUB)
+                    {
+                        <li style="width:33%">
+                            <span class="name">Revisión de horarios de jefes</span>
+                            <br />
+                            <a class="btn btn-info btn-sm" data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#BodyPrincipal" href="/SubDireccion/HorarioJefes">
+                                Revisar
+                            </a>
+                        </li>
+                    }
+                    @if (SesionSapei.Sistema.Sesion.Usuario.RolUsuario == Sapei.Framework.Configuracion.enmRolUsuario.DRH)
+                    {
+                        <li style="width:33%">
+                            <span class="name">Actividades de apoyo a la docencia</span>
+                            <br />
+                            <a class="btn btn-info btn-sm" data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#BodyPrincipal" href="/Generales/ActividadesApoyo">
+                                Revisar
+                            </a>
+                        </li>
+                    }
+                </ul>
+                <br />
+            </div>
+        </div>
+    </div>
+</div>

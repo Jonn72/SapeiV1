@@ -1,0 +1,32 @@
+﻿@{
+     ViewBag.Title = "SAPEI";
+     Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Expires" content="0" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <link rel="icon" type="image/png" href="~/Images/logo.png" />
+    <title>Inicio de Sesion SAPEI</title>
+    @* Syncfusion Essential JS 2 Styles *@
+    <link rel="stylesheet" href="https://cdn.syncfusion.com/ej2/styles/compatibility/material.css" />
+    @* Syncfusion Essential JS 2 Scripts *@
+    <script src="https://cdn.syncfusion.com/ej2/dist/ej2.min.js"></script>
+    @Styles.Render("~/Content/bootstrapcss")
+    @Styles.Render("~/Content/login")
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div id="divLogin"></div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/efectos/snow.js"></script>
+    <script src="~/Scripts/login/main.js"></script>
+    @Html.EJS().ScriptManager()
+
+</body>
+</html>

@@ -1,0 +1,183 @@
+﻿@using Sapei.Framework.Utilerias;
+<div class="page-title">
+    <div class="title_left">
+        <h3>Avance de Proceso </h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="x_panel">
+
+    @{
+        bool lbEncontrado = false;
+        bool lbLiberado = false;
+        bool lbRegistrado_ss = false;
+        bool lbEsJefe = false;
+        string lsControl = "";
+        string lsNombre = "";
+        string lsCarrera = "";
+        string lsSemestre = "";
+        string lsEstadoProceso = "";
+        int liCreditosAprobados = 0;
+        System.Data.DataTable loDt = null;
+
+        if (ViewData["DatosEstudiante"] != null)
+        {
+            loDt = ViewData["DatosEstudiante"] as System.Data.DataTable;
+            if (loDt.Columns.Count > 1 && loDt.Rows.Count > 0)
+            {
+                System.Data.DataRow dr = loDt.Rows[0];
+                lsControl = dr.RegresaValor<string>("no_de_control");
+                lsNombre = dr.RegresaValor<string>("nombre");
+                lsCarrera = dr.RegresaValor<string>("carrera");
+                lsSemestre = dr.RegresaValor<string>("semestre");
+                liCreditosAprobados = dr.RegresaValor<int>("creditos_aprobados");
+                if (loDt.Columns.Count > 4)
+                {
+                    lbLiberado = dr.RegresaValor<bool>("liberado");
+                    lbEsJefe = dr.RegresaValor<bool>("es_jefe");
+                    lsEstadoProceso = dr.RegresaValor<string>("estado_proceso");
+                    lbRegistrado_ss = true;
+
+                }
+                lbEncontrado = true;
+            }
+
+
+        }
+    }
+
+    <div id="divDatos" class="col-md-8 center-margin center-block">
+
+
+        @if (lbEncontrado)
+        {
+            <input type="hidden" id="hidNoControl" value="@lsControl" />
+            <div class="row">
+                <div class="col-md-10 center-margin center-block">
+                    <ul class="stats-overview">
+
+                        <li>
+                            <span class="name">No. Control</span>
+                            <span class="value text-success"> @lsControl </span>
+                        </li>
+                        <li style="width:25%">
+                            <span class="name"> Nombre </span>
+                            <span class="value text-success"> @lsNombre </span>
+                        </li>
+                        <li style="width:25%">
+                            <span class="name"> Carrera</span>
+                            <span class="value text-success"> @lsCarrera </span>
+                        </li>
+                        <li>
+                            <span class="name"> Semestre</span>
+                            <span class="value text-success"> @lsSemestre </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-10 center-margin center-block">
+                    <div class="alert alert-info alert-dismissible fade in" role="alert">
+
+                        @{
+                            if (lbRegistrado_ss)
+                            {
+                                if (lbLiberado)
+                                {
+
+                                    <div class="col-md-10 center-margin text-justify">
+                                        <h4 class="title text-center">
+                                            El proceso ya fue concluido y liberado.
+                                        </h4>
+                                    </div>
+
+                                }
+                                else
+                                {
+                                    <div class="col-md-10 center-margin text-justify">
+                                        <h4 class="title text-center">
+                                            @Html.Raw(lsEstadoProceso)
+                                            @if (lbEsJefe)
+                                            {
+                                                <button type="submit" id="btnIniciaEliminar" class="btn btn-danger">Eliminar Proceso</button>
+                                            }
+                                        </h4>
+
+                                    </div>
+
+
+                                }
+
+                            }
+                            else
+                            {
+                                <div class="col-md-10 center-margin text-justify">
+                                    <h4 class="title text-center">
+                                        No cuenta con registro en el proceso.
+                                    </h4>
+                                </div>
+                            }
+                        }
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="modal fade" id="divEliminarProceso" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Cancelar proceso de servicio social</h4>
+                <h6>Sólo se puede cancelar el proceso el(la) Jefe del Departamento de GTyV</h6>
+            </div>
+            <div class="col-md-12 center-margin center-block">
+                <div class="x_panel">
+                    <div class="col-md-12 center-margin  bg-info">
+                        <div class="row">
+                            <div class="x_title col-md-12 col-sm-12 col-xs-12 text-center">
+                                <h4>
+                                    <strong>Al eliminar el proceso de SS del sistema, no podrá ser recuperado.</strong>
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-10 center-margin ">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12 col-xs-12 form-group bg-tecnm">
+                                <label>Número de Control</label>
+                                <input type="text" class="form-control bg-white" id="txtNoControl" disabled />
+                            </div>
+
+                            <div class="col-md-6 col-sm-12 col-xs-12 form-group bg-tecnm">
+                                <label>
+                                    Contraseña
+                                </label>
+                                <input type="password" id="txtContraseña" class="form-control bg-white" placeholder=" Ingresa tu Contraseña" required />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12 col-xs-12 form-group bg-tecnm">
+                                <label>
+                                    Justificación
+                                </label>
+                                <textarea id="txtJustificacion" class="form-control bg-white" placeholder="Máximo 200 palabras" maxlength="200" rows="2" required />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 center-margin ">
+                        <div class="row">
+                            <button type="button" data-dismiss="modal" id="btnEliminar" class="btn btn-info btn-block">Eliminar</button>
+                            <button type="button" data-dismiss="modal" id="btnCancelar" class="btn btn-danger btn-block">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/md5.js"></script>
+<script src="~/Scripts/ManejoDatos/Vinculacion/AvanceProcesoSS.js"></script>

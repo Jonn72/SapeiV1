@@ -1,0 +1,109 @@
+﻿<div class="page-title">
+     <div class="title_left">
+          <h3>Datos <small>de escuela de procedencia</small></h3>
+     </div>
+</div>
+<div class="clearfix"></div>
+<div class="x_panel">
+     <form class="form-horizontal form-label-left" action="#" id="frmDatosEscuela" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+          @if (Sapei.Framework.Utilerias.SesionSapei.Sistema.Sesion.Usuario.RolUsuario == Sapei.Framework.Configuracion.enmRolUsuario.ESC)
+          {
+               <div id="divNoControl" class="col-lg-offset-4 col-lg-12">
+                    <div class="form-inline">
+                         <label for="txtNoControl">No. de Control:</label>
+                         <input type="text" class="form-control" name="txtNoControl" height="100%" id="txtNoControl" placeholder="No. de control" required>
+                         <button id="btnBuscar" type="submit" class="btn btn-info"><i class="fa fa-search"></i></button>
+                    </div>
+               </div>
+          }
+          <div id="divDatos" class="div-hide">
+               <input type="hidden" id="tipo_usuario" value="@ViewData["tipo_usuario"]" />
+               <input type="hidden" id="idEscuela" value="@ViewData["idEscuela"]" />
+               <div class="x_title">
+                    @if (Sapei.Framework.Utilerias.SesionSapei.Sistema.Sesion.Usuario.RolUsuario == Sapei.Framework.Configuracion.enmRolUsuario.ESC)
+{
+                         <div class="row center-margin">
+                              <div class="col-md-6 col-sm-6 col-xs-12 form-group ">
+                                   <label for="txtNombreCompleto">
+                                        Escuela de Procedencia
+                                   </label>
+                                   <input type="text" class="form-control" id="txtNombreCompleto" readonly>
+                              </div>
+                         </div>
+}
+                    <div class="row">
+                         <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                              <label for="cboTipoEscuelaProcedencia">
+                                   Escuela de Procedencia
+                              </label>
+                              <select class="form-control" id="cboTipoEscuelaProcedencia"></select>
+                         </div>
+
+                         <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                              <label for="txtAnioEgreso">
+                                   Año de Egreso
+                              </label>
+                              <input type="text" class="form-control" id="txtAnioEgreso" value="@ViewData["egreso"]" placeholder="Año de Egreso" oninvalid="ValidaCampo(this, 'AÑO');" onblur="     ValidaCampo(this, 'AÑO');" required />
+                              <div class="help-block with-errors"></div>
+                         </div>
+                         <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                              <label for="txtPromedio">
+                                   Promedio
+                              </label>
+                              <input type="text" class="form-control" id="txtPromedio" value="@ViewData["promedio"]" placeholder="Promedio" oninvalid="ValidaCampo(this, 'AVG');" onblur="     ValidaCampo(this, 'AVG');" required />
+                              <div class="help-block with-errors"></div>
+                         </div>
+                    </div>
+               </div>
+               @if (Sapei.Framework.Utilerias.SesionSapei.Sistema.Sesion.Usuario.RolUsuario == Sapei.Framework.Configuracion.enmRolUsuario.ESC)
+               {
+                    <div class="row">
+                         <div class="col-md-4">
+                              <button id="btnAtras" type="submit" class="btn btn-block btn-info">Atras</button>
+                         </div>
+                         <div class="col-md-4">
+                              <button id="btnGuardar" type="submit" class="btn btn-block btn-success">Guardar</button>
+                         </div>
+                    </div>
+               }
+               @if (Sapei.Framework.Utilerias.SesionSapei.Sistema.Sesion.Usuario.RolUsuario == Sapei.Framework.Configuracion.enmRolUsuario.ALU && ViewData["idEscuela"] == null && ViewData["promedio"] == null)
+               {
+                    <div class="row">
+                         <div class="col-md-4">
+                              <button id="btnGuardar" type="submit" class="btn btn-block btn-success">Guardar</button>
+                         </div>
+                    </div>
+               }
+          </div>
+     </form>
+</div>
+
+<script src="~/Scripts/ManejoDatos/Estudiantes/Validaciones.js"></script>
+<script src="~/Scripts/ManejoDatos/Estudiantes/DatosEscuela.js"></script>
+@if (Sapei.Framework.Utilerias.SesionSapei.Sistema.Sesion.Usuario.RolUsuario == Sapei.Framework.Configuracion.enmRolUsuario.ALU)
+{
+     if (@ViewData["idEscuela"] == null && @ViewData["promedio"] == null) {
+     <script type="text/javascript">
+          $(document).ready(function () {
+               $("#divDatos").show();
+            
+          $('#cboTipoEscuelaProcedencia').prop('readonly', false);
+          $('#txtAnioEgreso').prop('readonly', false);
+          $('#txtPromedio').prop('readonly', false);
+      });
+     </script>
+     }
+     else
+     {
+          <script type="text/javascript">
+               $(document).ready(function () {
+                    $("#divDatos").show();
+
+                    $('#cboTipoEscuelaProcedencia').prop('readonly', true);
+                    $('#txtAnioEgreso').prop('readonly', true);
+                    $('#txtPromedio').prop('readonly', true);
+               });
+          </script>
+     }
+}
+

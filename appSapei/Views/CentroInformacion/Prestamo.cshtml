@@ -1,0 +1,161 @@
+﻿<link href="~/Scripts/Componentes/select2/css/select2.min.css" rel="stylesheet" />
+@{
+    if (ViewData["Adeudo"]!=null && (bool)ViewData["Adeudo"])
+    {
+    <div class="col-md-12 col-sm-12 col-xs-12" id="pnlAdeudo">
+        <div class="x_panel" style="border-color:#ff18186b;border-width: 4px;border-radius: 5px;">
+            <div class="x_title">
+                <h2>Adeudo</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <br>
+                <div>
+                    <div class="jumbotron">
+                        <span id="spUsuario" hidden>@ViewData["Usuario"]</span>
+                        <h2>El usuario  cuenta  con adeudos pendientes</h2>
+                        <div class="container">
+                            <div class="row justify-content-center">
+
+                                <div class="col-md-2">
+                                    <button id="btnOmitir" class="btn btn-danger btn-block">Omitir</button>
+                                </div>
+                                <div class="col-md-4">
+                                    <button id="btnAdeudos" class="btn btn-primary btn-block">Mostrar adeudos</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+        }
+    }
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>Prestamos</h3>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <form class="form-horizontal form-label-left" action="#" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h3>Nuevo Prestamo</h3>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="form-group col-md-12 ">
+                            <label for="txtUsuario">
+                                Tipo de solicitud
+                            </label>
+                            <select id="sTipoSol" class="form-control">
+                                <option value="Prestamo">Prestamo</option>
+                                <option value="Devolucion">Devolución</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-12 " id="fldUsuario">
+                            <label for="txtUsuario">
+                                Usuario
+                            </label>
+                            <input type="text" class="form-control" id="txtUsuario" placeholder="Número de control o RFC" required />
+                        </div>
+                        <div class="form-group col-md-12 " id="fldClave">
+                            <label for="sEjemplar">
+                                Ejemplar
+                            </label>
+                            <input type="text" class="form-control" id="txtMaterial" value="" placeholder="Clave del ejemplar" />
+                            @*<select class="form-control" id="sEjemplar" data-bind="options: ejemplarViewModel.select,optionsValue:'clave',optionsText:'titulo',value:ejemplarViewModel.selectedItem"></select>*@
+                        </div>
+                        <div class="col-md-12 col-sm-6">
+
+                            <button type="button" class="btn btn-primary" id="btnConsultar">
+                                Consultar
+                            </button>
+                            @*<button class="btn btn-success" id="btnGuardar">Aceptar</button>*@
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
+<!-- Modal -->
+<div class="modal fade" id="mdlPrestamo" tabindex="-1" role="dialog" aria-labelledby="mdlPrestamoLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="mdlPrestamoLabel">Prestamo</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal form-label-left" action="#" id="frmPrestamo" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group col-md-6 ">
+                                <label for="txtFechaP">
+                                    Fecha de prestamo
+                                </label>
+                                <input type="date" class="form-control" id="txtFechaP" value="" disabled />
+                            </div>
+                            <div class="form-group col-md-6 ">
+                                <label for="txtFechaE">
+                                    Fecha de entrega
+                                </label>
+                                <input type="date" class="form-control" id="txtFechaE" value="" />
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table table-striped jambo_table bulk_action">
+                                        <thead>
+                                            <tr class="headings">
+                                                <th class="column-title">Clave</th>
+                                                <th class="column-title">Titulo</th>
+                                                <th class="column-title">Reserva</th>
+                                                <th class="column-title">Tipo</th>
+                                                <th class="column-title">Fecha de entrega</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="even pointer">
+                                                <td class=" "><span id="spClave"></span></td>
+                                                <td class=" "><span id="spTitulo"></span></td>
+                                                <td class=" "><span id="spReserva"></span></td>
+                                                <td class=" "><span id="spTipo"></span></td>
+                                                <td class=" "><span id="spFentrega"></span></td>
+                                            </tr>                                           
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                     
+                            <div class="col-md-12 col-sm-6">
+
+                                <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#mdlPrestamo">
+                                    Prestar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.Partial("../Generales/TablaGeneral")
+<script src="~/Scripts/knockout-2.2.0.js"></script>
+<script src="~/Scripts/Componentes/select2/js/select2.min.js"></script>
+<script src="~/Scripts/ManejoDatos/CentroInformacion/Prestamo.js"></script>

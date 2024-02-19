@@ -1,0 +1,255 @@
+﻿<link rel="stylesheet" href="~/Content/themes/ExpedienteDigital.css" />
+
+@using Sapei.Framework.Utilerias;
+@using System.Data;
+
+<div class="page-title">
+</div>
+<div class="clearfix"></div>
+@{
+    System.Data.DataTable loDatos = null;
+
+    int liClaveDoc = 0;
+    string lsNombreDocumento;
+    string lsTitulo;
+    int lsRequiereValidacion = 0;
+    int lsEstadoSolicitud = 0;
+    int lsEstadoCartaC = 0;
+    int lsEsatdoCartaR = 0;
+    int lsEsatdoAvispP = 0;
+    int lsEsatdoFormatoNoP = 0;
+    int lsEstadoAutorizacion = 0;
+    string lsPersonaAutorizo = "";
+
+
+}
+
+
+<div id="divMuestraDocEsc">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+            <div class="row">
+                <div class="x_title col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                    <a class="btn colorCardII disabled">
+                        <h2>Documentos Escolares</h2>
+                    </a>
+                   <div class="clearfix"></div>
+                </div>
+
+                <div class="x_title col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                    <a  class="btn colorCard2" style="float: right" onclick="MuestraDocEsc(2);">
+                        <h2>Documentos Personales</h2>
+                    </a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+        <div class="row">
+            <div class=" form-group col-md-12 col-xs-12 center-margin">
+
+                @{ if (ViewData["Datos"] != null)
+                    {
+                        loDatos = ViewData["Datos"] as System.Data.DataTable;
+
+
+                        foreach (System.Data.DataRow loFila in loDatos.Rows)
+                        {
+                            liClaveDoc = loFila.RegresaValor<int>("clave_documento");
+                            lsNombreDocumento = loFila.RegresaValor<string>("nombre_documento").Trim();
+                            lsTitulo = lsNombreDocumento.SeparaFormatoCamello().Trim();
+                            lsRequiereValidacion = loFila.RegresaValor<int>("requiere_validacion");
+                            lsEstadoSolicitud = loFila.RegresaValor<int>("estado_solicitudI");
+                            lsEstadoCartaC = loFila.RegresaValor<int>("estado_cartaC");
+                            lsEsatdoCartaR = loFila.RegresaValor<int>("estado_cartaR");
+                            lsEsatdoAvispP = loFila.RegresaValor<int>("estado_avisoP");
+                            lsEsatdoFormatoNoP = loFila.RegresaValor<int>("estado_NoPertenecia");
+                            lsEstadoAutorizacion = loFila.RegresaValor<int>("estado_Autorizacion");
+                            lsPersonaAutorizo = loFila.RegresaValor<string>("persona_autorizo");
+
+                            if (lsRequiereValidacion == 0)
+                            {
+
+
+                                switch (lsNombreDocumento)
+                                {
+                                    case "SolicitudInscripcion":
+                                        <div class="col-sm-4  col-md-4 col-xs-12 text-center">
+                                            <div class="card text-white botonesDT1 mb-3">
+                                                <div class="card-header textoCard">Solicitud Inscripción</div>
+                                                <div class="card-body">
+
+                                                    @if (lsEstadoSolicitud == 1)
+                                                    {
+
+                                                        <a class="btn btn-success" onclick="MuestraDocumentosEscolares('@lsNombreDocumento'); ">
+                                                            Vista Previa
+                                                        </a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a class="card-text textoCard">
+                                                            El documento aún no existe
+                                                        </a>
+                                                    }
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        break;
+
+                                    case "CartaCompromiso":
+                                        <div class="col-sm-4 col-md-4 col-xs-12 text-center">
+                                            <div class="card text-white botonesDT1 mb-3">
+                                                <div class="card-header textoCard">Carta Compromiso</div>
+                                                <div class="card-body">
+
+                                                    @if (lsEstadoCartaC == 1)
+                                                    {
+                                                        <a class="btn btn-success" onclick="MuestraDocumentosEscolares('@lsNombreDocumento');">
+                                                            Vista Previa
+                                                        </a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a class="card-text textoCard">
+                                                            El documento aún no existe
+                                                        </a>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        break;
+
+
+                                    case "CartaResponsiva":
+
+                                        <div class="col-sm-4 col-md-4 col-xs-12 text-center">
+                                            <div class="card text-white botonesDT1 mb-3">
+
+                                                <div class="card-header textoCard"> Carta responsiva</div>
+                                                <div class="card-body">
+
+                                                    @if (lsEsatdoCartaR == 1)
+                                                    {
+                                                        <a class="btn btn-success" onclick="MuestraDocumentosEscolares('@lsNombreDocumento');">
+                                                            Vista Previa
+                                                        </a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a class="card-text textoCard">
+                                                            El documento aún no existe
+                                                        </a>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <br />
+                                                                       
+
+                                        break;
+
+                                    case "AvisoDePrivacidad":
+                                        <div class="col-sm-4 col-md-4 col-xs-12 text-center">
+                                            <div class="card text-white botonesDT1 mb-3">
+                                                <div class="card-header textoCard"> Aviso de Privacidad</div>
+                                                <div class="card-body">
+
+                                                    @if (lsEsatdoAvispP == 1)
+                                                    {
+
+                                                        <a class="btn btn-success" onclick="MuestraDocumentosEscolares('@lsNombreDocumento');">
+                                                            Vista Previa
+                                                        </a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a class="card-text textoCard">
+                                                            El documento aún no existe
+                                                        </a>
+                                                    }
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        break;
+
+
+                                    case "AutorizacionExpediente":
+
+
+                                        <div class="col-sm-4 col-md-4 col-xs-12 text-center">
+                                            <div class="card text-white botonesDT1 mb-3">
+
+                                                <div class="card-header textoCard">Autorización de Expediente</div>
+                                                <div class="card-body">
+
+                                                    @if (lsEstadoAutorizacion == 1)
+                                                    {
+
+                                                        <a class="btn btn-success" onclick="MuestraDocumentosEscolares('@lsNombreDocumento');">
+                                                            Vista Previa
+                                                        </a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a class="card-text textoCard">
+                                                            El documento aún no existe
+                                                        </a>
+                                                    }
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        break;
+
+                                    case "FormatoNoPertenciaAOtroPlantel":
+                                        <div class="col-sm-4 col-md-4 col-xs-12 text-center">
+                                            <div class="card text-white botonesDT1 mb-3">
+                                                <div class="card-header textoCard">  Formato de NO pertenencia a otro plantel del Tecnológico Nacional de México</div>
+                                                <div class="card-body">
+
+                                                    @if (lsEsatdoFormatoNoP == 1)
+                                                    {
+
+
+                                                        <a class="btn btn-success" onclick="MuestraDocumentosEscolares('@lsNombreDocumento');">
+                                                            Vista Previa
+                                                        </a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a class="card-text textoCard">
+                                                            El documento aún no existe
+                                                        </a>
+                                                    }
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        break;
+                                }
+
+                            }
+                        }
+                    }
+
+                }
+            </div>
+        </div>
+</div>

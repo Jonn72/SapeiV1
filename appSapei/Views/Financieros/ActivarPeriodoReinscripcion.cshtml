@@ -1,0 +1,85 @@
+﻿<div class="clearfix"></div>
+<form class="form-horizontal form-label-left" action="#" id="frmPeriodosActividades" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+    <input type="hidden" id="hidPeriodo" value="@ViewData["txtPeriodo"]" />
+    <div class="page-title">
+        <div class="col-md-8 col-sm-8 col-xs-12 form-group pull-left">
+            <h3>Registrar Fechas <small>@ViewData["txtDescPeriodo"]</small></h3>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-12 form-group pull-right top_search">
+            <div class="form-inline">
+                <label for="cboPeriodo">
+                    Periodo
+                </label>
+                <select class="form-control" id="cboPeriodo"></select>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h4>Impresión de Fichas</h4>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <label>
+                                Inicio
+                            </label>
+                            <div class='input-group date' id='dtpFechaIniRegistro'>
+                                <input type='text' id="txtIniImprime" class="form-control" value="@ViewData["txtIniImprime"]" required />
+                                <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+                            </div>
+
+                            <label>
+                                Fin
+                            </label>
+                            <div class='input-group date' id='dtpFechaFinRegistro'>
+                                <input type='text' id="txtFinImprime" class="form-control" value="@ViewData["txtFinImprime"]" required />
+                                <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h4>Registro de Pagos</h4>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <label>
+                                Fecha limite para realizar pago
+                            </label>
+                            <div class='input-group date' id='dtpFechaIni'>
+                                <input type='text' id="txtFinPago" class="form-control" value="@ViewData["txtFinPago"]" required />
+                                <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+                            </div>
+
+                            <label>
+                                Fecha limite de registro de pagos ordinarios
+                            </label>
+                            <div class='input-group date' id='dtpFechaFin'>
+                                <input type='text' id="txtFinPagoOrdinario" class="form-control" value="@ViewData["txtFinPagoOrdinario"]" required />
+                                <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-offset-8 col-md-4">
+                    <button id="btnGuardar" type="submit" class="btn btn-block btn-success">Guardar Fechas</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Html.Partial("../Generales/TablaGeneral")
+</form>
+
+<script src="~/Scripts/ManejoDatos/Financieros/ActivarPeriodoReinscripcion.js"></script>

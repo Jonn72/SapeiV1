@@ -1,0 +1,55 @@
+﻿@using Sapei.Framework.Utilerias;
+<link href="~/Content/themes/Reticula.css" rel="stylesheet" />
+@{
+    System.Data.DataRow loFila = null;
+    string lsReticula = "";
+
+    if (ViewData["DatosSeleccion"] != null)
+    {
+        loFila = (ViewData["DatosSeleccion"] as System.Data.DataTable).Rows[0];
+        lsReticula = loFila.ItemArray[0].ToString().Trim();
+    }
+
+}
+<input type="hidden" value="@Html.Raw(ViewData["DivAct"])" id="hidDivAct" />
+<script src="~/Scripts/Componentes/TimeCircles.js"></script>
+<link href="~/Content/Controles/TimeCircles.css" rel="stylesheet" />
+<div class="page-title">
+    <div class="title_left">
+        <h3>Administracion de Grupos <small></small></h3>
+    </div>
+</div>
+<div id="div" class="x_panel ">
+    <div class="x_title">
+
+        <div class="x_content" style="overflow-x: auto;">
+            <div>
+                <div id="divReticula" class="row_reticula" style="min-width:1000px;">
+                    @Html.Raw(lsReticula)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+
+    <div class="col-md-3">
+        <button id="btnRegresar" type="submit" onclick="Regresar(@Html.Raw(ViewData["DivAct"]));" class="btn btn-block btn-danger">Regresar</button>
+    </div>
+
+</div>
+<script type="text/javascript">
+    function Regresar(DivId) {
+        $('#Panel' + DivId).load('../../../DEP/VistaSeleccionCarreraParalelo', { psDiv: DivId });
+    }
+
+    function ActionRequest(periodo, carrera, reticula, materia, especialidad, DivId) {
+        if (DivId === "1") {
+            $('#Panel1').load('../../../DEP/GrupoExistenteParalelo', { psPeriodo: periodo, psCarrera: carrera, psReticula: reticula, psMateria: materia, psEspecialidad: especialidad, psDiv: 1 });
+        }
+        else {
+            $('#Panel2').load('../../../DEP/CreaGrupoParalelo', { psPeriodo: periodo, psCarrera: carrera, psReticula: reticula, psMateria: materia, psEspecialidad: especialidad, psDiv: 2 });
+        }  
+    }
+</script>
+

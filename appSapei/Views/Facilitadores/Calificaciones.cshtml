@@ -1,0 +1,349 @@
+﻿<style type="text/css">
+    @@keyframes cambiarColor {
+        0% {
+            background-color: #ffffff;
+        }
+
+        10% {
+            background-color: #ffd9d9;
+        }
+
+        20% {
+            background-color: #ffa9a9;
+        }
+
+        30% {
+            background-color: #ff7b7b;
+        }
+
+        40% {
+            background-color: #ff4040;
+        }
+
+        50% {
+            background-color: #ff0000;
+        }
+
+        60% {
+            background-color: #ff4040;
+        }
+
+        70% {
+            background-color: #ff7b7b;
+        }
+
+        80% {
+            background-color: #ffa9a9;
+        }
+
+        90% {
+            background-color: #ffd9d9;
+        }
+
+        100% {
+            background-color: #ffffff;
+        }
+    }
+</style>
+<script type="text/javascript">
+    ocultar_columnas(6);
+    DesactivaBotones();
+    ocultar_buscar();
+    MostrarTodos();
+    QuitarMostrar();
+</script>
+<input type="hidden" id="user" value="@ViewData["docente"]" />
+
+@Html.Partial("../Generales/TablaGeneral")
+
+@if (ViewData["objeto"] != null)
+{
+    <div class="alineacion">
+        <button id="verif" type="button" class="btn btn-success" align="right" onclick="verif()" style="display: block">Verificar</button>
+        <button id="guardar" type="button" class="btn btn-success" align="right" onclick="guardarcalif()" style="display: none">Guardar</button>
+    </div>
+
+    <style>
+        .alineacion {
+            text-align: right;
+        }
+    </style>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+}
+<script type="text/javascript">
+    
+
+    var captura = [];
+
+     @if (ViewData["objeto"] != null)
+     {
+
+         foreach (System.Data.DataRow drobjeto in (ViewData["objeto"] as System.Data.DataTable).Rows)
+         {
+            @Html.Raw(drobjeto.ItemArray[0].ToString())
+         }
+
+     }
+
+
+
+    $("input").blur(function () {
+         if ($(this).val() > 100) {
+
+            $(this).val('');
+
+        }
+
+     });
+
+    function verif() {
+
+        var count3 = 0;
+        var count4 = 0;
+        var count5 = 0;
+        var count6 = 0;
+        var count7 = 0;
+        var count8 = 0;
+        var count9 = 0;
+        var count10 = 0;
+
+        //console.log(Object.values(captura));
+
+        Object.keys(captura).forEach(function (key) {
+            
+
+            var temp_check_calif2 = $("#" + key.toString() + "_speaking").val();
+            if (temp_check_calif2 === null || temp_check_calif2 === '') {
+                $("#" + key.toString() + "_speaking").css({
+                    "animation-duration": "1s",
+                    "animation-name": "cambiarColor",
+                    "animation-iteration-count": "2"
+                });
+                count3 = count3 + 1;
+            }
+
+            var temp_check_calif3 = $("#" + key.toString() + "_writing").val();
+            if (temp_check_calif3 === null || temp_check_calif3 === '') {
+                $("#" + key.toString() + "_writing").css({
+                    "animation-duration": "1s",
+                    "animation-name": "cambiarColor",
+                    "animation-iteration-count": "2"
+                });
+                count5 = count5 + 1;
+            }
+
+            var temp_check_calif4 = $("#" + key.toString() + "_listening").val();
+            if (temp_check_calif4 === null || temp_check_calif4 === '') {
+                $("#" + key.toString() + "_listening").css({
+                    "animation-duration": "1s",
+                    "animation-name": "cambiarColor",
+                    "animation-iteration-count": "2"
+                });
+                count7 = count7 + 1;
+            }
+
+            var temp_check_calif5 = $("#" + key.toString() + "_reading").val();
+            if (temp_check_calif5 === null || temp_check_calif5 === '') {
+                $("#" + key.toString() + "_reading").css({
+                    "animation-duration": "1s",
+                    "animation-name": "cambiarColor",
+                    "animation-iteration-count": "2"
+                });
+                count9 = count9 + 1;
+            }
+
+
+            $("#" + key.toString() + "_speaking").val() > 100 ? count4 = count4 + 1 : '';
+            $("#" + key.toString() + "_writing").val() > 100 ? count6 = count6 + 1 : '';
+            $("#" + key.toString() + "_listening").val() > 100 ? count8 = count8 + 1 : '';
+            $("#" + key.toString() + "_reading").val() > 100 ? count10 = count10 + 1 : '';
+
+        });
+
+
+        if (count3 > 0 || count5 > 0 || count7 > 0 || count9 > 0) {
+            MensajesToastr("warning", "Faltan Calificaciones", "Aún no has cargado todas las calificaciones");
+            return;
+        }
+
+        if (count4 > 0 || count6 > 0 || count8 > 0 || count10 > 0) {
+
+            MensajesToastr("warning", "Error", "Una de las calificaciones es mayor a 100");
+                return;
+        }
+
+
+        mostrar_columnas(6);
+        $("#verif").css("display", "none");
+        $("#guardar").css("display", "block");
+    }
+
+    function guardarcalif() {
+
+        var count3 = 0;
+        var count4 = 0;
+        var count5 = 0;
+        var count6 = 0;
+        var count7 = 0;
+        var count8 = 0;
+        var count9 = 0;
+        var count10 = 0;
+
+
+        Object.keys(captura).forEach(function (key) {
+            
+
+            var temp_check_calif2 = $("#" + key.toString() + "_speaking").val();
+            if (temp_check_calif2 === null || temp_check_calif2 === '') {
+                $("#" + key.toString() + "_speaking").css({
+                    "animation-duration": "1s",
+                    "animation-name": "cambiarColor",
+                    "animation-iteration-count": "2"
+                });
+                count3 = count3 + 1;
+            }
+
+            var temp_check_calif3 = $("#" + key.toString() + "_writing").val();
+            if (temp_check_calif3 === null || temp_check_calif3 === '') {
+                $("#" + key.toString() + "_writing").css({
+                    "animation-duration": "1s",
+                    "animation-name": "cambiarColor",
+                    "animation-iteration-count": "2"
+                });
+                count5 = count5 + 1;
+            }
+
+            var temp_check_calif4 = $("#" + key.toString() + "_listening").val();
+            if (temp_check_calif4 === null || temp_check_calif4 === '') {
+                $("#" + key.toString() + "_listening").css({
+                    "animation-duration": "1s",
+                    "animation-name": "cambiarColor",
+                    "animation-iteration-count": "2"
+                });
+                count7 = count7 + 1;
+            }
+
+            var temp_check_calif5 = $("#" + key.toString() + "_reading").val();
+            if (temp_check_calif5 === null || temp_check_calif5 === '') {
+                $("#" + key.toString() + "_reading").css({
+                    "animation-duration": "1s",
+                    "animation-name": "cambiarColor",
+                    "animation-iteration-count": "2"
+                });
+                count9 = count9 + 1;
+            }
+
+
+            $("#" + key.toString() + "_speaking").val() > 100 ? count4 = count4 + 1 : '';
+            $("#" + key.toString() + "_writing").val() > 100 ? count6 = count6 + 1 : '';
+            $("#" + key.toString() + "_listening").val() > 100 ? count8 = count8 + 1 : '';
+            $("#" + key.toString() + "_reading").val() > 100 ? count10 = count10 + 1 : '';
+
+        });
+
+
+        if (count3 > 0 || count5 > 0 || count7 > 0 || count9 > 0) {
+            MensajesToastr("warning", "Faltan Calificaciones", "Aún no has cargado todas las calificaciones");
+            return;
+        }
+
+        if (count4 > 0 || count6 > 0 || count8 > 0 || count10 > 0) {
+
+            MensajesToastr("warning", "Error", "Una de las calificaciones es mayor a 100");
+            return;
+        }
+
+
+            var obj = "";
+            var obj2 = "";
+        var count11 = 0;
+        var usuario = $("#user").val();
+        Object.keys(captura).forEach(function (key) {
+            var speaking = parseInt($("#" + key.toString() + "_speaking").val(), 10);
+            var writing = parseInt($("#" + key.toString() + "_writing").val(), 10);
+            var listening = parseInt($("#" + key.toString() + "_listening").val(), 10);
+            var reading = parseInt($("#" + key.toString() + "_reading").val(), 10);
+            $("#" + key.toString() + "_validar").is(':checked') == true ? '' : count11 = count11 + 1;
+
+            captura[key].promedio = Math.round((speaking + writing + listening + reading) / 4);
+            captura[key].asistencia = 0;
+            captura[key].speaking = speaking;
+            captura[key].writing = writing;
+            captura[key].listening = listening;
+            captura[key].reading = reading;
+            
+            captura[key].colocacion = 0;
+            captura[key].fecha_calificacion = "@System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")";
+
+            captura[key].usuario = usuario;
+            //console.log(captura[key].promedio.val());
+            obj = obj + '' + JSON.stringify(captura[key]);
+            });
+
+        if (count11 > 0) {
+
+            MensajesToastr("warning", "Error", "Seleccione todas las casillas de verificación");
+            return;
+            }
+
+            obj2 = obj.replace(/}{/gi, "},{");
+
+            console.log(obj2);
+
+            $.ajax({
+            url: '../../../Facilitadores/RegistraCalificacionFacilitadorJSON',
+            type: 'POST',
+            dataType: 'json',
+            data: { lsobjeto: obj2 }
+            })
+            .done(function (data) {
+            if (typeof (data.Success) !== "undefined" && !data.Success) {
+            MensajesToastr("warning", "Error de proceso", data.Mensaje);
+            }
+            else {
+            MensajesToastr("info", "Solicitud Procesada", "Evaluación registrada");
+            $('#BodyPrincipal').load('../../../Facilitadores/CapturaCalificaciones');
+            }
+            })
+            .fail(function (data) {
+            MensajesToastrErrorConexion();
+            });
+
+            }
+
+
+            function validaNumericos(event) {
+            if (event.charCode >= 48 && event.charCode <= 57) {
+            return true;
+            }
+            return false;
+            }
+
+            function validar(e) {
+            tecla = (document.all) ? e.keyCode : e.which;
+            return !(tecla == 86 && e.ctrlKey);
+            }
+
+            function verified(nivel, grupo, control) {
+            if ($("#" + nivel + "_" + grupo + "_" + control + "_validar").is(':checked')) {
+                $("#" + nivel + "_" + grupo + "_" + control + "_speaking").prop('disabled', true);
+                $("#" + nivel + "_" + grupo + "_" + control + "_writing").prop('disabled', true);
+                $("#" + nivel + "_" + grupo + "_" + control + "_listening").prop('disabled', true);
+                $("#" + nivel + "_" + grupo + "_" + control + "_reading").prop('disabled', true);
+
+            }
+            else {
+                $("#" + nivel + "_" + grupo + "_" + control + "_speaking").prop('disabled', false);
+                $("#" + nivel + "_" + grupo + "_" + control + "_writing").prop('disabled', false);
+                $("#" + nivel + "_" + grupo + "_" + control + "_listening").prop('disabled', false);
+                $("#" + nivel + "_" + grupo + "_" + control + "_reading").prop('disabled', false);
+
+            }
+
+    }
+
+</script>

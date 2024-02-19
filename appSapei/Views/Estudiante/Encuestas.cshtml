@@ -1,0 +1,166 @@
+﻿<div class="clearfix"></div>
+<form class="form-horizontal form-label-left" action="#" id="frmEncuesta" role="form" data-toggle="validator">
+     <div class="col-md-8 center-margin center-block">
+          <div id="divInicio" class="x_panel ">
+               <div class="x_title">
+                    <h3>Encuestas de servicios</h3>
+               </div>
+               <div class="dashboard-widget-content">
+                    <ul class="list-unstyled timeline widget">
+                         <li>
+                              <h5>
+                                   <a> Estimado Alumno:</a>
+                              </h5>
+                              <div class="block">
+                                   <div class="block_content">
+                                        <h5 class="title">
+                                             <a> En nuestro Instituto Tecnológico tenemos la misión y el firme compromiso de satisfacer plenamente tus necesidades y requerimientos en los servicios que ofrecemos, buscando mejorar permanentemente nuestro desempeño y servirte mejor.</a>
+                                        </h5>
+                                        <h5 class="title">
+                                             <a>Para lograr esto, lo más valioso es su opinión, por lo que se solicita responder con sinceridad un breve cuestionario anexo, cuya respuesta será la mejor ayuda para superarnos.</a>
+                                        </h5>
+                                        <h5 class="title">
+                                             <a>Se agradece tu atención a la presente y me reitero a tu disposición.</a>
+                                        </h5>
+
+                                        <h5 class="title">
+                                             <a style="text-align: justify;">
+                                                  ATENTAMENTE
+                                             </a>
+                                        </h5>
+                                        <h5 class="title">
+                                             <a>Ing. Miguel Angel Lee Rodriguez</a>
+                                        </h5>
+                                   </div>
+                              </div>
+                         </li>
+                    </ul>
+               </div>
+               <div class="dashboard-widget-content">
+                    <ul class="list-unstyled timeline widget">
+                         <li>
+                              <h5>
+                                   <a>Instrucciones:</a>
+                              </h5>
+                              <div class="block">
+                                   <div class="block_content">
+                                        <h5 class="title">
+                                             <a>El cuestionario que se anexa consta de una serie de afirmaciones sobre el servicio que se ofrece en el Instituto Tecnológico. En cada una califique según la experiencia que tenga, respecto a lo que se afirma.</a>
+                                        </h5>
+                                        <h5 class="title">
+                                             <a>1. Seleccione la calificación que le asigna usted a su experiencia con el servicio de que se trata</a>
+                                        </h5>
+                                        <h5 class="title">
+                                             <a>2. Si desea expresar algún comentario, sugerencia o recomendación utilice el espacio destinado para ello.</a>
+                                        </h5>
+                                        <h5 class="title">
+                                             <a>Gracias</a>
+                                        </h5>
+                                   </div>
+                              </div>
+                         </li>
+                    </ul>
+               </div>
+
+
+               <div class="dashboard-widget-content ">
+                    <ul class="list-unstyled timeline widget">
+                         <li>
+                              <h5>
+                                   <a>Encuestas Contestadas</a>
+                              </h5>
+                              <div class="block">
+                                   <div class="block_content">
+                                        @{
+                                             if (ViewData["encuestas"] != null)
+                                             {
+                                                  foreach (System.Data.DataRow dr in (ViewData["encuestas"] as System.Data.DataTable).Rows)
+                                                  {
+                                                       if (dr.ItemArray[2].ToString() == "1")
+                                                       {
+                                                            <div class="alert alert-info  alert-dismissible fade in" role="alert">
+                                                                 <strong>@dr.ItemArray[1].ToString().Trim().</strong>
+                                                            </div>
+                                                       }
+                                                  }
+                                             }
+                                        }
+                                   </div>
+                              </div>
+                         </li>
+                         <li>
+                              <h5>
+                                   <a>Encuestas Pendientes</a>
+                              </h5>
+                              <div class="block">
+                                   <div class="block_content ">
+                                        @{
+                                             if (ViewData["encuestas"] != null)
+                                             {
+                                                  foreach (System.Data.DataRow dr in (ViewData["encuestas"] as System.Data.DataTable).Rows)
+                                                  {
+                                                       if (dr.ItemArray[2].ToString() == "0" && (dr.ItemArray[0].ToString().Trim() != "1" && dr.ItemArray[0].ToString().Trim() != "6"))
+                                                       {
+                                                            <div class="alert alert-warning  alert-dismissible fade in" onclick="CargaEncuesta(@dr.ItemArray[0].ToString().Trim())" role="alert">
+                                                                 <strong>@dr.ItemArray[1].ToString().Trim().</strong>
+                                                            </div>
+                                                       }
+                                                  }
+                                             }
+                                        }
+                                   </div>
+                              </div>
+                         </li>
+                    </ul>
+               </div>
+          </div>
+          <div id="divPEncuesta" class="div-hide ">
+               @Html.Partial("../Generales/Encuestas")
+          </div>
+     </div>
+
+</form>
+
+<script>
+
+     function CargaEncuesta(tipo)
+     {
+          $('#divEncuesta').load('../../../../Generales/RegresaEncuesta', { piTipo: tipo });
+          $('#divPEncuesta').show('slow');
+          $('#divInicio').hide('slow');
+          
+     }
+     $("#frmEncuesta").submit(function (event) {
+          event.preventDefault();
+          var respuesta = RegresaJson();
+          $.ajax({
+               url: '../../../Estudiante/EncuestasJson',
+               type: 'POST',
+               dataType: 'json',
+               data: { psRespuestas: respuesta},
+          })
+          .done(function (data) {
+
+               if (typeof (data.Success) === "undefined" || !data.Success) {
+                    MensajesToastr("info", "Solicitud Procesada", "Error al Guardar Periodo");
+               }
+               else {
+                    MensajesToastr("success", "Solicitud Procesada", "Se guardo correctamente");
+               }
+          })
+          .fail(function (data) {
+               MensajesToastrErrorConexion();
+          })
+          .always(function (data) {
+               $('#BodyPrincipal').load('../../../../Estudiante/Encuestas');
+          });
+     })
+     $("#btnCancelar").click(function Atras(evento) {
+          evento.preventDefault();
+          $('#divPEncuesta').hide('slow');
+          $('#divInicio').show('slow');
+     })
+
+
+</script>
+

@@ -1,0 +1,217 @@
+﻿<div class="clearfix"></div>
+<div class="x_panel">
+          <form class="form-horizontal form-label-left" action="#" id="frmFicha" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+               <div class="form-group">
+                    <div id="divDatosGenerales">
+
+                         <div class="x_title">
+                              <h2>Datos del Estudiante: <small><span>@ViewData["txtNombre"] @ViewData["txtPaterno"] @ViewData["txtMaterno"] (@ViewData["txtNoControl"])</span></small></h2>
+                         </div>
+                         <div class="clearfix"></div>
+                         <div class="panel-group" id="accordion">
+                              <div class="panel panel-default">
+                                   <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                             <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                                                  Datos Generales
+                                             </a>
+                                        </h4>
+                                   </div>
+                                   <div id="collapse1" class="panel-collapse collapse in">
+                                        <div class="panel-body">
+                                             <div class="row form-group">
+                                                  <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                                                       <h5 class="title">
+                                                            <a>Lugar de Nacimiento:</a>
+                                                       </h5>
+                                                       <div class="byline">
+                                                            <span>@ViewData["txtLugarNacimiento"]</span>
+                                                       </div>
+                                                  </div>
+
+                                                  <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                                                       <h5 class="title">
+                                                            <a>Fecha de Nacimiento:</a>
+                                                       </h5>
+                                                       <div class="byline">
+                                                            <span>@ViewData["txtFechaNacimiento"]</span>
+                                                       </div>
+                                                  </div>
+                                                  <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                                                       <h5 class="title">
+                                                            <a>Sexo:</a>
+                                                       </h5>
+                                                       <div class="byline">
+                                                            <span>@ViewData["txtSexo"]</span>
+                                                       </div>
+                                                  </div>
+                                                  <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                                                       <h5 class="title">
+                                                            <a>Estado Civil:</a>
+                                                       </h5>
+                                                       <div class="byline">
+                                                            <span>@ViewData["cboEstadoCivil"]</span>
+                                                       </div>
+                                                  </div>
+                                             </div>
+                                             <div class="row form-group">
+                                                  <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                                                       <h5 class="title">
+                                                            <a>Domicilio (Calle y Número):</a>
+                                                       </h5>
+                                                       <div class="byline">
+                                                            <span>@ViewData["txtCalle"] @ViewData["txtNumero"]</span>
+                                                       </div>
+                                                  </div>
+
+                                                  <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                                                       <h5 class="title">
+                                                            <a>Colonia:</a>
+                                                       </h5>
+                                                       <div class="byline">
+                                                            <span>@ViewData["txtColonia"]</span>
+                                                       </div>
+                                                  </div>
+                                                  <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                                                       <h5 class="title">
+                                                            <a>Código Postal:</a>
+                                                       </h5>
+                                                       <div class="byline">
+                                                            <span>@ViewData["txtCodPostal"]</span>
+                                                       </div>
+                                                  </div>
+                                                  <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                                                       <h5 class="title">
+                                                            <a>Ciudad o Localidad:</a>
+                                                       </h5>
+                                                       <div class="byline">
+                                                            <span>@ViewData["txtCiudad"]</span>
+                                                       </div>
+                                                  </div>
+                                             </div>
+                                             <div class="row form-group">
+                                                  <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                                                       <h5 class="title">
+                                                            <a>Entidad Federativa:</a>
+                                                       </h5>
+                                                       <div class="byline">
+                                                            <span>@ViewData["txtEntidad"]</span>
+                                                       </div>
+                                                  </div>
+
+                                                  <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                                                       <h5 class="title">
+                                                            <a>Teléfono:</a>
+                                                       </h5>
+                                                       <div class="byline">
+                                                            <span>@ViewData["txtTelefono"]</span>
+                                                       </div>
+                                                  </div>
+                                                  <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                                                       <h5 class="title">
+                                                            <a>CURP:</a>
+                                                       </h5>
+                                                       <div class="byline">
+                                                            <span>@ViewData["txtCURP"]</span>
+                                                       </div>
+                                                  </div>
+                                                  <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                                                       <h5 class="title">
+                                                            <a>Correo:</a>
+                                                       </h5>
+                                                       <div class="byline">
+                                                            <span>@ViewData["txtCorreo"]</span>
+                                                       </div>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
+                              <div class="panel panel-default">
+                                   <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                             <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+                                                  Datos Escolares
+                                             </a>
+                                        </h4>
+                                   </div>
+                                   <div id="collapse2" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                             <div class="row form-group">
+                                                  <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                                                       <h5 class="title">
+                                                            <a>Carrera y Retícula:</a>
+                                                       </h5>
+                                                       <div class="byline">
+                                                            <span>@ViewData["txtNombreCarrera"] (Ret-@ViewData["txtReticula"])</span>
+                                                       </div>
+                                                  </div>
+
+                                                  <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                                                       <h5 class="title">
+                                                            <a>Especialidad:</a>
+                                                       </h5>
+                                                       <div class="byline">
+                                                            <span>@ViewData["txtDescripcionEspecialidad"]</span>
+                                                       </div>
+                                                  </div>
+                                                  <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                                                       <h5 class="title">
+                                                            <a>Periodo de Ingreso:</a>
+                                                       </h5>
+                                                       <div class="byline">
+                                                            <span>@ViewData["txtPeriodoIngreso"]</span>
+                                                       </div>
+                                                  </div>
+                                                  <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                                                       <h5 class="title">
+                                                            <a>Periodos Revalidados:</a>
+                                                       </h5>
+                                                       <div class="byline">
+                                                            <span>@ViewData["txtPeriodosRevalidados"]</span>
+                                                       </div>
+                                                  </div>
+                                             </div>
+                                             <div class="row form-group">
+                                                  <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                                                       <h5 class="title">
+                                                            <a>Tipo de Ingreso:</a>
+                                                       </h5>
+                                                       <div class="byline">
+                                                            <span>@ViewData["txtTipoIngreso"]</span>
+                                                       </div>
+                                                  </div>
+
+                                                  <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                                                       <h5 class="title">
+                                                            <a>Plan de Estudios:</a>
+                                                       </h5>
+                                                       <div class="byline">
+                                                            <span>@ViewData["txtPlanEstudios"]</span>
+                                                       </div>
+                                                  </div>
+                                                  <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                                                       <h5 class="title">
+                                                            <a>Nivel Escolar:</a>
+                                                       </h5>
+                                                       <div class="byline">
+                                                            <span>@ViewData["txtNivelEscolar"]</span>
+                                                       </div>
+                                                  </div>
+                                                  <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                                                       <h5 class="title">
+                                                            <a>Estatus:</a>
+                                                       </h5>
+                                                       <div class="byline">
+                                                            <span>@ViewData["txtEstatus"]</span>
+                                                       </div>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </form>
+</div>

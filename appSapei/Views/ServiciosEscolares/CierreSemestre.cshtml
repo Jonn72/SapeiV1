@@ -1,0 +1,38 @@
+﻿
+<input type="hidden" id="hidPeriodo" value="@ViewData["periodo"]" />
+<input type="hidden" id="hidIniciado" value="@Convert.ToBoolean(ViewData["en_proceso"])" />
+
+<div class="page-title">
+    <div class="col-md-8 col-sm-8 col-xs-12 form-group pull-left">
+        <h3>Cierre de semestre <small>@ViewData["descPeriodo"]</small></h3>
+    </div>
+</div>
+
+<div class="x_panel">
+    <div class="x_title">
+        <h3>Procesar</h3>
+    </div>
+    <div class="col-md-10 center-margin center-block">
+        <div class="x_content">
+            <p>
+                Este proceso se encarga de realizar el cierre del semestre actual, procesando todos los estudiantes inscritos.
+            </p>
+            <p>
+                Este proceso puede tardar, por favor, sea paciente.
+            </p>
+            @{
+                if (!Convert.ToBoolean(ViewData["iniciado"]))
+                {
+                    <div class="form-group alignright">
+                        <button id="btnProcesar" type="submit" class="btn btn-info">Iniciar Proceso</button>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+<div id="divAvance">
+    @Html.Partial("../ServiciosEscolares/CierreSemestreDatos")
+</div>
+
+<script src="~/Scripts/ManejoDatos/Escolares/CierreSemestre.js"></script>

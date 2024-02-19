@@ -1,0 +1,60 @@
+﻿<!-- Modal -->
+<div class="modal fade" id="AsignacionDocente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Asigna Docente (Interno)</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="frmAsignacionInterno" data-parsley-validate class="form-horizontal form-label-left">
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            Selecciona el Docente para el proyecto:
+                            <input type="hidden" id="txtIdPrograma" />
+                            <input type="text" disabled class="form-control" id="txtProyecto" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            @{
+                                if (ViewData["cboRfc"] != null)
+                                {
+                                    <select class="form-control" id="cboRfc">
+                                        @foreach (System.Data.DataRow dr in (ViewData["cboRfc"] as System.Data.DataTable).Rows)
+                                        {
+                                            if (ViewData["cboRfcc"] != null)
+                                            {
+                                                if (@dr.ItemArray[0].ToString().Trim() == ViewData["cboRfcc"].ToString())
+                                                {
+                                                    <option value="@dr.ItemArray[0].ToString().Trim()" selected>@dr.ItemArray[1].ToString().Trim()</option>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <option value="@dr.ItemArray[0].ToString().Trim()">@dr.ItemArray[1].ToString().Trim()</option>
+                                            }
+
+                                        }
+                                    </select>
+                                }
+                            }
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="margin-top:10px">Cerrar</button>
+                        <button type="submit" class="btn btn-primary" style="margin-top:10px">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.Partial("../Generales/TablaGeneral")
+<a class="btn btn-info" data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#BodyPrincipal" href="/Academicos/ControlEscolarRP">
+    Regresar al menú
+</a>
+@Html.Partial("../Generales/ModalVisorPDF")
+<script src="~/Scripts/ManejoDatos/Academicos/AsignacionAsesorInternoRP.js"></script>

@@ -1,0 +1,385 @@
+﻿@using Syncfusion.EJ2
+@using System.Data;
+@{
+
+    string lsPeriodo = "";
+    string lsNumDiasClase = "";
+    string lsCierreHorario = "";
+    string lsCierreSeleccion = "";
+    string lsFechaInicio = "";
+    string lsFechaTermino = "";
+    string lsInicioVacacionalSS = "";
+    string lsTerminoVacacionalSS = "";
+    string lsInicioVacacional = "";
+    string lsTerminoVacacional = "";
+    string lsInicioEspecial = "";
+    string lsFinEspecial = "";
+    string lsInicioEncEstudiantil = "";
+    string lsFinEncEstudiantil = "";
+    string lsInicioSeleAlumnos = "";
+    string lsFinSeleAlumnos = "";
+    string lsInicioCalDocentes = "";
+    string lsFinCalDocentes = "";
+    string lsStatus = "";
+    string lsPeriodoSel = "";
+    bool lbEncontrado = false;
+    DataTable loDatos = new DataTable();
+
+    if (ViewData["Datos"] != null)
+    {
+        loDatos = ViewData["Datos"] as DataTable;
+        if (loDatos.Columns.Count > 1)
+        {
+            lbEncontrado = true;
+
+            lsPeriodo = loDatos.Rows[0].Field<string>("periodo");
+            lsNumDiasClase = loDatos.Rows[0].Field<string>("num_dias_clase");
+            lsCierreHorario = loDatos.Rows[0].Field<string>("cierre_horarios");
+            lsCierreSeleccion = loDatos.Rows[0].Field<string>("cierre_seleccion");
+            lsFechaInicio = loDatos.Rows[0].Field<string>("fecha_inicio");
+            lsFechaTermino = loDatos.Rows[0].Field<string>("fecha_termino");
+            lsInicioVacacionalSS = loDatos.Rows[0].Field<string>("inicio_vacacional_ss");
+            lsTerminoVacacionalSS = loDatos.Rows[0].Field<string>("termino_vacacional_ss");
+            lsInicioVacacional = loDatos.Rows[0].Field<string>("inicio_vacacional");
+            lsTerminoVacacional = loDatos.Rows[0].Field<string>("termino_vacacional");
+            lsInicioEspecial = loDatos.Rows[0].Field<string>("inicio_especial");
+            lsFinEspecial = loDatos.Rows[0].Field<string>("fin_especial");
+            lsInicioEncEstudiantil = loDatos.Rows[0].Field<string>("inicio_enc_estudiantil");
+            lsFinEncEstudiantil = loDatos.Rows[0].Field<string>("fin_enc_estudiantil");
+            lsInicioSeleAlumnos = loDatos.Rows[0].Field<string>("inicio_sele_alumnos");
+            lsFinSeleAlumnos = loDatos.Rows[0].Field<string>("fin_sele_alumnos");
+            lsInicioCalDocentes = loDatos.Rows[0].Field<string>("inicio_cal_docentes");
+            lsFinCalDocentes = loDatos.Rows[0].Field<string>("fin_cal_docentes");
+            lsStatus = loDatos.Rows[0].Field<string>("status");
+
+            lsPeriodoSel = lsPeriodo.Substring(4, 1);
+        }
+    }
+}
+
+<div class="container body" style="height: 550px;">
+    <div class=" clearfix"></div>
+
+    <div class="col-md-12">
+        <div class="x_panel">
+            <div class="clearfix"></div>
+
+            <div class="x_title">
+                <h3>Periodos Escolares</h3>
+            </div>
+            <div class="row">
+                <div id="status" class="col-md-2 col-sm-2 col-xs-12 form-group div-hide">
+                    <label for="cboStatus">
+                        Status
+                    </label>
+                    <select class="form-control" id="cboStatus">
+                        <option value='0'> Activo </option>
+                        <option value='1'> Inactivo </option>
+                    </select>
+                    <div class="help-block with-errors"></div>
+                </div>
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group">
+                    <label for="txtAño">
+                        Año
+                    </label>
+                    <div id="txtReplace"></div>
+                    <div class="help-block with-errors"></div>
+                </div>
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group">
+                    <label for="cboPeriodo">
+                        Periodo
+                    </label>
+
+                    <select class="form-control" id="cboPeriodo" onchange="getval(this);">
+                        <option value='-1' selected='selected'>-- Seleccione el periodo --</option>
+                        <option value='1'>Enero - Junio</option>
+                        <option value='2'>Verano</option>
+                        <option value='3'>Agosto - Diciembre</option>
+                    </select>
+
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                    <label for="txtInicioPeriodo">
+                        Inicio del Periodo
+                    </label>
+                    @Html.EJS().DatePicker("txtInicioPeriodo").Format("dd/MM/yyyy").Value(lsFechaInicio).Placeholder("Inicio del periodo").Render()
+
+                    <div class="help-block with-errors"></div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                    <label for="txtFinPeriodo">
+                        Fin del Periodo
+                    </label>
+                    @Html.EJS().DatePicker("txtFinPeriodo").Format("dd/MM/yyyy").Value(lsFechaTermino).Placeholder("Fin del periodo").Render()
+
+                    <div class="help-block with-errors"></div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                    <label for="txtDiasClase">
+                        Dias de Clase
+                    </label>
+                    <input type="text" id="txtDiasClase" class="form-control" maxlength="3" size="6" value="@lsNumDiasClase" />
+
+                    <div class="help-block with-errors"></div>
+                </div>
+            </div>
+            <div id="camposextra" class="div-hide">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                        <label for="txtInicioVacSS">
+                            ¿Desea cerrar el periodo de cambio o creación de horarios para coordinadores?
+                        </label>
+                        <select class="form-control" id="cboCierreHorarios">
+                            <option value='N'> No </option>
+                            <option value='S'> Si </option>
+                        </select>
+                            <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                        <label for="txtFinVacSS">
+                            ¿Desea cerrar el periodo de selección de materias para coordinadores?
+                        </label>
+                        <select class="form-control" id="cboCierreSeleccion">
+                            <option value='N'> No </option>
+                            <option value='S'> Si </option>
+                        </select>
+                            <div class="help-block with-errors"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="x_title">
+                <h4>Periodo vacacional</h4>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                    <label for="txtInicioVac">
+                        Inicio del periodo de vacaciones
+                    </label>
+                    @Html.EJS().DatePicker("txtInicioVac").Format("dd/MM/yyyy").Value(lsInicioVacacional).Placeholder("Inicio del periodo de vacaciones").Render()
+
+                    <div class="help-block with-errors"></div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                    <label for="txtFinVac">
+                        Fin del periodo de vacaciones
+                    </label>
+                    @Html.EJS().DatePicker("txtFinVac").Format("dd/MM/yyyy").Value(lsTerminoVacacional).Placeholder("Fin del periodo de vacaciones").Render()
+
+                    <div class="help-block with-errors"></div>
+                </div>
+            </div>
+            <div id="VacacionesSS" class="div-hide">
+                <div class="x_title">
+                    <h4>Periodo Vacacional de Semana Santa</h4>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                        <label for="txtInicioVacSS">
+                            Periodo del periodo de vacaciones de semana santa
+                        </label>
+                        @Html.EJS().DatePicker("txtInicioVacSS").Format("dd/MM/yyyy").Value(lsInicioVacacionalSS).Placeholder("Inicio del periodo de vacaciones de semana santa").Render()
+
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                        <label for="txtFinVacSS">
+                            Fin del periodo de vacaciones de semana santa
+                        </label>
+                        @Html.EJS().DatePicker("txtFinVacSS").Format("dd/MM/yyyy").Value(lsTerminoVacacionalSS).Placeholder("Fin del periodo de vacaciones de semana santa").Render()
+
+                        <div class="help-block with-errors"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="x_title">
+                <h4>Encuesta Estudiantil</h4>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                    <label for="txtInicioEnc">
+                        Periodo de la Encuesta Estudiantil
+                    </label>
+                    @Html.EJS().DatePicker("txtInicioEnc").Format("dd/MM/yyyy").Value(lsInicioEncEstudiantil).Placeholder("Inicio de la encuesta estudiantil").Render()
+
+                    <div class="help-block with-errors"></div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                    <label for="txtFinPeriodo">
+                        Fin de la Encuesta Estudiantil
+                    </label>
+                    @Html.EJS().DatePicker("txtFinEnc").Format("dd/MM/yyyy").Value(lsFinEncEstudiantil).Placeholder("Fin de la encuesta estudiantil").Render()
+
+                    <div class="help-block with-errors"></div>
+                </div>
+            </div>
+            <div class="x_title">
+                <h4>Periodo de Reinscripciones</h4>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                    <label for="txtInicioReinscripcion">
+                        Inicio de Reinscripciones
+                    </label>
+                    @Html.EJS().DatePicker("txtInicioReinscripcion").Value(lsInicioSeleAlumnos).Format("dd/MM/yyyy").Placeholder("Inicio de Reinscripciones").Render()
+
+                    <div class="help-block with-errors"></div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                    <label for="txtFinReinscripcion">
+                        Fin de Reinscripciones
+                    </label>
+                    @Html.EJS().DatePicker("txtFinReinscripcion").Value(lsFinSeleAlumnos).Format("dd/MM/yyyy").Placeholder("Fin de Reinscripciones").Render()
+
+                    <div class="help-block with-errors"></div>
+                </div>
+            </div>
+            <div class="x_title">
+                <h4>Periodo de Carga de Calificaciones</h4>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                    <label for="txtInicioCargaCal">
+                        Inicio de Carga de Calificaciones
+                    </label>
+                    @Html.EJS().DatePicker("txtInicioCargaCal").Value(lsInicioCalDocentes).Format("dd/MM/yyyy").Placeholder("Inicio de carga de calificaciones").Render()
+
+                    <div class="help-block with-errors"></div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                    <label for="txtFinCargaCal">
+                        Fin de Carga de Calificaciones
+                    </label>
+                    @Html.EJS().DatePicker("txtFinCargaCal").Value(lsFinCalDocentes).Format("dd/MM/yyyy").Placeholder("Fin de carga de calificaciones").Render()
+
+                    <div class="help-block with-errors"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-10 col-sm-10 col-xs-12 form-group">
+                </div>
+
+                <div class="col-md-2 col-sm-2 col-xs-12 form-group">
+                    <button id="btnGuardar" type="submit" class="btn btn-info">Guardar</button>
+                    <button id="btnRegresar" type="button" class="btn btn-danger">Regresar</button>
+                </div>
+                </div>
+
+            </div>
+
+
+
+        <!-- /page content -->
+    </div>
+
+
+    @Html.EJS().ScriptManager()
+</div>
+
+<script type="text/javascript">
+    function getval(val) {
+        if (val.value === "1") {
+
+            $("#VacacionesSS").removeClass("div-hide");
+        }
+        else {
+            $("#VacacionesSS").addClass("div-hide");
+        }
+    }
+
+    var año = @Html.Raw(ViewData["año"].ToString());
+    var i;
+    var campo_año = "<select class='form-control' id='cboAño'>";
+
+    for (i = año - 1; i <= año + 2; i++) {
+        if (i == año) {
+            campo_año = campo_año + "<option value='" + i +"' selected>" + i + "</option>";
+        }
+        else {
+            campo_año = campo_año + "<option value='" + i + "' >" + i + "</option>";
+
+        }
+    }
+
+    campo_año = campo_año + "</select>";
+
+    $('#txtReplace').html(campo_año);
+
+    @if(lsPeriodoSel != "")
+            {
+                @Html.Raw("PeriodoSel = " + lsPeriodoSel + ";")
+                @Html.Raw("$(\"#cboPeriodo\").val(\"" + lsPeriodoSel + "\");")
+                @Html.Raw("$(\"#cboAño\").val(\"" + Html.Raw(ViewData["año"].ToString()) + "\");")
+                @Html.Raw("$(\"#cboAño\").prop(\"disabled\", true);")
+                @Html.Raw("$(\"#cboPeriodo\").prop(\"disabled\", true);")
+                @Html.Raw("$(\"#camposextra\").removeClass(\"div-hide\");")
+                @Html.Raw("$(\"#status\").removeClass(\"div-hide\");")
+                @Html.Raw("$(\"#cboStatus\").val(\"" + lsStatus + "\");")
+                @Html.Raw("$(\"#cboCierreHorarios\").val(\"" + lsCierreHorario + "\");")
+                @Html.Raw("$(\"#cboCierreSeleccion\").val(\"" + lsCierreSeleccion + "\");")
+                @Html.Raw("var val = {value: \""+ lsPeriodoSel +"\"};")
+                @Html.Raw("getval(val);")
+            }
+
+    $("#btnGuardar").click(function () {
+
+
+
+        var periodo = $("#cboAño").val() + "" + $("#cboPeriodo").val();
+        var status = $("#cboStatus").val();
+        var fecha_inicio = $("#txtInicioPeriodo").val();
+        var fecha_termino = $("#txtFinPeriodo").val()
+        var cierre_horarios = $("#cboCierreHorarios").val();
+        var cierre_seleccion = $("#cboCierreSeleccion").val();
+        var num_dias_clase = $("#txtDiasClase").val();
+        var inicio_vacacional = $("#txtInicioVac").val();
+        var termino_vacacional = $("#txtFinVac").val();
+        var inicio_vacacional_ss = $("#txtInicioVacSS").val();
+        var termino_vacacional_ss = $("#txtFinVacSS").val();
+        var inicio_enc_estudiantil = $("#txtInicioEnc").val();
+        var fin_enc_estudiantil = $("#txtFinEnc").val();
+        var inicio_sele_alumnos = $("#txtInicioReinscripcion").val();
+        var fin_sele_alumnos = $("#txtFinReinscripcion").val();
+        var inicio_cal_docentes = $("#txtInicioCargaCal").val();
+        var fin_cal_docentes = $("#txtFinCargaCal").val();
+
+        $.ajax({
+            asyn: false,
+            url: '../../../ServiciosEscolares/RegistraPeriodoJSON',
+            type: 'POST',
+            dataType: 'json',
+            data: { psPeriodo: periodo, psStatus: status, psFechaInicio: fecha_inicio, psFechaTermino: fecha_termino, psCierreHorarios: cierre_horarios, psCierreSeleccion: cierre_seleccion, psNumDiasClase: num_dias_clase, psInicioVacacional: inicio_vacacional, psTerminoVacacional: termino_vacacional, psInicioVacacionalSS: inicio_vacacional_ss, psTerminoVacacionalSS: termino_vacacional_ss, psInicioEncEst: inicio_enc_estudiantil, psFinEncEst: fin_enc_estudiantil, psInicioSeleAlumnos: inicio_sele_alumnos, psFinSeleAlumnos: fin_sele_alumnos, psInicioCalDocentes: inicio_cal_docentes, psFinCalDocentes: fin_cal_docentes },
+        })
+            .done(function (data) {
+
+                if (typeof (data.Success) === "undefined" || !data.Success) {
+                    MensajesToastr("error", "Solicitud Procesada", "Error al Guardar");
+                }
+                else {
+                    if (data.Mensaje.indexOf("Error") > -1) {
+                        MensajesToastr("warning", "Error de proceso", data.Mensaje);
+                    }
+                    else {
+                        MensajesToastr("info", "Solicitud Procesada", data.Mensaje);
+                        if (data.Mensaje.indexOf("Actualizado") > -1) {
+                            $('#BodyPrincipal').load('../../../../ServiciosEscolares/ModificaPeriodo');
+                        }
+                        else {
+                            console.log("holi");
+                            $('#BodyPrincipal').load('../../../../ServiciosEscolares/MantoPeriodosEscolares');
+                        }
+                    }
+                }
+            })
+            .fail(function (data) {
+                MensajesToastrErrorConexion();
+            }).always(function () {
+            });
+    });
+
+
+
+</script>

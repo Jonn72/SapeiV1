@@ -1,0 +1,52 @@
+﻿@using Sapei.Framework.Utilerias;
+<link href="~/Content/themes/Reticula.css" rel="stylesheet" />
+@{
+    System.Data.DataRow loFila = null;
+    string lsReticula = "";
+
+    if (ViewData["DatosSeleccion"] != null)
+    {
+        loFila = (ViewData["DatosSeleccion"] as System.Data.DataTable).Rows[0];
+        lsReticula = loFila.ItemArray[0].ToString().Trim();
+    }
+
+}
+<script src="~/Scripts/Componentes/TimeCircles.js"></script>
+<link href="~/Content/Controles/TimeCircles.css" rel="stylesheet" />
+<div class="page-title">
+    <div class="title_left">
+        <h3>Administracion de Grupos <small>@ViewData["DescPeriodo"]</small></h3>
+    </div>
+</div>
+<div id="div" class="x_panel ">
+    <div class="x_title">
+
+        <div class="x_content" style="overflow-x: auto;">
+            <div>
+                <div id="divReticula" class="row_reticula" style="min-width:1000px;">
+                    @Html.Raw(lsReticula)
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-10">
+
+    </div>
+    <div class="col-sm-12 col-md-2">
+        <button type="button" id="btnRegresar" class="btn btn-danger" onclick="Regresar();"> Regresar </button>
+    </div>
+    
+</div>
+
+<script type="text/javascript">
+
+    function ActionRequest(periodo, carrera, reticula, materia, especialidad) {
+        $('#BodyPrincipal').load('../../../DEP/Grupos', { psPeriodo: periodo, psCarrera: carrera, psReticula: reticula, psMateria: materia, psEspecialidad: especialidad });
+    }
+
+    function Regresar() {
+        
+        $('#BodyPrincipal').load('../../../DEP/AdministracionGrupos');
+    }
+
+</script>

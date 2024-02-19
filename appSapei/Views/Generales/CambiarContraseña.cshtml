@@ -1,0 +1,103 @@
+﻿<style>
+    .button_strength {
+        text-decoration: none;
+        #color: #00ff21;
+        font-size: 13px;
+    }
+
+    .button_strength2 {
+        text-decoration: none;
+        #color: #00ff21;
+        font-size: 13px;
+    }
+
+    .button_strength3 {
+        text-decoration: none;
+        #color: #00ff21;
+        font-size: 13px;
+    }
+</style>
+<link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+<input type="hidden" value="@ViewData["Contraseña"]" id="cifrada" />
+<div class="page-title">
+    <div class="title_left">
+        <h3>Cambiar <small>Contraseña</small></h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h4>Cambio de contraseña</h4>
+            <div class="clearfix"></div>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+
+            <!-- Your current password -->
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                <form action="" method="get" id="myform" accept-charset="utf-8">
+                    <fieldset>
+                        <label for="password_actual">Ingrese su contraseña actual</label>
+                        <div class="input-group">
+                            <input type="password" data-password="password_actual" id="password_actual">
+                            <input style="display: none;" class="button_strength" data-password="password_actual" type="text" name="" value="">
+                            <span class="input-group-btn">
+                                <a data-password-button="password_actual" class="button_strength"><i class="fa fa-eye fa-2x" aria-hidden="true"></i></a>
+                            </span>
+                        </div>
+
+                        <!-- Your new password -->
+
+                        <label for="nuevo_password">Ingrese su nueva contraseña</label>
+                        <div class="input-group">
+                            <input type="password" data-password="nuevo_password" id="nuevo_password" value="">
+                            <input style="display: none;" class="button_strength2" data-password="nuevo_password" type="text" name="" value="">
+                            <span class="input-group-btn">
+                                <a data-password-button="nuevo_password" class="button_strength2"><i class="fa fa-eye fa-2x" aria-hidden="true"></i></a>
+                            </span>
+                        </div>
+
+                        <!-- Confirm password -->
+
+                        <label for="confirma_password">Confirme la nueva contraseña</label>
+                        <div class="input-group">
+                            <input type="password" data-password="confirma_password" id="confirma_password">
+                            <input style="display: none;" class="button_strength3" data-password="confirma_password" type="text" name="" value="">
+                            <span class="input-group-btn">
+                                <a data-password-button="confirma_password" class="button_strength3"><i class="fa fa-eye fa-2x" aria-hidden="true"></i></a>
+                            </span>
+                        </div>
+
+                        <!-- Controls -->
+
+                        <button type="button" class="btn btn-success" id="btnCambiar" disabled>Cambiar</button>
+
+                    </fieldset>
+                </form>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                <div>
+                    <h4><span class="label label-danger" id="mayus">Por lo menos una letra mayuscula</span></h4>
+                </div>
+                <div>
+                    <h4><span class="label label-danger" id="minus">Por lo menos una letra minuscula</span></h4>
+                </div>
+                <div>
+                    <h4><span class="label label-danger" id="special">Por lo menos un caracter especial</span></h4>
+                </div>
+                <div>
+                    <h4><span class="label label-danger" id="num">Por lo menos un numero</span></h4>
+                </div>
+                <div>
+                    <h4><span class="label label-danger" id="min">Por lo menos 8 caracteres</span></h4>
+                </div>
+                <div>
+                    <h4><span class="label label-danger" id="coincidencia">Las contraseñas deben de coincidir</span></h4>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="~/Scripts/ManejoDatos/Password/strength.js"></script>
+<script type="text/javascript" src="~/Scripts/ManejoDatos/Password/input.js"></script>

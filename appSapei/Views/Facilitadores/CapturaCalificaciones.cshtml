@@ -1,0 +1,118 @@
+﻿<input type="hidden" id="hidPeriodo" value="" />
+<input type="hidden" id="hidNivel" value="" />
+<input type="hidden" id="hidGrupo" value="" />
+<input type="hidden" id="hidFacilitador" value="" />
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>Calificaciones <small>@ViewData["periodo_desc"]</small></h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="x_panel">
+    <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+        <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+            @Html.Partial("../Generales/TablaGeneral")
+        </div>
+
+        <!--<div class="col-md-3 col-sm-3 col-xs-12 form-group">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h3>
+                        Reporte Final
+                    </h3>
+                    <div class="clearfix"></div>
+                </div>
+
+                Una vez que capture las calificaciones de todos los grupos, puede revisar el reporte final dando click en el siguiente boton.
+
+                <center>
+                    @@foreach (System.Data.DataRow dr2 in (ViewData["boton"] as System.Data.DataTable).Rows)
+
+                    {
+                        @@Html.Raw(@@dr2.ItemArray[0])
+
+                    }
+                </center>
+            </div>
+        </div>
+        -->
+
+    </div>
+</div>
+
+@Html.Partial("../Generales/ModalVisorPDF")
+@Html.Partial("../Generales/FirmaElectronica")
+<script type="text/javascript">
+
+    DesactivaBotones();
+    ocultar_buscar();
+    MostrarTodos();
+    QuitarMostrar();
+
+    /*function latex() {
+        $("#divCargando").show();
+        $("#divPDF").hide();
+        $('#divPDF').load('../../../../Facilitadores/Latex', displaySection());
+        event.preventDefault();
+    }
+    */
+    function vistaActa(periodo, nivel, grupo, facilitador) {
+
+        $("#divCargando").show();
+        $("#divPDF").hide();
+        $('#divPDF').load('../../../../Reportes/ActaFacilitadoresPDF?psPeriodo=' + periodo + '&psNivel=' + nivel + '&psGrupo=' + grupo + '&psFacilitador=' + facilitador, displaySection());
+    }
+
+    function displaySection() {
+        $('#divModalVisorPDF').modal('show');
+        $("#divCargando").hide();
+        $("#divPDF").show();
+    }
+
+
+    function PreparaFirma(periodo, nivel, grupo, facilitador) {
+        $("#hidPeriodo").val(periodo);
+        $("#hidNivel").val(nivel);
+        $("#hidGrupo").val(grupo);
+        $("#hidFacilitador").val(facilitador);
+        $('#divModalFirmaElectronica').modal('show');
+        $("#btnFirmarCargaAcademica").show();
+    }
+
+    $("#btnEnviarFirmar").click(function () {
+        var firma = $("#txtFirma").val();
+        var periodo = $("#hidPeriodo").val();
+        var nivel = $("#hidNivel").val();
+        var grupo = $("#hidGrupo").val();
+        var facilitador = $("#hidFacilitador").val();
+        $('#divModalFirmaElectronica').modal('hide');
+        console.log("hola " + firma);
+        $.ajax({
+            asyn: false,
+            url: '../../../Facilitadores/FirmaActa',
+            type: 'POST',
+            dataType: 'json',
+            data: { psFirma: firma, psPeriodo: periodo, psNivel: nivel, psGrupo: grupo, psFacilitador: facilitador },
+        })
+            .done(function (data) {
+
+                if (typeof (data.Success) === "undefined" || !data.Success) {
+                    MensajesToastr("error", "Solicitud Procesada", "Error al Guardar");
+                }
+                else {
+                    MensajesToastr("success", "Solicitud Procesada", "Registro Correcto");
+
+                    $('#BodyPrincipal').load('../../../../Facilitadores/CapturaCalificaciones');
+                    $('.modal-backdrop').remove();
+                }
+            })
+            .fail(function (data) {
+                MensajesToastrErrorConexion();
+            }).always(function () {
+            });
+        event.preventDefault();
+    });
+
+
+</script>

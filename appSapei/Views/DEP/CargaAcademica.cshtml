@@ -1,0 +1,170 @@
+﻿<div class="clearfix"></div>
+<input type="hidden" id="hidPeriodo" value="@ViewData["txtPeriodo"]" />
+<div class="page-title">
+    <div class="title_left">
+        <h3>Cargas Académicas <small>@ViewData["txtDescPeriodo"]</small></h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Fechas</h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li>
+                                <a class="collapse-link" onclick="OcultaPanel(this);"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+
+                            <li>
+                                <a class="close-link" onclick="CierraPanel(this);"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="col-md-5 col-sm-12 col-xs-12">
+                        <div class="x_content">
+                            <label>
+                                Inicio
+                            </label>
+                            <div class='input-group date bg-tecnm' id='dtpFechaCargaIni'>
+                                <input type='text' id="txtIniCarga" class="form-control" value="@ViewData["txtIniCarga"]" required />
+                                <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+                            </div>
+                            <div class='input-group date bg-tecnm' id='dtpFechaCargaFin'>
+                                <input type='text' id="txtFinCarga" class="form-control" value="@ViewData["txtFinCarga"]" required />
+                                <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+                            </div>
+                            <div class="col-md-4 btn-block">
+                                <button id="btnGuardar" type="submit" class="btn btn-block btn-success">Guardar Fechas</button>
+                            </div>
+                        </div>
+                        <label>
+                            Termino
+                        </label>
+                    </div>
+                    <div class="col-md-7 col-sm-12 col-xs-12 bg-gris">
+                        <div class="x_content">
+                            <table class="display nowrap" cellspacing="0" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Periodo</th>
+                                        <th>Inicia</th>
+                                        <th>Termina</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+                                        if (ViewData["TablaPeriodos"] != null)
+                                        {
+                                            foreach (System.Data.DataRow dr in (ViewData["TablaPeriodos"] as System.Data.DataTable).Rows)
+                                            {
+                                                <tr>
+                                                    @foreach (var cell in dr.ItemArray)
+                                                    {
+                                                        <td>@Html.Raw(cell.ToString())</td>
+                                                    }
+                                                </tr>
+                                            }
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2>
+            Acciones
+        </h2>
+        <ul class="nav navbar-right panel_toolbox">
+            <li>
+                <a class="collapse-link" onclick="OcultaPanel(this);"><i class="fa fa-chevron-up"></i></a>
+            </li>
+
+            <li>
+                <a class="close-link" onclick="CierraPanel(this);"><i class="fa fa-close"></i></a>
+            </li>
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+    <div class="col-sm-3 text-center">
+        <div class="card text-white bg-success mb-3" style="min-height:10rem;">
+            <div class="card-header">Firma Eléctronica</div>
+            <div class="card-body">
+                <p class="card-text">Esta función, registra la firma eléctronica en todas las cargas acádemicas sin e-firma.</p>
+                <button id="btnFirmarCargasAcademicas" type="submit" class="btn btn-block btn-success">Firmar Cargas Académicas</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3 text-center">
+        <div class="card text-white bg-blue mb-3" style="min-height:10rem;">
+            <div class="card-header">Archivar en Expediente Digital</div>
+            <div class="card-body">
+                <p class="card-text">Esta función, archiva en el expediente digital las cargas acádemicas.</p>
+                <button id="btnArchivarCargas" type="submit" class="btn btn-block btn-success">Archivar</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 text-center">
+        <div class="card text-white bg-info mb-3" style="min-height:10rem;">
+            <div class="card-header">Descargar</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-5 col-sm-4 col-xs-12 form-group">
+                        <label for="tags">
+                            Periodo
+                        </label>
+                        <select class="form-control" id="cboPeriodo" required> </select>
+
+                    </div>
+                    <div class="col-md-5 col-sm-4 col-xs-12 form-group">
+                        <label for="tags">
+                            Carrera
+                        </label>
+                        <select class="form-control" id="cboCarreras" required> </select>
+
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-xs-12 form-group">
+                        <label for="">
+                            Semestre
+                        </label>
+                        <select class="form-control" id="cboSemestre" required>
+                            <option value="1" selected>1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">Mayor a 8</option>
+                        </select>
+                    </div>
+                </div>
+                <button id="btnDescargar" type="submit" class="btn btn-block btn-success">Descargar Cargas Académicas</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@Html.Partial("../Generales/TablaGeneral")
+@Html.Partial("../Generales/FirmaElectronica")
+@*@Html.Partial("../Generales/ModalVisorPDF")*@
+
+<script src="~/Scripts/md5.min.js"></script>
+<script src="~/Scripts/ManejoDatos/Generales/DescargaArchivos.js"></script>
+<script src="~/Scripts/ManejoDatos/DEP/ActivarPeriodoCargaAcademica.js"></script>
+
+

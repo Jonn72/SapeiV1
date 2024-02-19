@@ -1,0 +1,14 @@
+﻿<div class="">
+     <div class="clearfix"></div>
+     <form class="form-horizontal form-label-left" action="#" id="frmImprimirReporteConTabla" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+          <div class="row">
+               <div class="col-md-4">
+                    <a href="@Url.Action(ViewData["nombre_reporte"].ToString(), "Reportes", new { psPeriodo = ViewData["periodo"].ToString() })" class="btn btn-block btn-success" role="button">Descargar Reporte</a>
+                    
+               </div>
+               <div id="TablaGeneral" class="col-md-12 col-sm-12 col-xs-12">
+                    @Html.Partial("../Generales/TablaGeneral")
+               </div>
+          </div>
+     </form>
+</div>

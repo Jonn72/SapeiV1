@@ -1,0 +1,206 @@
+﻿
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>Material Bibliográfico</h3>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <form class="form-horizontal form-label-left" action="#" id="frmMaterial" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Nuevo</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+
+                        <input type="hidden" id="hidId" value="0" />
+                        <div class="form-group col-md-6 ">
+                            <label for="sAutor">
+                                Autor
+                            </label>
+                            <select class="form-control" id="sAutor" data-bind="options: autoresViewModel.select,optionsValue:'clave',optionsText:'autor',value:autoresViewModel.selectedItem" required></select>
+                        </div>
+                        <div class="form-group col-md-6 ">
+                            <label for="sCarrera">
+                                Carrera
+                            </label>
+                             <select class="form-control" id="sCarrera" data-bind="options: carrerasViewModel.select,optionsValue:'carrera',optionsText:'nombre_carrera',value:carrerasViewModel.selectedItem" required></select>
+                        </div>
+                        <div class="form-group col-md-6 ">
+                            <label for="sEditorial">
+                                Editorial
+                            </label>
+
+                            <select class="form-control" id="sEditorial" data-bind="options: editorialViewModel.select,optionsValue:'clave',optionsText:'editorial',value:editorialViewModel.selectedItem" required></select>
+                        </div>
+                         <div class="form-group col-md-6 ">
+                              <label for="txtFecha">
+                                   Fecha ingreso
+                              </label>
+                              <div class='input-group date' id='dtpFecha'>
+                                   <input type='text' id="txtFecha" class="form-control" required />
+                                   <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+                              </div>
+                         </div>
+                        <div class="form-group col-md-6 ">
+                            <label for="txtTitulo">
+                                Título
+                            </label>
+                            <input type="text" class="form-control" id="txtTitulo" placeholder="Ingrese Titulo" required />
+                        </div>
+
+                        <div class="form-group col-md-6 ">
+                            <label for="txtExistencia">
+                                Existencia
+                            </label>
+                            <input type="number" class="form-control" id="txtExistencia" placeholder="Existencia" min="1" required />
+                        </div>
+                        <div class="col-md-8 center-block center-margin ">
+                            <label for="txtTipo">
+                                Tipo de Material
+                            </label>
+
+                            <select id="sTipoMaterial" class="form-control">
+                                <option value="Libros">Libro</option>
+                                <option value="Memorias">Memoria de Residencias</option>
+                                <option value="CDS">Cd</option>
+                                <option value="Revistas">Revista</option>
+                                <option value="Tesis">Tesis</option>
+                            </select>
+                        </div>
+                        <div id="pfrmMemorias">
+                            <input type="hidden" id="hidIdMemorias" value="0" />
+                            <div class="form-group col-md-6 ">
+                                <label>
+                                    Fecha de publicación
+                                </label>
+                                 <div class='input-group date' id='dtpFechaMemorias'>
+                                      <input type='text' id="txtFechaMemorias" class="form-control" required />
+                                      <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+                                 </div>
+                            </div>
+                            <div class="form-group col-md-6 ">
+                                <label for="txtLugar">
+                                    Lugar de publicación
+                                </label>
+                                <input type="text" class="form-control" id="txtLugarMemorias" placeholder="Ingrese Lugar" required />
+                            </div>
+                        </div>
+                        <div id="pfrmCDs" hidden>
+                            <input type="hidden" id="hidIdCD" value="0" />
+
+                            <div class="form-group col-md-6 ">
+                                <label for="txtDescripcion">
+                                    Descripción
+                                </label>
+                                <input type="text" class="form-control" id="txtDescripcionCD" required />
+                            </div>
+                            <div class="form-group col-md-6 ">
+                                <label for="txtDuracion">
+                                    Duración
+                                </label>
+                                <input type="number" step="0.01" class="form-control" id="txtDuracion" placeholder="Ingrese duración" required />
+                            </div>
+                        </div>
+                        <div id="pfrmRevistas" hidden>
+                            <input type="hidden" id="hidIdRevista" value="0" />
+
+                            <div class="form-group col-md-6 ">
+                                <label for="txtSeccionesR">
+                                    Secciones
+                                </label>
+                                <input type="number" class="form-control" id="txtSeccionesR" name="txtSecciones" placeholder="Ingrese Secciones" min=" 1" required />
+                            </div>
+                             <div class="form-group col-md-6 ">
+                                  <label for="txtPublicacionR">
+                                       Fecha de publicación
+                                  </label>
+                                  <div class='input-group date' id='dtpPublicacionR'>
+                                       <input type='text' id="txtPublicacionR" class="form-control" required />
+                                       <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+                                  </div>
+                             </div>
+                            <div class="form-group col-md-6 ">
+                                <label for="txtEdicionRv">
+                                    Edicion
+                                </label>
+                                <input type="text" class="form-control" id="txtEdicionRv" placeholder="Ingrese Edición" required  />
+                            </div>
+                        </div>
+                        <div id="pfrmTesis" hidden>
+                            <input type="hidden" id="hidIdTesis" value="0" />
+
+                            <div class="form-group col-md-6 ">
+                                <label>
+                                    Fecha de publicación
+                                </label>
+                                 <div class='input-group date' id='dtpFechaPublicacionT'>
+                                      <input type='text' id="txtFechaPublicacionT" class="form-control" required />
+                                      <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+                                 </div>
+                            </div>
+                            <div class="form-group col-md-6 ">
+                                <label for="txtPaginasT">
+                                    Páginas
+                                </label>
+                                <input type="number" class="form-control" id="txtPaginasT" name="txtPaginasT" placeholder="Número de páginas" required />
+                            </div>
+                        </div>
+                        <div id="pfrmLibros" hidden>
+                            <input type="hidden" id="hidIdLibro" value="0" />
+
+                            <div class="form-group col-md-6 ">
+                                <label for="txtClaveIsbn">
+                                    Clave ISBN
+                                </label>
+                                <input type="text" class="form-control" id="txtClaveIsbn" name="txtClaveIsb" placeholder="Ingrese clave" required/>
+                            </div>
+                             <div class="form-group col-md-6 ">
+                                  <label for="txtClaveLC">
+                                       Clasificación LC
+                                  </label>
+                                  <input type="text" class="form-control" id="txtClaveLC" name="txtClaveLC" placeholder="Ingrese clave LC" required />
+                             </div>
+                            <div class="form-group col-md-6 ">
+                                <label for="txtNoPaginas">
+                                    No. de Páginas
+                                </label>
+                                <input type="number" class="form-control" id="txtNoPaginas" name="txtNoPaginas" placeholder="Numero de páginas" min=" 1" required />
+                            </div>
+                            <div class="form-group col-md-6 ">
+                                <label for="txtCapitulos">
+                                    Capítulos
+                                </label>
+                                <input type="number" class="form-control" id="txtCapitulos" name="txtCapitulos" placeholder="Ingrese la descripción" min="1" required/>
+                            </div>
+                            <div class="form-group col-md-6 ">
+                                <label for="txtEdicionLb">
+                                    Edicion
+                                </label>
+                                 <input type="text" class="form-control" id="txtEdicionLb" placeholder="Ingrese Edición" required />
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 col-sm-6">
+
+                            <button class="btn btn-success" id="btnGuardar" type="submit">Guardar</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    @Html.Partial("ModalElimina")
+
+
+
+</div>
+<div id="divTabla">
+     @Html.Partial("../Generales/TablaGeneral")
+</div>
+<script src="~/Scripts/ManejoDatos/CentroInformacion/MaterialBibliografico.js"></script>

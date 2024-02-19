@@ -1,0 +1,58 @@
+﻿@*@using Syncfusion.EJ2;*@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" type="image/png" href="~/Images/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>SAPEI</title>
+    @* Syncfusion Essential JS 2 Styles *@
+    <link rel="stylesheet" href="~/Content/ej2/material.css" />
+    @* Syncfusion Essential JS 2 Scripts *@
+    <script src="~/Scripts/ej2/ej2.min.js"></script>
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    @Styles.Render("~/Content/controlescss")
+    @Styles.Render("~/Content/fontcss")
+    @Styles.Render("~/Content/tablas")
+    <link href="~/Content/nprogress/nprogress.css" rel="stylesheet" />
+    <link href="~/Content/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet" />
+    <link href="~/Content/themes/css_SII.css" rel="stylesheet" />
+
+</head>
+<body class="nav-md">
+
+   @* @Html.EJS().ScriptManager()*@
+
+    <div class="container body">
+        <div class="main_container">
+            @*<header></header>*@
+            @Html.Partial("_NewHeader")
+
+            <div class="right_col" role="main" style="min-height: 814px;">
+                <section>
+                    @RenderBody()
+                </section>
+            </div>
+
+            <footer>
+                @*<div>
+                         @Html.Partial("_NewFooter")
+                    </div>*@
+                <div class="clearfix"></div>
+            </footer>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
+
+
+
+

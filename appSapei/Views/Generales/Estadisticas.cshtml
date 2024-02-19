@@ -1,0 +1,115 @@
+﻿<input type="hidden" id="hidPeriodo" value="@ViewData["periodo"]" />
+<input type="hidden" id="hidURL" value="@ViewData["url"]" />
+<input type="hidden" id="hidURL_estadistica" value="@ViewData["url_estadistica"]" />
+<div class="row tile_count">
+     <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count" data-toggle="modal" data-target="#divModal" id="total">
+          <span class="count_top"><i class="fa fa-user"></i> Total de Estudiantes</span>
+          <div class="count">@ViewData["TotalEstudiantes"]</div>
+          <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>.</i> </span>
+     </div>
+     <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+          <span class="count_top"><i class="fa fa-building"></i> Arquitectura</span>
+          <div class="count">@ViewData["TotalARQ"]</div>
+          <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i> @ViewData["PorcentajeARQ"]% </i> </span>
+     </div>
+     <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+          <span class="count_top"><i class="fa fa-car"></i> Ing. Sis. Automotriz</span>
+          <div class="count green">@ViewData["TotalISA"]</div>
+          <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i> @ViewData["PorcentajeISA"]% </i> </span>
+     </div>
+     <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+          <span class="count_top"><i class="fa fa-terminal"></i> Ing. Sis. Computacionales</span>
+          <div class="count green">@ViewData["TotalISI"]</div>
+          <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i> @ViewData["PorcentajeISI"]% </i> </span>
+     </div>
+     <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+          <span class="count_top"><i class="fa fa-gears"></i> Ing. Mecatrónica</span>
+          <div class="count green">@ViewData["TotalIMC"]</div>
+          <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i> @ViewData["PorcentajeIMC"]% </i> </span>
+     </div>
+     <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+          <span class="count_top"><i class="fa fa-plug"></i> Ing. Electrónica</span>
+          <div class="count green">@ViewData["TotalIEL"]</div>
+          <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i> @ViewData["PorcentajeIEL"]% </i></span>
+     </div>
+</div>
+<div class="clearfix"></div>
+<div class="x_panel">
+     <div class="x_title">
+          <div class="row">
+               <div class="page-title">
+                    <div class="title_left">
+                         <h3>@ViewData["titulo_pagina"] <small>Periodo @ViewData["descPeriodo"]</small></h3>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12 form-group pull-right top_search">
+                         <div class="form-inline">
+                              <label for="cboPeriodo">
+                                   Periodo
+                              </label>
+                              <select class="form-control" id="cboPeriodo"></select>
+                         </div>
+                    </div>
+               </div>
+               <div class="clearfix"></div>
+               <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                    <div class="x_panel">
+                         <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                    @{
+                         int liValue = 1;
+                         if (ViewData["cboEstadisticas"] != null)
+                         {
+                              <label for="tags">
+                                   Seleccione la estádistica a graficar
+                              </label>
+                              <select class="form-control" id="cboEstadistica">
+                                   
+                                             @foreach (string ls in (ViewData["cboEstadisticas"] as List<string>))
+                                             {
+                                                  <option value="@liValue">@ls</option>
+                                                  liValue = liValue + 1;
+                                             }                                  
+                              </select>
+                         }
+                         else
+                         {
+                              string lsValue = "";
+                              string lsText = "";
+                              int liFiltros = 1;
+                              string lsFiltros = "cboFiltro1";
+
+                              if (ViewData["cboFiltros"] != null)
+                              {
+
+                                   while (ViewData[lsFiltros] != null)
+                                   {
+                                        lsValue = "divFiltro" + liFiltros; 
+                                        <div id="@lsValue" class="div-hide">
+                                             <label>
+                                                  @ViewData["txtFiltro" + liFiltros].ToString()
+                                             </label>
+                                             <select id="@lsFiltros" class="form-control" required>
+
+                                                  @foreach (string ls in (ViewData["cboFiltro" + liFiltros] as List<string>))
+                                                  {
+                                                       lsValue = ls.Split(new char[] { '-' })[0];
+                                                       lsText = ls.Split(new char[] { '-' })[1];
+                                                       <option value="@lsValue">@lsText</option>
+                                                  }
+                                             </select>
+                                        </div>
+                                                  lsFiltros = lsFiltros.Replace(liFiltros.ToString(), (liFiltros + 1).ToString()); liFiltros += 1;
+
+                                   }
+                              }
+                         }
+}
+
+                                             </div>
+                         @Html.Partial("../Generales/ModuloGraficas")
+                    </div>
+               </div>
+          </div>
+          @Html.Partial("../Generales/ModalTablaDatos")
+     </div>
+</div>
+<script src="~/Scripts/ManejoDatos/Graficas/Estadisticas.js"></script>

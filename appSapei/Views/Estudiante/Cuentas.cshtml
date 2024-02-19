@@ -1,0 +1,103 @@
+﻿<div class="page-title">
+    <div class="title_left">
+        <h3>Cuentas</h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="x_panel">
+    <div class="x_title">
+        <h2>Cuentas de plataformas institucionales</h2>
+        <div class="clearfix"></div>
+    </div>
+
+    <form class="form-horizontal form-label-left" action="#" id="frmFicha" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+        <div class="form-group">
+            <div class="col-md-8 center-margin">
+                @if (ViewData["DatosCuentas"] != null)
+                {
+                    System.Data.DataTable loDt = ViewData["DatosCuentas"] as System.Data.DataTable;
+
+                    foreach (System.Data.DataRow dr in loDt.Rows)
+                    {
+                <div class="form-group col-md-12 center-margin">
+
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 col-xs-12 form-group bg-tecnm">
+                            <label>
+                                Servicio
+                            </label>
+                            <input type="text" class="form-control bg-white" value="@Html.Raw(@dr.ItemArray[3].ToString().Trim())" placeholder="Servicio" readonly />
+                        </div>
+                        <div class="col-md-9 col-sm-9 col-xs-12 form-group bg-tecnm">
+                            <label for="tags">
+                                Descripción
+                            </label>
+                            <input type="text" class="form-control bg-white" value="@Html.Raw(@dr.ItemArray[2].ToString().Trim())" placeholder="Descripción" readonly />
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        @if (!string.IsNullOrEmpty(dr.ItemArray[0].ToString().Trim()))
+                        {
+                            <div class="col-md-4 col-sm-12 col-xs-12 form-group bg-tecnm">
+                                <label>
+                                    Usuario
+                                </label>
+                                <input type="text" class="form-control bg-white" value="@Html.Raw(@dr.ItemArray[0].ToString().Trim())" placeholder="Usuario" readonly />
+
+                            </div>
+                        }
+
+                        @if (!string.IsNullOrEmpty(dr.ItemArray[1].ToString().Trim()))
+                        {
+                            <div class="col-md-4 col-sm-12 col-xs-12 form-group bg-tecnm">
+                                <label for="tags">
+                                    Contraseña
+                                </label>
+                                <input type="text" class="form-control bg-white" value="@Html.Raw(@dr.ItemArray[1].ToString().Trim())" placeholder="Contraseña" readonly />
+                            </div>
+                        }
+
+                        <div class="col-md-4 col-sm-12 col-xs-12 form-group bg-tecnm">
+                            
+                            <a href="@Html.Raw(@dr.ItemArray[4].ToString().Trim())" class="btn btn-info" target="_blank">Abrir plataforma</a>
+                        </div>
+                    </div>
+                    @{
+                        string lsId = "btnReset" + dr.ItemArray[3].ToString().Trim();
+
+                        if (dr.ItemArray[3].ToString().Trim() == "CORREO")
+                        {
+                            <label for="tags">
+                                Si pierdes la contraseña, acude al Centro de Cómputo (Planta baja edif. A)
+                            </label>
+
+
+                            @*<button type="submit" id="@lsId" name="@dr.ItemArray[3].ToString().Trim()-@dr.ItemArray[1].ToString().Trim()" class="btn btn-info btnReset">Reiniciar Contraseña</button>*@
+                        }
+                        else if (dr.ItemArray[3].ToString().Trim() == "MOODLE")
+                        {
+                            <label for="tags">
+                                Para restablecer tu contraseña, ahora puedes hacerlo desde el mismo moodle, en la opción "¿Ha olvidado su nombre de usuario o contraseña?". Es importante realizar la solicitud buscando por correo (figura inferior) deberas ingresar tu correo usado para Teams. Igualmente, sólo se puede solicitar una vez al día .
+                            </label>
+                            <div class="logo text-center"><img src="~/Images/moodle/recuperar.png" width="50%" height="50%" alt="Logo"></div>
+                        }
+                    }
+                    <hr style=" border: 4px solid #1B396A;   border-radius: 2px;">
+
+                </div>
+                    }
+                }
+
+            </div>
+        </div>
+    </form>
+
+</div>
+<script src="~/Scripts/ManejoDatos/Estudiantes/Cuentas.js"></script>
+
+
+
+
+
+

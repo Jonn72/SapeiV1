@@ -1,0 +1,136 @@
+﻿<div class="page-title">
+    <div class="title_right">
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="x_panel">
+    <div class="x_title">
+        <h3>DP Carga de Horario</h3>
+    </div>
+    <div class="x_content">
+        
+        <div class="col-md-4 col-xs-12 col-sm-12">
+            <div class="form-group">
+                <label for="Puesto_txt">Puesto:</label>
+                @{
+                    ViewData["NombreCombo"] = "ddlPuesto";
+                    ViewData["DatosCombo"] = ViewData["puestos"];
+                }
+                @Html.Partial("../Generales/ListaDesplegable")
+            </div>
+        </div>
+        
+
+        <div class=" col-md-4 col-xs-12 col-sm-12">
+            <div class="form-group">
+                <label for="Empleado_txt">Empleado:</label>
+                <select id="ddlEmpleado" class="form-control">
+                    <option value="-1">--SELECCIONA UNA OPCIÓN--</option>
+                </select>
+            </div>
+        </div>
+
+        <div class=" col-md-4 col-xs-12 col-sm-12">
+            <div class="form-group">
+                <label for="Dia_txt">Día:</label>
+                <select id="ddlDia" class="form-control">
+                    <option value="-1">--SELECCIONA UNA OPCIÓN--</option>
+                    @{
+                        List<string> loDias = new List<string>();
+                        loDias.Add("LUNES");
+                        loDias.Add("MARTES");
+                        loDias.Add("MIERCOLES");
+                        loDias.Add("JUEVES");
+                        loDias.Add("VIERNES");
+                        loDias.Add("SABADO");
+                        loDias.Add("DOMINGO");
+                        for (byte i = 0; i < loDias.Count; i++)
+                        {
+                            <option value="@i" id="lbnDia"> @loDias[i]</option>
+                        }
+                    }
+                </select>
+
+            </div>
+        </div>
+
+        <div class=" col-md-4 col-xs-12 col-sm-12">
+            <label>Hora Inicial</label>
+            <div class="control-group">
+                <div class="controls">
+                    <div class="input-prepend input-group">
+                        <span class="add-on input-group-addon"><i class="glyphicon glyphicon-time fa fa-clock-o"></i></span>
+                        <input type="text" name="txtHoraInicial" id="txtHoraInicial" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-xs-12 col-sm-12">
+            <label>Hora Final</label>
+            <div class="control-group">
+                <div class="controls">
+                    <div class="input-prepend input-group">
+                        <span class="add-on input-group-addon"><i class="glyphicon glyphicon-time fa fa-clock-o"></i></span>
+                        <input type="text" name="txtHoraFinal" id="txtHoraFinal" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-xs-12 col-sm-12">
+            <div class="form-group">
+                <label for="Periodo_txt"> Periodo:</label>
+                @{
+                    ViewData["NombreCombo"] = "ddlPeriodo";
+                    ViewData["DatosCombo"] = ViewData["periodo"];
+                }
+                @Html.Partial("../Generales/ListaDesplegable")
+            </div>
+        </div>
+
+       
+        <div class="clearfix">
+        </div>
+        <br /><br />
+        
+
+        <div class="col-md-offset-8 col-md-4 col-xs-12 col-sm-12">
+            <button id="btnGuardar" class="btn btn-block btn-success">Guardar</button>
+        </div>
+        </div>
+    </div>
+    <div id="tablag">
+
+        
+
+    </div>
+
+<div id="seccionModal">
+    <div id="modalEliminar" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel2">Eliminar Registro</h4>
+                </div>
+                <div class="modal-body">
+                    <h4>¿Esta seguro que desea eliminar este registro?</h4>
+                    <p>Una vez eliminado el registor no se podra recuperar la informacion.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger eliminarHorario">Eliminar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/ManejoDatos/Incidencias/Incidencias.js"></script>
+
+
+
+

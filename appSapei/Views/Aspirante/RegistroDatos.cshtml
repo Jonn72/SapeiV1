@@ -1,0 +1,731 @@
+﻿<link href="~/Content/Controles/wizard.css" rel="stylesheet" />
+
+@using Sapei.Framework.Utilerias;
+@using System.Data;
+
+
+@{ int liEstado = 0;
+    string lsNombre = "";
+    string lsPaterno = "";
+    string lsMaterno = "";
+    string lsCurp = "";
+    string lsFechaNacimiento = "";
+    //Personales
+    string lsEstadoCivil = "";
+    string lsCorreo = "";
+    string lsTelefono = "";
+    string lsTelefonoEmergencia =  "";
+    string lsCelular = "";
+    string lsNss = "";
+    //Domicilio
+    string lsCalle = "";
+    string lsNumero = "";
+    string lsCp = "";
+    string lsEntidad = "";
+    string lsColonia = "";
+    string lsLocalidad = "";
+
+    //Seleccion de carrera
+    string lsComoEnteraste = "";
+    string lsCarrera1 = "";
+    string lsCarrera2 = "";
+    //Escuela procedencia
+    string lsEsculaProcedencia = "";
+    string lsPromedio = "";
+    string lsAñoEgreso = "";
+
+
+    DataRow loFila;
+    if (ViewData["Datos"] != null)
+    {
+        loFila = (ViewData["Datos"] as DataTable).Rows[0];
+        liEstado = Convert.ToInt32(loFila.Field<Int16>("estado"));
+        lsNombre = loFila.Field<string>("nombre");
+        lsPaterno = loFila.Field<string>("paterno");
+        lsMaterno = loFila.Field<string>("materno");
+        lsCurp = loFila.Field<string>("curp");
+        lsFechaNacimiento = loFila.Field<string>("fecha_nacimiento");
+        if (liEstado > 0)
+        {
+            lsEstadoCivil = loFila.Field<string>("estado_civil");
+            lsCorreo = loFila.Field<string>("correo");
+            lsTelefono = loFila.Field<string>("telefono");
+            lsTelefonoEmergencia = loFila.Field<string>("telefono_emergencia");
+            lsCelular = loFila.Field<string>("celular");
+            lsNss = loFila.Field<string>("nss");
+
+            if (liEstado > 1)
+            {
+                lsCalle = loFila.Field<string>("calle");
+                lsNumero = loFila.Field<string>("numero");
+                lsCp = Convert.ToString(loFila.Field<int>("cp"));
+                lsColonia = loFila.Field<string>("colonia");
+                lsLocalidad = loFila.Field<string>("ciudad");
+                lsEntidad = loFila.Field<string>("entidad");
+                if (liEstado > 2)
+                {
+                    lsComoEnteraste = loFila.Field<string>("enteraste");
+                    lsCarrera1 = loFila.Field<string>("carrera1");
+                    lsCarrera2 = loFila.Field<string>("carrera2");
+
+                    if (liEstado > 3)
+                    {
+                        lsEsculaProcedencia = loFila.Field<string>("escuela_procedencia");
+                        lsPromedio = loFila.Field<string>("promedio");
+                        lsAñoEgreso = loFila.Field<string>("anio_egreso");
+                    }
+                }
+
+            }
+        }
+
+    }
+}
+
+
+
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>Registro de Datos</h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="x_panel">
+    <div class="container-fluid" id="grad1">
+        <div class="row justify-content-center mt-0">
+            <div class="col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-lg-offset-2 col-lg-8  text-center p-0 mt-3 mb-2">
+                <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+                    <h4>Captura todos los campos de forma correcta</h4>
+                    <div class="row">
+                        <div class="col-md-12 mx-0">
+                            <form id="msform">
+                                <!-- progressbar -->
+                                <ul id="progressbar">
+                                    <li id="account" class="@(@liEstado >= 0 ? "active":"")"><strong>Datos Personales</strong></li>
+                                    <li id="personal" class="@(@liEstado >= 1 ? "active":"")"><strong>Domicilio</strong></li>
+                                    <li id="education" class="@(@liEstado >= 2 ? "active":"")"><strong>Selección de carrera</strong></li>
+                                    <li id="clipboard" class="@(@liEstado >= 3 ? "active":"")"><strong>Escuela de Procedencia</strong></li>
+                                    <li id="confirm" class="@(@liEstado >= 4 ? "active":"")"><strong>Finalizar</strong></li>
+
+                                </ul> <!-- fieldsets -->
+                                <fieldset id="fs_0">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-12 col-md-offset-2 col-md-8 col-lg-offset-2 col-lg-8">
+                                            <h2 class="">Datos Personales</h2>
+                                            <hr />
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 text-align-left">
+                                                    <label>Nombre</label>
+                                                </div>
+                                                <div class="col-lg-8 col-md-9 col-sm-12 col-xs-12 text-align-left">
+                                                    <p>@lsPaterno @lsMaterno @lsNombre </p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 text-align-left">
+                                                    <label>Fecha de Nacimiento</label>
+                                                </div>
+                                                <div class="col-lg-8 col-md-9 col-sm-12 col-xs-12 text-align-left">
+                                                    <p id="txtFechaNacimiento">@lsFechaNacimiento</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 text-align-left">
+                                                    <label>CURP</label>
+                                                </div>
+                                                <div class="col-lg-8 col-md-9 col-sm-12 col-xs-12 text-align-left">
+                                                    <p>@lsCurp</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 text-align-left">
+                                                    <label>NSS</label>
+                                                </div>
+                                                <div class="col-lg-8 col-md-9 col-sm-12 col-xs-12 text-align-left">
+                                                    @if (string.IsNullOrEmpty(lsNss))
+                                                    {
+                                                        <div class="input-icon">
+                                                            <input type="number" id="txtNSS" maxlength="11" autocomplete="nope" placeholder="Ingrese su Número de Seguro Social" />
+                                                            <i class="fa fa-exclamation-circle icon orange"> </i>
+
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p>@lsNss</p>
+                                                    }
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 text-align-left">
+                                                    <label>Telefono</label>
+                                                </div>
+                                                <div class="col-lg-8 col-md-9 col-sm-12 col-xs-12 text-align-left">
+                                                    @if (string.IsNullOrEmpty(lsTelefono))
+                                                    {
+                                                        <div class="input-icon">
+                                                            <input type="number" id="txtTelefono" maxlength="10" autocomplete="nope" placeholder="Ingrese su Número de Teléfono" />
+                                                            <i class="fa fa-exclamation-circle icon orange"> </i>
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p>@lsTelefono</p>
+                                                    }
+
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 text-align-left">
+                                                    <label>Telefono de Emergencia</label>
+                                                </div>
+                                                <div class="col-lg-8 col-md-9 col-sm-12 col-xs-12 text-align-left">
+                                                    @if (string.IsNullOrEmpty(lsTelefonoEmergencia))
+                                                    {
+                                                        <div class="input-icon">
+                                                            <input type="number" id="txtTelefonoEmergencia" maxlength="10" autocomplete="nope" placeholder="Ingrese su Número de Teléfono" />
+                                                            <i class="fa fa-exclamation-circle icon orange"> </i>
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p>@lsTelefonoEmergencia</p>
+                                                    }
+
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 text-align-left">
+                                                    <label>Celular</label>
+                                                </div>
+                                                <div class="col-lg-8 col-md-9 col-sm-12 col-xs-12 text-align-left">
+                                                    @if (string.IsNullOrEmpty(lsCelular))
+                                                    {
+                                                        <div class="input-icon">
+                                                            <input type="text" id="txtCelular" maxlength="10" autocomplete="nope" placeholder="Ingrese su Número Celular" />
+                                                            <i class="fa fa-exclamation-circle icon orange"> </i>
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p>@lsCelular</p>
+                                                    }
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 text-align-left">
+                                                    <label>Estado Civil</label>
+                                                </div>
+                                                <div class="col-lg-8 col-md-9 col-sm-12 col-xs-12 text-align-left">
+                                                    @if (string.IsNullOrEmpty(lsEstadoCivil))
+                                                    {
+                                                        <div class="input-icon">
+                                                            <select class="list-dt" id="cboEstadoCivil" name="cboEstadoCivil">
+                                                                <option selected value="S">Soltero(a)</option>
+                                                                <option value="C">Casado(a)</option>
+                                                                <option value="D">Divorsiado(a)</option>
+                                                                <option value="V">Viudo(a)</option>
+                                                                <option value="U">Union Libre</option>
+                                                            </select>
+                                                            <i class="fa fa-exclamation-circle icon orange"> </i>
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        switch (lsEstadoCivil)
+                                                        {
+                                                            case "S":
+                                                                <p>Soltero(a)</p>
+                                                                break;
+
+                                                            case "C":
+                                                                <p>Casado(a)</p>
+                                                                break;
+
+                                                            case "D":
+                                                                <p>Divorciado(a)</p>
+                                                                break;
+
+                                                            case "V":
+                                                                <p>Viudo(a)</p>
+                                                                break;
+
+                                                            case "U":
+                                                                <p>Unión Libre</p>
+                                                                break;
+                                                        }
+
+                                                    }
+                                                </div>
+                                            </div>
+                                            <hr />
+                                        </div>
+
+
+                                    </div>
+                                    @{
+                                        if (liEstado == 0)
+                                        {
+                                            <input type="button" id="btnGuardarDP" class="btn btn-success" value="Guardar" />
+                                            <input id="btnNextDP" type="button" name="next" class="next btn btn-dark" disabled value="Siguiente" />
+                                        }
+                                        else
+                                        {
+                                            <input type="button" name="next" class="next btn btn-dark" value="Siguiente" />
+                                        }
+
+                                    }
+
+                                </fieldset>
+                                <fieldset id="fs_1">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-12 col-md-offset-2 col-md-8 col-lg-offset-2 col-lg-8">
+                                            <h2 class="">Domicilio</h2>
+                                            <hr />
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 text-align-left">
+                                                    <label>Calle</label>
+                                                </div>
+                                                <div class="col-lg-8 col-md-9 col-sm-12 col-xs-12 text-align-left">
+                                                    @if (string.IsNullOrEmpty(lsCalle))
+                                                    {
+                                                        <div class="input-icon">
+                                                            <input type="text" id="txtCalle" autocomplete="nope" placeholder="Ingrese la calle donde habita" />
+                                                            <i class="fa fa-exclamation-circle icon orange"> </i>
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p>@lsCalle</p>
+                                                    }
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 text-align-left">
+                                                    <label>Número</label>
+                                                </div>
+                                                <div class="col-lg-8 col-md-9 col-sm-12 col-xs-12 text-align-left">
+                                                    @if (string.IsNullOrEmpty(lsNumero))
+                                                    {
+                                                        <div class="input-icon">
+                                                            <input type="text" id="txtNumeroCalle" autocomplete="nope" placeholder="Ingrese el no. de calle" />
+                                                            <i class="fa fa-exclamation-circle icon orange"> </i>
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p>@lsNumero</p>
+                                                    }
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 text-align-left">
+                                                    <label>Código Postal</label>
+                                                </div>
+                                                <div class="col-lg-8 col-md-9 col-sm-12 col-xs-12 text-align-left">
+                                                    @if (string.IsNullOrEmpty(lsCp))
+                                                    {
+                                                        <div class="input-icon">
+                                                            <input type="text" id="txtCodPostal" onblur="autocompleta('Estudiante','');" autocomplete="nope" placeholder="Ingrese el CP" />
+                                                            <i class="fa fa-exclamation-circle icon orange"> </i>
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p> @lsCp </p>
+                                                    }
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 text-align-left">
+                                                    <label>Colonia</label>
+                                                </div>
+                                                <div class="col-lg-8 col-md-9 col-sm-12 col-xs-12 text-align-left">
+                                                    @if (string.IsNullOrEmpty(lsColonia))
+                                                    {
+                                                        <div class="input-icon">
+                                                            <select class="list-dt" id="cboColonia" name="cboColonia">
+                                                                <option selected>Seleccione su CP</option>
+                                                            </select>
+                                                            <i class="fa fa-exclamation-circle icon orange"> </i>
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p> @lsColonia </p>
+                                                    }
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 text-align-left">
+                                                    <label>Ciudad</label>
+                                                </div>
+                                                <div class="col-lg-8 col-md-9 col-sm-12 col-xs-12 text-align-left">
+                                                    @if (string.IsNullOrEmpty(lsLocalidad))
+                                                    {
+                                                        <p id="txtCiudad">Seleccione su CP</p>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p> @lsLocalidad </p>
+                                                    }
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 text-align-left">
+                                                    <label>Entidad</label>
+                                                </div>
+                                                <div class="col-lg-8 col-md-9 col-sm-12 col-xs-12 text-align-left">
+                                                    @if (string.IsNullOrEmpty(lsEntidad))
+                                                    {
+                                                        <p id="txtEstado">Seleccione su CP</p>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p> @lsEntidad </p>
+                                                    }
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <hr />
+                                    </div>
+
+                                    <input type="button" name="previous" class="previous btn btn-info" value="Atras" />
+                                    @*@if (liEstado == 1)
+                                    {*@
+                                        <input type="button" id="btnGuardarDO" class="btn btn-success" value="Guardar" />
+                                        <input id="btnNextDO" type="button" name="next" class="next btn btn-dark" disabled value="Siguiente" />
+
+                                        @*}
+                                        else*@ 
+                                        @if (liEstado > 1)
+                                        {
+                                        <input type="button" name="next" class="next btn btn-dark" value="Siguiente" />
+                                        }
+
+
+                                </fieldset>
+                                <fieldset id="fs_2">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-12 col-md-offset-2 col-md-8 col-lg-offset-2 col-lg-8">
+                                            <h2 class="">Selección de Carrera</h2>
+                                            <hr />
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 text-align-left">
+                                                    <label>¿Cómo se enteró?  </label>
+                                                </div>
+                                                <div class="col-lg-8 col-md-9 col-sm-12 col-xs-12 text-align-left">
+                                                    @if (string.IsNullOrEmpty(lsComoEnteraste))
+                                                    {
+                                                        <div class="input-icon">
+                                                            <select class="list-dt" id="cboEnteraste">
+                                                                <option value="1" selected>Familia</option>
+                                                                <option value="2">Amigos</option>
+                                                                <option value="3">Escuela</option>
+                                                                <option value="4">Internet</option>
+                                                                <option value="5">Estudiantes del I. T. Tláhuac</option>
+                                                                <option value="6">Otro</option>
+                                                            </select>
+                                                            <i class="fa fa-exclamation-circle icon orange"> </i>
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        switch (lsComoEnteraste)
+                                                        {
+                                                            case "1":
+                                                                <p>Familia</p>
+                                                                break;
+                                                            case "2":
+                                                                <p>Amigos</p>
+                                                                break;
+                                                            case "3":
+                                                                <p>Escuela</p>
+                                                                break;
+
+                                                            case "4":
+                                                                <p>Internet</p>
+                                                                break;
+
+                                                            case "5":
+                                                                <p>Estudiantes del I. T. Tláhuac</p>
+                                                                break;
+
+                                                            case "6":
+                                                                <p>Otro</p>
+                                                                break;
+                                                        }
+                                                    }
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 text-align-left">
+                                                    <label>Primera opción de carrera</label>
+                                                </div>
+                                                <div class="col-lg-8 col-md-9 col-sm-12 col-xs-12 text-align-left">
+                                                    @if (string.IsNullOrEmpty(lsCarrera1))
+                                                    {
+                                                        <div class="input-icon">
+                                                            <select class="list-dt" id="cboCarrera1">
+                                                                <option value="1" selected>Arquitectura</option>
+                                                                <option value="2">Ing. en Sistemas Automotrices</option>
+                                                                <option value="3">Ing. en Sistemas Computacionales</option>
+                                                                <option value="4">Ing. Mecatrónica</option>
+                                                                <option value="5">Ing. Electrónica</option>
+                                                                <option value="6">Ing. Ferroviaria</option>
+                                                                <option value="7">Lic. en Administración</option>
+                                                                <option value="8">Contador Público</option>
+                                                            </select>
+                                                            <i class="fa fa-exclamation-circle icon orange"> </i>
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p>@lsCarrera1</p>
+                                                    }
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 text-align-left">
+                                                    <label>Segunda opción de carrera</label>
+                                                </div>
+                                                <div class="col-lg-8 col-md-9 col-sm-12 col-xs-12 text-align-left">
+                                                    @if (string.IsNullOrEmpty(lsCarrera2))
+                                                    {
+                                                        <div class="input-icon">
+                                                            <select class="list-dt" id="cboCarrera2">
+                                                                <option value="1" selected>Arquitectura</option>
+                                                                <option value="2">Ing. en Sistemas Automotrices</option>
+                                                                <option value="3">Ing. en Sistemas Computacionales</option>
+                                                                <option value="4">Ing. Mecatrónica</option>
+                                                                <option value="5">Ing. Electrónica</option>
+                                                                <option value="6">Ing. Ferroviaria</option>
+                                                                <option value="7">Lic. en Administración</option>
+                                                                <option value="8">Contador Público</option>
+                                                            </select>
+                                                            <i class="fa fa-exclamation-circle icon orange"> </i>
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p>@lsCarrera2</p>
+                                                    }
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <hr />
+                                    </div>
+                                    <input type="button" name="previous" class="previous btn btn-info" value="Atras" />
+
+                                    @*@if (liEstado == 2)
+        {
+
+        }*@
+                                    <input type="button" id="btnGuardarSC" class="btn btn-success" value="Guardar"/>
+                                    <input id="btnNextSC" type="button" name="next" class="next btn btn-dark" disabled value="Siguiente" />
+
+                                    @if (liEstado > 2)
+                                    {
+                                        <input type="button" name="next" class="next btn btn-dark" value="Siguiente" />
+                                    }
+
+
+                                </fieldset>
+                                <fieldset id="fs_3">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-12 col-md-offset-2 col-md-8 col-lg-offset-2 col-lg-8">
+                                            <h2 class="">Escuela de Procedencia</h2>
+                                            <hr />
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 text-align-left">
+                                                    <label>Escuela de Egreso</label>
+                                                </div>
+                                                <div class="col-lg-8 col-md-9 col-sm-12 col-xs-12 text-align-left">
+                                                    @if (string.IsNullOrEmpty(lsEsculaProcedencia))
+                                                    {
+                                                        <div class="input-icon">
+                                                            <select class="list-dt" id="cboEscuelaProcedencia">
+                                                                @{
+                                                                    DataTable loEscuelas;
+                                                                    Int16 lsValor = 0;
+                                                                    string lsDescripcion = "";
+                                                                    if (ViewData["EscuelasProcedencia"] != null)
+                                                                    {
+                                                                        loEscuelas = ViewData["EscuelasProcedencia"] as DataTable;
+                                                                        foreach (DataRow loRow in loEscuelas.Rows)
+                                                                        {
+                                                                            lsValor = loRow.Field<Int16>("valor");
+                                                                            lsDescripcion = loRow.Field<string>("descripcion");
+                                                                            <option value="@lsValor">@lsDescripcion</option>
+                                                                        }
+                                                                    }
+                                                                }
+                                                            </select>
+                                                            <i class="fa fa-exclamation-circle icon orange"> </i>
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p>@lsEsculaProcedencia</p>
+                                                    }
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 text-align-left">
+                                                    <label>Año de Egreso</label>
+                                                </div>
+                                                <div class="col-lg-8 col-md-9 col-sm-12 col-xs-12 text-align-left">
+                                                    @if (string.IsNullOrEmpty(lsAñoEgreso))
+                                                    {
+                                                        <div class="input-icon">
+                                                            <input type="text" id="txtAñoEgreso" autocomplete="nope" placeholder="Ingrese el año de egreso" />
+                                                            <i class="fa fa-exclamation-circle icon orange"> </i>
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p>@lsAñoEgreso</p>
+                                                    }
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 text-align-left">
+                                                    <label>Promedio alcanzado</label>
+                                                </div>
+                                                <div class="col-lg-8 col-md-9 col-sm-12 col-xs-12 text-align-left">
+                                                    @if (string.IsNullOrEmpty(lsPromedio))
+                                                    {
+                                                        <div class="input-icon">
+                                                            <input type="text" id="txtPromedio" autocomplete="nope" placeholder="Ingrese su promedio obtenido" />
+                                                            <i class="fa fa-exclamation-circle icon orange"> </i>
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p>@lsPromedio</p>
+                                                    }
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <hr />
+                                    </div>
+                                    <input type="button" name="previous" class="previous btn btn-info" value="Atras" />
+
+                                    @*@if (liEstado == 3)
+        {
+
+        }
+        else*@
+                                    <input type="button" id="btnGuardarEP" class="btn btn-success" value="Guardar" />
+                                    <input id="btnNextEP" type="button" name="next" class="next btn btn-dark" disabled value="Siguiente" />
+
+                                    @if (liEstado > 3)
+                                    {
+                                        <input type="button" name="next" class="next btn btn-dark" value="Siguiente" />
+                                    }
+
+                                </fieldset>
+                                <fieldset id="fs_4">
+                                    <div class="form-card">
+                                      
+                                            <h2 class="fs-title text-center">Felicidades!</h2> <br><br>
+                                            <div class="row justify-content-center">
+                                                <div class="col-3"> <img src="~/Images/100x100/ok.png" class="fit-image"> </div>
+                                            </div> <br><br>
+                                            <div class="row justify-content-center">
+                                                <div class="col-7 text-center">
+                                                    <h5>Haz concluido el registro de forma satisfactoria, ahora debes descargar tu ficha y realizar la aportación correspondiente.</h5>
+                                                    <div class="col-md-offset-4 col-md-4">
+                                                        <a href="@Url.Action("FichaAspirante","Reportes",new {id= "PDF"})" class="btn btn-block btn-success" role="button">Imprimir Ficha</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        
+
+                                    </div>
+                                    <input type="button" name="previous" class="previous btn btn-info" value="Atras" />
+  
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="~/Scripts/ManejoDatos/Aspirantes/RegistroDatos.js"></script>
+<script src="~/Scripts/ManejoDatos/Domicilio.js"></script>
+<script>
+    $(document).ready(function () {
+
+        var current_fs, next_fs, previous_fs; //fieldsets
+        var opacity;
+
+        $("fieldset").hide();
+
+        $("@("#fs_"+liEstado)").show();
+
+        $(".next").click(function () {
+
+            current_fs = $(this).parent();
+            next_fs = $(this).parent().next();
+
+            //Add Class Active
+            $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+            //show the next fieldset
+            next_fs.show();
+            //hide the current fieldset with style
+            current_fs.animate({ opacity: 0 }, {
+                step: function (now) {
+                    // for making fielset appear animation
+                    opacity = 1 - now;
+
+                    current_fs.css({
+                        'display': 'none',
+                        'position': 'relative'
+                    });
+                    next_fs.css({ 'opacity': opacity });
+                },
+                duration: 600
+            });
+        });
+
+        $(".previous").click(function () {
+
+            current_fs = $(this).parent();
+            previous_fs = $(this).parent().prev();
+
+            //Remove class active
+            $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+
+            //show the previous fieldset
+            previous_fs.show();
+
+            //hide the current fieldset with style
+            current_fs.animate({ opacity: 0 }, {
+                step: function (now) {
+                    // for making fielset appear animation
+                    opacity = 1 - now;
+
+                    current_fs.css({
+                        'display': 'none',
+                        'position': 'relative'
+                    });
+                    previous_fs.css({ 'opacity': opacity });
+                },
+                duration: 600
+            });
+        });
+
+
+    });
+</script>

@@ -1,0 +1,705 @@
+﻿
+<link rel="stylesheet" href="~/Content/themes/PerfilUsuario.css" />
+
+@using Sapei.Framework.Utilerias;
+@using System.Data;
+
+
+@{ string lsNombre = "";
+    string lsPaterno = "";
+    string lsMaterno = "";
+    string lsCurp = "";
+    string lsRfc = "";
+    string lsSexo = "";
+    string F = "F";
+    string lsNacionalidad = "";
+    string MX = "MX";
+    string NE = "NE";
+    string EX = "EX";
+    string lsFecha = "";
+    string lsEstado = "";
+    string lsEstadoC = "";
+    string lsCorreo = "";
+    string lsTelefono = "";
+    string lsTelefonoC = "";
+    string lsCalle = "";
+    string lsNumero = "";
+    int lsCp = 0;
+    string lsEntidad = "";
+    string lsColonia = "";
+    string lsLocalidad = "";
+    string lsNoControl = "";
+    string lsControl = "";
+    string lsNomCarrera = "";
+    string lsPlan_Estudios = "";
+    string lsPeriodo_Ingreso = "";
+    string lsTipo_Ingreso = "";
+    int lsSemestre = 0;
+    int lsCreditos_Cursados = 0;
+    int lsCreditos_Aprobados = 0;
+    double lsPromedio_Acumulado = 0;
+    int lsPorcentaje = 0;
+    string lsEspecialidad = "";
+    int lsAnio_Egreso = 0;
+    double lsPromedio_Procedencia = 0;
+    string lsEscuela_Procedencia = " ";
+    int liEstado = 0;
+    int liEstadoFotoEscolar = 0;
+
+    //personal
+    string lsFecha_NPer = " ";
+    string lsNivel_Estudios = "";
+    string lsFecha_titulacion = " ";
+    string lsCedula_Profesional = "";
+    string lsNSS = "";
+
+
+    var Estudiante = Sapei.Framework.Configuracion.enmTipoUsuario.ESTUDIANTE;
+    var Personal = Sapei.Framework.Configuracion.enmTipoUsuario.PERSONAL;
+    var tipoUsuario = SesionSapei.Sistema.Sesion.Usuario.TipoUsuario;
+
+    DataRow loFila;
+    DataTable loDTOS;
+    if (ViewData["Datos"] != null)
+    {
+        loFila = (ViewData["Datos"] as System.Data.DataTable).Rows[0];
+        loDTOS = ViewData["Datos"] as System.Data.DataTable;
+        lsNombre = loFila.Field<string>("nombre");
+        lsPaterno = loFila.Field<string>("paterno");
+        lsMaterno = loFila.Field<string>("materno");
+
+        lsNacionalidad = loFila.Field<string>("nacionalidad");
+        lsSexo = loFila.Field<string>("sexo");
+        lsCurp = loFila.Field<string>("curp");
+
+        lsEstadoC = loFila.Field<string>("estado_civil");
+        lsCorreo = loFila.Field<string>("correo");
+        lsTelefono = loFila.Field<string>("telefono");
+        lsCalle = loFila.Field<string>("calle");
+        lsNumero = loFila.Field<string>("numero");
+        lsColonia = loFila.Field<string>("colonia");
+
+        lsEntidad = loFila.Field<string>("entidad");
+        lsLocalidad = loFila.Field<string>("ciudad_localidad");
+        lsCp = loFila.Field<int>("cp");
+
+
+        lsNSS = loFila.Field<string>("NSS");
+
+        if (SesionSapei.Sistema.Sesion.Usuario.TipoUsuario == Sapei.Framework.Configuracion.enmTipoUsuario.ESTUDIANTE)
+        {
+            lsEstado = loFila.Field<string>("entidad_nac");
+            lsFecha = loFila.Field<string>("fecha_nacimiento");
+
+            lsTelefonoC = loFila.Field<string>("celular");
+            lsNoControl = loFila.Field<string>("no_de_control");
+            lsNomCarrera = loFila.Field<string>("nombre_carrera");
+            lsSemestre = loFila.Field<int>("semestre");
+            lsEspecialidad = loFila.Field<string>("descripcion_especialidad");
+            lsPlan_Estudios = loFila.Field<string>("plan_de_estudios");
+            lsPeriodo_Ingreso = loFila.Field<string>("periodo_ingreso");
+            lsTipo_Ingreso = loFila.Field<string>("tipo_ingreso");
+            lsCreditos_Cursados = loFila.Field<int>("creditos_cursados");
+            lsCreditos_Aprobados = loFila.Field<int>("creditos_aprobados");
+            lsPromedio_Acumulado = loFila.Field<double>("promedio_aritmetico_acumulado");
+            lsPorcentaje = loFila.Field<int>("porcentaje");
+
+            lsAnio_Egreso = loFila.Field<int>("anio_egreso");
+            lsPromedio_Procedencia = loFila.Field<double>("promedio_procedencia");
+            lsEscuela_Procedencia = loFila.Field<string>("escuela_procedencia");
+
+            lsControl = Convert.ToString(loFila.RegresaValor<string>("no_de_control"));
+            liEstado = loFila.RegresaValor<int>("estado_foto");
+            //liEstadoFotoEscolar = loFila.RegresaValor<int>("foto"); foto_escolar
+
+
+        }
+        else if (SesionSapei.Sistema.Sesion.Usuario.TipoUsuario == Sapei.Framework.Configuracion.enmTipoUsuario.DOCENTE)
+        {
+            lsFecha_NPer = loFila.Field<string>("fecha_nacimiento");
+            lsSexo = loFila.Field<string>("sexo");
+            lsRfc = loFila.Field<string>("rfc");
+            lsNivel_Estudios = loFila.Field<string>("nivel_estudios");
+            lsFecha_titulacion = loFila.Field<string>("fecha_titulacion");
+            lsCedula_Profesional = loFila.Field<string>("cedula_profesional");
+
+            lsNomCarrera = loFila.Field<string>("nombre_carrera");
+
+
+        }
+    }
+}
+
+<!-- Datos Est-->
+<div id="DatosPerfil" class="container emp-profile x_panel">
+
+    <div class="row">
+        <input type="hidden" id="hidControl" value="@lsControl" />
+
+        <div class="col-md-3 col-sm-4 col-xs-12">
+            <div class="row center-margin">
+                @{ if (liEstado == 0)
+                    {
+        <div id="profile-container">
+            <image id="profileImage" src="~/Images/Foto.png" width="50" height="50" />
+        </div>
+
+                        <input id="imageUpload" type="file"
+                               name="profile_photo" placeholder="Photo" required="" capture="">
+
+
+                                        <script>
+
+                                            $(document).ready(function () {
+                                                $('#imageUpload').change(function () {
+                                                    var $file = document.getElementById('imageUpload'),
+                                                        formData = new FormData();
+
+                                                    if ($file.files.length > 0) {
+                                                        for (var i = 0; i < $file.files.length; i++) {
+                                                            formData.append('file-' + i, $file.files[i]);
+                                                        }
+                                                    }
+                                                    formData.append("clave_doc", "6");
+                                                    $.ajax({
+                                                        url: '../../EstudianteExpDig/GuardaDocumento',
+                                                        type: 'POST',
+                                                        data: formData,
+                                                        dataType: 'json',
+                                                        contentType: false,
+                                                        processData: false,
+                                                        dropZoneEnabled: false,
+                                                    });
+                                                });
+
+                                            });
+
+                                        </script>
+ }
+                                    else if (liEstado == 1)
+                                    {
+
+                                        if (ViewData["pdfbase64"] != null)
+                                        {
+                        <div id="profile-container">
+                            <image id="profileImage" src="data:image/jpg;base64,@ViewData["pdfbase64"].ToString()" width="50" height="50" />
+                        </div>
+                                            <input id="imageUpload" type="file"
+                                                   name="profile_photo" placeholder="Photo" required="" capture="">
+
+                                                                <script>
+
+                                                                    $(document).ready(function () {
+                                                                        $('#imageUpload').change(function () {
+                                                                            var $file = document.getElementById('imageUpload'),
+                                                                                formData = new FormData();
+
+                                                                            if ($file.files.length > 0) {
+                                                                                for (var i = 0; i < $file.files.length; i++) {
+                                                                                    formData.append('file-' + i, $file.files[i]);
+                                                                                }
+                                                                            }
+                                                                            formData.append("clave_doc", "6");
+                                                                            $.ajax({
+                                                                                url: '../../EstudianteExpDig/GuardaDocumento',
+                                                                                type: 'POST',
+                                                                                data: formData,
+                                                                                dataType: 'json',
+                                                                                contentType: false,
+                                                                                processData: false,
+                                                                                dropZoneEnabled: false,
+                                                                            });
+                                                                        });
+
+                                                                    });
+
+                                                                </script>
+ }
+
+                                                        } }
+            </div>
+        </div>
+
+        <div class="col-md-9 col-sm-8 col-xs-12">
+            <div class="row">
+                <div class="profile-head">
+                    <h4>
+                        @lsNombre @lsPaterno @lsMaterno
+                    </h4>
+                    <h5>@lsNomCarrera</h5>
+
+                    @if (tipoUsuario == Estudiante)
+                    {
+        <p class="proile-rating">
+            % de Avance :
+            <span>@lsPorcentaje/100</span>
+        </p> }
+    else
+    {
+<p class="proile-rating">
+    <span></span>
+</p>}
+
+
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link " id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Datos Personales</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#Domicilio" role="tab" aria-controls="Domicilio" aria-selected="false">Domicilio</a>
+                        </li>
+                        @if (tipoUsuario == Estudiante)
+                        {
+            <li class="nav-item">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#DatosE" role="tab" aria-controls="DatosPer" aria-selected="false">Datos Escolares</a>
+            </li>
+                            <li>
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#EscuelaPro" role="tab" aria-controls="EscuelaPro" aria-selected="false">Escuela de Procedencia</a>
+                            </li>
+ }
+                        else if (tipoUsuario == Personal)
+                        {
+            <li class="nav-item">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#DatosPer" role="tab" aria-controls="DatosPer" aria-selected="false">Datos Escolares</a>
+            </li>
+}
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="tab-content profile-tab" id="myTabContent">
+                    <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <label>Nombre</label>
+                            </div>
+                            <div class="col-md-5 col-sm-7 col-xs-12">
+                                <p>@lsPaterno @lsMaterno @lsNombre </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <label>CURP</label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <p>@lsCurp</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <label>NSS</label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <p>@lsNSS</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <label>Género</label>
+                            </div>
+                            @if (lsSexo == F)
+                            {
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <p>Femenino</p>
+                </div> }
+            else
+            {
+<div class="col-md-6 col-sm-6 col-xs-12">
+    <p>Masculino</p>
+</div>}
+
+                        </div>
+
+                        @if (tipoUsuario == Estudiante)
+                        {
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <label>Fecha de Nacimiento</label>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <p>@lsFecha</p>
+                </div>
+            </div> }
+        else if (tipoUsuario == Personal)
+        {
+<div class="row">
+    <div class="col-md-4 col-sm-4 col-xs-12">
+        <label>Fecha de Nacimiento</label>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <p>@lsFecha_NPer</p>
+    </div>
+</div>}
+
+
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <label>Nacionalidad</label>
+                            </div>
+                            @if (lsNacionalidad == MX)
+                            {
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <p>Mexicano(a)</p>
+                </div> }
+            else if (lsNacionalidad == NE)
+            {
+<div class="col-md-6 col-sm-6 col-xs-12">
+    <p>Extranjero(a)</p>
+</div> }
+else if (lsNacionalidad == EX)
+{
+<div class="col-md-6 col-sm-6 col-xs-12">
+    <p>Extranjero(a)</p>
+</div>}
+
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <label>Estado Civil</label>
+                            </div>
+
+                            @switch (lsEstadoC)
+                            {
+
+                                case "S":
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <p>Soltero(a)</p>
+                </div> break;
+
+            case "C":
+<div class="col-md-6 col-sm-6 col-xs-12">
+    <p>Casado(a)</p>
+</div> break;
+
+case "D":
+<div class="col-md-6 col-sm-6 col-xs-12">
+    <p>Divorciado(a)</p>
+</div> break;
+
+case "V":
+<div class="col-md-6 col-sm-6 col-xs-12">
+    <p>Viudo(a)</p>
+</div> break;
+
+case "U":
+<div class="col-md-6 col-sm-6 col-xs-12">
+    <p>Unión Libre</p>
+</div>break;
+
+}
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <label>Correo</label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <p>@lsCorreo</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <label>Teléfono Casa</label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <p>@lsTelefono</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <label>Teléfono Celular</label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <p>@lsTelefonoC</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="Domicilio" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <label>Domicilio</label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <p>@lsCalle</p>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <label>Colonia</label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <p>@lsColonia</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <label>Alcaldía o Municipio</label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <p>@lsLocalidad</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <label>Código Postal</label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <p>@lsCp</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <label>Entidad Federativa</label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <p>@lsEntidad</p>
+                            </div>
+                        </div>
+
+
+                        <div class="row"></div>
+                    </div>
+                    <!--Datos Escolares Estudiante-->
+                    <div class="tab-pane fade" id="DatosE" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <label>Periodo de Ingreso</label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <p>@lsPeriodo_Ingreso</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <label>Plan  de Estudios</label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <p>@lsPlan_Estudios</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <label>No.Control</label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <p>@lsNoControl</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <label>Semestre</label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <p>@lsSemestre</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <label>Carrera</label>
+                            </div>
+                            <div class="col-md-6 col-sm-7 col-xs-12">
+                                <p>@lsNomCarrera</p>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <label>Especialidad</label>
+                            </div>
+                            <div class="col-md-6 col-sm-7 col-xs-12">
+                                <p>@lsEspecialidad</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <label>Creditos Cursados</label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <p>@lsCreditos_Cursados</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <label>Creditos Aprobados</label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <p>@lsCreditos_Aprobados</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <label>Promedio Acumulado</label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <p>@lsPromedio_Acumulado</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <label>% Avance</label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <p>@lsPorcentaje</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <label>Consulta tu Horario</label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <a onclick="" id="btnMostrarHorario" data-ajax="true" data-ajax-method="POST" data-ajax- data-ajax-mode="replace"
+                                   data-ajax-update="#divModalVistaParcial" data-ajax-complete="AbreModalGeneral" href="/Estudiante/HorarioActividades">
+                                    Abrir
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <label>Consulta tu Reticula</label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <a onclick="" id="btnMostrarHorario" data-ajax="true" data-ajax-method="GET" data-ajax- data-ajax-mode="replace"
+                                   data-ajax-update="#divModalVistaParcial" data-ajax-complete="AbreModalGeneral" href="/Reticula/Consulta">
+                                    Abrir
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--Termina DE-->
+                    <!--Escuela Procedencia-->
+                    <div class="tab-pane fade" id="EscuelaPro" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <label>Escuela de Procedencia</label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <p>@lsEscuela_Procedencia</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <label>Año de Egreso</label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <p>@lsAnio_Egreso</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <label>Promedio</label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <p>@lsPromedio_Procedencia</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End Escuela Procedencia-->
+                    <!--Datos Escolares Personal-->
+                    <div class="tab-pane fade" id="DatosPer" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <label>Nivel de Estudios</label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <p>@lsNivel_Estudios</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <label>Carrera</label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <p>@lsNomCarrera</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <label>Cedula Profesional</label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <p>@lsCedula_Profesional</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <label>Feecha de titulación</label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <p>@lsFecha_titulacion</p>
+                            </div>
+                        </div>
+
+                        <div class="row"></div>
+
+                        <div class="row">
+                            <label>Si sus datos son erroneos favor de comunicarse con Recursos Humanos. </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row"></div>
+    <!--Paginas-->
+    @if (tipoUsuario == Estudiante)
+    {
+
+<div class="row">
+    <div class="col-md-4 col-sm-6 col-xs-6">
+
+        <div class="profile-work">
+
+            <p>Otros sitios de Interés</p>
+            <a href="https://www.tecnm.mx/" target="_blank">Tecnológico Nacional de México</a>
+            <br />
+            <a href="https://tlahuac.tecnm.mx/" target="_blank">Instituto Tecnológico de Tláhuac</a>
+            <br />
+            <a href="http://escolares.tlahuac.tecnm.mx/" target="_blank">Página de Servicios Escolares</a>
+            <br />
+            <a href="http://dep.tlahuac.tecnm.mx/" target="_blank">Página de División de Estudios</a>
+            <br />
+            <a href="http://vinculacion.tlahuac.tecnm.mx/" target="_blank">Página de Gestión Tecnológica y Vinculación </a>
+            <br />
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-6">
+            <div class="profile-work">
+                <p>Cuentas Institucionales</p>
+                <a data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#BodyPrincipal" href="../Cuentas">Teams</a>
+                <br />
+            </div>
+        </div>
+    </div>
+</div>}
+
+</div>
+
+
+@Html.Partial("../Generales/ModalVistasParciales")
+
+
+<script src="~/Scripts/ManejoDatos/Generales/CambiaFotoPerfil.js"></script>
+
+<script src="~/Scripts/ManejoDatos/Estudiantes/InformacionEscolar.js"></script>
+<script src="~/Scripts/ManejoDatos/Generales/TecnologicoGeneral.js"></script>
+

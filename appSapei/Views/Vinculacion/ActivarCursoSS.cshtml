@@ -1,0 +1,29 @@
+﻿<input type="hidden" id="hidPeriodo" value="@ViewData[" periodo_curso"]" />
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2>Curso de Inducción</h2>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <form id="frmAperturaCurso" data-parsley-validate class="form-horizontal form-label-left">
+            <div class="form-group">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    Título de Curso
+                    <input type="text" id="txtTitulo" value="@ViewData[" txtTitulo"]" class="form-control col-md-7 col-xs-12" required />
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    Ingrese la URL del video
+                    <input type="text" id="txtUrl" value="@ViewData[" txtUrl"]" class="form-control col-md-7 col-xs-12" required />
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-12">
+                <button type="submit" id="btnGuardar" class="btn btn-success">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@Html.Partial("../Generales/TablaGeneral")
+
+<script src="~/Scripts/ManejoDatos/Vinculacion/ActivarCursoSS.js"></script>

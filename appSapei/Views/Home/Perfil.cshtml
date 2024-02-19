@@ -1,0 +1,328 @@
+﻿@using Sapei.Framework.Utilerias;
+@using System.Data;
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>  </h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="x_panel">
+    <div class="x_title">
+        <h2>Perfil</h2>
+        <div class="clearfix">
+            <div class="x_content" style="overflow-x: auto;">
+                <div>
+                    <div class="row" style="min-width:1000px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @{
+        string lsNombre = "";
+        string lsPaterno = "";
+        string lsMaterno = "";
+        string lsCurp = "";
+        string lsRfc = "";
+        string lsSexo = "";
+        string F = "F";
+        string lsFecha = "";
+        string lsEstado = "";
+        string lsEstadoC = "";
+        string lsCorreo = "";
+        string lsTelefono = "";
+        string lsCalle = "";
+        string lsNumero = "";
+        int lsCp = 0;
+        string lsEntidad = "";
+        string lsColonia = "";
+        string lsNoControl = "";
+        string lsNomCarrera = "";
+        string lsPlan_Estudios = "";
+        string lsPeriodo_Ingreso = "";
+        string lsTipo_Ingreso = "";
+        int lsSemestre = 0;
+        int lsCreditos_Cursados = 0;
+        int lsCreditos_Aprobados = 0;
+        double lsPromedio_Acumulado = 0;
+        string lsEspecialidad = "";
+
+
+
+        DataRow loFila;
+        if (ViewData["Datos"] != null)
+        {
+            loFila = (ViewData["Datos"] as System.Data.DataTable).Rows[0];
+            lsNombre = loFila.Field<string>("nombre");
+            lsPaterno = loFila.Field<string>("paterno");
+            lsMaterno = loFila.Field<string>("materno");
+            lsCurp = loFila.Field<string>("curp");
+            lsSexo = loFila.Field<string>("sexo");
+            lsFecha = loFila.Field<string>("fecha_nacimiento");
+            lsEstado = loFila.Field<string>("entidad_nac");
+            lsEstadoC = loFila.Field<string>("estado_civil");
+            lsCorreo = loFila.Field<string>("correo");
+            lsTelefono = loFila.Field<string>("telefono");
+            lsCalle = loFila.Field<string>("calle");
+            lsNumero = loFila.Field<string>("numero");
+            lsCp = loFila.Field<int>("cp");
+            lsEntidad = loFila.Field<string>("entidad");
+            lsColonia = loFila.Field<string>("colonia");
+
+
+
+            if (SesionSapei.Sistema.Sesion.Usuario.TipoUsuario == Sapei.Framework.Configuracion.enmTipoUsuario.ESTUDIANTE)
+            {
+                lsNoControl = loFila.Field<string>("no_de_control");
+                lsNomCarrera = loFila.Field<string>("nombre_carrera");
+                lsSemestre = loFila.Field<int>("semestre");
+                lsEspecialidad = loFila.Field<string>("especialidad");
+                lsPlan_Estudios = loFila.Field<string>("plan_de_estudios");
+                lsPeriodo_Ingreso = loFila.Field<string>("periodo_ingreso");
+                lsTipo_Ingreso = loFila.Field<string>("tipo_ingreso");
+                lsCreditos_Cursados = loFila.Field<int>("creditos_cursados");
+                lsCreditos_Aprobados = loFila.Field<int>("creditos_aprobados");
+                // lsPromedio_Anterior = loFila.Field<int>("promedio_anterior");
+                lsPromedio_Acumulado = loFila.Field<double>("promedio_aritmetico_acumulado");
+
+
+            }
+            if(SesionSapei.Sistema.Sesion.Usuario.TipoUsuario == Sapei.Framework.Configuracion.enmTipoUsuario.PERSONAL)
+            {
+                lsRfc = loFila.Field<string>("rfc");
+            }
+        }
+
+    }
+
+
+    <div class="form-group col-md-12 center-margin">
+        <div class="row">
+            <div class="col-md-5 col-sm-5 col-xs-12 form-group bg-white">
+                <label>
+                    Foto
+                </label>
+                <input type="file" name="file" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-5 col-sm-5 col-xs-12 form-group bg-tecnm">
+                <label for="tags">
+                    Apellido Paterno
+                </label>
+                <input type="text" class="form-control bg-white" id="txtPaterno" value="@lsPaterno" placeholder="Apellido paterno" readonly />
+            </div>
+            <div class="col-md-5 col-sm-5 col-xs-12 form-group bg-tecnm">
+                <label for="tags">
+                    Apellido Materno
+                </label>
+                <input type="text" class="form-control bg-white" id="txtMaterno" value="@lsMaterno" readonly />
+            </div>
+            <div class="col-md-5 col-sm-5 col-xs-12 form-group bg-tecnm">
+                <label for="tags">
+                    Nombre (s)
+                </label>
+                <input type="text" class="form-control bg-white" id="txtNombre" value="@lsNombre" placeholder="Nombre (s)" readonly />
+            </div>
+            <div class="col-md-3 col-sm-5 col-xs-12 form-group bg-tecnm">
+                <label>
+                    CURP
+                </label>
+                <input type="text" class="form-control bg-white" id="txtCurp" value="@lsCurp" placeholder="CURP" readonly />
+            </div>
+
+            <div class="col-md-4 col-sm-4 col-xs-12 form-group bg-tecnm">
+                <label for="tags">
+                    Género
+                </label>
+                <div class="radio">
+
+                    @if (lsSexo == F)
+                    {
+                        <label for="tags">
+                            <input type="radio" name="rbtSexo" id="rdbMujer" value="@lsSexo" checked="checked">
+                            Mujer
+                        </label>
+                    }
+                    else
+                    {
+                        <label></label>
+                        <label for="tags">
+                            <input type="radio" name="rbtSexo" id="rdbHombre" value="@lsSexo" checked="">
+                            Hombre
+                        </label>
+                    }
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-12 form-group bg-tecnm">
+                <label>
+                    Fecha de Nacimiento
+                </label>
+                <input type="text" class="form-control bg-white" id="txtFechaNacimiemto" value="@lsFecha" placeholder="Fecha de nacimiento" readonly />
+
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12 form-group bg-tecnm">
+                <label for="tags">
+                    Estado de Nacimiento
+                </label>
+                <input type="text" class="form-control bg-white" id="txtEstadoN" value="@lsEstado" placeholder="Estado de Nacimiento" readonly />
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12 form-group bg-tecnm">
+                <label for="tags">
+                    Estado Civil
+                </label>
+                <input type="text" class="form-control bg-white" id="txtEstadoCivil" value="@lsRfc" placeholder="Estado Civil" readonly />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-12 form-group bg-tecnm">
+                <label>
+                    Correo
+                </label>
+                <input type="text" class="form-control bg-white" id="txtCorreo" value="@lsCorreo" placeholder="Correo" readonly />
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12 form-group bg-tecnm">
+                <label>
+                    Teléfono
+                </label>
+                <input type="text" class="form-control bg-white" id="txtCorreo" value="@lsTelefono" placeholder="Teléfono" readonly />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2>Domicilio</h2>
+        <div class="clearfix"></div>
+    </div>
+    <div class="form-group col-md-12 center-margin">
+
+        <div class="row">
+            <div class="col-md-5 col-sm-5 col-xs-7 form-group bg-tecnm">
+                <label for="tags">
+                    Domicilio
+                </label>
+                <input type="text" class="form-control bg-white" id="txtDomicilio" value="@lsCalle" placeholder="Domicilio" readonly />
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-6 form-group bg-tecnm">
+                <label>
+                    CP
+                </label>
+                <input type="text" class="form-control bg-white" id="txtCP" value="@lsCp" placeholder="CP" readonly />
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-6 form-group bg-tecnm">
+                <label>
+                    Colonia
+                </label>
+                <input type="text" class="form-control bg-white" id="txtColonia" value="@lsColonia" placeholder="Colonia" readonly />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-6 form-group bg-tecnm">
+                <label>
+                    Cuidad
+                </label>
+                <input type="text" class="form-control bg-white" id="txtCuidad" value=" @lsEstado" placeholder="Cuidad" readonly />
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-6 form-group bg-tecnm">
+                <label>
+                    Entidad Federativa
+                </label>
+                <input type="text" class="form-control bg-white" id="txtEntidad" value="@lsEntidad" placeholder="Entidad federativa" readonly />
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="x_panel" id="datosEscolares">
+    <div class="x_title">
+        <h2>Datos Escolares</h2>
+        <div class="clearfix"></div>
+    </div>
+    <div class="form-group col-md-12 center-margin">
+
+        <div class="row">
+            <div class="col-md-5 col-sm-5 col-xs-7 form-group bg-tecnm">
+                <label for="tags">
+                 Promedio Anterior
+                </label>
+                <input type="text" class="form-control bg-white" id="txtProcedencia" value="@lsTipo_Ingreso" placeholder="Procedencia" readonly />
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-6 form-group bg-tecnm">
+                <label>
+                    Promedio Acumulado
+                </label>
+                <input type="text" class="form-control bg-white" id="txtPromedio" value="@lsPlan_Estudios" placeholder="Promedio" readonly />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-6 form-group bg-tecnm">
+                <label>
+                    Periodo de Ingreso
+                </label>
+                <input type="text" class="form-control bg-white" id="txtIngreso" value="@lsPeriodo_Ingreso " placeholder="Ingreso" readonly />
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-3 form-group bg-tecnm">
+                <label>
+                    No. Control
+                </label>
+                <input type="text" class="form-control bg-white" id="txtNoControl" value="@lsNoControl" placeholder="No.Control" readonly />
+            </div>
+            <div class="col-md-5 col-sm-5 col-xs-12 form-group bg-tecnm">
+                <label>
+                    Carrera
+                </label>
+                <input type="text" class="form-control bg-white" id="txtCarrera" value="@lsNomCarrera" placeholder="Carrera" readonly />
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-6 form-group bg-tecnm">
+                <label>
+                    Especialidad
+                </label>
+                <input type="text" class="form-control bg-white" id="txtEspecialidad" value="@lsEspecialidad" placeholder="Especialidad" readonly />
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-6 form-group bg-tecnm">
+                <label>
+                    Semestre
+                </label>
+                <input type="text" class="form-control bg-white" id="txtSemestre" value="@lsSemestre" placeholder="Semestre" readonly />
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-6 form-group bg-tecnm">
+                <label>
+                    Promedio Acumulado
+                </label>
+                <input type="text" class="form-control bg-white" id="txtPromedio" value="@lsPromedio_Acumulado " placeholder="Promedio" readonly />
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-6 form-group bg-tecnm">
+                <label>
+                    Créditos Cursados
+                </label>
+                <input type="text" class="form-control bg-white" id="txtCursados" value="@lsCreditos_Cursados " placeholder="Cursados" readonly />
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-6 form-group bg-tecnm">
+                <label>
+                    Créditos Aprobados
+                </label>
+                <input type="text" class="form-control bg-white" id="txtAprovados" value="@lsCreditos_Aprobados" placeholder="Aprobados" readonly />
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script src="~/Scripts/ManejoDatos/DatosPersonales.js"></script>
+

@@ -1,0 +1,138 @@
+﻿@using Sapei.Framework.Utilerias;
+
+<div class="page-title">
+    <div class="title_left">
+    </div>
+</div>
+<div class="clearfix"></div>
+
+<div class="x_panel">
+    <div class="col-md-12">
+        <div class="heading-container">
+            <div class="heading-block ">
+                <h1 class="lang">@ViewData["Titulo"].ToString()</h1>
+                @Html.Partial("../Generales/BuscaNoControl")
+
+                <div class="heading-description ">
+                    @{
+                        if (ViewData["Modulo"] != null)
+                        {
+                            switch (ViewData["Modulo"].ToString())
+                            {
+                                case "InscripcionExtemporanea":
+                                    <p>Inscripción extemporanea</p>
+                                    <p align="justify">
+                                        a) Sólo se permite registro de estudiantes que cumplen los requisitos estipulados en el manual de operación y/o acuerdos internos.
+                                    </p>
+                                    <p align="justify">
+                                        b) La tabla de búsqueda, muestra a los alumnos que cumplen con lo requerido para iniciar el servicio social, pero no están registrados.
+                                    </p>
+                                    break;
+                                case "Preregistro":
+                                    <p>
+                                        Este módulo permite el pre-registro de estudiantes al servicio social, de estudiantes presentes en la reunión de inicio al proceso.
+                                        Se considera a candidatos, los estudiantes que sumados los creditos aprobados
+                                        y los que este cursando, superen el porcentaje de creditos requeridos por carrera.
+                                    </p>
+
+                                    break;
+                                case "AvanceProcesoSS":
+                                    <strong>Pre-Registro</strong>
+                                    <p align="justify">
+                                        Este módulo permite dar seguimiento al proceso de servicio social de cada estudiante, y funciones como:
+                                    </p>
+                                    <p align="justify">
+                                        a) Seguimiento: Permite conocer el estado actual del proceso del estudiante.
+                                    </p>
+                                    <p align="justify">
+                                        b) Eliminar: Si es requerido, se puede eliminar el proceso de cualquier estudiante.
+                                    </p>
+
+
+                                    break;
+                            }
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+        <div id="divDatos"></div>
+        <div class="heading-container-footer"></div>
+    </div>
+</div>
+
+
+
+
+@*<div class="x_panel">
+        @Html.Partial("../Generales/BuscaNoControl")
+        <div class="col-md-7 center-margin" id="MuestraDetalles">
+            <div id="divInformacion" class="row">
+
+                <div class="x_title col-md-12 col-sm-12 col-xs-12 text-justify">
+                    @{
+                        if (ViewData["Modulo"] != null)
+                        {
+                            switch (ViewData["Modulo"].ToString())
+                            {
+                                case "InscripcionExtemporanea":
+                                    <strong>Inscripción extemporanea</strong>
+                                    <p align="justify">
+                                        Este módulo permite el registro de estudiantes al servicio social.
+                                    </p>
+                                    <p align="justify">
+                                        a) Sólo se permite registro de estudiantes que cumplen los requisitos estipulados en el manual de operación y/o acuerdos internos.
+                                    </p>
+                                    <p align="justify">
+                                        b) La tabla de búsqueda, muestra a los alumnos que cumplen con lo requerido para iniciar el servicio social, pero no están registrados.
+                                    </p>
+                                    break;
+                                case "Preregistro":
+                                    <strong>Seguimiento de Proceso</strong>
+                                    <p align="justify">
+                                        Este módulo permite el pre-registro de estudiantes al servicio social.
+                                    </p>
+                                    <p align="justify">
+                                        a) Se considera a candidatos, los estudiantes que sumados los creditos aprobados y los crditos que este cursando, superen el 67% de creditos totales
+                                    </p>
+                                    <p align="justify">
+                                        b) Al autorizar el registro, igual se valida la participación del estudiante en la reunion de inicio del servicio social
+                                    </p>
+                                    <p align="justify">
+                                        c) Si al termino del semestre, el estudiante no consigue el 67% de avance requerido, el sistema bloqueará el avance.
+                                    </p>
+                                    <p align="justify">
+                                        d) Si al inicio del próximo periodo, el estudiante no cubre el pago, el sistema bloqueará el avance.
+                                    </p>
+                                    break;
+                                case "AvanceProcesoSS":
+                                    <strong>Pre-Registro</strong>
+                                    <p align="justify">
+                                        Este módulo permite dar seguimiento al proceso de servicio social de cada estudiante, y funciones como:
+                                    </p>
+                                    <p align="justify">
+                                        a) Seguimiento: Permite conocer el estado actual del proceso del estudiante.
+                                    </p>
+                                    <p align="justify">
+                                        b) Eliminar: Si es requerido, se puede eliminar el proceso de cualquier estudiante.
+                                    </p>
+
+                                    break;
+                            }
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>*@
+@Html.Partial("../Generales/ModalVisorPDF")
+@Html.Partial("../Generales/ModalTablaDatos")
+
+<script>
+
+
+
+
+</script>
+
+

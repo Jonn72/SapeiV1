@@ -1,0 +1,145 @@
+﻿<div class="page-title">
+    <div class="title_left">
+        <h3>Grupos <small>Paralelos</small></h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+<input type="hidden" value="@Html.Raw(ViewData["Periodo"])" id="hidPeriodo" />
+<div id="divContenedor" class="x_panel col-lg-12 col-md-12 col-xs-12 col-sm-12">
+    <div class="x_title">
+        <h2>Administración de grupos paralelos</h2> &nbsp; <button class="btn btn-default btn-success" id="btnBuscarNoControlTabla" title="Mostrar Datos" type="button"><i class="fa fa-table"></i></button>
+        <div class="clearfix"></div>
+    </div>
+
+    <div id="Panel1" class="col-lg-5 col-md-5 col-xs-12 col-lg-5 col-sm-5" onload="loaded();">
+
+    </div>
+    <div id="Panel2" class="col-lg-6 col-md-6 col-xs-12 col-lg-6 col-sm-6" onload="loaded();">
+
+    </div>
+
+</div>
+
+@Html.Partial("../Generales/ModalTablaDatos")
+
+<script type="text/javascript">
+
+    DesactivaBotones();
+    ocultar_buscar();
+    QuitarMostrar();
+
+    function CargaInicioVistaParalela(DivAct) {
+
+        $("#Panel" + DivAct).load('../../../DEP/VistaSeleccionCarreraParalelo', { psDiv: DivAct });
+
+    }
+
+    $(document).ready(function () {
+        CargaInicioVistaParalela(1);
+        CargaInicioVistaParalela(2);
+    });
+
+    function CargaEspecialidades(carrera_reticula) {
+
+        var html2 = "";
+        var especialidades = @if (ViewData["objeto"] != null)
+     {
+
+         foreach (System.Data.DataRow drobjeto in (ViewData["objeto"] as System.Data.DataTable).Rows)
+         {
+            @Html.Raw(drobjeto.ItemArray[1].ToString())
+         }
+
+     };
+        if (carrera_reticula.value != "0") {
+            Object.keys(especialidades).forEach(function (key) {
+                if (especialidades[key].carrera_reticula === carrera_reticula.value) {
+                    html2 = html2 + "<option value='" + especialidades[key].especialidad + "'>" + especialidades[key].nombre_especialidad + "</option>";
+                }
+            });
+            var id = carrera_reticula.id;
+            if (id == "cboCarrera_1") {
+                var element = document.getElementById("SelectEsp_1");
+                element.classList.remove("div-hide");
+                document.getElementById("cboEspecialidad_1").innerHTML = html2;
+            }
+            else {
+                var element = document.getElementById("SelectEsp_2");
+                element.classList.remove("div-hide");
+                document.getElementById("cboEspecialidad_2").innerHTML = html2;
+
+            }
+        }
+        else {
+            if (id == "cboCarrera_1") {
+
+                $("#SelectEsp_1").addClass("div-hide");
+            }
+            else {
+                $("#SelectEsp_2").addClass("div-hide");
+            }
+        }
+    }
+
+    function Buscar(DivId) {
+        var periodo = $("#hidPeriodo").val();
+        var carrera_reticula = $('#cboCarrera_' + DivId).val();
+        var especialidad = $('#cboEspecialidad_' + DivId).val();
+        if (carrera_reticula === "0") {
+            especialidad = "0";
+        }
+
+        if (carrera_reticula !== "0" && especialidad !== "0") {
+            $('#Panel' + DivId).load('../../../DEP/ReticulaParalelo', { psPeriodo: periodo, psCarreraReticula: carrera_reticula, psEspecialidad: especialidad, psDiv: DivId });
+
+        }
+    }
+
+
+    function ActionRequest(periodo, carrera, reticula, materia, especialidad, DivAct) {
+
+        $('#Panel' + DivAct).load('../../../DEP/GrupoExistenteParalelo', { psPeriodo: periodo, psCarrera: carrera, psReticula: reticula, psMateria: materia, psEspecialidad: especialidad, psDiv: DivAct });
+
+    }
+
+    function GuardarParalelo() {
+
+            var PeriodoExistente = $("#hidPeriodoExParalelo").val();
+            var CarreraExistente = $("#hidCarreraExParalelo").val();
+            var ReticulaExistente = $("#hidReticulaExParalelo").val();
+            var MateriaExistente = $("#hidMateriaExParalelo").val();
+            var GrupoExistente = $("#hidGrupoExParalelo").val();
+            var RFCExistente = $("#hidRFCExParalelo").val();
+            var PeriodoParalelo = $("#hidPeriodoParalelo").val();
+            var CarreraParalelo = $("#hidCarreraParalelo").val();
+            var ReticulaParalelo = $("#hidReticulaParalelo").val();
+            var MateriaParalelo = $("#hidMateriaParalelo").val();
+            var GrupoParalelo = $("#txtGrupo").val();
+            var CapacidadParalelo = $("#txtCapacidad").val();
+
+            $.ajax({
+                url: '../../../DEP/RegistraParaleloJSON',
+                type: 'POST',
+                dataType: 'json',
+                data: { psPeriodoExistente: PeriodoExistente, psCarreraExistente: CarreraExistente, psReticulaExistente: ReticulaExistente, psMateriaExistente: MateriaExistente, psGrupoExistente: GrupoExistente, psRFCExistente: RFCExistente, psPeriodoParalelo: PeriodoParalelo, psCarreraParalelo: CarreraParalelo, psReticulaParalelo: ReticulaParalelo, psMateriaParalelo: MateriaParalelo, psGrupoParalelo: GrupoParalelo, psCapacidadParalelo: CapacidadParalelo }
+            })
+                .done(function (data) {
+                    if (typeof (data.Success) !== "undefined" && !data.Success) {
+                        MensajesToastr("warning", "Error de proceso", data.Mensaje);
+                    }
+                    else {
+                        MensajesToastr("info", "Solicitud Procesada", "Grupo Paralelo Guardado");
+                            $('#BodyPrincipal').load('../../../../Dep/GruposParalelos');
+                    }
+                })
+                .fail(function (data) {
+                    MensajesToastrErrorConexion();
+                });
+    }
+
+    $("#btnBuscarNoControlTabla").on('click', function (evento) {
+        $('#divModal').modal("show");
+        evento.preventDefault();
+    })
+
+</script>

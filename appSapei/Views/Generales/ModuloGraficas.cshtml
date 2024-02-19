@@ -1,0 +1,29 @@
+﻿<div class="col-md-6 col-sm-6 col-xs-12 form-group">
+     <label for="tags">
+          Seleccione Tipo de Gráfica
+     </label>
+     <select class="form-control" id="cboTipoGrafica" required>
+          <option value="1">Pastel 1</option>
+          <option value="2">Pastel 2</option>
+          @*<option value="3">Barras</option>*@
+          <option value="4">Líneas</option>
+     </select>
+</div>
+<div class="x_content">
+     <div id="div1">
+          <div id="echart_pie2" style="height:500px;"></div>
+     </div>
+     <div id="div2">
+          <div id="echart_pie" style="height:500px;"></div>
+     </div>
+     <div id="div3">
+          <div id="mainb" style="height:500px;"></div>
+     </div>
+     <div id="div4">
+          <div id="echart_line" style="height:500px;"></div>
+     </div>
+</div>
+
+<script src="~/Scripts/Graficas/echarts.js"></script>
+<script src="~/Scripts/Graficas/init_echarts.js"></script>
+<script src="~/Scripts/ManejoDatos/Graficas/ManejoDeGraficas.js"></script>

@@ -1,0 +1,140 @@
+﻿@using Sapei.Framework.Utilerias;
+
+@{
+    System.Data.DataRow loFila = null;
+    string lsPeriodo = "";
+    string lsCarrera_Reticula = "";
+    string lsMateria = "";
+    string lsNomMateria = "";
+    string lsGrupo = "";
+    string lsHorasSemana = "";
+    string lsHorasSeleccionadas = "";
+    string lsCarrera = "";
+    string lsReticula = "";
+    string lsEspecialidad = "";
+
+    if (ViewData["DatosSeleccion"] != null)
+    {
+        loFila = (ViewData["DatosSeleccion"] as System.Data.DataTable).Rows[0];
+        lsPeriodo = loFila.ItemArray[0].ToString().Trim();
+        lsCarrera_Reticula = loFila.ItemArray[1].ToString().Trim();
+        lsMateria = loFila.ItemArray[2].ToString().Trim();
+        lsNomMateria = loFila.ItemArray[3].ToString().Trim();
+        lsGrupo = loFila.ItemArray[4].ToString().Trim();
+        lsHorasSemana = loFila.ItemArray[5].ToString().Trim();
+        lsHorasSeleccionadas = loFila.ItemArray[6].ToString().Trim();
+        lsCarrera = loFila.ItemArray[7].ToString().Trim();
+        lsReticula = loFila.ItemArray[8].ToString().Trim();
+        lsEspecialidad = loFila.ItemArray[9].ToString().Trim();
+    }
+    if (lsCarrera_Reticula == "") {
+        lsCarrera_Reticula = "Sin Carrera";
+    }
+
+}
+
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>Asignacion de Horario </h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="row">
+    <div class="col-md-4 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Registro</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="form-group ">
+                    <label>
+                        Carrera/Reticula
+                    </label>
+                    <input type="text" class="form-control" id="txtCarrera" value="@lsCarrera_Reticula" placeholder="Capacidad" readonly />
+                    <label>
+                        Materia
+                    </label>
+                    <input type="text" class="form-control" id="txtMateria" value="@lsNomMateria" placeholder="Ingrese Descripcion" readonly />
+                    <label>
+                        Grupo
+                    </label>
+                    <input type="text" class="form-control" id="txtGrupo" value="@lsGrupo" placeholder="Ingrese Descripcion" readonly />
+                    <label>
+                        Horas por Semana
+                    </label>
+                    <input type="number" class="form-control" id="txtHorasSemana" value="@lsHorasSemana" placeholder="Ingrese Descripcion" readonly />
+                    <label>
+                        Horas Seleccionadas
+                    </label>
+                    <input type="number" class="form-control" id="txtGrupo" value="@lsHorasSeleccionadas" placeholder="Ingrese Descripcion" readonly />
+                    <label for="Aula">
+                        Aula
+                    </label>
+                    <select class="form-control" id="cboAulas" onchange="CargaHorarioAula(this, '@lsPeriodo', '@lsMateria', '@lsGrupo', '@lsCarrera', @lsReticula);">
+                        <option value="0">-- Seleccione un Aula --</option>
+                        @if (ViewData["Aulas"] != null)
+                        {
+
+                            foreach (System.Data.DataRow drobjeto in (ViewData["Aulas"] as System.Data.DataTable).Rows)
+                            {
+                                @Html.Raw(drobjeto.ItemArray[0].ToString())
+                            }
+
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>
+                    Horario Semanal
+                </h2>
+                <div class="title_right">
+                    <div class="col-md-3 col-sm-3 col-xs-12 form-group pull-right top_search">
+                        <div class="form-inline">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div id="HorarioAula">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <button id="btnRegresar" type="submit" onclick="Regresar('@lsPeriodo', '@lsMateria', '@lsCarrera', @lsReticula, '@lsEspecialidad');" class="btn btn-block btn-danger">Regresar</button>
+    </div>
+    <div class="col-md-8">
+        <button id="btnGuardar" type="submit" onclick="Guardar();" class="btn btn-block btn-success">Guardar</button>
+    </div>
+</div>
+
+@Html.Partial("../Generales/TablaGeneral")
+
+<script type="text/javascript">
+
+    DesactivaBotones();
+    ocultar_buscar();
+    MostrarTodos();
+    QuitarMostrar();
+
+        function CargaHorarioAula(aula, periodo, materia, grupo, carrera, reticula, especialidad) {
+            var Aula = aula.value;
+            if (Aula != "0") {
+
+                $('#HorarioAula').load('../../../DEP/CargaHorarioAula', { psPeriodo: periodo, psMateria: materia, psGrupo: grupo, psAula: Aula, psCarrera: carrera, psReticula: reticula });
+            }
+        }
+
+    function Regresar(periodo, materia, carrera, reticula, especialidad) {
+        $('#BodyPrincipal').load('../../../DEP/Grupos', { psPeriodo: periodo, psCarrera: carrera, psReticula: reticula, psMateria: materia, psEspecialidad: especialidad });
+        }
+</script>

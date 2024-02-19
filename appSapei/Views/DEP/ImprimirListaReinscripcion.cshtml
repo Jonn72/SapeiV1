@@ -1,0 +1,51 @@
+﻿<style type="text/css">
+     .buttonload {
+          border: none; /* Remove borders */
+          padding: 12px 24px; /* Some padding */
+     }
+
+     /* Add a right margin to each icon */
+     .fa {
+          margin-left: -12px;
+          margin-right: 8px;
+     }
+</style>
+<input type="hidden" id="hidPeriodo" value="@ViewData["periodo"]" />
+<form class="form-horizontal form-label-left" action="#" id="frmGeneraListas" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+     <div class="page-title">
+          <div class="col-md-8 col-sm-8 col-xs-12 form-group pull-left">
+               <h3>@ViewData["encabezado"] <small>@ViewData["descPeriodo"]</small></h3>
+          </div>
+          
+               <div class="col-md-4 col-sm-4 col-xs-12 form-group pull-right top_search">
+                    <div class="form-inline">
+                         <label for="cboPeriodo">
+                              Periodo
+                         </label>
+                         <select class="form-control" id="cboPeriodo"></select>
+                    </div>
+               </div>
+     </div>
+     <div class="x_panel">
+          <div class="x_title">
+                    <h3>Generar Listas <small>@ViewData["descPeriodo"]</small></h3>
+          </div>
+          <div class="col-md-8 center-margin center-block">
+               <div class="x_content">
+                    <p>
+                         Este proceso se encarga de generar las listas de reinscripción a cursos de inglés ordenando por nivel y promedio. Al final de este proceso, la información generada se verá reflejada al descargar la listaen archivo pdf.
+                    </p>
+                    <p>
+                         Este proceso puede tardar varios minutos, por favor, sea paciente.
+                    </p>
+                    <div id="divBoton" class="form-group alignright">
+                         <button id="btnIniciar" type="submit" class="btn btn-info buttonload">
+                              <i id="iLoad" class="fa fa-spinner fa-spin" style="display: none;"></i>Iniciar Proceso
+                         </button>
+                    </div>                    
+               </div>
+          </div>
+     </div>
+</form>
+@Html.Partial("../Generales/ImprimirReporteConTabla")
+<script src="~/Scripts/ManejoDatos/CentroLenguasExt/ImprimirListaReinscripcion.js"></script>

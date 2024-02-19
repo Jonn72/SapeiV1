@@ -1,0 +1,40 @@
+﻿<div class="page-title">
+     <div class="col-md-8 col-sm-8 col-xs-12 form-group pull-left">
+          <h3>Consulta de Información General del Estudiante</h3>
+     </div>
+</div>
+<div class="clearfix"></div>
+<div class="x_panel">
+     <form class="form-horizontal form-label-left" action="#" id="frmCambioNoControl" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+          <div id="divProcesar" class="col-md-10 center-margin center-block">
+               <div class="x_title">
+                    <h3>Cambio de No. de Control</h3>
+               </div>
+               <div class="x_content">
+                    <p>
+                         Este proceso se encarga de modificar el número de control de algun estudiante, por lo que su uso debe ser de sumo cuidado.
+                    </p>
+                    <p>
+                         Este cambio sera registrado por cuestiones de auditoria o aclaración.
+                    </p>
+
+                    <label for="txtNoControl">
+                         No. de Control Actual
+                    </label>
+                    <input type="text" class="form-control" id="txtNoControl" placeholder="Ingrese el no. de control" oninvalid="ValidaCampo(this, 'NOCONTROL');" onblur="ValidaCampo(this, 'NOCONTROL');" required />
+
+                    <label for="txtNoControl">
+                         No. de Control Nuevo
+                    </label>
+                    <input type="text" class="form-control" id="txtNoControlNuevo" placeholder="Ingrese el nuevo no. de control" oninvalid="ValidaCampo(this, 'NOCONTROL');" onblur="ValidaCampo(this, 'NOCONTROL');" required />
+
+                    <div class="form-group alignright">
+                         <button id="btnIniciar" type="submit" class="btn btn-info">Iniciar Proceso</button>
+                    </div>
+               </div>
+
+          </div>
+     </form>
+</div>
+<script src="~/Scripts/ManejoDatos/Escolares/CambioNoControl.js"></script>
+

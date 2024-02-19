@@ -1,0 +1,63 @@
+﻿<div class="page-title">
+    <div class="title_left">
+        <h3>
+            Crear Usuario
+        </h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+
+<div class="x_panel center" id="divCrearUsuario">
+    <div class="x_title">
+        <h4>Crear usuario</h4>
+    </div>
+    <div class="clearfix"></div>
+    <div class="center">
+        <div class="row">
+            <div class="col-lg-offset-2 col-md-3 col-sm-6 col-xs-12">
+                <label>Usuario</label>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <input type="text" class="form-control" id="txtUsuario" />
+            </div>
+        </div>
+        <div class="row center">
+            <div class="col-lg-offset-2 col-md-3 col-sm-6 col-xs-12 center">
+                <label>Nombre de Usuario</label>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <input type="text" class="form-control" id="txtNombreUsuario" />
+            </div>
+        </div>
+        <br />
+
+        <div class="row">
+            <div class="col-lg-offset-2  col-md-3 col-sm-6 col-xs-12">
+                <label>Contraseña</label>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <input type="password" data-password="nuevo_password" id="txtContraseña1" value="" />
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-lg-offset-2  col-md-3 col-sm-6 col-xs-12">
+                <h5>Confirmar</h5>
+                <label>Contraseña</label>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <input type="password" data-password="nuevo_password" id="txtContraseña2" value="" />
+            </div>
+        </div>
+        <br />
+        <div class="col-md-8 col-lg-offset-8">
+            <input id="btnGuardar" type="button" class="btn btn-info" value="Guardar" onclick="ValidaContraseña();" />
+        </div>
+
+        <div id="btnContiniar" class="col-md-8 col-lg-offset-8" hidden>
+            <input id="btnContinuar" type="button" class="btn btn-info" value="Continuar" />
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="~/Scripts/ManejoDatos/ControlUsuario/CrearUsuario.js"></script>

@@ -1,0 +1,95 @@
+﻿@using Sapei.Framework.Utilerias;
+@{ System.Data.DataTable loDatos = null;
+                string lsNombre = "";
+                string lsFecha = "";
+
+
+
+                if (ViewData["Datos"] != null)
+                {
+                    loDatos = ViewData["Datos"] as System.Data.DataTable;
+                    if (loDatos.Columns.Count > 0)
+                    {
+                        lsNombre = loDatos.Rows[0].RegresaValor<string>("nombre_alumno");
+                        lsFecha = loDatos.Rows[0].RegresaValor<string>("fecha_registro");
+
+                    }
+                }
+}
+
+
+<div class="modal fade" id="divModalCartaCompromiso" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <div class="x_panel">
+                    <div class="x_content">
+                        <div class="col-md-12 text-center">
+                            <h3> CARTA COMPROMISO</h3>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4" aling="right">
+                                <h5>
+                                    C.       MIGUEL ÁNGEL LEE RODRÍGUEZ
+                                    DIRECTOR DEL INSTITUTO TECNOLÓGICO DE TLÁHUAC
+                                    PRESENTE
+                                </h5>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 col-md-offset-8" aling="left">
+                                <h5>
+                                    ALBERTO MERINO HERRERIAS
+                                    AT’N  JEFE(A) DEL DEPTO. DE SERVICIOS ESCOLARES
+                                </h5>
+                            </div>
+                        </div>
+                        &nbsp;
+                        &nbsp;
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p class="text dt-justify">
+                                    Por medio de la presente, me COMPROMETO con usted a entregar el certificado de terminación de estudios de Nivel Medio Superior
+                                    previo al próximo período de reinscripción, tomando en cuenta lo estipulado al acuerdo No. 1/SPC publicado en el diario Oficial
+                                    de la Federación, el 17 de Diciembre de 1997. Estando consciente que de no hacerlo así:
+                                    <br />
+                                    *	Se me suspenda la inscripción al siguiente semestre.
+                                    <br />
+                                    *	Si la fecha de aprobación de la última materia especificada en dicho documento rebasa de 2 meses
+                                    a partir de mi fecha de inscripción me dará de baja del plantel por violación de ciclo.
+                                    <br />
+                                    Sin otro particular, reciba un cordial saludo.
+                                </p>
+                            </div>
+                        </div>
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        <div class="row"></div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p class="center"> ATENTAMENTE</p>
+                                <hr />
+                                <p><strong>Nombre: </strong> &nbsp; C. @lsNombre</p>
+                            </div>
+                            <div class="col-md-8 col-sm-8 col-xs-8 col-lg-8">
+                                <hr />
+                                <a id="btnFirmar" class="btn btn-info" data-toggle="modal" data-target="#divModalFirmaElectronica" onclick="OcultaModal('CartaCompromiso');">Firmar</a>
+                                <input value="" id="Valor" hidden />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

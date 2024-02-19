@@ -1,0 +1,186 @@
+﻿<input type="hidden" value="@ViewData["indice"]" id="contador" />
+<input type="hidden" value="1" id="counter" />
+<script type="text/javascript">var counter = 0; var buffer = 0;</script>
+<div class="container body" style="height: 550px;">
+    <div class=" clearfix"></div>
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="clearfix"></div>
+            <div class="x_panel">
+                <div class="x_title">
+                    <h3>Fechas de Pago a Docentes Asimilados</h3>
+                </div>
+                <div></div>
+                <div id="frmFechas">
+
+                    <div class="row" id="frmfch">
+                        @{if (ViewData["fechas"] != null)
+                            {
+                                foreach (System.Data.DataRow dr2 in (ViewData["fechas"] as System.Data.DataTable).Rows)
+                                {
+                                    <div class="col-md-2 col-sm-2 col-xs-12 form-group" id="a-@dr2.ItemArray[1].ToString().Trim()">
+                                        <label id="c_@dr2.ItemArray[1].ToString().Trim()" for="tags">
+                                       
+                                        </label>
+
+                                        <div class='input-group date' id='dtpFechaLiberacion'>
+                                            <input type="text" id="_@dr2.ItemArray[1].ToString().Trim()" class="form-control" value="@dr2.ItemArray[3].ToString().Trim()" />
+                                            <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+                                        </div>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                }
+                            }
+                        }
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                            <button id="Agregar" type="submit" class="btn btn-warning">Agregar Fecha</button>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                            <button id="btnGuardar2" type="submit" class="btn btn-info" onclick="guardar();">Guardar</button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <!-- /page content -->
+    </div>
+</div>
+<script type="text/javascript">
+
+    var fechas = [];
+    var indice = 0;
+
+</script>
+@{if (ViewData["fechas"] != null)
+    {
+        foreach (System.Data.DataRow dr2 in (ViewData["fechas"] as System.Data.DataTable).Rows)
+        {
+    <script type="text/javascript">
+
+        counter = $("#counter").val();
+        document.getElementById("c_@dr2.ItemArray[1].ToString().Trim()").innerHTML = "Fecha " + counter + " <span class='input-group-sm border-aero' id='b_@dr2.ItemArray[1].ToString().Trim()' onclick='erase(\"@dr2.ItemArray[1].ToString().Trim()\", \"@ViewData["periodo"]\", \"@dr2.ItemArray[2].ToString().Trim()\", \"\");'><span class='glyphicon glyphicon-erase'></span></span>";
+        buffer = parseInt(counter) + 1;
+        $("#counter").val(buffer);
+
+        fechas[@dr2.ItemArray[1].ToString().Trim()] = { periodo: "@dr2.ItemArray[0].ToString().Trim()" }
+        fechas[@dr2.ItemArray[1].ToString().Trim()].id_fecha = "@dr2.ItemArray[1].ToString().Trim()";
+                    fechas[@dr2.ItemArray[1].ToString().Trim()].tipo_personal = "@dr2.ItemArray[2].ToString().Trim()";
+                    $("#_@dr2.ItemArray[1].ToString().Trim()").datetimepicker({
+            viewMode: 'days',
+            format: 'DD/MM/YYYY',
+            locale: 'es'
+        });
+    </script>
+                
+        }
+    }
+}
+
+<script type="text/javascript">
+    $('#Agregar').click(function (event) {
+
+        indice = parseInt($("#contador").val()) + 1;
+        counter = parseInt($("#counter").val());
+        $('#frmfch').append('<div class="col-md-2 col-sm-2 col-xs-12 form-group" id="a-' + indice + '"><label for="tags">Fecha ' + counter + '<span class="input-group-sm border-aero" onclick="erase(\'N\', \'N\', \'N\', \'' + indice + '\');"><span class="glyphicon glyphicon-erase"></span></span></label><div class="input-group date" id="dtpFechaLiberacion"><input type="text" id="_' + indice + '" class="form-control" /><span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span></div><div class="help-block with-errors"></div></div >');
+        fechas[indice] = { periodo: "@ViewData["periodo"]" };
+        fechas[indice].id_fecha = indice.toString();
+            fechas[indice].tipo_personal = "B";
+        $("#contador").val(indice);
+        buffer = parseInt(counter) + 1;
+        $("#counter").val(buffer);
+
+ /*       $("#b-" + indice + "").click(function (event) {
+            
+        });
+        */
+        $('#_' + indice).datetimepicker({
+            viewMode: 'days',
+            format: 'DD/MM/YYYY',
+            locale: 'es',
+            defaultDate: 'now'
+        });
+        });
+
+    function erase(id, periodo, tipo, indice) {
+
+
+        if (id !== "N") {
+            $.ajax({
+                url: '../../../SubDireccion/EliminaFechaJSON',
+                type: 'POST',
+                dataType: 'json',
+                data: { psIdFecha: id, psPeriodo: periodo, psTipo: tipo }
+            })
+                .done(function (data) {
+                    if (typeof (data.Success) !== "undefined" && !data.Success) {
+                        MensajesToastr("warning", "Error de proceso", data.Mensaje);
+                    }
+                    else {
+
+                        if (data.Mensaje === "delete") {
+                            MensajesToastr("info", "Solicitud Procesada", "Fecha Eliminada");
+                            $('#BodyPrincipal').load('../../../SubDireccion/FechasPagosAsimilados');
+                        }
+
+                        else if (data.Mensaje === "NE") {
+                            $('#BodyPrincipal').load('../../../SubDireccion/FechasPagosAsimilados');
+                        }
+                    }
+                })
+                .fail(function (data) {
+                    MensajesToastrErrorConexion();
+                });
+        }
+        else {
+
+            $("#a-" + indice + "").remove();
+
+            delete fechas[indice];
+
+            console.log(Object.values(fechas));
+
+        }
+    }
+
+
+    function guardar() {
+        Object.keys(fechas).forEach(function (key) {
+            fechas[key].fecha = $("#_" + key.toString()).val();
+        });
+
+        console.log(Object.values(fechas));
+        var myArrClean = fechas.filter(Boolean);
+
+        var obj2 = JSON.stringify(myArrClean);
+
+        console.log(JSON.stringify(obj2));
+    
+        $.ajax({
+            url: '../../../SubDireccion/RegistraFechasPagos',
+            type: 'POST',
+            dataType: 'json',
+            data: { lsobjeto: obj2 }
+            })
+            .done(function (data) {
+                if (typeof (data.Success) !== "undefined" && !data.Success) {
+                    MensajesToastr("warning", "Error de proceso", data.Mensaje);
+                }
+                else {
+                    MensajesToastr("info", "Solicitud Procesada", "Fecha registrada");
+                    $('#BodyPrincipal').load('../../../SubDireccion/FechasPagosAsimilados');
+                }
+            })
+            .fail(function (data) {
+                MensajesToastrErrorConexion();
+            });
+
+        }
+
+
+</script>

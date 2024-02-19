@@ -1,0 +1,29 @@
+﻿<div id="divVisorPDF" class="col-md-12 center-margin center-block">
+     <div id="divCargando" class="col-md-offset-2 div-hide">
+          <img src="~/Images/efectos/ajax-loader3.gif" />
+     </div>
+     <div id="divPDF" class="">
+
+          @if (ViewData["pdfbase64"] != null)
+          {
+               string base64EncodedPdf = ViewData["pdfbase64"].ToString();
+
+               <object data="data:application/pdf;base64,@base64EncodedPdf"
+                       width="100%" height="500" type="application/pdf"></object>
+          }
+
+          @if (ViewData["mensaje"] != null)
+          {
+               if (!string.IsNullOrEmpty(Convert.ToString(ViewData["mensaje"])))
+               {
+                    <script type="text/javascript">
+                         MensajesToastr("info", "Solicitud Procesada", "@Convert.ToString(ViewData["mensaje"])");
+                    </script>
+               }
+          }
+     </div>
+    @if (ViewData["hid"] != null)
+    {
+        @Html.Raw(ViewData["hid"])
+            }
+</div>

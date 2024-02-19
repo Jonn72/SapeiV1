@@ -1,0 +1,43 @@
+﻿<div class="row tile_count">
+     <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+          <span class="count_top"><i class="fa fa-user"></i>Publicaciones</span>
+          <div class="count"><label id="lblTotalPublicaciones"></label></div>
+     </div>
+     <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+          <span class="count_top"><i class="fa fa-user"></i>Consultas</span>
+          <div class="count"><label id="lblTotalConsultas"></label></div>
+     </div>
+
+</div>
+<div class="clearfix"></div>
+<div class="x_panel">
+     <div class="x_title">
+          <div class="row">
+               <div class="page-title">
+                    <div class="title_left">
+                         <h3>Aspirantes <small>Estádisticas Generales</small></h3>
+                    </div>
+               </div>
+               <div class="clearfix"></div>
+               <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                    <div class="x_panel">
+                         <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                              <label for="tags">
+                                   Seleccione la estádistica a graficar
+                              </label>
+                              <select class="form-control" id="cboEstadistica" required>
+                                   <option value="1">Direcciones IP</option>
+                                   <option value="2">Ubicación</option>
+                                   <option value="3">Tipo de Consulta</option>
+                                   <option value="4">Consultas últimos 30 días</option>
+                                   <option value="5">Publicaciones por Región.</option>
+                              </select>
+                         </div>
+                         @Html.Partial("../Generales/ModuloGraficas")
+                    </div>
+               </div>
+          </div>
+     </div>
+</div>
+<script src="~/Scripts/ManejoDatos/Graficas/EstadisticasAnfei.js"></script>
+

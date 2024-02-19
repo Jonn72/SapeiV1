@@ -1,0 +1,25 @@
+﻿<!-- Modal -->
+<div class="modal fade" id="ValidaSolicitud" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Confirmación</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="frmValidaSolicitud" data-parsley-validate class="form-horizontal form-label-left">
+                <div class="modal-body">
+                    <h3>¿Deseas validar el siguiente número de control?</h3>
+                    <input type="text" class="form-control" disabled id="txtNoControl" />
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="margin-top:10px">Cerrar</button>
+                    <button type="submit" class="btn btn-primary" style="margin-top:10px">Aceptar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@Html.Partial("../Generales/TablaGeneral")
+@Html.Partial("../Generales/ModalVisorPDF")
+<script src="~/Scripts/ManejoDatos/DEP/SolicitudResidenciasRP.js"></script>

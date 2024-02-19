@@ -1,0 +1,38 @@
+﻿
+    <link href="~/Content/Controles/Dropzone.css" rel="stylesheet" />
+
+    <div style="margin-bottom:70px" class="col-md-4 col-sm-4 col-xs-12" id="form">
+        <div class="x_panel">
+            <div class="x_title">
+                <h3>Nuevo Video </h3>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+
+                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                    <label for="titulotxt">Título de la publicación</label>
+                    <input type="text" class="form-control required" name="titulo" id="titulo" placeholder="Introduce el título de la Publicación" required>
+                </div>
+                <div id="divUrl" class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                    <label for="videotxt">URL</label>
+                    <input type="text" class="form-control required" name="urlvideo" id="urlvideo" placeholder="Introduce la url: Ejemplo AXGHSKIasA" required>
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                    <label>Publicar</label>
+                    <input type="checkbox" class="form-control" id="cbxPublicar">
+                </div>
+
+
+                <div style="margin-top:30px;" class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                    <button id="btnEnviar" type="submit" class="btn btn-block btn-success">Generar publicación</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="margin-bottom:70px" class="col-md-8 col-sm-8 col-xs-12">
+        @Html.Partial("../Generales/TablaJson")
+    </div>
+
+    <script src="~/Scripts/ManejoDatos/Pagina/Videos.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+

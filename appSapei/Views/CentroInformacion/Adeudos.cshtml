@@ -1,0 +1,41 @@
+﻿<link href="~/Scripts/Componentes/select2/css/select2.min.css" rel="stylesheet" />
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>Adeudos</h3>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <form class="form-horizontal form-label-left" action="#" id="frmAdeudos" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h3>Consultar Adeudo</h3>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="form-group col-md-12 " id="fldUsuario">
+                            <label for="txtUsuario">
+                                Usuario
+                            </label>
+                            <input type="text" class="form-control" id="txtUsuario" placeholder="Número de control o RFC" required />
+                        </div>
+                        <div class="col-md-12 col-sm-6">
+
+                            <button type="submit" class="btn btn-primary" id="btnConsultar">
+                                Consultar
+                            </button>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
+@Html.Partial("../Generales/TablaGeneral")
+<script src="~/Scripts/knockout-2.2.0.js"></script>
+<script src="~/Scripts/Componentes/select2/js/select2.min.js"></script>
+<script src="~/Scripts/ManejoDatos/CentroInformacion/Adeudos.js"></script>

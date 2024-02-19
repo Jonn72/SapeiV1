@@ -1,0 +1,302 @@
+﻿<div class="page-title">
+    <div class="title_left">
+        <h3>Captura <small>de datos</small></h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="x_panel">
+    <div class="x_title">
+        <h3>Datos <small>Generales</small></h3>
+    </div>
+    <div class="clearfix"></div>
+
+    <!--<div id="divRFC">
+        <div class="col-md-8 center-margin">
+            <div class="input-group">
+                <input type="text" id="txtRFC" class="form-control" placeholder="Ingrese el RFC">
+                <span class="input-group-btn">
+                    <button class="btn btn-default btn-success" type="button" id="btnBuscar1"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </div>
+    </div>
+        -->
+
+    <div class="x_title">
+        <div class="col-md-6 center-margin">
+            <div class="input-group">
+                <input type="text" id="txtRFC" class="form-control" placeholder="Ingrese el RFC" required>
+                <span class="input-group-btn">
+                    <button class="btn btn-default btn-success" type="button" id="btnBuscarRFC"><i class="fa fa-search"></i></button>
+                    <button class="btn btn-default btn-info" id="btnBuscarNoControlRegresar" title="Regresar al menú anterior" type="button"><i class="fa fa-refresh"></i></button>
+                    <button class="btn btn-default btn-dark" id="btnBuscarNoControlTabla" title="Mostrar Datos" type="button"><i class="fa fa-table"></i></button>
+
+                </span>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+    @Html.Partial("../Generales/ModalTablaDatos")
+
+    <div id="frmDatos1" class="div-hide">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                <label for="tags">
+                    RFC
+                </label>
+                <input type="text" id="txtRFC2" class="form-control" disabled>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                <label for="tags">
+                    Estatus
+                </label>
+                <select class="form-control" id="cboEstatus" required>
+                    <option value="02"> ACTIVO </option>
+                    <option value="00"> BAJA POR RENUNCIA </option>
+                    <option value="01"> LICENCIA POR ASUNTOS PARTICULARES </option>
+                    <option value="03"> BAJA POR JUBILACIÓN </option>
+                    <option value="06"> INACTIVO </option>
+                    <option value="04"> INACTIVO POR CAMBIO DE CT </option>
+                    <option value="05"> INACTIVO POR FALLECIMIENTO </option>
+                    <option value="07"> LICENCIA POR COMISION SINDICAL </option>
+                    <option value="08"> BECA COMISION </option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                <label for="tags">
+                    Nombre (s)
+                </label>
+                <input type="text" class="form-control" id="txtNombre" value="" placeholder="Nombre (s)" required />
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                <label for="tags">
+                    Apellido Paterno
+                </label>
+                <input type="text" class="form-control" id="txtPaterno" value="" placeholder="Apellido Paterno" required />
+
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                <label for="tags">
+                    Apellido Materno
+                </label>
+                <input type="text" class="form-control" id="txtMaterno" value="" placeholder="Apellido Materno" required />
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                <label for="tags">
+                    Numero de Tarjeta
+                </label>
+                <input type="text" id="txtNumTarjeta" value="" class="form-control" placeholder="Numero de Tarjeta" required />
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                <label for="tags">
+                    Tipo de Personal
+                </label>
+                <select class="form-control" id="cboTipoPersonal" required>
+                    <option value="B"> BASE </option>
+                    <option value="H"> HONORARIOS </option>
+                </select>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                <label for="tags">
+                    Actividad Laboral
+                </label>
+                <select class="form-control" id="cboAcLab">
+                    <option value='A'>Administrativa</option>
+                    <option value='D'>Docente</option>
+                </select>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                <label for="tags">
+                    Departamento de adscripción
+                </label>
+                @if (ViewData["TablaDeptos"] != null)
+                {
+                    <select class="form-control" id="cboDeptos">
+                        <option value='0'> -- Seleccione un departamento -- </option>
+                        @foreach (System.Data.DataRow dr in (ViewData["TablaDeptos"] as System.Data.DataTable).Rows)
+                        {
+                            <option value="@dr.ItemArray[0].ToString().Trim()">@dr.ItemArray[1].ToString().Trim()</option>
+                        }
+                    </select>
+                }
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="x_panel div-hide" id="frmDatos2">
+    <div class="x_title">
+        <h3>Datos <small>Personales</small></h3>
+    </div>
+    <div class="clearfix"></div>
+
+    <div id="frmD2">
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                <label for="tags">
+                    Numero de Seguro Social
+                </label>
+                <input type="text" id="txtNSS" value=""  maxlength="11" class="form-control" placeholder="NSS" />
+
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                <label for="tags">
+                    Genero
+                </label>
+                <div class="radio">
+                    <label for="tags">
+                        <input type="radio" name="rbtSexo" id="rdbMujer" value="M">
+                        Femenino
+                    </label>
+                    <label for="tags">
+                        <input type="radio" name="rbtSexo" id="rdbHombre" value="H">
+                        Masculino
+                    </label>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                <label for="tags">
+                    Fecha de Nacimiento
+                </label>
+                <div class='input-group date' id='dtpFecha'>
+                    <input type="text" id="txtFechaNacimiento" class="form-control" required />
+                    <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                <label for="tags">
+                    Estado Civil
+                </label>
+                <select class="form-control" id="cboCivil">
+                    <option value="S"> SOLTERO(A) </option>
+                    <option value="C"> CASADO(A) </option>
+                    <option value="D"> DIVORCIADO(A) </option>
+                    <option value="V"> VIUDO(A) </option>
+                    <option value="U"> UNIÓN LIBRE </option>
+                    <option value="O"> OTRO </option>
+                </select>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                <label for="tags">
+                    Nacionalidad
+                </label>
+                <select class="form-control" id="cboNac">
+                    <option value="MX">MEXICANA</option>
+                    <option value="EX">EXTRANJERA</option>
+                </select>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                <label for="tags">
+                    Estado donde Nació
+                </label>
+                <select class="form-control" id="cboEstados" required></select>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                <label for="tags">
+                    Nivel De Estudios
+                </label>
+                @if (ViewData["NivelEstudios"] != null)
+                {
+                    <select class="form-control" id="cboEstudios">
+                        @foreach (System.Data.DataRow dr in (ViewData["NivelEstudios"] as System.Data.DataTable).Rows)
+                        {
+                            <option value="@dr.ItemArray[0].ToString().Trim()">@dr.ItemArray[1].ToString().Trim()</option>
+                        }
+                    </select>
+                }
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                <label for="tags">
+                    Nombre de la Carrera
+                </label>
+                <input type="text" id="txtCarrera" value="" class="form-control" placeholder="Carrera" />
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                <label for="tags">
+                    Fecha de Titulacion
+                </label>
+                <div class='input-group date' id='dtpFechaTit'>
+                    <input type="text" id="txtFechaTitulacion" class="form-control" />
+                    <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                <label for="tags">
+                    Cédula Profesional
+                </label>
+                <input type="text" id="txtCedula" value="" class="form-control" placeholder="Cédula" />
+
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                <label for="tags">
+                    Correo Electronico Institucional
+                </label>
+                <input type="text" id="txtCorreo" value="" class="correo form-control" placeholder="Correo" />
+
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                <label for="tags">
+                    Telefono
+                </label>
+                <input type="text" id="txtTel" value="" maxlength="10"  class="form-control" placeholder="Telefono" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                <label for="tags">
+                    Telefono de Emergencias
+                </label>
+                <input type='text' id="txtTelEm" value="" maxlength="10" class="form-control" placeholder="Telefono de Emergencia" />
+
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                <label for="tags">
+                    CURP
+                </label>
+                <input type="text" id="txtCURP" class="form-control" placeholder="Ingrese el CURP">
+            </div>
+        </div>
+    </div>
+</div>
+<div id="frmDom" class="div-hide">
+    @Html.Partial("../Generales/Domicilio")
+</div>
+<br />
+<br />
+<div id="grd" class="div-hide">
+    <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+        <button id="btnGuardar2" type="submit" class="btn btn-info">Guardar</button>
+    </div>
+</div>
+<br />
+<br />
+<br />
+<br />
+
+<script src="~/Scripts/curp.js"></script>
+<script src="~/Scripts/ManejoDatos/DatosPersonales.js"></script>
+<script src="~/Scripts/ManejoDatos/RecursosHumanos/RegistraPersonal.js"></script>

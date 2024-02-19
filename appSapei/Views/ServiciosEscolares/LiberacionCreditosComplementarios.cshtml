@@ -1,0 +1,209 @@
+﻿@using Sapei.Framework.Utilerias;
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>Liberacion de Creditos Liberados</h3>
+    </div>
+</div>
+
+<div class="x_panel">
+    @Html.Partial("../Generales/BuscaNoControl")
+    @{
+        bool lbEncontrado = false;
+        bool lbTieneCreditos = false;
+        string lsControl = "";
+        string lsNombre = "";
+        bool lbLiberado = false;
+        string lsTipoCredito = "";
+        string lsLiberado = "NO";
+        string lsDesempeñoFinal = "NA";
+        bool lbCreditoAcademico = false;
+        bool lbCreditoCulDep = false;
+        bool lbCreditoCultural = false;
+        bool lbCreditoDeportivo = false;
+        bool lbCreditoLectura = false;
+        bool lbCreditoEcotec = false;
+        bool lbCreditoTutoria = false;
+        System.Data.DataTable loDt = null;
+
+        if (ViewData["DatosEstudiante"] != null)
+        {
+            loDt = ViewData["DatosEstudiante"] as System.Data.DataTable;
+            if (loDt.Columns.Count > 1)
+            {
+                System.Data.DataRow dr = loDt.Rows[0];
+                lsControl = dr.RegresaValor<string>("no_de_control");
+                lsNombre = dr.RegresaValor<string>("nombre");
+                lbLiberado = !string.IsNullOrEmpty(dr.RegresaValor<string>("folio_liberacion"));
+                lbEncontrado = true;
+                lbTieneCreditos = true;
+                if (lbLiberado)
+                {
+                    lbCreditoAcademico = true;
+                    lbCreditoCulDep = true;
+                    lbCreditoLectura = true;
+                    lbCreditoEcotec = true;
+                    lbCreditoTutoria = true;
+                    lsDesempeñoFinal = dr.RegresaValor<string>("desempeño_liberacion");
+                    lsLiberado = "SI";
+                }
+
+            }
+
+        }
+    }
+
+    <div id="divDatos" class="col-md-8 center-margin center-block">
+        @if (lbEncontrado)
+        {
+            <input type="hidden" id="hidNoControl" value="@lsControl" />
+            <div class="row">
+                <div class="col-md-10 center-margin center-block">
+                    <ul class="stats-overview center-margin">
+
+                        <li>
+                            <span class="name">No. Control</span>
+                            <span class="value text-success"> @lsControl </span>
+                        </li>
+                        <li style="width:35%">
+                            <span class="name"> Nombre </span>
+                            <span class="value text-success"> @lsNombre </span>
+                        </li>
+                        <li style="width:25%">
+                            <span class="name"> Liberado </span>
+                            <span class="value text-success"> @lsLiberado </span>
+                        </li>
+                        <li>
+                            <span class="name"> Desempeño</span>
+                            <span class="value text-success"> @lsDesempeñoFinal </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            if (lbTieneCreditos)
+            {
+                <div class="row">
+                    <div class="col-md-10 center-margin center-block">
+                        <div class="x_title text-center">
+                            <h4>Avance de creditos de actividades complementarias</h4>
+                        </div>
+                        <ul class="stats-overview">
+                            @foreach (System.Data.DataRow loFila in loDt.Rows)
+                            {
+                                switch (loFila.RegresaValor<string>("actividad").Trim())
+                                {
+                                    case "ACA":
+                                        lbCreditoAcademico = true;
+                                        break;
+                                    case "DEP":
+                                        lbCreditoDeportivo = true;
+                                        lbCreditoCulDep = true;
+                                        break;
+                                    case "CUL":
+                                        lbCreditoCultural = true;
+                                        lbCreditoCulDep = true;
+                                        break;
+                                    case "ECO":
+                                        lbCreditoEcotec = true;
+                                        break;
+                                    case "TUT":
+                                        lbCreditoTutoria = true;
+                                        break;
+                                    case "LEC":
+                                        lbCreditoLectura = true;
+                                        break;
+                                }
+                                lsTipoCredito = loFila.RegresaValor<string>("tipo_credito");
+
+                                <li>
+                                    <span class="name" style="width:25%">@lsTipoCredito</span>
+                                    <span class="value text-success glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                </li>
+                            }
+                            @if (!lbCreditoAcademico)
+                            {
+                                <li>
+                                    <span class="name" style="width:25%">ACADÉMICO</span>
+                                    <span class="value text-success glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                </li>
+                            }
+                            @if (!lbCreditoCulDep)
+                            {
+                                <li>
+                                    <span class="name" style="width:25%">CUL / DEP</span>
+                                    <span class="value text-success glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                </li>
+                            }
+                            @if (!lbCreditoEcotec)
+                            {
+                                <li>
+                                    <span class="name" style="width:25%">ECOTEC</span>
+                                    <span class="value text-success glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                </li>
+                            }
+                            @if (!lbCreditoLectura)
+                            {
+                                <li>
+                                    <span class="name" style="width:25%">LECTURA</span>
+                                    <span class="value text-success glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                </li>
+                            }
+                            @if (!lbCreditoTutoria)
+                            {
+                                <li>
+                                    <span class="name" style="width:25%">TUTORÍA</span>
+                                    <span class="value text-success glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                </li>
+                            }
+                        </ul>
+                        @{
+                            if (SesionSapei.Sistema.Sesion.Usuario.RolUsuario == Sapei.Framework.Configuracion.enmRolUsuario.ESC && lbLiberado)
+                            {
+                                <div class="alert alert-info alert-dismissible fade in" role="alert">
+                                    <h4 class="title text-center">
+                                        Aquí puedes descargar la constancia de liberación del estudiante. 
+                                    </h4>
+                                    <div class="form-group text-center">
+                                        <button id="btnDescargar" type="submit" class="btn btn-success">Generar Constancia</button>
+                                    </div>
+                                </div>
+                            }
+                            if (SesionSapei.Sistema.Sesion.Usuario.RolUsuario == Sapei.Framework.Configuracion.enmRolUsuario.ESC && !lbLiberado
+                                && lbCreditoAcademico && lbCreditoCulDep && lbCreditoEcotec && lbCreditoLectura && lbCreditoTutoria)
+                            {
+                                <div class="alert alert-info alert-dismissible fade in" role="alert">
+                                    <h4 class="title text-center">
+                                        Esta función permite la liberación de los creditos complementarios, lo cual se ha de reflejar en kardex.
+                                        Despúes de validar y liberar los creditos, se muestra la constancia de liberación
+                                    </h4>
+                                    <div class="form-group text-center">
+                                        <button id="btnLiberacion" type="submit" class="btn btn-success">Liberar Credito y Generar Constancia</button>
+                                    </div>
+                                </div>
+                            }
+
+
+                        }
+                    </div>
+                </div>
+            }
+        }
+
+        
+    </div>
+</div>
+
+
+<div id="divVisor" class="row div-hide">
+    <div class="x_panel">
+        <div class="x_title">
+            <h3>Constancia de Cumplimiento</h3>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            @Html.Partial("../Generales/VisorPDF")
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/ManejoDatos/Escolares/LiberacionAC.js"></script>

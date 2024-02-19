@@ -1,0 +1,103 @@
+﻿@using Sapei.Framework.Utilerias;
+@using System.Data;
+
+
+@{
+    System.Data.DataTable loTabla = null;
+
+    if (ViewData["Tabla"] != null)
+    {
+        loTabla = ViewData["Tabla"] as System.Data.DataTable;
+
+    }
+}
+
+<div id="divTablaGeneral" class="x_panel col-lg-12 col-md-12 col-xs-12 col-sm-12">
+    <div class="x_title">
+        @{
+            if (ViewData["Titulo"] != null)
+            {
+                <h2>@ViewData["Titulo"]</h2>
+            }
+            else
+            {
+                <h2>Datos</h2>
+            }
+        }
+
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        @{
+
+            if (ViewData["Tabla"] == null)
+            {
+                <h2>No hay datos disponibles</h2>
+            }
+            else
+            {
+                <table id="datatable-buttons" class="display nowrap table-striped" cellspacing="0" style="width:100%">
+                    <thead>
+                        <tr>
+
+                            @{
+
+
+                                if (ViewData["Encabezados"] != null)
+                                {
+                                    foreach (string ls in (ViewData["Encabezados"] as List<string>))
+                                    {
+                                        <th>@ls</th>
+                                    }
+                                }
+                                else
+                                {
+                                    foreach (System.Data.DataColumn loCol in (ViewData["Tabla"] as System.Data.DataTable).Columns)
+                                    {
+
+                                       <th>@loCol.ColumnName</th>
+
+                                    }
+                                }
+                            }
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            foreach (System.Data.DataRow dr in (ViewData["Tabla"] as System.Data.DataTable).Rows)
+                            {
+
+                                
+                                    <tr>
+                                        @foreach (var cell in dr.ItemArray)
+                                        {
+
+                                          <td>@Html.Raw(cell.ToString().Trim())</td>
+
+                                        }
+                                    </tr>
+                                
+                            }
+                        }
+                    </tbody>
+                </table>
+            }
+        }
+    </div>
+</div>
+
+<script src="~/Scripts/Componentes/DataTable/init_datatable.js"></script>
+<script type="text/javascript">
+
+    function orden(col, tipo) {
+
+        var columna = parseInt(col, 10);
+
+        var table = $('#datatable-buttons').DataTable();
+        table.order([columna, tipo]).draw();
+    }
+
+    @Html.Raw(ViewData["Acciones"])
+
+</script>
