@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dtsReporteFinalEncabezado" targetNamespace="http://tempuri.org/dtsReporteFinalEncabezado.xsd" xmlns:mstns="http://tempuri.org/dtsReporteFinalEncabezado.xsd" xmlns="http://tempuri.org/dtsReporteFinalEncabezado.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="bdprueba" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="bdprueba (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Sapei.Reportes.Properties.Settings.GlobalReference.Default.bdprueba" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DataTable1TableAdapter" GeneratorDataComponentClassName="DataTable1TableAdapter" Name="DataTable1" UserDataComponentName="DataTable1TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="bdprueba (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select '' descripcion_area, '' nombre, '' identificacion_larga, '' periodo_inicial, '' periodo_final, '' jefe, '' grupos_atendidos, '' no_asignaturas</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="descripcion_area" DataSetColumn="descripcion_area" />
+              <Mapping SourceColumn="nombre" DataSetColumn="nombre" />
+              <Mapping SourceColumn="identificacion_larga" DataSetColumn="identificacion_larga" />
+              <Mapping SourceColumn="periodo_inicial" DataSetColumn="periodo_inicial" />
+              <Mapping SourceColumn="periodo_final" DataSetColumn="periodo_final" />
+              <Mapping SourceColumn="jefe" DataSetColumn="jefe" />
+              <Mapping SourceColumn="grupos_atendidos" DataSetColumn="grupos_atendidos" />
+              <Mapping SourceColumn="no_asignaturas" DataSetColumn="no_asignaturas" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dtsReporteFinalEncabezado" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dtsReporteFinalEncabezado" msprop:Generator_UserDSName="dtsReporteFinalEncabezado">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_RowClassName="DataTable1Row" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="descripcion_area" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columndescripcion_area" msprop:Generator_ColumnPropNameInRow="descripcion_area" msprop:Generator_ColumnPropNameInTable="descripcion_areaColumn" msprop:Generator_UserColumnName="descripcion_area" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="nombre" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnnombre" msprop:Generator_ColumnPropNameInRow="nombre" msprop:Generator_ColumnPropNameInTable="nombreColumn" msprop:Generator_UserColumnName="nombre" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="identificacion_larga" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnidentificacion_larga" msprop:Generator_ColumnPropNameInRow="identificacion_larga" msprop:Generator_ColumnPropNameInTable="identificacion_largaColumn" msprop:Generator_UserColumnName="identificacion_larga" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="periodo_inicial" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnperiodo_inicial" msprop:Generator_ColumnPropNameInRow="periodo_inicial" msprop:Generator_ColumnPropNameInTable="periodo_inicialColumn" msprop:Generator_UserColumnName="periodo_inicial" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="periodo_final" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnperiodo_final" msprop:Generator_ColumnPropNameInRow="periodo_final" msprop:Generator_ColumnPropNameInTable="periodo_finalColumn" msprop:Generator_UserColumnName="periodo_final" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="jefe" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnjefe" msprop:Generator_ColumnPropNameInRow="jefe" msprop:Generator_ColumnPropNameInTable="jefeColumn" msprop:Generator_UserColumnName="jefe" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="grupos_atendidos" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columngrupos_atendidos" msprop:Generator_ColumnPropNameInRow="grupos_atendidos" msprop:Generator_ColumnPropNameInTable="grupos_atendidosColumn" msprop:Generator_UserColumnName="grupos_atendidos" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="no_asignaturas" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnno_asignaturas" msprop:Generator_ColumnPropNameInRow="no_asignaturas" msprop:Generator_ColumnPropNameInTable="no_asignaturasColumn" msprop:Generator_UserColumnName="no_asignaturas" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

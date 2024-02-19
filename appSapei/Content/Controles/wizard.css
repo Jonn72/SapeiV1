@@ -1,0 +1,149 @@
+﻿
+#msform {
+    text-align: center;
+    position: relative;
+    margin-top: 20px
+}
+
+
+#msform fieldset {
+    background: white;
+    border: 0 none;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding-bottom: 20px;
+    position: relative
+}
+
+    #msform fieldset:not(:first-of-type) {
+        display: none
+    }
+
+    #msform fieldset .form-card {
+        text-align: center;
+    }
+
+
+
+select.list-dt {
+    border: none;
+    outline: 0;
+    border-bottom: 1px solid #ff6a00;
+    width: 100%;
+}
+
+    select.list-dt:focus {
+        border-bottom: 2px solid skyblue
+    }
+
+.card {
+    z-index: 0;
+    border: none;
+    border-radius: 0.5rem;
+    position: relative
+}
+
+#msform input[type=text],
+#msform input[type=number],
+#msform textarea {
+    border: none;
+    border-bottom: 1px solid #ff6a00;
+    border-radius: 0px;
+    width: 100%;
+    box-sizing: border-box;
+    color: #2C3E50;
+}
+
+    #msform input[type=text]:focus,
+    #msform input[type=number]:focus,
+    #msform textarea:focus {
+        -moz-box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+        border: none;
+        font-weight: bold;
+        border-bottom: 2px solid skyblue;
+        outline-width: 0;
+    }
+
+#progressbar {
+    margin-bottom: 30px;
+    overflow: hidden;
+    color: lightgrey
+}
+
+    #progressbar .active {
+        color: #000000
+    }
+
+    #progressbar li {
+        list-style-type: none;
+        font-size: 12px;
+        width: 20%;/*Valor 100/n siendo n numero de puntos en wizard*/
+        float: left;
+        position: relative
+    }
+
+    #progressbar #account:before {
+        font-family: FontAwesome;
+        content: "\f023"
+    }
+
+    #progressbar #personal:before {
+        font-family: FontAwesome;
+        content: "\f007"
+    }
+
+    #progressbar #payment:before {
+        font-family: FontAwesome;
+        content: "\f09d"
+    }
+
+    #progressbar #confirm:before {
+        font-family: FontAwesome;
+        content: "\f00c"
+    }
+    #progressbar #education:before {
+        font-family: FontAwesome;
+        content: "\f19d"
+    }
+    #progressbar #home:before {
+        font-family: FontAwesome;
+        content: "\f015"
+    }
+
+    #progressbar #clipboard:before {
+        font-family: FontAwesome;
+        content: "\f0ea"
+    }
+
+    #progressbar li:before {
+        width: 50px;
+        height: 50px;
+        line-height: 45px;
+        display: block;
+        font-size: 18px;
+        color: #ffffff;
+        background: lightgray;
+        border-radius: 50%;
+        margin: 0 auto 10px auto;
+        padding: 2px
+    }
+
+    #progressbar li:after {
+        content: '';
+        width: 100%;
+        height: 2px;
+        background: lightgray;
+        position: absolute;
+        left: 0;
+        top: 25px;
+        z-index: -1
+    }
+
+    #progressbar li.active:before,
+    #progressbar li.active:after {
+        background: skyblue
+    }

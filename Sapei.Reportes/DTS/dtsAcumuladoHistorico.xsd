@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dtsAcumuladoHistorico" targetNamespace="http://tempuri.org/dtsAcumuladoHistorico.xsd" xmlns:mstns="http://tempuri.org/dtsAcumuladoHistorico.xsd" xmlns="http://tempuri.org/dtsAcumuladoHistorico.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="bdtec245" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="bdtec245 (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Sapei.Reportes.Properties.Settings.GlobalReference.Default.bdtec245" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DataTable1TableAdapter" GeneratorDataComponentClassName="DataTable1TableAdapter" Name="DataTable1" UserDataComponentName="DataTable1TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="bdtec245 (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select '' identificacion_corta, '' creditos_cursados, '' creditos_aprobados, '' creditos_acumulados, '' promedio_aritmetico, '' promedio_aritmetico_acumulado, '' promedio_certificado</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="identificacion_corta" DataSetColumn="identificacion_corta" />
+              <Mapping SourceColumn="creditos_cursados" DataSetColumn="creditos_cursados" />
+              <Mapping SourceColumn="creditos_aprobados" DataSetColumn="creditos_aprobados" />
+              <Mapping SourceColumn="creditos_acumulados" DataSetColumn="creditos_acumulados" />
+              <Mapping SourceColumn="promedio_aritmetico" DataSetColumn="promedio_aritmetico" />
+              <Mapping SourceColumn="promedio_aritmetico_acumulado" DataSetColumn="promedio_aritmetico_acumulado" />
+              <Mapping SourceColumn="promedio_certificado" DataSetColumn="promedio_certificado" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dtsAcumuladoHistorico" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="dtsAcumuladoHistorico" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dtsAcumuladoHistorico">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DataTable1" msprop:Generator_RowClassName="DataTable1Row" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="identificacion_corta" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="identificacion_corta" msprop:Generator_ColumnPropNameInTable="identificacion_cortaColumn" msprop:Generator_ColumnVarNameInTable="columnidentificacion_corta" msprop:Generator_UserColumnName="identificacion_corta" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="creditos_cursados" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="creditos_cursados" msprop:Generator_ColumnPropNameInTable="creditos_cursadosColumn" msprop:Generator_ColumnVarNameInTable="columncreditos_cursados" msprop:Generator_UserColumnName="creditos_cursados" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="creditos_aprobados" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="creditos_aprobados" msprop:Generator_ColumnPropNameInTable="creditos_aprobadosColumn" msprop:Generator_ColumnVarNameInTable="columncreditos_aprobados" msprop:Generator_UserColumnName="creditos_aprobados" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="creditos_acumulados" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="creditos_acumulados" msprop:Generator_ColumnPropNameInTable="creditos_acumuladosColumn" msprop:Generator_ColumnVarNameInTable="columncreditos_acumulados" msprop:Generator_UserColumnName="creditos_acumulados" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="promedio_aritmetico" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="promedio_aritmetico" msprop:Generator_ColumnPropNameInTable="promedio_aritmeticoColumn" msprop:Generator_ColumnVarNameInTable="columnpromedio_aritmetico" msprop:Generator_UserColumnName="promedio_aritmetico" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="promedio_aritmetico_acumulado" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="promedio_aritmetico_acumulado" msprop:Generator_ColumnPropNameInTable="promedio_aritmetico_acumuladoColumn" msprop:Generator_ColumnVarNameInTable="columnpromedio_aritmetico_acumulado" msprop:Generator_UserColumnName="promedio_aritmetico_acumulado" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="promedio_certificado" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="promedio_certificado" msprop:Generator_ColumnPropNameInTable="promedio_certificadoColumn" msprop:Generator_ColumnVarNameInTable="columnpromedio_certificado" msprop:Generator_UserColumnName="promedio_certificado" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

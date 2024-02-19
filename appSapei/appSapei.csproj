@@ -1,0 +1,1322 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5B312513-C4B3-492C-87B4-3FF933550B8A}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>appSapei</RootNamespace>
+    <AssemblyName>appSapei</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress>
+    </Use64BitIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+    <TypeScriptToolsVersion>4.2</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TypeScriptLib>dom,es2015</TypeScriptLib>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EPPlus, Version=4.5.3.2, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.4.5.3.2\lib\net40\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Sapei.Reportes\bin\Debug\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.2.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Sapei.Reportes\bin\Debug\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Sapei.Reportes\bin\Debug\Microsoft.ReportViewer.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="SpreadsheetGear, Version=6.0.3.236, Culture=neutral, PublicKeyToken=39c186f5904944ec, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\SpreadsheetGear.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Compression.Base, Version=19.3450.0.43, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.HtmlToPdfConverter.Blink.AspNet.Mvc5.19.3.0.43\lib\net45\Syncfusion.Compression.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.EJ2, Version=17.4500.0.46, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.EJ2.MVC5.17.4.0.46\lib\net45\Syncfusion.EJ2.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.HtmlConverter.Base, Version=19.3450.0.43, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.HtmlToPdfConverter.Blink.AspNet.Mvc5.19.3.0.43\lib\net45\Syncfusion.HtmlConverter.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Licensing, Version=17.4460.0.46, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Licensing.17.4.0.46\lib\net46\Syncfusion.Licensing.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Pdf.Base, Version=19.3450.0.43, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.HtmlToPdfConverter.Blink.AspNet.Mvc5.19.3.0.43\lib\net45\Syncfusion.Pdf.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.Primitives.4.3.0\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Packaging, Version=4.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Packaging.4.5.0\lib\net46\System.IO.Packaging.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\AntiForgery.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\NoDirectAccess.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\SessionExpire.cs" />
+    <Compile Include="Clases\AppointmentData.cs" />
+    <Compile Include="Clases\EvoBanamex.cs" />
+    <Compile Include="Clases\InicioSesion.cs" />
+    <Compile Include="Clases\ManejoMensajesJson.cs" />
+    <Compile Include="Clases\ProcesosMQ.cs" />
+    <Compile Include="Controllers\AcademicosController.cs" />
+    <Compile Include="Controllers\AdministracionController.cs" />
+    <Compile Include="Controllers\AspiranteController.cs" />
+    <Compile Include="Controllers\CentroInformacionController.cs" />
+    <Compile Include="Controllers\CentroLenguasExtController.cs" />
+    <Compile Include="Controllers\ConsultasController.cs" />
+    <Compile Include="Controllers\ControlUsuarioController.cs" />
+    <Compile Include="Controllers\CorreosController.cs" />
+    <Compile Include="Controllers\DEPController.cs" />
+    <Compile Include="Controllers\DesarrolloAcademicoController.cs" />
+    <Compile Include="Controllers\DireccionController.cs" />
+    <Compile Include="Controllers\DocenteController.cs" />
+    <Compile Include="Controllers\DocumentosOficialesController.cs" />
+    <Compile Include="Controllers\EcotecController.cs" />
+    <Compile Include="Controllers\EncuestasController.cs" />
+    <Compile Include="Controllers\EstadisticasController.cs" />
+    <Compile Include="Controllers\EstudianteController.cs" />
+    <Compile Include="Controllers\EstudianteExpDigController.cs" />
+    <Compile Include="Controllers\ExpedienteDigitalController.cs" />
+    <Compile Include="Controllers\ExpedienteDigitalDocumentosController.cs" />
+    <Compile Include="Controllers\ExportExcelController.cs" />
+    <Compile Include="Controllers\ExtraEscolaresController.cs" />
+    <Compile Include="Controllers\FacilitadoresController.cs" />
+    <Compile Include="Controllers\FinancierosController.cs" />
+    <Compile Include="Controllers\GeneralesController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IncidenciasController.cs" />
+    <Compile Include="Controllers\ManejoSesionController.cs" />
+    <Compile Include="Controllers\MantenimientoEquiposController.cs" />
+    <Compile Include="Controllers\MaterialesController.cs" />
+    <Compile Include="Controllers\MovilController.cs" />
+    <Compile Include="Controllers\PaginaWebController.cs" />
+    <Compile Include="Controllers\PersonalController.cs" />
+    <Compile Include="Controllers\PlaneacionController.cs" />
+    <Compile Include="Controllers\RecursosHumanosController.cs" />
+    <Compile Include="Controllers\ReportesCLEController.cs" />
+    <Compile Include="Controllers\ReportesController.cs" />
+    <Compile Include="Controllers\ReportesCSVController.cs" />
+    <Compile Include="Controllers\ReportesExcelController.cs" />
+    <Compile Include="Controllers\ReticulaController.cs" />
+    <Compile Include="Controllers\ServiciosEscolaresController.cs" />
+    <Compile Include="Controllers\SGIController.cs" />
+    <Compile Include="Controllers\SubDireccionController.cs" />
+    <Compile Include="Controllers\ValidadorDocumentosController.cs" />
+    <Compile Include="Controllers\VinculacionController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UsuarioInicioSesion.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\login\portada.css" />
+    <Content Include="Content\bootstrap-tagsinput.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap3.3.7.min.css" />
+    <Content Include="Content\checkbox.css" />
+    <Content Include="Content\Controles\avance.css" />
+    <Content Include="Content\Controles\bootstrap-progressbar-3.3.4.min.css" />
+    <Content Include="Content\Controles\captcha.css" />
+    <Content Include="Content\Controles\DataTable\buttons.bootstrap.css" />
+    <Content Include="Content\Controles\DataTable\buttons.bootstrap.min.css" />
+    <Content Include="Content\Controles\DataTable\buttons.dataTables.min.css" />
+    <Content Include="Content\Controles\DataTable\dataTables.bootstrap.css" />
+    <Content Include="Content\Controles\DataTable\dataTables.bootstrap.min.css" />
+    <Content Include="Content\Controles\DataTable\fixedHeader.bootstrap.css" />
+    <Content Include="Content\Controles\DataTable\fixedHeader.bootstrap.min.css" />
+    <Content Include="Content\Controles\DataTable\jquery.dataTables.min.css" />
+    <Content Include="Content\Controles\DataTable\responsive.bootstrap.css" />
+    <Content Include="Content\Controles\DataTable\responsive.bootstrap.min.css" />
+    <Content Include="Content\Controles\DataTable\scroller.bootstrap.css" />
+    <Content Include="Content\Controles\DataTable\scroller.bootstrap.min.css" />
+    <Content Include="Content\Controles\DataTable\select.dataTables.min.css" />
+    <Content Include="Content\Controles\datePiker.css" />
+    <Content Include="Content\Controles\datePiker4.css" />
+    <Content Include="Content\Controles\datetimepicker.css" />
+    <Content Include="Content\Controles\div-scroll.css" />
+    <Content Include="Content\Controles\dropDown.css" />
+    <Content Include="Content\Controles\Dropzone.css" />
+    <Content Include="Content\Controles\estiloincidencia.css" />
+    <Content Include="Content\Controles\fileinput-rtl.min.css" />
+    <Content Include="Content\Controles\fileinput.min.css" />
+    <Content Include="Content\Controles\flat\aero%402x.png" />
+    <Content Include="Content\Controles\flat\aero.css" />
+    <Content Include="Content\Controles\flat\aero.png" />
+    <Content Include="Content\Controles\flat\blue%402x.png" />
+    <Content Include="Content\Controles\flat\blue.css" />
+    <Content Include="Content\Controles\flat\blue.png" />
+    <Content Include="Content\Controles\flat\flat%402x.png" />
+    <Content Include="Content\Controles\flat\flat.css" />
+    <Content Include="Content\Controles\flat\flat.png" />
+    <Content Include="Content\Controles\flat\flat_green.css" />
+    <Content Include="Content\Controles\flat\green%402x.png" />
+    <Content Include="Content\Controles\flat\green.css" />
+    <Content Include="Content\Controles\flat\green.png" />
+    <Content Include="Content\Controles\flat\grey%402x.png" />
+    <Content Include="Content\Controles\flat\grey.css" />
+    <Content Include="Content\Controles\flat\grey.png" />
+    <Content Include="Content\Controles\flat\orange%402x.png" />
+    <Content Include="Content\Controles\flat\orange.css" />
+    <Content Include="Content\Controles\flat\orange.png" />
+    <Content Include="Content\Controles\flat\pink%402x.png" />
+    <Content Include="Content\Controles\flat\pink.css" />
+    <Content Include="Content\Controles\flat\pink.png" />
+    <Content Include="Content\Controles\flat\purple%402x.png" />
+    <Content Include="Content\Controles\flat\purple.css" />
+    <Content Include="Content\Controles\flat\purple.png" />
+    <Content Include="Content\Controles\flat\red%402x.png" />
+    <Content Include="Content\Controles\flat\red.css" />
+    <Content Include="Content\Controles\flat\red.png" />
+    <Content Include="Content\Controles\flat\yellow%402x.png" />
+    <Content Include="Content\Controles\flat\yellow.css" />
+    <Content Include="Content\Controles\flat\yellow.png" />
+    <Content Include="Content\Controles\flat\_all.css" />
+    <Content Include="Content\Controles\HorarioSemanal\calendar_g.css" />
+    <Content Include="Content\Controles\HorarioSemanal\calendar_green.css" />
+    <Content Include="Content\Controles\HorarioSemanal\calendar_traditional.css" />
+    <Content Include="Content\Controles\HorarioSemanal\calendar_transparent.css" />
+    <Content Include="Content\Controles\HorarioSemanal\calendar_white.css" />
+    <Content Include="Content\Controles\jquery.motionCaptcha.0.2.css" />
+    <Content Include="Content\Controles\nprogress.css" />
+    <Content Include="Content\Controles\prueba.css" />
+    <Content Include="Content\Controles\scroll.css" />
+    <Content Include="Content\Controles\select\select2.css" />
+    <Content Include="Content\Controles\select\select2.min.css" />
+    <Content Include="Content\Controles\smart_wizard.css" />
+    <Content Include="Content\Controles\smart_wizard.min.css" />
+    <Content Include="Content\Controles\smart_wizard_theme_arrows.css" />
+    <Content Include="Content\Controles\smart_wizard_theme_circles.min.css" />
+    <Content Include="Content\Controles\smart_wizard_theme_dots.css" />
+    <Content Include="Content\Controles\smart_wizard_theme_dots.min.css" />
+    <Content Include="Content\Controles\TimeCircles.css" />
+    <Content Include="Content\Controles\toastr.min.css" />
+    <Content Include="Content\Controles\cursor.css" />
+    <Content Include="Content\Controles\wizard.css" />
+    <Content Include="Content\ej2\bootstrap.css" />
+    <Content Include="Content\ej2\bootstrap4.css" />
+    <Content Include="Content\ej2\compatibility\bootstrap.css" />
+    <Content Include="Content\ej2\compatibility\bootstrap4.css" />
+    <Content Include="Content\ej2\compatibility\fabric.css" />
+    <Content Include="Content\ej2\compatibility\highcontrast.css" />
+    <Content Include="Content\ej2\compatibility\material.css" />
+    <Content Include="Content\ej2\fabric.css" />
+    <Content Include="Content\ej2\fluent.css" />
+    <Content Include="Content\ej2\highcontrast.css" />
+    <Content Include="Content\ej2\material.css" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\font\font-awesome.min.css" />
+    <Content Include="Content\login\bootstrap.min.css" />
+    <Content Include="Content\login\main.css" />
+    <Content Include="Content\login\main1.css" />
+    <Content Include="Content\login\pace.css" />
+    <Content Include="Content\login\vendor\icon-sets.css" />
+    <Content Include="Content\malihu-custom-scrollbar-plugin\jquery.mCustomScrollbar.concat.min.js" />
+    <Content Include="Content\malihu-custom-scrollbar-plugin\jquery.mCustomScrollbar.css" />
+    <Content Include="Content\malihu-custom-scrollbar-plugin\jquery.mCustomScrollbar.js" />
+    <Content Include="Content\malihu-custom-scrollbar-plugin\jquery.mCustomScrollbar.min.css" />
+    <Content Include="Content\malihu-custom-scrollbar-plugin\mCSB_buttons.png" />
+    <Content Include="Content\nprogress\nprogress.css" />
+    <Content Include="Content\prettify\prettify.min.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\minified\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.accordion.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.autocomplete.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.button.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.core.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.datepicker.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.dialog.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.progressbar.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.resizable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.selectable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\themes\css_SII.css" />
+    <Content Include="Content\themes\ExpedienteDigital.css" />
+    <Content Include="Content\themes\Tecnologico.css" />
+    <Content Include="Content\themes\kardex.css" />
+    <Content Include="Content\themes\PerfilUsuario.css" />
+    <Content Include="Content\themes\Reticula.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\login\fontawesome-webfont.svg" />
+    <Content Include="fonts\login\Linearicons-Free.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Images\100x100\no-ok.png" />
+    <Content Include="Images\100x100\ok.png" />
+    <Content Include="Images\10ani.jpg" />
+    <Content Include="Images\accent.png" />
+    <Content Include="Images\aniversario.jpeg" />
+    <Content Include="Images\bullet.png" />
+    <Content Include="Images\celular.png" />
+    <Content Include="Images\comodo_secure_seal_76x26_transp.png" />
+    <Content Include="Images\efectos\ajax-loader.gif" />
+    <Content Include="Images\efectos\ajax-loader3.gif" />
+    <Content Include="Images\efectos\ajax-loader4.gif" />
+    <Content Include="Images\efectos\ajax-loader5.gif" />
+    <Content Include="Images\efectos\snow.png" />
+    <Content Include="Images\efectos\tecnm_load.gif" />
+    <Content Include="Images\encabezado.png" />
+    <Content Include="Images\EnergiaP.png" />
+    <Content Include="Images\FondoAzul.jpeg" />
+    <Content Include="Images\FondoAzulTecnm.jpeg" />
+    <Content Include="Images\FondoAzulTecnm200.jpg" />
+    <Content Include="Images\FondoVerdeTecnm.jpeg" />
+    <Content Include="Images\Foto.png" />
+    <Content Include="Images\FPerfil.png" />
+    <Content Include="Images\heroAccent.png" />
+    <Content Include="Images\ic_launcher.png" />
+    <Content Include="Images\ITT.jpg" />
+    <Content Include="Images\jaguar.png" />
+    <Content Include="Images\jaguar180.png" />
+    <Content Include="Images\logo.ico" />
+    <Content Include="Images\logo.png" />
+    <Content Include="Images\logos\aguila.jpg" />
+    <Content Include="Images\logos\fondo_carta.jpg" />
+    <Content Include="Images\logos\fondo_doc_sin_valor.jpg" />
+    <Content Include="Images\logos\sep.jpg" />
+    <Content Include="Images\logos\tecnm.png" />
+    <Content Include="Images\logo_navideño.png" />
+    <Content Include="Images\Logo_tecnm.png" />
+    <Content Include="Images\logo_tecnm_gray.png" />
+    <Content Include="Images\mision_vision_politicas\Mision.png" />
+    <Content Include="Images\mision_vision_politicas\MisionVision.png" />
+    <Content Include="Images\mision_vision_politicas\PoliticaEnergetica.png" />
+    <Content Include="Images\mision_vision_politicas\PoliticaIntegral.png" />
+    <Content Include="Images\mision_vision_politicas\PoliticaNoDiscriminacion.png" />
+    <Content Include="Images\mision_vision_politicas\PoliticasGenerales.png" />
+    <Content Include="Images\mision_vision_politicas\ValoresGenerales.png" />
+    <Content Include="Images\mision_vision_politicas\Vision.png" />
+    <Content Include="Images\motionCaptcha-shapes.jpg" />
+    <Content Include="Images\overlay.png" />
+    <Content Include="Images\Perfil.png" />
+    <Content Include="Images\PJaguar.png" />
+    <Content Include="Images\Sapei2.PNG" />
+    <Content Include="Images\tec.jpg" />
+    <Content Include="Images\tec2019.JPG" />
+    <Content Include="Images\Tecnm.png" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\font\font-awesome.css.map" />
+    <Content Include="fonts\login\fontawesome-webfont.eot" />
+    <Content Include="fonts\login\fontawesome-webfont.ttf" />
+    <Content Include="fonts\login\fontawesome-webfont.woff" />
+    <Content Include="fonts\login\fontawesome-webfont.woff2" />
+    <Content Include="fonts\login\Linearicons-Free.eot" />
+    <Content Include="fonts\login\Linearicons-Free.ttf" />
+    <Content Include="fonts\login\Linearicons-Free.woff" />
+    <Content Include="fonts\login\Linearicons-Free.woff2" />
+    <Content Include="Content\malihu-custom-scrollbar-plugin\.bower.json" />
+    <Content Include="Content\malihu-custom-scrollbar-plugin\bower.json" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Scripts\ej2\ej2.min.js" />
+    <Content Include="Scripts\ej2\ej2.min.js.map" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\bootstrap3.3.7.min.js" />
+    <Content Include="Scripts\Captcha\bootstrap-captcha.js" />
+    <Content Include="Scripts\Captcha\captcha.js" />
+    <Content Include="Scripts\Captcha\jquery.motionCaptcha.0.2.js" />
+    <Content Include="Scripts\Componentes\bootbox.min.js" />
+    <Content Include="Scripts\Componentes\bootstrap-progressbar.min.js" />
+    <Content Include="Scripts\Componentes\bootstrap-tagsinput.min.js" />
+    <Content Include="Scripts\Componentes\Chart.bundle.js" />
+    <Content Include="Scripts\Componentes\DataTable\buttons.bootstrap.min.js" />
+    <Content Include="Scripts\Componentes\DataTable\buttons.flash.js" />
+    <Content Include="Scripts\Componentes\DataTable\buttons.html5.js" />
+    <Content Include="Scripts\Componentes\DataTable\buttons.html5.min.js" />
+    <Content Include="Scripts\Componentes\DataTable\buttons.print.js" />
+    <Content Include="Scripts\Componentes\DataTable\buttons.print.min.js" />
+    <Content Include="Scripts\Componentes\DataTable\dataTables.bootstrap.js" />
+    <Content Include="Scripts\Componentes\DataTable\dataTables.bootstrap.min.js" />
+    <Content Include="Scripts\Componentes\DataTable\dataTables.buttons.js" />
+    <Content Include="Scripts\Componentes\DataTable\dataTables.fixedHeader.min.js" />
+    <Content Include="Scripts\Componentes\DataTable\dataTables.keyTable.min.js" />
+    <Content Include="Scripts\Componentes\DataTable\dataTables.responsive.min.js" />
+    <Content Include="Scripts\Componentes\DataTable\dataTables.scroller.min.js" />
+    <Content Include="Scripts\Componentes\DataTable\dataTables.select.min.js" />
+    <Content Include="Scripts\Componentes\DataTable\init_datatable.js" />
+    <Content Include="Scripts\Componentes\DataTable\jquery.dataTables.js" />
+    <Content Include="Scripts\Componentes\DataTable\jszip.js" />
+    <Content Include="Scripts\Componentes\DataTable\pdfmake.js" />
+    <Content Include="Scripts\Componentes\DataTable\responsive.bootstrap.js" />
+    <Content Include="Scripts\Componentes\DataTable\vfs_fonts.js" />
+    <Content Include="Scripts\Componentes\datePiker.js" />
+    <Content Include="Scripts\Componentes\datePiker4.js" />
+    <Content Include="Scripts\Componentes\daypilot-all.min.js" />
+    <Content Include="Scripts\Componentes\fileinput.js" />
+    <Content Include="Scripts\Componentes\iCheck.min.js" />
+    <Content Include="Scripts\Componentes\jquery.smartWizard.min.js" />
+    <Content Include="Scripts\Componentes\jquery.tagsinput.js" />
+    <Content Include="Scripts\Componentes\knockout-2.2.0.js" />
+    <Content Include="Scripts\Componentes\moment.js" />
+    <Content Include="Scripts\Componentes\nprogress.js" />
+    <Content Include="Scripts\Componentes\select.js" />
+    <Content Include="Scripts\Componentes\select\i18n\ar.js" />
+    <Content Include="Scripts\Componentes\select\i18n\az.js" />
+    <Content Include="Scripts\Componentes\select\i18n\bg.js" />
+    <Content Include="Scripts\Componentes\select\i18n\ca.js" />
+    <Content Include="Scripts\Componentes\select\i18n\cs.js" />
+    <Content Include="Scripts\Componentes\select\i18n\da.js" />
+    <Content Include="Scripts\Componentes\select\i18n\de.js" />
+    <Content Include="Scripts\Componentes\select\i18n\el.js" />
+    <Content Include="Scripts\Componentes\select\i18n\en.js" />
+    <Content Include="Scripts\Componentes\select\i18n\es.js" />
+    <Content Include="Scripts\Componentes\select\i18n\et.js" />
+    <Content Include="Scripts\Componentes\select\i18n\eu.js" />
+    <Content Include="Scripts\Componentes\select\i18n\fa.js" />
+    <Content Include="Scripts\Componentes\select\i18n\fi.js" />
+    <Content Include="Scripts\Componentes\select\i18n\fr.js" />
+    <Content Include="Scripts\Componentes\select\i18n\gl.js" />
+    <Content Include="Scripts\Componentes\select\i18n\he.js" />
+    <Content Include="Scripts\Componentes\select\i18n\hi.js" />
+    <Content Include="Scripts\Componentes\select\i18n\hr.js" />
+    <Content Include="Scripts\Componentes\select\i18n\hu.js" />
+    <Content Include="Scripts\Componentes\select\i18n\hy.js" />
+    <Content Include="Scripts\Componentes\select\i18n\id.js" />
+    <Content Include="Scripts\Componentes\select\i18n\is.js" />
+    <Content Include="Scripts\Componentes\select\i18n\it.js" />
+    <Content Include="Scripts\Componentes\select\i18n\ja.js" />
+    <Content Include="Scripts\Componentes\select\i18n\km.js" />
+    <Content Include="Scripts\Componentes\select\i18n\ko.js" />
+    <Content Include="Scripts\Componentes\select\i18n\lt.js" />
+    <Content Include="Scripts\Componentes\select\i18n\lv.js" />
+    <Content Include="Scripts\Componentes\select\i18n\mk.js" />
+    <Content Include="Scripts\Componentes\select\i18n\ms.js" />
+    <Content Include="Scripts\Componentes\select\i18n\nb.js" />
+    <Content Include="Scripts\Componentes\select\i18n\nl.js" />
+    <Content Include="Scripts\Componentes\select\i18n\pl.js" />
+    <Content Include="Scripts\Componentes\select\i18n\pt-BR.js" />
+    <Content Include="Scripts\Componentes\select\i18n\pt.js" />
+    <Content Include="Scripts\Componentes\select\i18n\ro.js" />
+    <Content Include="Scripts\Componentes\select\i18n\ru.js" />
+    <Content Include="Scripts\Componentes\select\i18n\sk.js" />
+    <Content Include="Scripts\Componentes\select\i18n\sl.js" />
+    <Content Include="Scripts\Componentes\select\i18n\sr-Cyrl.js" />
+    <Content Include="Scripts\Componentes\select\i18n\sr.js" />
+    <Content Include="Scripts\Componentes\select\i18n\sv.js" />
+    <Content Include="Scripts\Componentes\select\i18n\th.js" />
+    <Content Include="Scripts\Componentes\select\i18n\tr.js" />
+    <Content Include="Scripts\Componentes\select\i18n\uk.js" />
+    <Content Include="Scripts\Componentes\select\i18n\vi.js" />
+    <Content Include="Scripts\Componentes\select\i18n\zh-CN.js" />
+    <Content Include="Scripts\Componentes\select\i18n\zh-TW.js" />
+    <Content Include="Scripts\Componentes\select\select2.full.js" />
+    <Content Include="Scripts\Componentes\select\select2.full.min.js" />
+    <Content Include="Scripts\Componentes\select\select2.js" />
+    <Content Include="Scripts\Componentes\select\select2.min.js" />
+    <Content Include="Scripts\Componentes\table\buttons.flash.min.js" />
+    <Content Include="Scripts\Componentes\table\buttons.html5.min.js" />
+    <Content Include="Scripts\Componentes\table\buttons.print.min.js" />
+    <Content Include="Scripts\Componentes\table\dataTables.buttons.min.js" />
+    <Content Include="Scripts\Componentes\table\jquery.dataTables.min.js" />
+    <Content Include="Scripts\Componentes\table\jszip.min.js" />
+    <Content Include="Scripts\Componentes\table\pdfmake.min.js" />
+    <Content Include="Scripts\Componentes\table\vfs_fonts.js" />
+    <Content Include="Scripts\Componentes\TimeCircles.js" />
+    <Content Include="Scripts\Componentes\toastr.min.js" />
+    <Content Include="Scripts\curp.js" />
+    <Content Include="Scripts\efectos\snow.js" />
+    <Content Include="Scripts\ej2\polyfill.js" />
+    <Content Include="Scripts\fastclick.js" />
+    <Content Include="Scripts\funcionesCadenas.js" />
+    <Content Include="Scripts\funcionesCargaCombos.js" />
+    <Content Include="Scripts\Graficas\echarts.js" />
+    <Content Include="Scripts\Graficas\echarts.min.js" />
+    <Content Include="Scripts\Graficas\init_echarts.js" />
+    <Content Include="Scripts\Idiomas\es.js" />
+    <Content Include="Scripts\ini_SII.js" />
+    <Content Include="Scripts\jquery-1.12.4.min.js" />
+    <Content Include="Scripts\jquery-3.2.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.placeholder.1.1.1.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\login\bootstrap.min.js" />
+    <Content Include="Scripts\login\login.js" />
+    <Content Include="Scripts\login\main.js" />
+    <Content Include="Scripts\login\pace.js" />
+    <Content Include="Scripts\login\Recupera.js" />
+    <Content Include="Scripts\manejaSesion.js" />
+    <Content Include="Scripts\manejoAlertas.js" />
+    <Content Include="Scripts\manejoCadenas.js" />
+    <Content Include="Scripts\ManejoDatos\Academicos\AsesoriasRP.js" />
+    <Content Include="Scripts\ManejoDatos\Academicos\AsignacionAsesorInternoRP.js" />
+    <Content Include="Scripts\ManejoDatos\Academicos\AsignacionRevisorRP.js" />
+    <Content Include="Scripts\ManejoDatos\Academicos\AutorizacionAnteproyecto.js" />
+    <Content Include="Scripts\ManejoDatos\Academicos\Liberacion.js" />
+    <Content Include="Scripts\ManejoDatos\Academicos\SeguimientosRP.js" />
+    <Content Include="Scripts\ManejoDatos\Academicos\SolicitudesAnteproyectoRP.js" />
+    <Content Include="Scripts\ManejoDatos\Administracion\Logos.js" />
+    <Content Include="Scripts\ManejoDatos\Administrativos\Notificaciones.js" />
+    <Content Include="Scripts\ManejoDatos\Administrativos\Registrar.js" />
+    <Content Include="Scripts\ManejoDatos\Aspirantes\ActivarPeriodo.js" />
+    <Content Include="Scripts\ManejoDatos\Aspirantes\CambiarEstatus.js" />
+    <Content Include="Scripts\ManejoDatos\Aspirantes\DatosEscuela.js" />
+    <Content Include="Scripts\ManejoDatos\Aspirantes\DatosEstatus.js" />
+    <Content Include="Scripts\ManejoDatos\Aspirantes\DatosPersonales.js" />
+    <Content Include="Scripts\ManejoDatos\Aspirantes\DatosSolicitud.js" />
+    <Content Include="Scripts\ManejoDatos\Aspirantes\Ficha.js" />
+    <Content Include="Scripts\ManejoDatos\Aspirantes\Registro.js" />
+    <Content Include="Scripts\ManejoDatos\Aspirantes\RegistroDatos.js" />
+    <Content Include="Scripts\ManejoDatos\Aspirantes\Validaciones.js" />
+    <Content Include="Scripts\ManejoDatos\CentroInformacion\AdeudoF.js" />
+    <Content Include="Scripts\ManejoDatos\CentroInformacion\Adeudos.js" />
+    <Content Include="Scripts\ManejoDatos\CentroInformacion\Alumno.js" />
+    <Content Include="Scripts\ManejoDatos\CentroInformacion\Autores.js" />
+    <Content Include="Scripts\ManejoDatos\CentroInformacion\Categoria.js" />
+    <Content Include="Scripts\ManejoDatos\CentroInformacion\CDs.js" />
+    <Content Include="Scripts\ManejoDatos\CentroInformacion\Editorial.js" />
+    <Content Include="Scripts\ManejoDatos\CentroInformacion\Ejemplares.js" />
+    <Content Include="Scripts\ManejoDatos\CentroInformacion\Libros.js" />
+    <Content Include="Scripts\ManejoDatos\CentroInformacion\MaterialBibliografico.js" />
+    <Content Include="Scripts\ManejoDatos\CentroInformacion\Memorias.js" />
+    <Content Include="Scripts\ManejoDatos\CentroInformacion\Prestamo.js" />
+    <Content Include="Scripts\ManejoDatos\CentroInformacion\Revistas.js" />
+    <Content Include="Scripts\ManejoDatos\CentroInformacion\Tesis.js" />
+    <Content Include="Scripts\ManejoDatos\CentroLenguasExt\ActivaDesactivaPago.js" />
+    <Content Include="Scripts\ManejoDatos\CentroLenguasExt\ActivarEstudiante.js" />
+    <Content Include="Scripts\ManejoDatos\CentroLenguasExt\CaprturaCalificacion.js" />
+    <Content Include="Scripts\ManejoDatos\CentroLenguasExt\ImprimirListaGrupos.js" />
+    <Content Include="Scripts\ManejoDatos\CentroLenguasExt\ImprimirListaReinscripcion.js" />
+    <Content Include="Scripts\ManejoDatos\CentroLenguasExt\ImprimirListasInscritos.js" />
+    <Content Include="Scripts\ManejoDatos\CentroLenguasExt\Niveles.js" />
+    <Content Include="Scripts\ManejoDatos\CentroLenguasExt\RegistrarGrupos.js" />
+    <Content Include="Scripts\ManejoDatos\CentroLenguasExt\RegistrarNuevoEstudiante.js" />
+    <Content Include="Scripts\ManejoDatos\CentroLenguasExt\Documentos.js" />
+    <Content Include="Scripts\ManejoDatos\CentroLenguasExt\RegistroEstudiante.js" />
+    <Content Include="Scripts\ManejoDatos\ControlUsuario\CrearUsuario.js" />
+    <Content Include="Scripts\ManejoDatos\DatosEscolares.js" />
+    <Content Include="Scripts\ManejoDatos\DatosEstudiante.js" />
+    <Content Include="Scripts\ManejoDatos\DatosPersonales.js" />
+    <Content Include="Scripts\ManejoDatos\DEP\ActivarPeriodoCargaAcademica.js" />
+    <Content Include="Scripts\ManejoDatos\DEP\ActivarPeriodoCLE.js" />
+    <Content Include="Scripts\ManejoDatos\DEP\ActivarPeriodoRP.js" />
+    <Content Include="Scripts\ManejoDatos\DEP\AutorizacionResidenciasRP.js" />
+    <Content Include="Scripts\ManejoDatos\DEP\AutorizaReinsExt.js" />
+    <Content Include="Scripts\ManejoDatos\DEP\BajaFoliosRP.js" />
+    <Content Include="Scripts\ManejoDatos\DEP\CierreResidenciasRP.js" />
+    <Content Include="Scripts\ManejoDatos\DEP\CursoInduccionRP.js" />
+    <Content Include="Scripts\ManejoDatos\DEP\ListasReinscripcionCarreras.js" />
+    <Content Include="Scripts\ManejoDatos\DEP\ReinscripcionFechasCarreras.js" />
+    <Content Include="Scripts\ManejoDatos\DEP\ReinscripcionModificaHora.js" />
+    <Content Include="Scripts\ManejoDatos\DEP\ReinscripcionResetHora.js" />
+    <Content Include="Scripts\ManejoDatos\DEP\SeleccionMaterias.js" />
+    <Content Include="Scripts\ManejoDatos\DEP\SolicitudResidenciasRP.js" />
+    <Content Include="Scripts\ManejoDatos\DesarrolloAcademico\ActivarPeriodo.js" />
+    <Content Include="Scripts\ManejoDatos\DesarrolloAcademico\CorregirCalificacion.js" />
+    <Content Include="Scripts\ManejoDatos\DesarrolloAcademico\FechaEvaluacion.js" />
+    <Content Include="Scripts\ManejoDatos\DesarrolloAcademico\Liberacion.js" />
+    <Content Include="Scripts\ManejoDatos\DesarrolloAcademico\RegistrarGrupos.js" />
+    <Content Include="Scripts\ManejoDatos\DesarrolloAcademico\Tutores.js" />
+    <Content Include="Scripts\ManejoDatos\DesarrolloAcademico\VerificaEvaluacionDocente.js" />
+    <Content Include="Scripts\ManejoDatos\Docentes\HorarioActividades.js" />
+    <Content Include="Scripts\ManejoDatos\DocumentosOficiales\DocumentosOficiales.js" />
+    <Content Include="Scripts\ManejoDatos\DocumentosOficiales\OrdenMantenimiento.js" />
+    <Content Include="Scripts\ManejoDatos\DocumentosOficiales\SolicitudMantenimiento.js" />
+    <Content Include="Scripts\ManejoDatos\Domicilio.js" />
+    <Content Include="Scripts\ManejoDatos\Escolares\Aspirantes2AlumnosInscritos.js" />
+    <Content Include="Scripts\ManejoDatos\Escolares\CierreSemestre.js" />
+    <Content Include="Scripts\ManejoDatos\Escolares\Aspirantes2Estudiantes.js" />
+    <Content Include="Scripts\ManejoDatos\Escolares\CambioNoControl.js" />
+    <Content Include="Scripts\ManejoDatos\Escolares\Certificados.js" />
+    <Content Include="Scripts\ManejoDatos\Escolares\Consultas.js" />
+    <Content Include="Scripts\ManejoDatos\Escolares\InsertaTitulado.js" />
+    <Content Include="Scripts\ManejoDatos\Escolares\LiberacionSS.js" />
+    <Content Include="Scripts\ManejoDatos\Escolares\LiberacionAC.js" />
+    <Content Include="Scripts\ManejoDatos\Escolares\MateriasPorBloque.js" />
+    <Content Include="Scripts\ManejoDatos\Escolares\RegresaQR.js" />
+    <Content Include="Scripts\ManejoDatos\Escolares\validaciones.js" />
+    <Content Include="Scripts\ManejoDatos\Estudiantes\AsesoriasRP.js" />
+    <Content Include="Scripts\ManejoDatos\Estudiantes\Cuentas.js" />
+    <Content Include="Scripts\ManejoDatos\Estudiantes\HistorialServicios.js" />
+    <Content Include="Scripts\ManejoDatos\Estudiantes\HistorialPagos.js" />
+    <Content Include="Scripts\ManejoDatos\Estudiantes\ActividadExtraescolar.js" />
+    <Content Include="Scripts\ManejoDatos\Estudiantes\ActualizarDatos.js" />
+    <Content Include="Scripts\ManejoDatos\Estudiantes\BusquedasGenerales.js" />
+    <Content Include="Scripts\ManejoDatos\Estudiantes\DatosEscuela.js" />
+    <Content Include="Scripts\ManejoDatos\Estudiantes\HorarioActividades.js" />
+    <Content Include="Scripts\ManejoDatos\Estudiantes\InformacionEscolar.js" />
+    <Content Include="Scripts\ManejoDatos\Estudiantes\InformeSemestralRP.js" />
+    <Content Include="Scripts\ManejoDatos\Estudiantes\Kardex.js" />
+    <Content Include="Scripts\ManejoDatos\Estudiantes\LiberacionInformeTecnicoRP.js" />
+    <Content Include="Scripts\ManejoDatos\Estudiantes\ProcesoRP.js" />
+    <Content Include="Scripts\ManejoDatos\Estudiantes\ProcesoSS2.js" />
+    <Content Include="Scripts\ManejoDatos\Estudiantes\ProcesoSS.js" />
+    <Content Include="Scripts\ManejoDatos\Estudiantes\RegresaDatosEstudiante.js" />
+    <Content Include="Scripts\ManejoDatos\Estudiantes\SeguimientosRP.js" />
+    <Content Include="Scripts\ManejoDatos\Estudiantes\SeleccionDatos.js" />
+    <Content Include="Scripts\ManejoDatos\Estudiantes\Tutorias.js" />
+    <Content Include="Scripts\ManejoDatos\Estudiantes\Validaciones.js" />
+    <Content Include="Scripts\ManejoDatos\ExpedienteDigital\DocumentosInscripcion.js" />
+    <Content Include="Scripts\ManejoDatos\ExpedienteDigital\MuestraDocumentosEstudiante.js" />
+    <Content Include="Scripts\ManejoDatos\ExpedienteDigital\ValidacionDocumentosEstudiante.js" />
+    <Content Include="Scripts\ManejoDatos\ExtraEscolares\ActivarPeriodo.js" />
+    <Content Include="Scripts\ManejoDatos\ExtraEscolares\Actividades.js" />
+    <Content Include="Scripts\ManejoDatos\ExtraEscolares\BajaActividadEstudiante.js" />
+    <Content Include="Scripts\ManejoDatos\ExtraEscolares\CapturaCalificacion.js" />
+    <Content Include="Scripts\ManejoDatos\ExtraEscolares\CorregirCalificacion.js" />
+    <Content Include="Scripts\ManejoDatos\ExtraEscolares\Entrenadores.js" />
+    <Content Include="Scripts\ManejoDatos\ExtraEscolares\ImprimirListaReinscripcion.js" />
+    <Content Include="Scripts\ManejoDatos\ExtraEscolares\Liberacion.js" />
+    <Content Include="Scripts\ManejoDatos\ExtraEscolares\RegistrarActividades.js" />
+    <Content Include="Scripts\ManejoDatos\Financieros\RegistrarPagoAlumno.js" />
+    <Content Include="Scripts\ManejoDatos\Financieros\ActivarPeriodoReinscripcion.js" />
+    <Content Include="Scripts\ManejoDatos\Financieros\Prorrogas.js" />
+    <Content Include="Scripts\ManejoDatos\Financieros\AutorizaCondonacion.js" />
+    <Content Include="Scripts\ManejoDatos\Financieros\AutorizaPago.js" />
+    <Content Include="Scripts\ManejoDatos\Financieros\AutorizaPagoVehicular.js" />
+    <Content Include="Scripts\ManejoDatos\Financieros\AutorizaReinscripcion.js" />
+    <Content Include="Scripts\ManejoDatos\Financieros\ConsultaReferencia.js" />
+    <Content Include="Scripts\ManejoDatos\Financieros\GeneraReferencias.js" />
+    <Content Include="Scripts\ManejoDatos\Financieros\Servicio.js" />
+    <Content Include="Scripts\ManejoDatos\Financieros\Servicios.js" />
+    <Content Include="Scripts\ManejoDatos\Generales\AccesoTorniquetes.js" />
+    <Content Include="Scripts\ManejoDatos\Generales\AgregaEnCombos.js" />
+    <Content Include="Scripts\ManejoDatos\Generales\AvisosGenerales.js" />
+    <Content Include="Scripts\ManejoDatos\Generales\CambiaFotoPerfil.js" />
+    <Content Include="Scripts\ManejoDatos\Generales\CambiarContraseña.js" />
+    <Content Include="Scripts\ManejoDatos\Generales\CargaDatosPersonales.js" />
+    <Content Include="Scripts\ManejoDatos\Generales\Contactanos.js" />
+    <Content Include="Scripts\ManejoDatos\Generales\DescargaArchivos.js" />
+    <Content Include="Scripts\ManejoDatos\Generales\HorarioGeneral.js" />
+    <Content Include="Scripts\ManejoDatos\Generales\Indicadores.js" />
+    <Content Include="Scripts\ManejoDatos\Generales\PeriodoAdmision.js" />
+    <Content Include="Scripts\ManejoDatos\Generales\QuejasySugerencias.js" />
+    <Content Include="Scripts\ManejoDatos\Generales\Reportes.js" />
+    <Content Include="Scripts\ManejoDatos\Generales\TecnologicoGeneral.js" />
+    <Content Include="Scripts\ManejoDatos\Graficas\Estadisticas.js" />
+    <Content Include="Scripts\ManejoDatos\Graficas\EstadisticasActividadesExtraescolares.js" />
+    <Content Include="Scripts\ManejoDatos\Graficas\EstadisticasAnfei.js" />
+    <Content Include="Scripts\ManejoDatos\Graficas\EstadisticasAspirantes.js" />
+    <Content Include="Scripts\ManejoDatos\Graficas\EstadisticasEncuestasServicios.js" />
+    <Content Include="Scripts\ManejoDatos\Graficas\EstadisticasGnosis.js" />
+    <Content Include="Scripts\ManejoDatos\Graficas\ManejoDeGraficas.js" />
+    <Content Include="Scripts\ManejoDatos\Incidencias\DiaFeriado.js" />
+    <Content Include="Scripts\ManejoDatos\Incidencias\Incidencias.js" />
+    <Content Include="Scripts\ManejoDatos\MantenimientoEquipos\Mantenimiento.js" />
+    <Content Include="Scripts\ManejoDatos\Mantenimiento\CarrerasReticula.js" />
+    <Content Include="Scripts\ManejoDatos\Mantenimiento\EspecialidadReticula.js" />
+    <Content Include="Scripts\ManejoDatos\Mantenimiento\MateriasReticula.js" />
+    <Content Include="Scripts\ManejoDatos\Mantenimiento\ReticulaMantenimiento.js" />
+    <Content Include="Scripts\ManejoDatos\Materiales\ActivarPeriodo.js" />
+    <Content Include="Scripts\ManejoDatos\Materiales\ConsultarRegistros.js" />
+    <Content Include="Scripts\ManejoDatos\Materiales\EntregaTarjetonVehicular.js" />
+    <Content Include="Scripts\ManejoDatos\Materiales\RegistroTarjetonVehicular.js" />
+    <Content Include="Scripts\ManejoDatos\Materiales\RegistroVehicular.js" />
+    <Content Include="Scripts\ManejoDatos\Mensaje\bootstrap-wysiwyg.min.js" />
+    <Content Include="Scripts\ManejoDatos\Mensaje\estudiante.js" />
+    <Content Include="Scripts\ManejoDatos\Mensaje\jquery.hotkeys.js" />
+    <Content Include="Scripts\ManejoDatos\Mensaje\mensaje.js" />
+    <Content Include="Scripts\ManejoDatos\Mensaje\prettify.js" />
+    <Content Include="Scripts\ManejoDatos\Pagina\Banner.js" />
+    <Content Include="Scripts\ManejoDatos\Pagina\Convocatorias.js" />
+    <Content Include="Scripts\ManejoDatos\Pagina\Links_Interes.js" />
+    <Content Include="Scripts\ManejoDatos\Pagina\Noticias.js" />
+    <Content Include="Scripts\ManejoDatos\Pagina\Sitios_Interes.js" />
+    <Content Include="Scripts\ManejoDatos\Pagina\Videos.js" />
+    <Content Include="Scripts\ManejoDatos\Password\input.js" />
+    <Content Include="Scripts\ManejoDatos\Password\strength.js" />
+    <Content Include="Scripts\ManejoDatos\RecursosHumanos\ControlAsistencia.js" />
+    <Content Include="Scripts\ManejoDatos\RecursosHumanos\ControlPersonal.js" />
+    <Content Include="Scripts\ManejoDatos\RecursosHumanos\RegistraPersonal.js" />
+    <Content Include="Scripts\ManejoDatos\Reticula\Reticula.js" />
+    <Content Include="Scripts\ManejoDatos\Reticula\Seleccion.js" />
+    <Content Include="Scripts\ManejoDatos\SGI\ActivarPeriodo.js" />
+    <Content Include="Scripts\ManejoDatos\Vinculacion\ActivarCursoSS.js" />
+    <Content Include="Scripts\ManejoDatos\Vinculacion\ActivarPeriodoSS.js" />
+    <Content Include="Scripts\ManejoDatos\Vinculacion\AltaDependenciaRP.js" />
+    <Content Include="Scripts\ManejoDatos\Vinculacion\AltaDependenciaSS.js" />
+    <Content Include="Scripts\ManejoDatos\Vinculacion\AvanceProcesoSS.js" />
+    <Content Include="Scripts\ManejoDatos\Vinculacion\Bimestre1SS.js" />
+    <Content Include="Scripts\ManejoDatos\Vinculacion\Bimestre2SS.js" />
+    <Content Include="Scripts\ManejoDatos\Vinculacion\Bimestre3SS.js" />
+    <Content Include="Scripts\ManejoDatos\Vinculacion\ControlEscolarSS.js" />
+    <Content Include="Scripts\ManejoDatos\Vinculacion\PreRegistroSS.js" />
+    <Content Include="Scripts\ManejoDatos\Vinculacion\RegistroExtemporaneoSS.js" />
+    <Content Include="Scripts\ManejoDatos\Vinculacion\ReporteFinalSS.js" />
+    <Content Include="Scripts\ManejoDatos\Vinculacion\CartaAceptacionRP.js" />
+    <Content Include="Scripts\ManejoDatos\Vinculacion\CartaAceptacionSS.js" />
+    <Content Include="Scripts\ManejoDatos\Vinculacion\CartaAsignacionSS.js" />
+    <Content Include="Scripts\ManejoDatos\Vinculacion\CartaCompromisoSS.js" />
+    <Content Include="Scripts\ManejoDatos\Vinculacion\CartaPresentacion.js" />
+    <Content Include="Scripts\ManejoDatos\Vinculacion\CartaPresentacionExternoSS.js" />
+    <Content Include="Scripts\ManejoDatos\Vinculacion\CartaPresentacionInternoSS.js" />
+    <Content Include="Scripts\ManejoDatos\Vinculacion\CartaTerminoFinalSS.js" />
+    <Content Include="Scripts\ManejoDatos\Vinculacion\CartaTerminoRP.js" />
+    <Content Include="Scripts\ManejoDatos\Vinculacion\CartaTerminoSS.js" />
+    <Content Include="Scripts\ManejoDatos\CentroLenguasExt\LiberacionIngles.js" />
+    <Content Include="Scripts\ManejoDatos\Vinculacion\ReportesSS.js" />
+    <Content Include="Scripts\ManejoDatos\Vinculacion\SolicitudesRP.js" />
+    <Content Include="Scripts\ManejoDatos\Vinculacion\SolicitudServicioSocial.js" />
+    <Content Include="Scripts\ManejoDatos\Vinculacion\TarjetaControlSS.js" />
+    <Content Include="Scripts\md5.js" />
+    <Content Include="Scripts\md5.min.js" />
+    <Content Include="Scripts\mensajesGenosis.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\scroll.js" />
+    <Content Include="Scripts\toastr.min.js" />
+    <Content Include="Scripts\validacion.js" />
+    <Content Include="Scripts\validacionesControles.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Home\Bienvenida.cshtml" />
+    <Content Include="Views\Home\Error404.cshtml" />
+    <Content Include="Views\Home\Estructura.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Shared\_LayoutSimple.cshtml" />
+    <Content Include="Views\Shared\_Logos.cshtml" />
+    <Content Include="Views\Shared\_NewFooter.cshtml" />
+    <Content Include="Views\Shared\_NewHeader.cshtml" />
+    <Content Include="Views\Shared\_NewHeaderSimple.cshtml" />
+    <Content Include="Views\Shared\_NewLayout.cshtml" />
+    <Content Include="Views\Shared\_NewMenu.cshtml" />
+    <Content Include="Views\Shared\_Scripts.cshtml" />
+    <Content Include="Views\Academicos\ConsultaLiberaciones.cshtml" />
+    <Content Include="Views\Academicos\Liberacion.cshtml" />
+    <Content Include="Views\Administracion\Logos.cshtml" />
+    <Content Include="Views\Aspirante\DatosEscuela.cshtml" />
+    <Content Include="Views\Aspirante\DatosEstatus.cshtml" />
+    <Content Include="Views\Aspirante\DatosPersonales.cshtml" />
+    <Content Include="Views\Aspirante\DatosSolicitud.cshtml" />
+    <Content Include="Views\Aspirante\Ficha.cshtml" />
+    <Content Include="Views\Aspirante\Index.cshtml" />
+    <Content Include="Views\Aspirante\PasosRegistro.cshtml" />
+    <Content Include="Views\Aspirante\Registro.cshtml" />
+    <Content Include="Views\BibliotecasDigitales\Pearson.cshtml" />
+    <Content Include="Views\CentroInformacion\Adeudos.cshtml" />
+    <Content Include="Views\CentroInformacion\Alumno.cshtml" />
+    <Content Include="Views\CentroInformacion\Autores.cshtml" />
+    <Content Include="Views\CentroInformacion\Categorias.cshtml" />
+    <Content Include="Views\CentroInformacion\CDs.cshtml" />
+    <Content Include="Views\CentroInformacion\Editorial.cshtml" />
+    <Content Include="Views\CentroInformacion\Ejemplar.cshtml" />
+    <Content Include="Views\CentroInformacion\FinancierosAdeudos.cshtml" />
+    <Content Include="Views\CentroInformacion\Libros.cshtml" />
+    <Content Include="Views\CentroInformacion\Material.cshtml" />
+    <Content Include="Views\CentroInformacion\MaterialBibliografico.cshtml" />
+    <Content Include="Views\CentroInformacion\Memorias.cshtml" />
+    <Content Include="Views\CentroInformacion\ModalElimina.cshtml" />
+    <Content Include="Views\CentroInformacion\Prestamo.cshtml" />
+    <Content Include="Views\CentroInformacion\Prestamos.cshtml" />
+    <Content Include="Views\CentroInformacion\Profesor.cshtml" />
+    <Content Include="Views\CentroInformacion\Revistas.cshtml" />
+    <Content Include="Views\CentroInformacion\Tesis.cshtml" />
+    <Content Include="Views\CentroLenguasExt\ActivaEstudiante.cshtml" />
+    <Content Include="Views\CentroLenguasExt\CapturaCalificacion.cshtml" />
+    <Content Include="Views\CentroLenguasExt\ImprimirListaGrupos.cshtml" />
+    <Content Include="Views\CentroLenguasExt\ImprimirListaInscritos.cshtml" />
+    <Content Include="Views\CentroLenguasExt\ImprimirListaReinscripcion.cshtml" />
+    <Content Include="Views\CentroLenguasExt\RegistrarEstudianteGrupo.cshtml" />
+    <Content Include="Views\CentroLenguasExt\RegistrarGrupos.cshtml" />
+    <Content Include="Views\CentroLenguasExt\RegistrarNivel.cshtml" />
+    <Content Include="Views\CentroLenguasExt\RegistrarNuevoEstudiante.cshtml" />
+    <Content Include="Views\DatosGeneralesAcademicos\DatosPersonales.cshtml" />
+    <Content Include="Views\DesarrolloAcademico\ActivarPeriodo.cshtml" />
+    <Content Include="Views\DesarrolloAcademico\ActivarPeriodoTutorias.cshtml" />
+    <Content Include="Views\DesarrolloAcademico\CambiarEstatus.cshtml" />
+    <Content Include="Views\DesarrolloAcademico\CargaCalificacion.cshtml" />
+    <Content Include="Views\DesarrolloAcademico\CorregirCalificacionTutoria.cshtml" />
+    <Content Include="Views\DesarrolloAcademico\EstadisticasAspirantes.cshtml" />
+    <Content Include="Views\DesarrolloAcademico\FechaEvaluacionDocente.cshtml" />
+    <Content Include="Views\DesarrolloAcademico\Index.cshtml" />
+    <Content Include="Views\DesarrolloAcademico\InscritosTutoriasGrupos.cshtml" />
+    <Content Include="Views\DesarrolloAcademico\Liberacion.cshtml" />
+    <Content Include="Views\DesarrolloAcademico\RegistrarGrupos.cshtml" />
+    <Content Include="Views\DesarrolloAcademico\Registro.cshtml" />
+    <Content Include="Views\DesarrolloAcademico\Tutores.cshtml" />
+    <Content Include="Views\Direccion\Index.cshtml" />
+    <Content Include="Views\Docente\CapturaCalificaciones.cshtml" />
+    <Content Include="Views\Docente\HorarioActividades.cshtml" />
+    <Content Include="Views\Docente\Index.cshtml" />
+    <Content Include="Views\DocumentosOficiales\Diplomas.cshtml" />
+    <Content Include="Views\Encuestas\Index.cshtml" />
+    <Content Include="Views\Estudiante\ActividadesComplementarias.cshtml" />
+    <Content Include="Views\Estudiante\ActualizarDatos.cshtml" />
+    <Content Include="Views\Estudiante\Datos.cshtml" />
+    <Content Include="Views\Estudiante\DatosEscolares.cshtml" />
+    <Content Include="Views\Estudiante\DatosEscuela.cshtml" />
+    <Content Include="Views\Estudiante\DatosExtras.cshtml" />
+    <Content Include="Views\Estudiante\DatosLaborales.cshtml" />
+    <Content Include="Views\Estudiante\Encuestas.cshtml" />
+    <Content Include="Views\Estudiante\EstudianteGenerales.cshtml" />
+    <Content Include="Views\Estudiante\EvaluacionDocente.cshtml" />
+    <Content Include="Views\Estudiante\Extraescolares.cshtml" />
+    <Content Include="Views\Estudiante\ExtraescolaresRegistradas.cshtml" />
+    <Content Include="Views\Estudiante\FichaDatosGenerales.cshtml" />
+    <Content Include="Views\Estudiante\HorarioActividades.cshtml" />
+    <Content Include="Views\Estudiante\Index.cshtml" />
+    <Content Include="Views\Estudiante\ModificarDomicilio.cshtml" />
+    <Content Include="Views\Estudiante\Reticula.cshtml" />
+    <Content Include="Views\Estudiante\Tutorias.cshtml" />
+    <Content Include="Views\ExtraEscolares\ActivarPeriodo.cshtml" />
+    <Content Include="Views\ExtraEscolares\Actividades.cshtml" />
+    <Content Include="Views\ExtraEscolares\BajaActividadEstudiante.cshtml" />
+    <Content Include="Views\ExtraEscolares\CargaCalificacionEstudiantesActividad.cshtml" />
+    <Content Include="Views\ExtraEscolares\CorregirCalificacion.cshtml" />
+    <Content Include="Views\ExtraEscolares\Entrenadores.cshtml" />
+    <Content Include="Views\ExtraEscolares\Inscritos.cshtml" />
+    <Content Include="Views\ExtraEscolares\InscritosPorActividad.cshtml" />
+    <Content Include="Views\ExtraEscolares\Liberacion.cshtml" />
+    <Content Include="Views\ExtraEscolares\RegistrarActividades.cshtml" />
+    <Content Include="Views\Financieros\AutorizaPago.cshtml" />
+    <Content Include="Views\Financieros\AutorizaRegistroVehicular.cshtml" />
+    <Content Include="Views\Financieros\AutorizaReinscripcion.cshtml" />
+    <Content Include="Views\Financieros\Condonacion.cshtml" />
+    <Content Include="Views\Generales\AgregaEnCombos.cshtml" />
+    <Content Include="Views\Generales\AvisosGenerales.cshtml" />
+    <Content Include="Views\Generales\CambiarContraseña.cshtml" />
+    <Content Include="Views\Generales\Consultas.cshtml" />
+    <Content Include="Views\Generales\Contactanos.cshtml" />
+    <Content Include="Views\Generales\DatosFamiliares.cshtml" />
+    <Content Include="Views\Generales\DatosGenerales.cshtml" />
+    <Content Include="Views\Generales\DatosPersonales.cshtml" />
+    <Content Include="Views\Generales\Domicilio.cshtml" />
+    <Content Include="Views\Generales\Encuestas.cshtml" />
+    <Content Include="Views\Generales\Estadisticas.cshtml" />
+    <Content Include="Views\Generales\GeneraQS.cshtml" />
+    <Content Include="Views\Generales\HorarioGeneral.cshtml" />
+    <Content Include="Views\Generales\HorarioSemanal.cshtml" />
+    <Content Include="Views\Generales\ImprimirReporteConTabla.cshtml" />
+    <Content Include="Views\Generales\ModalCargaArchivo.cshtml" />
+    <Content Include="Views\Generales\ModalCargando.cshtml" />
+    <Content Include="Views\Generales\ModalTablaDatos.cshtml" />
+    <Content Include="Views\Generales\ModuloGraficas.cshtml" />
+    <Content Include="Views\Generales\QuejaySugerencia.cshtml" />
+    <Content Include="Views\Generales\TablaGeneral.cshtml" />
+    <Content Include="Views\Generales\VisorPDF.cshtml" />
+    <Content Include="Views\Incidencias\DPcargarhorario.cshtml" />
+    <Content Include="Views\Incidencias\RHCargaPeriodo.cshtml" />
+    <Content Include="Views\Incidencias\RHcargardiasferiados.cshtml" />
+    <Content Include="Views\Incidencias\RHcargarpuestos.cshtml" />
+    <Content Include="Views\Incidencias\RHConsultarTablaAcciones.cshtml" />
+    <Content Include="Views\Incidencias\RHgenerarincidencias.cshtml" />
+    <Content Include="Views\Incidencias\RHModificar.cshtml" />
+    <Content Include="Views\Instructor\Index.cshtml" />
+    <Content Include="Views\Materiales\ActivarPeriodo.cshtml" />
+    <Content Include="Views\Materiales\ConsultarRegistros.cshtml" />
+    <Content Include="Views\Materiales\EntregaTarjetonVehicular.cshtml" />
+    <Content Include="Views\Materiales\EstatusRegistroVehicular.cshtml" />
+    <Content Include="Views\Materiales\IndexControlVehicular.cshtml" />
+    <Content Include="Views\Materiales\RegistraTarjetonVehicular.cshtml" />
+    <Content Include="Views\Materiales\RegistroVehicular.cshtml" />
+    <Content Include="Views\Movil\EstadisticasAnfei.cshtml" />
+    <Content Include="Views\Movil\EstadisticasGnosis.cshtml" />
+    <Content Include="Views\PaginaWeb\Noticias.cshtml" />
+    <Content Include="Views\PaginaWeb\Banners.cshtml" />
+    <Content Include="Views\PaginaWeb\PaginasInteres.cshtml" />
+    <Content Include="Views\Personal\Index.cshtml" />
+    <Content Include="Views\Planeacion\Consultas.cshtml" />
+    <Content Include="Views\ServiciosEscolares\AlumnosTitulados.cshtml" />
+    <Content Include="Views\ServiciosEscolares\Aspirante2Estudiante.cshtml" />
+    <Content Include="Views\ServiciosEscolares\CambiaNoControl.cshtml" />
+    <Content Include="Views\ServiciosEscolares\LiberacionCreditosComplementarios.cshtml" />
+    <Content Include="Views\ServiciosEscolares\LoteNSS.cshtml" />
+    <Content Include="Views\ServiciosEscolares\MateriasPorBloque.cshtml" />
+    <Content Include="Views\ServiciosEscolares\ReporteAspirantes2AlumnosInscritos.cshtml" />
+    <Content Include="Views\SGI\ActivarPeriodo.cshtml" />
+    <Content Include="Views\SGI\EstadisticasEncuestas.cshtml" />
+    <Content Include="Views\CentroLenguasExt\LiberacionIngles.cshtml" />
+    <Content Include="Views\Home\Mantenimiento.cshtml" />
+    <Content Include="Views\ValidadorDocumentos\Index.cshtml" />
+    <Content Include="Views\ServiciosEscolares\Certificados.cshtml" />
+    <Content Include="Views\ServiciosEscolares\CierreSemestre.cshtml" />
+    <Content Include="Views\ServiciosEscolares\CierreSemestreDatos.cshtml" />
+    <Content Include="Views\Estudiante\HistorialPagos.cshtml" />
+    <Content Include="Views\Academicos\AsesoriasRP.cshtml" />
+    <Content Include="Views\Academicos\AsignacionAsesorInternoRP.cshtml" />
+    <Content Include="Views\Academicos\AsignacionRevisorRP.cshtml" />
+    <Content Include="Views\Academicos\CartaTerminoRP.cshtml" />
+    <Content Include="Views\Academicos\SeguimientosRP.cshtml" />
+    <Content Include="Views\Academicos\SolicitudesAnteproyectosRP.cshtml" />
+    <Content Include="Views\Estudiante\AsesoriasRP.cshtml" />
+    <Content Include="Views\Estudiante\InformeSemestralRP.cshtml" />
+    <Content Include="Views\Estudiante\LiberacionInformeTecnicoRP.cshtml" />
+    <Content Include="Views\Estudiante\ProcesoRP.cshtml" />
+    <Content Include="Views\Estudiante\ProcesoSS.cshtml" />
+    <Content Include="Views\Estudiante\SeguimientosRP.cshtml" />
+    <Content Include="Views\Vinculacion\ActivarCursoSS.cshtml" />
+    <Content Include="Views\Vinculacion\ActivarPeriodoSS.cshtml" />
+    <Content Include="Views\Vinculacion\AltaDependenciaRP.cshtml" />
+    <Content Include="Views\Vinculacion\AltaDependenciaSS.cshtml" />
+    <Content Include="Views\Vinculacion\Bimestre1SS.cshtml" />
+    <Content Include="Views\Vinculacion\Bimestre2SS.cshtml" />
+    <Content Include="Views\Vinculacion\Bimestre3SS.cshtml" />
+    <Content Include="Views\Vinculacion\ReporteFinalSS.cshtml" />
+    <Content Include="Views\Vinculacion\CartaAceptacionRP.cshtml" />
+    <Content Include="Views\Vinculacion\CartaAceptacionSS.cshtml" />
+    <Content Include="Views\Vinculacion\CartaAgradecimientoRP.cshtml" />
+    <Content Include="Views\Vinculacion\CartaAsignacionSS.cshtml" />
+    <Content Include="Views\Vinculacion\CartaCompromisoSS.cshtml" />
+    <Content Include="Views\Vinculacion\CartaPresentacionExternoSS.cshtml" />
+    <Content Include="Views\Vinculacion\CartaPresentacionInternoSS.cshtml" />
+    <Content Include="Views\Vinculacion\CartaTerminoFinalSS.cshtml" />
+    <Content Include="Views\Vinculacion\CartaTerminoRP.cshtml" />
+    <Content Include="Views\Vinculacion\CartaTerminoSS.cshtml" />
+    <Content Include="Views\Vinculacion\RegistroCursoInduccionSS.cshtml" />
+    <Content Include="Views\Vinculacion\SolicitudesRP.cshtml" />
+    <Content Include="Views\Vinculacion\SolicitudServicioSocialSS.cshtml" />
+    <Content Include="Views\Vinculacion\TarjetaControlSS.cshtml" />
+    <Content Include="Views\DEP\AperturaPeriodoRP.cshtml" />
+    <Content Include="Views\DEP\AutorizacionResidenciasRP.cshtml" />
+    <Content Include="Views\DEP\CierreResidenciasRP.cshtml" />
+    <Content Include="Views\DEP\CursoInduccionRP.cshtml" />
+    <Content Include="Views\DEP\SolicitudResidenciasRP.cshtml" />
+    <Content Include="Views\Generales\ModalVisorPDF.cshtml" />
+    <Content Include="Views\Vinculacion\CartaPresentacion.cshtml" />
+    <Content Include="Views\Vinculacion\ReportesSS.cshtml" />
+    <Content Include="Views\DesarrolloAcademico\VerificaEvaluacionDocente.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\DEP\ListasSeleccionMateriasCarreras.cshtml" />
+    <Content Include="Views\DEP\ReinscripcionFechasCarreras.cshtml" />
+    <Content Include="Views\Estudiante\DatosReinscripcion.cshtml" />
+    <Content Include="Views\DEP\ResetHoraSeleccion.cshtml" />
+    <Content Include="Views\DEP\DatosReinscripcion.cshtml" />
+    <Content Include="Views\DEP\ModificaHoraSeleccion.cshtml" />
+    <Content Include="Views\DocumentosOficiales\Constancias.cshtml" />
+    <Content Include="Views\Financieros\ActivarPeriodoReinscripcion.cshtml" />
+    <Content Include="Views\ServiciosEscolares\LiberacionServicioSocial.cshtml" />
+    <Content Include="Views\Shared\_ScriptsSecundarios.cshtml" />
+    <Content Include="Views\Estudiante\Kardex.cshtml" />
+    <Content Include="Views\Academicos\AutorizacionAnteproyectosRP.cshtml" />
+    <Content Include="Views\Vinculacion\ConsultaEstadoRP.cshtml" />
+    <Content Include="Views\DEP\ConsultaEstadoRP.cshtml" />
+    <Content Include="Views\Academicos\ConsultaEstadoRP.cshtml" />
+    <Content Include="Views\DEP\BajaFoliosRP.cshtml" />
+    <Content Include="Views\RecursosHumanos\RegistraPersonal.cshtml" />
+    <Content Include="Views\DEP\AutorizaReinscripcionExt.cshtml" />
+    <Content Include="Views\Generales\TablaJSon.cshtml" />
+    <Content Include="Views\Vinculacion\ControlEscolarRP.cshtml" />
+    <Content Include="Views\Academicos\ControlEscolarRP.cshtml" />
+    <Content Include="Views\DEP\ControlEscolarRP.cshtml" />
+    <Content Include="Views\Estudiante\ControlEscolarRP.cshtml" />
+    <Content Include="Views\Estudiante\PagosServicios.cshtml" />
+    <Content Include="Views\Financieros\Servicios.cshtml" />
+    <Content Include="Views\Generales\TablaRazor.cshtml" />
+    <Content Include="Views\Financieros\View.cshtml" />
+    <Content Include="Views\DesarrolloAcademico\PorDepartamento.cshtml" />
+    <Content Include="Views\Generales\HorariosAdministrativos.cshtml" />
+    <Content Include="Views\Generales\SolicitudPersonal.cshtml" />
+    <Content Include="Views\RecursosHumanos\AutorizaRecontratacion.cshtml" />
+    <Content Include="Views\Reticula\Index.cshtml" />
+    <Content Include="Views\Reticula\Consulta.cshtml" />
+    <Content Include="Views\Generales\DatosGeneralesTrabajador.cshtml" />
+    <Content Include="Views\RecursosHumanos\ListaPersonal.cshtml" />
+    <Content Include="Views\Estudiante\ReticulaSeleccion.cshtml" />
+    <Content Include="Views\Financieros\Prorrogas.cshtml" />
+    <Content Include="Views\Direccion\AutorizaDireccion.cshtml" />
+    <Content Include="Views\Estudiante\Cuentas.cshtml" />
+    <Content Include="Views\PaginaWeb\Links_Interes.cshtml" />
+    <Content Include="Views\PaginaWeb\Sitios_Interes.cshtml" />
+    <Content Include="Views\Home\Recupera.cshtml" />
+    <Content Include="Views\Estudiante\InformacionEscolar.cshtml" />
+    <Content Include="Views\Estudiante\CargaAcademica.cshtml" />
+    <Content Include="Views\SubDireccion\FechasPagosAsimilados.cshtml" />
+    <Content Include="Views\SubDireccion\FechasPagosHonorarios.cshtml" />
+    <Content Include="Views\SubDireccion\Index.cshtml" />
+    <Content Include="Views\SubDireccion\VistoBueno.cshtml" />
+    <Content Include="Views\Financieros\Tabulador.cshtml" />
+    <Content Include="Views\Financieros\MontosPagos.cshtml" />
+    <Content Include="Views\RecursosHumanos\DetallesContrato.cshtml" />
+    <Content Include="Views\Personal\FirmaContratoPersonal.cshtml" />
+    <Content Include="Views\Generales\FirmaContrato.cshtml" />
+    <Content Include="Views\SubDireccion\FirmaContratoSub.cshtml" />
+    <Content Include="Views\RecursosHumanos\FirmaContratoRH.cshtml" />
+    <Content Include="Views\Direccion\FirmaContratoDir.cshtml" />
+    <Content Include="Views\Generales\FirmaElectronica.cshtml" />
+    <Content Include="Views\Generales\ModalVistasParciales.cshtml" />
+    <Content Include="Views\PaginaWeb\Videos.cshtml" />
+    <Content Include="Views\DEP\ActivarPeriodoCLE.cshtml" />
+    <Content Include="Views\DEP\CargaAcademica.cshtml" />
+    <Content Include="Views\Vinculacion\ControlEscolarSS.cshtml" />
+    <Content Include="Views\Financieros\CargarPagos.cshtml" />
+    <Content Include="Views\RecursosHumanos\ContratosFirmados.cshtml" />
+    <Content Include="Views\Reticula\Seleccion.cshtml" />
+    <Content Include="Views\Generales\ComboGeneral.cshtml" />
+    <Content Include="Views\ServiciosEscolares\RegresaQR.cshtml" />
+    <Content Include="Views\ServiciosEscolares\Reticulas.cshtml" />
+    <Content Include="Views\MantenimientoEquipos\SolicitudMantenimiento.cshtml" />
+    <Content Include="Views\MantenimientoEquipos\OrdenMantenimiento.cshtml" />
+    <Content Include="Views\Reticula\vistaReticula.cshtml" />
+    <Content Include="Views\Planeacion\ConsultaRetardos.cshtml" />
+    <Content Include="Views\RecursosHumanos\Retardos.cshtml" />
+    <Content Include="Views\Estudiante\SeleccionMaterias.cshtml" />
+    <Content Include="Views\CentroLenguasExt\ActivaDesactivaPago.cshtml" />
+    <Content Include="Views\Generales\BuscaNoControl.cshtml" />
+    <Content Include="Views\Docente\Calificaciones.cshtml" />
+    <Content Include="Views\DEP\SeleccionMaterias.cshtml" />
+    <Content Include="Views\Generales\ComboPeriodo.cshtml" />
+    <Content Include="Views\DesarrolloAcademico\LiberacionEvaluacionDocente.cshtml" />
+    <Content Include="Views\Generales\RegistraHorarioPersonal.cshtml" />
+    <Content Include="Views\Financieros\AutorizaReinscripcionAlumno.cshtml" />
+    <Content Include="Views\PaginaWeb\Convocatorias.cshtml" />
+    <Content Include="Views\DesarrolloAcademico\ResultadosEvaluacion.cshtml" />
+    <Content Include="Views\DesarrolloAcademico\PorCarrera.cshtml" />
+    <Content Include="Views\EstudianteExpDig\DocumentosInscripcion.cshtml" />
+    <Content Include="Views\Vinculacion\CandidatosSS.cshtml" />
+    <Content Include="Views\ExpedienteDigital\ValidacionDocumentosEstudiante.cshtml" />
+    <Content Include="Views\DEP\SeleccionMaterias.cshtml" />
+    <Content Include="Views\Home\Perfil.cshtml" />
+    <Content Include="Views\Generales\Tecnologico.cshtml" />
+    <Content Include="Views\Generales\PerfilUsuario.cshtml" />
+    <Content Include="Views\ExpedienteDigital\MuestraDocumentosEstudiante.cshtml" />
+    <Content Include="Views\Generales\ModalAlertaConfirmacion.cshtml" />
+    <Content Include="Views\Aspirante\RegistroDatos.cshtml" />
+    <Content Include="Views\DesarrolloAcademico\PorDocente.cshtml" />
+    <Content Include="Views\DesarrolloAcademico\PorMateria.cshtml" />
+    <Content Include="Views\DesarrolloAcademico\PorPlantel.cshtml" />
+    <Content Include="Views\CentroLenguasExt\AsignaFacilitador.cshtml" />
+    <Content Include="Views\Facilitadores\CapturaCalificaciones.cshtml" />
+    <Content Include="Views\Facilitadores\Calificaciones.cshtml" />
+    <Content Include="Views\CentroLenguasExt\BuscaNoControl.cshtml" />
+    <Content Include="Views\RecursosHumanos\ControlAsistencia.cshtml" />
+    <Content Include="Views\CentroLenguasExt\ModificaCalificacion.cshtml" />
+    <Content Include="Views\CentroLenguasExt\IdiomaLiberado.cshtml" />
+    <Content Include="Views\RecursosHumanos\ControlPersonal.cshtml" />
+    <Content Include="Views\ReportesCLE\Documentos.cshtml" />
+    <Content Include="Views\Estudiante\ProcesoSS2.cshtml" />
+    <Content Include="Views\Generales\HorariosJefes.cshtml" />
+    <Content Include="Views\EstudianteExpDig\SolicitudInscripcion.cshtml" />
+    <Content Include="Views\EstudianteExpDig\CartaCompromiso.cshtml" />
+    <Content Include="Views\EstudianteExpDig\FormatoAutorizacionExp.cshtml" />
+    <Content Include="Views\EstudianteExpDig\FormatoAvisoPrivacidad.cshtml" />
+    <Content Include="Views\EstudianteExpDig\NoPertenenciaTecnologico.cshtml" />
+    <Content Include="Views\EstudianteExpDig\CartaResponsiva.cshtml" />
+    <Content Include="Views\EstudianteExpDig\ActualizacionDocumentos.cshtml" />
+    <Content Include="Views\ExpedienteDigital\MuestraDocumentosEscolaresEstudiante.cshtml" />
+    <Content Include="Views\Generales\BuscaRFC.cshtml" />
+    <Content Include="Views\Generales\ModalVisorSchedule.cshtml" />
+    <Content Include="Views\Generales\VisorSchedule.cshtml" />
+    <Content Include="Views\Generales\HorarioJefe.cshtml" />
+    <Content Include="Views\Vinculacion\BuscaNoControl.cshtml" />
+    <Content Include="Views\Vinculacion\RegistroExtenporaneoSS.cshtml" />
+    <Content Include="Views\Vinculacion\AvanceProcesoSS.cshtml" />
+    <Content Include="Views\Generales\CargaActividadesApoyo.cshtml" />
+    <Content Include="Views\Generales\ControlHorario.cshtml" />
+    <Content Include="Views\Generales\ActividadesApoyo.cshtml" />
+    <Content Include="Views\ControlUsuario\CrearUsuario.cshtml" />
+    <Content Include="Views\ControlUsuario\Usuarios.cshtml" />
+    <Content Include="Views\ControlUsuario\PermisosUsuario.cshtml" />
+    <Content Include="Views\Vinculacion\RegistroExtenporaneoSS.cshtml" />
+    <Content Include="Views\Vinculacion\BuscaNoControl.cshtml" />
+    <Content Include="Views\Vinculacion\AvanceProcesoSS.cshtml" />
+    <Content Include="Views\Vinculacion\PreregistroSS.cshtml" />
+    <Content Include="Views\CentroLenguasExt\ActasSinCapturaCLE.cshtml" />
+    <Content Include="Views\DEP\AdministracionAulas.cshtml" />
+    <Content Include="Views\DEP\AdministracionGrupos.cshtml" />
+    <Content Include="Views\DEP\ReticulaGrupos.cshtml" />
+    <Content Include="Views\DEP\Grupos.cshtml" />
+    <Content Include="Views\DEP\AgregaHorarioGrupo.cshtml" />
+    <Content Include="Views\DEP\CargaHorarioAula.cshtml" />
+    <Content Include="Views\DEP\ListaMateriasSinEspecialidad.cshtml" />
+    <Content Include="Views\DEP\GruposParalelos.cshtml" />
+    <Content Include="Views\DEP\ReticulaParalelo.cshtml" />
+    <Content Include="Views\DEP\GrupoExistenteParalelo.cshtml" />
+    <Content Include="Views\DEP\AsignaGrupoExistenteParalelo.cshtml" />
+    <Content Include="Views\DEP\VistaSeleccionCarreraParalelo.cshtml" />
+    <Content Include="Views\DEP\CreaGrupoParalelo.cshtml" />
+    <Content Include="Views\Academicos\AsignacionDocenteGrupo.cshtml" />
+    <Content Include="Views\Academicos\AsignaGrupo.cshtml" />
+    <Content Include="Views\Aspirante\BuscaNoControl.cshtml" />
+    <Content Include="Views\Estudiante\ControlServicios.cshtml" />
+    <Content Include="Views\Generales\ModalDatosFacturacion.cshtml" />
+    <Content Include="Views\Generales\ModalPagoBanca.cshtml" />
+    <Content Include="Views\Generales\ModalTerminosCondiciones.cshtml" />
+    <Content Include="Views\Financieros\ControlServiciosAlumnos.cshtml" />
+    <Content Include="Views\Financieros\PagoServiciosAlumnos.cshtml" />
+    <Content Include="Views\Financieros\BuscaNoControl.cshtml" />
+    <Content Include="Views\ServiciosEscolares\ControlServiciosAlumnos.cshtml" />
+    <Content Include="Views\ServiciosEscolares\BuscaNoControl.cshtml" />
+    <Content Include="Views\ServiciosEscolares\PagoServiciosAlumnos.cshtml" />
+    <Content Include="Views\Financieros\RegistraCSVServicios.cshtml" />
+    <Content Include="Views\Generales\CargaArchivo.cshtml" />
+    <Content Include="Views\Financieros\CargaArchivos.cshtml" />
+    <Content Include="Views\Combos\Carreras.cshtml" />
+    <Content Include="Views\ServiciosEscolares\MantoPeriodosEscolares.cshtml" />
+    <Content Include="Views\DEP\DatosAlumnoAutorizacion.cshtml" />
+    <Content Include="Views\DEP\AutorizacionesAcademicas.cshtml" />
+    <Content Include="Views\Generales\ModalImprimeCargaAcademicas.cshtml" />
+    <Content Include="Views\ServiciosEscolares\ModificaPeriodo.cshtml" />
+    <Content Include="Views\DEP\ListaGruposCarrera.cshtml" />
+    <Content Include="Views\Estudiante\BoletaCalificaciones.cshtml" />
+    <Content Include="Views\Academicos\PrestamoDocentes.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Content\password\" />
+    <Folder Include="Views\Correos\" />
+    <Folder Include="Views\ExpedienteDigitalDocumentos\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\ej2\ej2.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sapei.Framework.BaseDatos\Sapei.Framework.BaseDatos.csproj">
+      <Project>{609925c8-1e0b-4691-8cff-280296ffe2c6}</Project>
+      <Name>Sapei.Framework.BaseDatos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sapei.Framework.Utilerias\Sapei.Framework.Utilerias.csproj">
+      <Project>{0f8b2856-c401-4766-b80f-d6d584ea2194}</Project>
+      <Name>Sapei.Framework.Utilerias</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sapei.Framework\Sapei.Framework.csproj">
+      <Project>{70923bfa-3fb4-4201-bc38-e854f6fba0c4}</Project>
+      <Name>Sapei.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sapei.Reportes\Sapei.Reportes.csproj">
+      <Project>{2ff5ec76-4224-4c1c-aac0-7cdc23ebc0b5}</Project>
+      <Name>Sapei.Reportes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sapei\Sapei.csproj">
+      <Project>{aaaee755-1818-4c9e-84ef-6d4f78d371ca}</Project>
+      <Name>Sapei</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>54415</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

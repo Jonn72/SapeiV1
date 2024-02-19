@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="bdReportes_SSDataSet" targetNamespace="http://tempuri.org/bdReportes_SSDataSet.xsd" xmlns:mstns="http://tempuri.org/bdReportes_SSDataSet.xsd" xmlns="http://tempuri.org/bdReportes_SSDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="bdtecConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="bdtecConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Sapei.Reportes.Properties.Settings.GlobalReference.Default.bdprueba" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ss_reportes_servicio_socialTableAdapter" GeneratorDataComponentClassName="ss_reportes_servicio_socialTableAdapter" Name="ss_reportes_servicio_social" UserDataComponentName="ss_reportes_servicio_socialTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="bdtecConnectionString (Settings)" DbObjectName="bdtec.dbo.ss_reportes_servicio_social" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT no_de_control, nombre_alumno, apellido_paterno, apellido_materno, nombre_carrera, no_reporte, p_1, p_2, p_3, p_4, p_5, p_6, p_7, p_8, evaluacion, evaluacion_final, nombre, responsable, cargo_responsable, dependencia, actividades, identificacion_larga FROM dbo.ss_reportes_servicio_social</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="no_de_control" DataSetColumn="no_de_control" />
+              <Mapping SourceColumn="nombre_alumno" DataSetColumn="nombre_alumno" />
+              <Mapping SourceColumn="apellido_paterno" DataSetColumn="apellido_paterno" />
+              <Mapping SourceColumn="apellido_materno" DataSetColumn="apellido_materno" />
+              <Mapping SourceColumn="nombre_carrera" DataSetColumn="nombre_carrera" />
+              <Mapping SourceColumn="no_reporte" DataSetColumn="no_reporte" />
+              <Mapping SourceColumn="p_1" DataSetColumn="p_1" />
+              <Mapping SourceColumn="p_2" DataSetColumn="p_2" />
+              <Mapping SourceColumn="p_3" DataSetColumn="p_3" />
+              <Mapping SourceColumn="p_4" DataSetColumn="p_4" />
+              <Mapping SourceColumn="p_5" DataSetColumn="p_5" />
+              <Mapping SourceColumn="p_6" DataSetColumn="p_6" />
+              <Mapping SourceColumn="p_7" DataSetColumn="p_7" />
+              <Mapping SourceColumn="p_8" DataSetColumn="p_8" />
+              <Mapping SourceColumn="evaluacion" DataSetColumn="evaluacion" />
+              <Mapping SourceColumn="evaluacion_final" DataSetColumn="evaluacion_final" />
+              <Mapping SourceColumn="nombre" DataSetColumn="nombre" />
+              <Mapping SourceColumn="responsable" DataSetColumn="responsable" />
+              <Mapping SourceColumn="cargo_responsable" DataSetColumn="cargo_responsable" />
+              <Mapping SourceColumn="dependencia" DataSetColumn="dependencia" />
+              <Mapping SourceColumn="actividades" DataSetColumn="actividades" />
+              <Mapping SourceColumn="identificacion_larga" DataSetColumn="identificacion_larga" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="bdReportes_SSDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="bdReportes_SSDataSet" msprop:Generator_UserDSName="bdReportes_SSDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ss_reportes_servicio_social" msprop:Generator_TableClassName="ss_reportes_servicio_socialDataTable" msprop:Generator_TableVarName="tabless_reportes_servicio_social" msprop:Generator_TablePropName="ss_reportes_servicio_social" msprop:Generator_RowDeletingName="ss_reportes_servicio_socialRowDeleting" msprop:Generator_RowChangingName="ss_reportes_servicio_socialRowChanging" msprop:Generator_RowEvHandlerName="ss_reportes_servicio_socialRowChangeEventHandler" msprop:Generator_RowDeletedName="ss_reportes_servicio_socialRowDeleted" msprop:Generator_UserTableName="ss_reportes_servicio_social" msprop:Generator_RowChangedName="ss_reportes_servicio_socialRowChanged" msprop:Generator_RowEvArgName="ss_reportes_servicio_socialRowChangeEvent" msprop:Generator_RowClassName="ss_reportes_servicio_socialRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="no_de_control" msprop:Generator_ColumnVarNameInTable="columnno_de_control" msprop:Generator_ColumnPropNameInRow="no_de_control" msprop:Generator_ColumnPropNameInTable="no_de_controlColumn" msprop:Generator_UserColumnName="no_de_control">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="nombre_alumno" msprop:Generator_ColumnVarNameInTable="columnnombre_alumno" msprop:Generator_ColumnPropNameInRow="nombre_alumno" msprop:Generator_ColumnPropNameInTable="nombre_alumnoColumn" msprop:Generator_UserColumnName="nombre_alumno">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="35" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="apellido_paterno" msprop:Generator_ColumnVarNameInTable="columnapellido_paterno" msprop:Generator_ColumnPropNameInRow="apellido_paterno" msprop:Generator_ColumnPropNameInTable="apellido_paternoColumn" msprop:Generator_UserColumnName="apellido_paterno" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="apellido_materno" msprop:Generator_ColumnVarNameInTable="columnapellido_materno" msprop:Generator_ColumnPropNameInRow="apellido_materno" msprop:Generator_ColumnPropNameInTable="apellido_maternoColumn" msprop:Generator_UserColumnName="apellido_materno" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="nombre_carrera" msprop:Generator_ColumnVarNameInTable="columnnombre_carrera" msprop:Generator_ColumnPropNameInRow="nombre_carrera" msprop:Generator_ColumnPropNameInTable="nombre_carreraColumn" msprop:Generator_UserColumnName="nombre_carrera">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="80" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="no_reporte" msprop:Generator_ColumnVarNameInTable="columnno_reporte" msprop:Generator_ColumnPropNameInRow="no_reporte" msprop:Generator_ColumnPropNameInTable="no_reporteColumn" msprop:Generator_UserColumnName="no_reporte" type="xs:int" />
+              <xs:element name="p_1" msprop:Generator_ColumnVarNameInTable="columnp_1" msprop:Generator_ColumnPropNameInRow="p_1" msprop:Generator_ColumnPropNameInTable="p_1Column" msprop:Generator_UserColumnName="p_1" type="xs:int" />
+              <xs:element name="p_2" msprop:Generator_ColumnVarNameInTable="columnp_2" msprop:Generator_ColumnPropNameInRow="p_2" msprop:Generator_ColumnPropNameInTable="p_2Column" msprop:Generator_UserColumnName="p_2" type="xs:int" />
+              <xs:element name="p_3" msprop:Generator_ColumnVarNameInTable="columnp_3" msprop:Generator_ColumnPropNameInRow="p_3" msprop:Generator_ColumnPropNameInTable="p_3Column" msprop:Generator_UserColumnName="p_3" type="xs:int" />
+              <xs:element name="p_4" msprop:Generator_ColumnVarNameInTable="columnp_4" msprop:Generator_ColumnPropNameInRow="p_4" msprop:Generator_ColumnPropNameInTable="p_4Column" msprop:Generator_UserColumnName="p_4" type="xs:int" />
+              <xs:element name="p_5" msprop:Generator_ColumnVarNameInTable="columnp_5" msprop:Generator_ColumnPropNameInRow="p_5" msprop:Generator_ColumnPropNameInTable="p_5Column" msprop:Generator_UserColumnName="p_5" type="xs:int" />
+              <xs:element name="p_6" msprop:Generator_ColumnVarNameInTable="columnp_6" msprop:Generator_ColumnPropNameInRow="p_6" msprop:Generator_ColumnPropNameInTable="p_6Column" msprop:Generator_UserColumnName="p_6" type="xs:int" />
+              <xs:element name="p_7" msprop:Generator_ColumnVarNameInTable="columnp_7" msprop:Generator_ColumnPropNameInRow="p_7" msprop:Generator_ColumnPropNameInTable="p_7Column" msprop:Generator_UserColumnName="p_7" type="xs:int" />
+              <xs:element name="p_8" msprop:Generator_ColumnVarNameInTable="columnp_8" msprop:Generator_ColumnPropNameInRow="p_8" msprop:Generator_ColumnPropNameInTable="p_8Column" msprop:Generator_UserColumnName="p_8" type="xs:int" />
+              <xs:element name="evaluacion" msprop:Generator_ColumnVarNameInTable="columnevaluacion" msprop:Generator_ColumnPropNameInRow="evaluacion" msprop:Generator_ColumnPropNameInTable="evaluacionColumn" msprop:Generator_UserColumnName="evaluacion" type="xs:int" />
+              <xs:element name="evaluacion_final" msprop:Generator_ColumnVarNameInTable="columnevaluacion_final" msprop:Generator_ColumnPropNameInRow="evaluacion_final" msprop:Generator_ColumnPropNameInTable="evaluacion_finalColumn" msprop:Generator_UserColumnName="evaluacion_final" type="xs:int" />
+              <xs:element name="nombre" msprop:Generator_ColumnVarNameInTable="columnnombre" msprop:Generator_ColumnPropNameInRow="nombre" msprop:Generator_ColumnPropNameInTable="nombreColumn" msprop:Generator_UserColumnName="nombre">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="responsable" msprop:Generator_ColumnVarNameInTable="columnresponsable" msprop:Generator_ColumnPropNameInRow="responsable" msprop:Generator_ColumnPropNameInTable="responsableColumn" msprop:Generator_UserColumnName="responsable">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="60" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="cargo_responsable" msprop:Generator_ColumnVarNameInTable="columncargo_responsable" msprop:Generator_ColumnPropNameInRow="cargo_responsable" msprop:Generator_ColumnPropNameInTable="cargo_responsableColumn" msprop:Generator_UserColumnName="cargo_responsable">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="60" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="dependencia" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columndependencia" msprop:Generator_ColumnPropNameInRow="dependencia" msprop:Generator_ColumnPropNameInTable="dependenciaColumn" msprop:Generator_UserColumnName="dependencia" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="actividades" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnactividades" msprop:Generator_ColumnPropNameInRow="actividades" msprop:Generator_ColumnPropNameInTable="actividadesColumn" msprop:Generator_UserColumnName="actividades" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="identificacion_larga" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnidentificacion_larga" msprop:Generator_ColumnPropNameInRow="identificacion_larga" msprop:Generator_ColumnPropNameInTable="identificacion_largaColumn" msprop:Generator_UserColumnName="identificacion_larga" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ss_reportes_servicio_social" />
+      <xs:field xpath="mstns:no_de_control" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{70923BFA-3FB4-4201-BC38-E854F6FBA0C4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sapei.Framework</RootNamespace>
+    <AssemblyName>Sapei.Framework</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="QRCoder, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\QRCoder.dll</HintPath>
+    </Reference>
+    <Reference Include="SpreadsheetGear">
+      <HintPath>..\packages\SpreadsheetGear.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Messaging" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="zxing, Version=0.16.4.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.16.4\lib\net45\zxing.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.presentation, Version=0.16.4.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.16.4\lib\net45\zxing.presentation.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configuracion\ConfiguracionEvoBanamex.cs" />
+    <Compile Include="Configuracion\ConfiguracionPeriodo.cs" />
+    <Compile Include="ProcesoMQ\BitacoraProcesos.cs" />
+    <Compile Include="ProcesoMQ\enmBitacoraProcesoEstatus.cs" />
+    <Compile Include="ProcesoMQ\InformacionMensaje.cs" />
+    <Compile Include="ProcesoMQ\ParametrosProceso.cs" />
+    <Compile Include="Utilerias\enmExpDigRutas.cs" />
+    <Compile Include="Utilerias\enmImagenes.cs" />
+    <Compile Include="Utilerias\ArbolDeMenu.cs" />
+    <Compile Include="Configuracion\ArchivoConfig.cs" />
+    <Compile Include="Configuracion\BaseDeDatos.cs" />
+    <Compile Include="Configuracion\ConfiguracionInstitucion.cs" />
+    <Compile Include="Configuracion\ConfiguracionMenu.cs" />
+    <Compile Include="Configuracion\ConfiguracionParametros.cs" />
+    <Compile Include="Configuracion\ConfiguracionServidor.cs" />
+    <Compile Include="Configuracion\ConfiguracionSesion.cs" />
+    <Compile Include="Configuracion\ConfiguracionUsuario.cs" />
+    <Compile Include="Configuracion\enmLenguaje.cs" />
+    <Compile Include="Configuracion\enmPais.cs" />
+    <Compile Include="Configuracion\enmRolUsuario.cs" />
+    <Compile Include="Configuracion\enmSistema.cs" />
+    <Compile Include="Configuracion\enmTipoUsuarios.cs" />
+    <Compile Include="Configuracion\Servidor.cs" />
+    <Compile Include="Datos\CatalogoFijoElemento.cs" />
+    <Compile Include="Datos\CatalogoFijoElementos.cs" />
+    <Compile Include="Datos\enmMovimientos.cs" />
+    <Compile Include="Datos\Propiedad.cs" />
+    <Compile Include="Datos\PropiedadesColumna.cs" />
+    <Compile Include="Excepciones\ConstantesExcepciones.cs" />
+    <Compile Include="Excepciones\solException.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sistema.cs" />
+    <Compile Include="Utilerias\Archivo.cs" />
+    <Compile Include="Utilerias\enmProcesosMQ.cs" />
+    <Compile Include="Utilerias\enmTipoConsultas.cs" />
+    <Compile Include="Utilerias\enmCleDocumentos.cs" />
+    <Compile Include="Utilerias\enmTiposDocumentos.cs" />
+    <Compile Include="Utilerias\enmCarreras.cs" />
+    <Compile Include="Utilerias\enmEstadosPago.cs" />
+    <Compile Include="Utilerias\enmMes.cs" />
+    <Compile Include="Utilerias\enmTipoArchivo.cs" />
+    <Compile Include="Utilerias\GeneradorMenu.cs" />
+    <Compile Include="Utilerias\ManejoCadenas.cs" />
+    <Compile Include="Utilerias\ManejoCarreras.cs" />
+    <Compile Include="Utilerias\ManejoCifrados.cs" />
+    <Compile Include="Utilerias\ManejoFechas.cs" />
+    <Compile Include="Utilerias\ManejoObjetos.cs" />
+    <Compile Include="Utilerias\enmCuatrimestre.cs" />
+    <Compile Include="Utilerias\ManejoPeriodos.cs" />
+    <Compile Include="Utilerias\NumeroLetras.cs" />
+    <Compile Include="Utilerias\SwitchExtensions.cs" />
+    <Compile Include="Utilerias\Utf8StringWriter.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sapei.Framework.BaseDatos\Sapei.Framework.BaseDatos.csproj">
+      <Project>{609925c8-1e0b-4691-8cff-280296ffe2c6}</Project>
+      <Name>Sapei.Framework.BaseDatos</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

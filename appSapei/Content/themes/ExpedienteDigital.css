@@ -1,0 +1,126 @@
+﻿.botones {
+    background: #e2fdf4; 
+    color: #0ebd84; 
+    font-weight: bold;
+    padding: 15px;
+    border: 2px solid #bdfae6;
+    border-radius: 6px;
+}
+
+.botones2 {
+    background: #e1fac3;
+    color: #33bd0e;
+    font-weight: bold;
+    padding: 15px;
+    border: 2px solid #c3f8b4;
+    border-radius: 6px;
+}
+
+.botones3 {
+    background: #f8fac3;
+    color: #d3b613;
+    font-weight: bold;
+    padding: 15px;
+    border: 2px solid #f5f8b4;
+    border-radius: 6px;
+}
+
+.botones4 {
+    background: #fae1c3;
+    color: #d36a13;
+    font-weight: bold;
+    padding: 15px;
+    border: 2px solid #f8d5b4;
+    border-radius: 6px;
+}
+
+.botonesDT1 {
+    background: white;
+    color: black;
+    font-weight: bold;
+    padding: 15px;
+    border: 2px solid #1b4f72;
+    border-radius: 6px;
+}
+
+.barraTexto {
+    background: #040404;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    border: 3px solid #040404;
+    margin-top: 35px;
+    margin-bottom: 35px;
+    text-align: center;
+    font-size: 15px;
+    border-radius: 10px;
+}
+
+.colorCard {
+    background: white;
+    color: black;
+    font-weight: bold;
+    padding: 15px;
+    border: 2px solid #52be80;
+    border-radius: 6px;
+}
+
+.colorCard1 {
+    background: white;
+    font-weight: bold;
+    padding: 10px;
+    border: 2px solid #52be80;
+    border-radius: 6px;
+}
+
+
+.colorCardI {
+    background: white;
+    color: black;
+    font-weight: bold;
+    padding: 10px;
+    border: 2px solid white;
+    border-radius: 6px;
+}
+
+.colorCardII {
+    background: white;
+    color: #1b4f72;
+    font-weight: bold;
+    padding: 10px;
+    border: 2px solid white;
+    border-radius: 6px;
+}
+
+
+.colorCard2 {
+    background: white;
+    color: #1b4f72;
+    font-weight: bold;
+    padding: 10px;
+    border: 2px solid #1b4f72;
+    border-radius: 6px;
+}
+
+.textoA {
+    color: #1b4f72;
+}
+
+.textoCard {
+    color: black;
+    font-family: Verdana;
+}
+
+.textoCardBody {
+    color: dimgrey;
+    font-family: Verdana;
+}
+
+.colorCardExpDig {
+    background: white;
+    color: black;
+    font-weight: bold;
+    padding: 15px;
+    border: 2px solid #1b4f72;
+    border-radius: 6px;
+}

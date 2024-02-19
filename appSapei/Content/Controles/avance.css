@@ -1,0 +1,109 @@
+﻿     .form-control {
+          height: 40px;
+     }
+
+     .stepwizard-step p {
+          margin-top: 10px;
+     }
+
+     .stepwizard-row {
+          display: table-row;
+     }
+
+     .stepwizard {
+          display: table;
+          width: 100%;
+          position: relative;
+     }
+
+     .stepwizard-step button[disabled] {
+          opacity: 1 !important;
+          filter: alpha(opacity=100) !important;
+     }
+
+     .stepwizard-row:before {
+          top: 15px;
+          bottom: 0;
+          position: absolute;
+          content: " ";
+          width: 100%;
+          height: 20px;
+          background-color: rgba(46, 148, 105, 0.78);
+          z-order: 0;
+     }
+
+     .arrowText {
+          position: relative;
+          width: 98%;
+          height: 40px;
+          float: left;
+     }
+
+          .arrowText:before, .arrowText:after {
+               content: " ";
+               position: absolute;
+               display: block;
+               width: 0;
+               height: 0;
+          }
+
+
+
+     /* RIGHT ARROW */
+     .arrowRight:before, .arrowRight:after {
+          border-bottom: 25px solid transparent;
+          border-top: 25px solid transparent;
+          top: -1px;
+     }
+
+     .arrowRight:after {
+          border-left: 35px solid rgba(46, 148, 105, 0.78);
+          right: -15px;
+          z-index: 2;
+     }
+
+     .arrowRight:before {
+          border-left: 37px solid rgba(46, 148, 105, 0.78);
+          right: -26px;
+          z-index: 1;
+     }
+
+     .stepwizard-step {
+          display: table-cell;
+          text-align: center;
+          position: relative;
+     }
+
+     .btn-circle {
+          width: 50px;
+          height: 50px;
+          text-align: center;
+          padding: 13px 0;
+          font-size: 15px;
+          line-height: 1.428571429;
+          border-radius: 25px;
+     }
+
+
+     .btn-circle-cursado {
+          background-color: #A0D79F;
+          color: #149347;
+     }
+
+     .btn-circle-cursando {
+          background-color: #603060;
+          color: #FFFFFF;
+     }
+
+     .btn-circle-noacreditada {
+          background-color: #FFFF66;
+     }
+
+     .btn-circle-seleccionar {
+          background-color: #149347;
+          color: #FFFFFF;
+     }
+          .btn-circle-nopermitida {
+          background-color: #CCCCCC;
+          color: #FFFFFF;
+     }

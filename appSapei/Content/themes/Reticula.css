@@ -1,0 +1,161 @@
+﻿.scrolling-wrapper {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* Float four columns side by side */
+.column {
+    float: left;
+    width: 11%;
+    margin: 1px 1px 0px 0px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row_reticula {
+    margin: 0 -5px;
+    min-width:1000px;
+}
+
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+
+/* Style the counter cards */
+.card_reticula {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    text-align: center;
+    font-size: x-small;
+    margin: 2px 2px;
+    max-height: 70px;
+    min-height: 70px;
+}
+
+
+/*Nueva reticula*/
+.card_reticula_nueva {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    text-align: center;
+    font-size: x-small;
+    margin: 5px 2px;
+    max-height: 82px;
+    min-height: 82px;
+}
+
+
+.card-text-pie {
+    position: absolute;
+    text-align:center;
+    left:4rem;
+    top: 50px;
+}
+
+.column-colorama {
+    float: left;
+    width: 14%;
+    padding: 0px;
+    margin: 0px 0px 0px 0px;
+}
+.card-cabecera {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    text-align: center;
+    font-size: small;
+    color: black;
+    margin: 2px 2px;
+    max-height: 30px;
+    min-height: 30px;
+}
+
+.card-colorama {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 1px;
+    text-align: center;
+    font-size: 10px;
+    margin: 5px;
+    max-height: 20px;
+    min-height: 20px;
+}
+
+.card-acreditada {
+    background-color: rgb(160, 215, 159);
+    color: black;
+}
+.card-cursando {
+    background-color: rgb(96, 48, 96);
+    color: white;
+}
+.card-noacreditada {
+    background-color: rgb(255, 255, 102);
+    color: black;
+}
+.card-cursoespecial {
+    background-color: rgb(255, 153, 0);
+}
+.card-cursoespecialna {
+    background-color: rgb(255, 0, 0);
+    color: white;
+}
+.card-posibleseleccionar {
+    background-color: rgb(20, 147, 71);
+    color: white;
+}
+.card-nopermitida {
+    background-color: rgb(204, 204, 204);
+}
+
+.card-header-reticula {
+    padding: 1px 0px 0px 0px;
+}
+
+.card-body-reticula {
+    padding: 2px 2px 2px 2px;
+}
+
+.card-nueva {
+    background-color: #e7e3e3;
+    color: black;
+}
+
+.btn-tam{
+    margin-bottom: -7px;
+}
+
+p {
+    margin: 0 0 -4px;
+}
+
+.reticula-vacia{
+    background-color: #fff;
+}

@@ -1,0 +1,161 @@
+body {
+  background-color: rgba(241, 245, 249, 1);
+  font-family: "Inter var", ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji";
+}
+
+.auth-box {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.auth-box .left {
+  width: 31% !important;
+}
+
+.fw-400{
+    font-weight: 400 !important;
+}
+
+.link-carousel{
+    font-size: 12px; text-decoration: underline !important;
+    color: #15803d !important
+}
+.d-flex-j-content{
+    display: flex; justify-content: space-between
+}
+
+.logo-footer {
+    transform: translateX(-60%);
+    height: 120px !important;
+    width: auto;
+    opacity: 80%;
+    margin-left:110px;
+}
+
+.auth-box .right {
+  width: 69% !important;
+}
+
+.auth-box .form-auth-small {
+  text-align: left;
+}
+ 
+.font-extrabold {
+  font-weight: 800 !important;
+} 
+ 
+.mb-header {
+  font-weight: 400;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.auth-box .right {
+  position: initial !important;
+  height: 100vh !important;
+}
+
+.auth-box .left .content {
+  overflow: hidden;
+  margin-top: 50px;
+  vertical-align: top;
+}
+
+.auth-box .left::before {
+  vertical-align: top !important;
+}
+
+.btn_login {
+  margin-bottom: 30px;
+  background: linear-gradient(310deg, #16a34a, #15803d);
+}
+
+.mb-subheader {
+  margin-top: 50px;
+  margin-bottom: 90px;
+}
+
+.credits {
+  font-size: small;
+}
+
+.separators-linethrough {
+  position: relative;
+  border-top: 1px solid #f0f0f0;
+}
+
+.data-carousel {
+  max-width: 950px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.data-carousel-title {
+  line-height: 1 !important;
+  font-size: 55px;
+  font-weight: 600;
+}
+
+.data-carousel-description {
+  line-height: 1.25 !important;
+  letter-spacing: 0.025em !important;
+  font-weight: 300;
+}
+
+.overlay {
+  background-color: #000000af !important;
+}
+
+.avatar_mx {
+  border-radius: 50%;
+  border: 3px solid #15803d;
+  width: 45px;
+  height: 45px;
+  margin-right: 12px;
+}
+
+@media screen and (max-width: 1023px) {
+
+    .auth-box .left .content {
+        overflow: hidden;
+        vertical-align: top;
+    }
+
+  .auth-box .left {
+    width: 90% !important;
+    padding: 5px;
+    position: relative;
+  }
+
+  .auth-box .left .content {
+    max-width: 400px;
+  }
+
+  .auth-box .right {
+    display: none;
+  }
+
+  .data-carousel {
+    left: 5% !important;
+  }
+
+    .mb-header {
+        display: none;
+    }
+
+    .logo-footer {
+        display: none;
+    }
+}
+.auth-box .right .overlay {
+    position: absolute;
+    top: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: rgba(50, 50, 50, .99);
+}

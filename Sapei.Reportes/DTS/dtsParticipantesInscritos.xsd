@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dtsParticipantesInscritos" targetNamespace="http://tempuri.org/dtsParticipantesInscritos.xsd" xmlns:mstns="http://tempuri.org/dtsParticipantesInscritos.xsd" xmlns="http://tempuri.org/dtsParticipantesInscritos.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="bdtecConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="bdtecConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SII.Reportes.Properties.Settings.GlobalReference.Default.bdtecConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="extra_actividades_inscritosTableAdapter" GeneratorDataComponentClassName="extra_actividades_inscritosTableAdapter" Name="extra_actividades_inscritos" UserDataComponentName="extra_actividades_inscritosTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="bdtecConnectionString (Settings)" DbObjectName="bdtec.dbo.alumnos" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>
+select apellido_paterno+' '+ apellido_materno+ ' '+ nombre_alumno nombre, no_de_control, 
+ISNULL((select nombre_especialidad from especialidades where especialidad = A.especialidad),'') especialidad,
+ semestre from alumnos A</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="no_de_control" DataSetColumn="no_de_control" />
+              <Mapping SourceColumn="nombre" DataSetColumn="nombre" />
+              <Mapping SourceColumn="especialidad" DataSetColumn="especialidad" />
+              <Mapping SourceColumn="semestre" DataSetColumn="semestre" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dtsParticipantesInscritos" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="dtsParticipantesInscritos" msprop:Generator_UserDSName="dtsParticipantesInscritos">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="extra_actividades_inscritos" msprop:Generator_TableClassName="extra_actividades_inscritosDataTable" msprop:Generator_TableVarName="tableextra_actividades_inscritos" msprop:Generator_RowChangedName="extra_actividades_inscritosRowChanged" msprop:Generator_TablePropName="extra_actividades_inscritos" msprop:Generator_RowDeletingName="extra_actividades_inscritosRowDeleting" msprop:Generator_RowChangingName="extra_actividades_inscritosRowChanging" msprop:Generator_RowEvHandlerName="extra_actividades_inscritosRowChangeEventHandler" msprop:Generator_RowDeletedName="extra_actividades_inscritosRowDeleted" msprop:Generator_RowClassName="extra_actividades_inscritosRow" msprop:Generator_UserTableName="extra_actividades_inscritos" msprop:Generator_RowEvArgName="extra_actividades_inscritosRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="no_de_control" msprop:Generator_ColumnVarNameInTable="columnno_de_control" msprop:Generator_ColumnPropNameInRow="no_de_control" msprop:Generator_ColumnPropNameInTable="no_de_controlColumn" msprop:Generator_UserColumnName="no_de_control">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="nombre" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnnombre" msprop:Generator_ColumnPropNameInRow="nombre" msprop:Generator_ColumnPropNameInTable="nombreColumn" msprop:Generator_UserColumnName="nombre" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="127" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="especialidad" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnespecialidad" msprop:Generator_ColumnPropNameInRow="especialidad" msprop:Generator_ColumnPropNameInTable="especialidadColumn" msprop:Generator_UserColumnName="especialidad" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="semestre" msprop:Generator_ColumnVarNameInTable="columnsemestre" msprop:Generator_ColumnPropNameInRow="semestre" msprop:Generator_ColumnPropNameInTable="semestreColumn" msprop:Generator_UserColumnName="semestre" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:extra_actividades_inscritos" />
+      <xs:field xpath="mstns:no_de_control" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

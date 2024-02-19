@@ -1,0 +1,362 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AAAEE755-1818-4C9E-84EF-6D4F78D371CA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sapei</RootNamespace>
+    <AssemblyName>Sapei</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+    <CodeAnalysisRuleSet>CppCoreCheckRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="QRCoder">
+      <HintPath>..\appSapei\bin\QRCoder.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Acceso\Acceso.cs" />
+    <Compile Include="Acceso\AccesolPersonalizada.cs" />
+    <Compile Include="Acceso_Torniquetes\Acceso_torniquete.cs" />
+    <Compile Include="Acceso_Torniquetes\Acceso_torniquetePersonalizada.cs" />
+    <Compile Include="Acceso_Torniquetes\Acceso_torniquetes.cs" />
+    <Compile Include="Acceso_Torniquetes\Acceso_torniquetesPersonalizada.cs" />
+    <Compile Include="Alumnos\Alumno.cs" />
+    <Compile Include="Alumnos\AlumnoPersonalizada.cs" />
+    <Compile Include="Alumnos\Alumnos.cs" />
+    <Compile Include="Alumnos\AlumnosGenerales\Alumnos_generales.cs" />
+    <Compile Include="Alumnos\AlumnosGenerales\Alumnos_generalesPersonalizada.cs" />
+    <Compile Include="Alumnos\AlumnosGenerales\Alumno_generales.cs" />
+    <Compile Include="Alumnos\AlumnosGenerales\Alumno_generalesPersonalizada.cs" />
+    <Compile Include="Alumnos\AlumnosPersonalizada.cs" />
+    <Compile Include="Alumnos\Encuestas\Alumnos_Encuesta.cs" />
+    <Compile Include="Alumnos\Encuestas\Alumnos_EncuestaPersonalizada.cs" />
+    <Compile Include="Alumnos\EscuelaProcedencia\Alumnos_Escuela_Procedencia.cs" />
+    <Compile Include="Alumnos\EscuelaProcedencia\Alumnos_Escuela_ProcedenciaPersonalizada.cs" />
+    <Compile Include="Alumnos\Historial_Pagos\Alumnos_Historial_Pagos.cs" />
+    <Compile Include="Alumnos\Historial_Pagos\Alumnos_Historial_PagosPersonalizada.cs" />
+    <Compile Include="Alumnos\Historial_Servicios\Alumnos_Historial_Servicios.cs" />
+    <Compile Include="Alumnos\Historial_Servicios\Alumnos_Historial_ServiciosPersonalizada.cs" />
+    <Compile Include="Alumnos\Titulados\Alumnos_Titulados.cs" />
+    <Compile Include="Alumnos\Titulados\Alumnos_TituladosPersonalizada.cs" />
+    <Compile Include="Alumnos_Domicilios\Alumnos_domicilio.cs" />
+    <Compile Include="Alumnos_Domicilios\Alumnos_domicilioPersonalizada.cs" />
+    <Compile Include="Alumnos_Domicilios\Alumnos_domicilios.cs" />
+    <Compile Include="Alumnos_Domicilios\Alumnos_domiciliosPersonalizada.cs" />
+    <Compile Include="Aspirantes\Aspirantes\Aspirante.cs" />
+    <Compile Include="Aspirantes\Aspirantes\AspirantePersonalizada.cs" />
+    <Compile Include="Aspirantes\Aspirantes\Aspirantes.cs" />
+    <Compile Include="Aspirantes\Aspirantes\AspirantesPersonalizada.cs" />
+    <Compile Include="Aspirantes\Aspirantes_Acceso\Aspirante_acceso.cs" />
+    <Compile Include="Aspirantes\Aspirantes_Acceso\Aspirante_accesoPersonalizada.cs" />
+    <Compile Include="Aspirantes\Aspirantes_Datos\Aspirantes_datos.cs" />
+    <Compile Include="Aspirantes\Aspirantes_Datos\Aspirantes_datosPersonalizada.cs" />
+    <Compile Include="Aspirantes\Aspirantes_Datos\Aspirante_datos.cs" />
+    <Compile Include="Aspirantes\Aspirantes_Datos\Aspirante_datosPersonalizada.cs" />
+    <Compile Include="Aspirantes\Aspirantes_Datos_Solicitud\Aspirantes_datos_solicitud.cs" />
+    <Compile Include="Aspirantes\Aspirantes_Datos_Solicitud\Aspirantes_datos_solicitudPersonalizada.cs" />
+    <Compile Include="Aspirantes\Aspirantes_Datos_Solicitud\Aspirante_datos_solicitud.cs" />
+    <Compile Include="Aspirantes\Aspirantes_Datos_Solicitud\Aspirante_datos_solicitudPersonalizada.cs" />
+    <Compile Include="Aspirantes\Aspirantes_Domicilio\Aspirantes_domicilios.cs" />
+    <Compile Include="Aspirantes\Aspirantes_Domicilio\Aspirantes_domiciliosPersonalizada.cs" />
+    <Compile Include="Aspirantes\Aspirantes_Domicilio\Aspirante_domicilio.cs" />
+    <Compile Include="Aspirantes\Aspirantes_Domicilio\Aspirante_domicilioPersonalizada.cs" />
+    <Compile Include="Aspirantes\Aspirantes_Escuela_Procedencia\Aspirantes_escuela_procedencia.cs" />
+    <Compile Include="Aspirantes\Aspirantes_Escuela_Procedencia\Aspirantes_escuela_procedenciaPersonalizada.cs" />
+    <Compile Include="Aspirantes\Aspirantes_Escuela_Procedencia\Aspirantes_escuela_procedencias.cs" />
+    <Compile Include="Aspirantes\Aspirantes_Escuela_Procedencia\Aspirantes_escuela_procedenciasPersonalizada.cs" />
+    <Compile Include="Aspirantes\Periodos\Aspirantes_Periodos.cs" />
+    <Compile Include="Aspirantes\Periodos\Aspirantes_PeriodosPersonalizada.cs" />
+    <Compile Include="Aulas\Aulas.cs" />
+    <Compile Include="Aulas\AulasPersonalizada.cs" />
+    <Compile Include="Biblioteca\Adeudo\bib_Adeudo.cs" />
+    <Compile Include="Biblioteca\Adeudo\bib_AdeudoPersonalizada.cs" />
+    <Compile Include="Biblioteca\Autores\bib_Autores.cs" />
+    <Compile Include="Biblioteca\Autores\bib_AutoresPersonalizada.cs" />
+    <Compile Include="Biblioteca\Categoria\Bib_categoria_lc.cs" />
+    <Compile Include="Biblioteca\Categoria\Bib_categoria_lcPersonalizada.cs" />
+    <Compile Include="Biblioteca\CD\bib_CD.cs" />
+    <Compile Include="Biblioteca\CD\bib_CDPersonalizada.cs" />
+    <Compile Include="Biblioteca\Editorial\bib_Editorial.cs" />
+    <Compile Include="Biblioteca\Editorial\bib_EditorialPersonalizada.cs" />
+    <Compile Include="Biblioteca\Ejemplar\bib_Ejemplar.cs" />
+    <Compile Include="Biblioteca\Ejemplar\bib_EjemplarPersonalizada.cs" />
+    <Compile Include="Biblioteca\Libro\bib_Libro.cs" />
+    <Compile Include="Biblioteca\Libro\bib_LibroPersonalizada.cs" />
+    <Compile Include="Biblioteca\MaterialBibliografico\bib_MaterialBibliografico.cs" />
+    <Compile Include="Biblioteca\MaterialBibliografico\bib_MaterialBibliograficoPersonalizada.cs" />
+    <Compile Include="Biblioteca\Memoria\bib_Memoria.cs" />
+    <Compile Include="Biblioteca\Memoria\bib_MemoriaPersonalizada.cs" />
+    <Compile Include="Biblioteca\Prestador\bib_Prestador.cs" />
+    <Compile Include="Biblioteca\Prestador\bib_PrestadorPersonalizada.cs" />
+    <Compile Include="Biblioteca\Prestamo\bib_Prestamo.cs" />
+    <Compile Include="Biblioteca\Prestamo\bib_PrestamoPersonalizada.cs" />
+    <Compile Include="Biblioteca\Revista\bib_Revista.cs" />
+    <Compile Include="Biblioteca\Revista\bib_RevistaPersonalizada.cs" />
+    <Compile Include="Biblioteca\Tesis\bib_Tesi.cs" />
+    <Compile Include="Biblioteca\Tesis\bib_TesiPersonalizada.cs" />
+    <Compile Include="Biblioteca\Tipo_prestador\bib_Tipo_prestador.cs" />
+    <Compile Include="Biblioteca\Tipo_prestador\bib_Tipo_prestadorPersonalizada.cs" />
+    <Compile Include="Buzon_Quejas\Buzon_Mensaje\Buzon_Mensaje.cs" />
+    <Compile Include="Buzon_Quejas\Buzon_Mensaje\Buzon_MensajePersonalizada.cs" />
+    <Compile Include="Buzon_Quejas\Buzon_Ticket\Buzon_Ticket.cs" />
+    <Compile Include="Buzon_Quejas\Buzon_Ticket\Buzon_TicketPersonalizada.cs" />
+    <Compile Include="CLE\Grupos\Cle_Grupos.cs" />
+    <Compile Include="CLE\Grupos\Cle_GruposPersonalizada.cs" />
+    <Compile Include="CLE\Historia_Alumno\Historia_alumno_ingles.cs" />
+    <Compile Include="CLE\Historia_Alumno\Historia_alumno_inglesPersonalizada.cs" />
+    <Compile Include="CLE\Horarios\Cle_Horarios.cs" />
+    <Compile Include="CLE\Horarios\Cle_HorariosPersonalizada.cs" />
+    <Compile Include="CLE\Liberacion_Ingles\Cle_Liberacion_InglesPersonalizada.cs" />
+    <Compile Include="CLE\Liberacion_Ingles\Cle_Liberacion_Ingles.cs" />
+    <Compile Include="CLE\Lista_Seleccion\Cle_Lista_seleccion.cs" />
+    <Compile Include="CLE\Lista_Seleccion\Cle_Lista_seleccionPersonalizada.cs" />
+    <Compile Include="CLE\Niveles\Cle_Niveles.cs" />
+    <Compile Include="CLE\Niveles\Cle_NivelesPersonalizada.cs" />
+    <Compile Include="CLE\Procedimientos\ProcedimientosCLE.cs" />
+    <Compile Include="CLE\Seleccion\Cle_seleccion.cs" />
+    <Compile Include="CLE\Seleccion\Cle_seleccionPersonalizada.cs" />
+    <Compile Include="CreditosComplementarios\Creditos_Complementarios.cs" />
+    <Compile Include="CreditosComplementarios\Creditos_ComplementariosPersonalizada.cs" />
+    <Compile Include="DALiberacionEvaluacionDocente\da_liberacion_evaluacion_docente.cs" />
+    <Compile Include="DALiberacionEvaluacionDocente\da_liberacion_evaluacion_docentePersonalizada.cs" />
+    <Compile Include="DEP\Fechas\Dep_Fechas_Carga_Academica.cs" />
+    <Compile Include="DEP\Fechas\Dep_Fechas_Carga_AcademicaPersonalizada.cs" />
+    <Compile Include="EvaluacionDocente\Fecha_Evaluacion.cs" />
+    <Compile Include="EvaluacionDocente\Fecha_EvaluacionPersonalizada.cs" />
+    <Compile Include="ExtraEscolares\Extra_Entrenador\Extra_entrenador.cs" />
+    <Compile Include="ExtraEscolares\Extra_Entrenador\Extra_entrenadorPersonalizada.cs" />
+    <Compile Include="ExtraEscolares\Extra_Actividades\Extra_actividade.cs" />
+    <Compile Include="ExtraEscolares\Extra_Actividades\Extra_actividadePersonalizada.cs" />
+    <Compile Include="ExtraEscolares\Extra_Actividades\Extra_actividades.cs" />
+    <Compile Include="ExtraEscolares\Extra_Actividades\Extra_actividadesPersonalizada.cs" />
+    <Compile Include="ExtraEscolares\Extra_Fechas\Extra_actividades_fecha.cs" />
+    <Compile Include="ExtraEscolares\Extra_Fechas\Extra_actividades_fechaPersonalizada.cs" />
+    <Compile Include="ExtraEscolares\Extra_Horarios\Extra_actividades_horario.cs" />
+    <Compile Include="ExtraEscolares\Extra_Horarios\Extra_actividades_horarioPersonalizada.cs" />
+    <Compile Include="ExtraEscolares\Extra_Inscritos\Extra_actividades_inscrito.cs" />
+    <Compile Include="ExtraEscolares\Extra_Inscritos\Extra_actividades_inscritoPersonalizada.cs" />
+    <Compile Include="ExtraEscolares\Extra_Inscritos\Extra_actividades_inscritos.cs" />
+    <Compile Include="ExtraEscolares\Extra_Inscritos\Extra_actividades_inscritosPersonalizada.cs" />
+    <Compile Include="ExtraEscolares\Extra_Liberados\Extra_Actividades_Liberado.cs" />
+    <Compile Include="ExtraEscolares\Extra_Liberados\Extra_Actividades_LiberadoPersonalizada.cs" />
+    <Compile Include="Financieros\ActivarPeriodo\RF_activa_periodo.cs" />
+    <Compile Include="Financieros\ActivarPeriodo\RF_activa_periodoPersonalizada.cs" />
+    <Compile Include="Financieros\Pagos\RegistroPagos.cs" />
+    <Compile Include="Financieros\Servicios\Servicio.cs" />
+    <Compile Include="Financieros\Servicios\ServicioPersonalizada.cs" />
+    <Compile Include="Financieros\Servicios\Servicios.cs" />
+    <Compile Include="Financieros\Servicios\ServiciosPersonalizada.cs" />
+    <Compile Include="Generales\Encuestas.cs" />
+    <Compile Include="Generales\Estadisticas.cs" />
+    <Compile Include="Grupos\Grupos.cs" />
+    <Compile Include="Grupos\GruposPersonalizada.cs" />
+    <Compile Include="Institucion\Institucion.cs" />
+    <Compile Include="Institucion\InstitucionPersonalizada.cs" />
+    <Compile Include="Institucion\Institucions.cs" />
+    <Compile Include="Institucion\InstitucionsPersonalizada.cs" />
+    <Compile Include="Acceso\Accesos.cs" />
+    <Compile Include="Mantenimiento\mantenimiento_orden.cs" />
+    <Compile Include="Mantenimiento\mantenimiento_ordenPersonalizada.cs" />
+    <Compile Include="Mantenimiento\mantenimiento_solicitud.cs" />
+    <Compile Include="Mantenimiento\mantenimiento_solicitudPersonalizada.cs" />
+    <Compile Include="Materiales\Control_Vehicular\Control_vehicular.cs" />
+    <Compile Include="Materiales\Control_Vehicular\Control_vehicularPersonalizada.cs" />
+    <Compile Include="Materiales\Control_Vehicular_Pago\Control_Vehicular_Pago.cs" />
+    <Compile Include="Materiales\Control_Vehicular_Pago\Control_Vehicular_PagoPersonalizada.cs" />
+    <Compile Include="Materiales\Control_vehicular_registro\Control_vehicular_registro.cs" />
+    <Compile Include="Materiales\Control_vehicular_registro\Control_vehicular_registroPersonalizada.cs" />
+    <Compile Include="Organigrama\organigrama.cs" />
+    <Compile Include="Organigrama\organigramaPersonalizada.cs" />
+    <Compile Include="Periodos\CierreSemestre\Periodos_Escolares_Cierre.cs" />
+    <Compile Include="Periodos\CierreSemestre\Periodos_Escolares_CierrePersonalizada.cs" />
+    <Compile Include="Periodos\Periodos_Escolares\Periodos_Escolares.cs" />
+    <Compile Include="Periodos\Periodos_Escolares\Periodos_EscolaresPersonalizada.cs" />
+    <Compile Include="Periodos\Periodos_Ingles\Periodos_Ingles.cs" />
+    <Compile Include="Periodos\Periodos_Ingles\Periodos_InglesPersonalizada.cs" />
+    <Compile Include="PersonalDomicilio\personal_domicilio.cs" />
+    <Compile Include="PersonalDomicilio\personal_domicilioPersonalizada.cs" />
+    <Compile Include="PersonalHorarioIndice\PersonalHorarioIndice.cs" />
+    <Compile Include="PersonalHorarioIndice\PersonalHorarioIndicePersonalizada.cs" />
+    <Compile Include="PersonalNombramiento\personal_nombramiento.cs" />
+    <Compile Include="PersonalNombramiento\personal_nombramientoPersonalizada.cs" />
+    <Compile Include="PersonalPersonales\personal_personales.cs" />
+    <Compile Include="PersonalPersonales\personal_personalesPersonalizada.cs" />
+    <Compile Include="PersonalPuestos\PersonalPuestos.cs" />
+    <Compile Include="PersonalPuestos\PersonalPuestosPersonalizada.cs" />
+    <Compile Include="PersonalRetardos\PersonalRetardos.cs" />
+    <Compile Include="PersonalSolicitud\PersonalSolicitud.cs" />
+    <Compile Include="PersonalSolicitud\PersonalSolicitudPersonalizada.cs" />
+    <Compile Include="Personal\Personal.cs" />
+    <Compile Include="Personal\PersonalPersonalizada.cs" />
+    <Compile Include="Plaza\Plaza.cs" />
+    <Compile Include="Plaza\PlazaPersonalizada.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Puestos\Puestos.cs" />
+    <Compile Include="Puestos\PuestosPersonalizada.cs" />
+    <Compile Include="Reinscripcion\Avisos\Avisos_Reinscripcion.cs" />
+    <Compile Include="Reinscripcion\Avisos\Avisos_ReinscripcionPersonalizada.cs" />
+    <Compile Include="Reinscripcion\Fechas_Carreras\Dep_Fechas_Carreras.cs" />
+    <Compile Include="Reinscripcion\Fechas_Carreras\Dep_Fechas_CarrerasPersonalizada.cs" />
+    <Compile Include="Financieros\Pagos\RF_historial_pagos.cs" />
+    <Compile Include="Financieros\Pagos\RF_historial_pagosPersonalizada.cs" />
+    <Compile Include="Reinscripcion\Pagos\Avisos_Reinscripcion_Pagos.cs" />
+    <Compile Include="Reinscripcion\Pagos\Avisos_Reinscripcion_PagosPersonalizada.cs" />
+    <Compile Include="Reportes\ReportesGenerales.cs" />
+    <Compile Include="Residencias\Actividades\rp_actividade.cs" />
+    <Compile Include="Residencias\Actividades\rp_actividadePersonalizada.cs" />
+    <Compile Include="Residencias\Asesorias\rp_asesoria.cs" />
+    <Compile Include="Residencias\Asesorias\rp_asesoriaPersonalizada.cs" />
+    <Compile Include="Residencias\Asesor_Externo\RP_Asesor_Externo.cs" />
+    <Compile Include="Residencias\Asesor_Externo\RP_Asesor_ExternoPersonalizada.cs" />
+    <Compile Include="Residencias\Curso\RP_Curso.cs" />
+    <Compile Include="Residencias\Curso\RP_CursoPersonalizada.cs" />
+    <Compile Include="Residencias\Datos_Programa\RP_Datos_Programa.cs" />
+    <Compile Include="Residencias\Datos_Programa\RP_Datos_ProgramaPersonalizada.cs" />
+    <Compile Include="Residencias\Dependencia\RP_Dependencias.cs" />
+    <Compile Include="Residencias\Dependencia\RP_DependenciasPersonalizada.cs" />
+    <Compile Include="Residencias\Domicilio\RP_Domicilio_Dependencia.cs" />
+    <Compile Include="Residencias\Domicilio\RP_Domicilio_DependenciaPersonalizada.cs" />
+    <Compile Include="Residencias\Estado_Seguimiento\RP_Estado_Seguimiento.cs" />
+    <Compile Include="Residencias\Estado_Seguimiento\RP_Estado_SeguimientoPersonalizada.cs" />
+    <Compile Include="Residencias\Estado_Solicitud\RP_Estado_Solicitud.cs" />
+    <Compile Include="Residencias\Estado_Solicitud\RP_Estado_SolicitudPersonalizada.cs" />
+    <Compile Include="Residencias\Objetivo\RP_Objetivo.cs" />
+    <Compile Include="Residencias\Objetivo\RP_ObjetivoPersonalizada.cs" />
+    <Compile Include="Residencias\Periodo\RP_Periodos.cs" />
+    <Compile Include="Residencias\Periodo\RP_PeriodosPersonalizada.cs" />
+    <Compile Include="Residencias\Programa\RP_Programa.cs" />
+    <Compile Include="Residencias\Programa\RP_ProgramaPersonalizada.cs" />
+    <Compile Include="Residencias\Seguimiento\rp_seguimiento.cs" />
+    <Compile Include="Residencias\Seguimiento\rp_seguimientoPersonalizada.cs" />
+    <Compile Include="Residencias\Solicitud\RP_Solicitud.cs" />
+    <Compile Include="Residencias\Solicitud\RP_SolicitudPersonalizada.cs" />
+    <Compile Include="Reticulas\Carreras\Carreras.cs" />
+    <Compile Include="Reticulas\Carreras\CarrerasPersonalizada.cs" />
+    <Compile Include="Reticulas\Especialidades\Especialidades.cs" />
+    <Compile Include="Reticulas\Especialidades\EspecialidadesPersonalizadas.cs" />
+    <Compile Include="Reticulas\Materias\Materias.cs" />
+    <Compile Include="Reticulas\Materias\MateriasPersonalizadas.cs" />
+    <Compile Include="Reticulas\Materias_carrera\Materias_carreras.cs" />
+    <Compile Include="Reticulas\Materias_carrera\Materias_carrerasPersonalizada.cs" />
+    <Compile Include="RF_tabulador\rf_tabulador.cs" />
+    <Compile Include="RF_tabulador\rf_tabuladorPersonalizada.cs" />
+    <Compile Include="ServiciosEscolares\ServiciosEscolaresProcesos.cs" />
+    <Compile Include="ServicioSocial\ActivarCurso\SS_Activar_Curso.cs" />
+    <Compile Include="ServicioSocial\ActivarCurso\SS_Activar_CursoPersonalizada.cs" />
+    <Compile Include="ServicioSocial\ActivarPeriodo\SS_Activar_Periodo.cs" />
+    <Compile Include="ServicioSocial\ActivarPeriodo\SS_Activar_PeriodoPersonalizada.cs" />
+    <Compile Include="ServicioSocial\ActividadesSolicitud\SS_Actividades_Solicitud.cs" />
+    <Compile Include="ServicioSocial\ActividadesSolicitud\SS_Actividades_SolicitudPersonalizada.cs" />
+    <Compile Include="ServicioSocial\Actividades\SS_Actividades.cs" />
+    <Compile Include="ServicioSocial\Actividades\SS_ActividadesPersonalizada.cs" />
+    <Compile Include="ServicioSocial\Dependencias\SS_Dependencia.cs" />
+    <Compile Include="ServicioSocial\Dependencias\SS_DependenciaPersonalizada.cs" />
+    <Compile Include="ServicioSocial\DomicilioPrograma\SS_Domicilio_Programa.cs" />
+    <Compile Include="ServicioSocial\DomicilioPrograma\SS_Domicilio_ProgramaPersonalizada.cs" />
+    <Compile Include="ServicioSocial\EstadoSolicitud\SS_Estado_Solicitud.cs" />
+    <Compile Include="ServicioSocial\EstadoSolicitud\SS_Estado_SolicitudPersonalizada.cs" />
+    <Compile Include="ServicioSocial\Liberados\SS_liberados.cs" />
+    <Compile Include="ServicioSocial\Liberados\SS_liberadosPersonalizada.cs" />
+    <Compile Include="ServicioSocial\Programa\SS_Programa.cs" />
+    <Compile Include="ServicioSocial\Programa\SS_ProgramaPersonalizada.cs" />
+    <Compile Include="ServicioSocial\Reportes\SS_Reportes.cs" />
+    <Compile Include="ServicioSocial\Reportes\SS_ReportesPersonalizada.cs" />
+    <Compile Include="ServicioSocial\Solicitud\SS_Solicitud.cs" />
+    <Compile Include="ServicioSocial\Solicitud\SS_SolicitudPersonalizada.cs" />
+    <Compile Include="ServicioSocial\TipoPrograma\SS_Tipo_Programa.cs" />
+    <Compile Include="ServicioSocial\TipoPrograma\SS_Tipo_ProgramaPersonalizada.cs" />
+    <Compile Include="SGI\Periodos_encuestas\En_Periodos.cs" />
+    <Compile Include="SGI\Periodos_encuestas\En_PeriodosPersonalizada.cs" />
+    <Compile Include="SisCombos\SisCombo.cs" />
+    <Compile Include="SisCombos\SisComboPersonalizada.cs" />
+    <Compile Include="SisCombos\SisCombos.cs" />
+    <Compile Include="SisCombos\SisCombosPersonalizada.cs" />
+    <Compile Include="SisConsultas\Sis_ConsultasPersonalizada.cs" />
+    <Compile Include="SisConsultas\Sis_Consultas.cs" />
+    <Compile Include="SisCorreos\Sis_Correos.cs" />
+    <Compile Include="SisCorreos\Sis_CorreosPersonalizada.cs" />
+    <Compile Include="SistemaSapei.cs" />
+    <Compile Include="Sistema\Logos\Sis_Logos.cs" />
+    <Compile Include="Sistema\Logos\Sis_LogosPersonalizada.cs" />
+    <Compile Include="SisUsuarios\SisUsuario.cs" />
+    <Compile Include="Tipos\Titulaciones\Tipos_TitulacionePersonalizada.cs" />
+    <Compile Include="Tipos\Titulaciones\Tipos_Titulaciones.cs" />
+    <Compile Include="Tutorias\Grupos\Tutorias_Grupos.cs" />
+    <Compile Include="Tutorias\Grupos\Tutorias_GruposPersonalizada.cs" />
+    <Compile Include="Tutorias\Horarios\Tutorias_Horarios.cs" />
+    <Compile Include="Tutorias\Horarios\Tutorias_HorariosPersonalizada.cs" />
+    <Compile Include="Tutorias\Inscritos\Tutorias_Inscritos.cs" />
+    <Compile Include="Tutorias\Inscritos\Tutorias_InscritosPersonalizada.cs" />
+    <Compile Include="Tutorias\Periodos\Tutorias_Periodos.cs" />
+    <Compile Include="Tutorias\Periodos\Tutorias_PeriodosPersonalizada.cs" />
+    <Compile Include="Tutorias\Tutor\Tutores.cs" />
+    <Compile Include="Tutorias\Tutor\TutoresPersonalizada.cs" />
+    <Compile Include="VariableSesionProcesos.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sapei.Framework.BaseDatos\Sapei.Framework.BaseDatos.csproj">
+      <Project>{609925c8-1e0b-4691-8cff-280296ffe2c6}</Project>
+      <Name>Sapei.Framework.BaseDatos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sapei.Framework\Sapei.Framework.csproj">
+      <Project>{70923bfa-3fb4-4201-bc38-e854f6fba0c4}</Project>
+      <Name>Sapei.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sapei.Reportes\Sapei.Reportes.csproj">
+      <Project>{2ff5ec76-4224-4c1c-aac0-7cdc23ebc0b5}</Project>
+      <Name>Sapei.Reportes</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="SisMenu\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

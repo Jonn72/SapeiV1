@@ -1,0 +1,1028 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2FF5EC76-4224-4C1C-AAC0-7CDC23EBC0B5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sapei.Reportes</RootNamespace>
+    <AssemblyName>Sapei.Reportes</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1586.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1586.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1586.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1586.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebDesign, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1586.0\lib\net40\Microsoft.ReportViewer.WebDesign.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1586.0\lib\net40\Microsoft.ReportViewer.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="bdActividadesSolicitudDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>bdActividadesSolicitudDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="bdCompleta_SolictudDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>bdCompleta_SolictudDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="bdReportes_SSDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>bdReportes_SSDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="bdRP_AsesoriaDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>bdRP_AsesoriaDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="bdSolicitud_SS_DataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>bdSolicitud_SS_DataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="bdtecDataSet.cs">
+      <DependentUpon>bdtecDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="bdtecDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>bdtecDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dtsCLEGeneral.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtsCLEGeneral.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dtsConstanciaEgresado.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtsConstanciaEgresado.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dtsConstanciaGeneral.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtsConstanciaGeneral.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dtsConstanciaMaterias.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtsConstanciaMaterias.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dtsConstanciaMateriasEgresados.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtsConstanciaMateriasEgresados.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dtsConstanciaTiraMaterias.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtsConstanciaTiraMaterias.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dtsConstanciaUnSemestre.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtsConstanciaUnSemestre.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dtsFacilitadorHorario.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtsFacilitadorHorario.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dtsFormatoUnico.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtsFormatoUnico.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dtsFormatoUnicoAnt.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtsFormatoUnicoAnt.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dtsOrdenMantenimiento.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtsOrdenMantenimiento.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dtsSolicitudMantenimiento.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtsSolicitudMantenimiento.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DTS\dtsAcumuladoHistorico.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtsAcumuladoHistorico.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DTS\dtsAlumnosActa.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtsAlumnosActa.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DTS\dtsAlumnosActaFacilitador.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtsAlumnosActaFacilitador.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DTS\dtsBoletaCalificaciones.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtsBoletaCalificaciones.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DTS\dtsCargasAcademicasFiel.cs">
+      <DependentUpon>dtsCargasAcademicasFiel.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DTS\dtsCargasAcademicasFiel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtsCargasAcademicasFiel.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dtsPersonalRecontratacion.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtsPersonalRecontratacion.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DTS\dtsDatosActaFacilitador.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtsDatosActaFacilitador.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DTS\dtsDatosActa.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtsDatosActa.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DTS\dtsDatosPersonalContratoAsimilados.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtsDatosPersonalContratoAsimilados.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DTS\dtsDatosPersonalContratoFacilitadoresCLE.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtsDatosPersonalContratoFacilitadoresCLE.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DTS\dtsDatosPersonalContratoGeneral.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtsDatosPersonalContratoGeneral.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DTS\dtsDatosPersonalContratoHonorarios.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtsDatosPersonalContratoHonorarios.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DTS\dtsDatosPersonalDocenteHonorarios.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtsDatosPersonalDocenteHonorarios.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DTS\dtsEncabezadoBoleta.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtsEncabezadoBoleta.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DTS\dtsEvaluacionDocente.cs">
+      <DependentUpon>dtsEvaluacionDocente.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="bdtecRP_SolicitudSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>bdtecRP_SolicitudSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dtsCertificados.cs">
+      <DependentUpon>dtsCertificados.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dtsCertificados.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtsCertificados.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dtsFichaPagoReinscripcion.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtsFichaPagoReinscripcion.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dtsKardex.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtsKardex.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dtsReinscripcionListas.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtsReinscripcionListas.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DTS\dbsDocumentosSGC.cs">
+      <DependentUpon>dbsDocumentosSGC.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DTS\dbsDocumentosSGC.Designer.cs">
+      <DependentUpon>dbsDocumentosSGC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DTS\dtsCLEListasGrupos.cs">
+      <DependentUpon>dtsCLEListasGrupos.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DTS\dtsCLEListasGrupos.Designer.cs">
+      <DependentUpon>dtsCLEListasGrupos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DTS\dtsConstanciaCumplimiento.Designer.cs" />
+    <Compile Include="DTS\dtsDatosAspirante.Designer.cs" />
+    <Compile Include="DTS\dtsDatosCargaAcademica.Designer.cs" />
+    <Compile Include="DTS\dtsEstadisticoInscritos.Designer.cs" />
+    <Compile Include="DTS\dtsEvaluacionDocente1.Designer.cs" />
+    <Compile Include="DTS\dtsExpedienteDigital.cs">
+      <DependentUpon>dtsExpedienteDigital.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DTS\dtsExpedienteDigital.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtsExpedienteDigital.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DTS\dtsFirmantesExtraactividades.Designer.cs" />
+    <Compile Include="DTS\dtsHorarioIngles.Designer.cs" />
+    <Compile Include="DTS\dtsInscritosTutorias.Designer.cs" />
+    <Compile Include="DTS\dtsListasReinscripcionIngles.Designer.cs" />
+    <Compile Include="DTS\dtsLogos.Designer.cs" />
+    <Compile Include="DTS\dtsPagoRegistroVehicular.Designer.cs" />
+    <Compile Include="DTS\dtsParticipantesInscritos.Designer.cs" />
+    <Compile Include="DTS\dtsReporteFinalDatos.cs">
+      <DependentUpon>dtsReporteFinalDatos.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DTS\dtsReporteFinalDatos.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtsReporteFinalDatos.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DTS\dtsReporteFinalEncabezado.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtsReporteFinalEncabezado.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DTS\dtsReporteFinalTotal.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtsReporteFinalTotal.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DTS\dtsResultadosActExtra.Designer.cs" />
+    <Compile Include="DTS\dtsREvlDepto.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtsREvlDepto.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="enmTipoFormato.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="dtsPersonalRecontratacionFacilitador.cs">
+      <DependentUpon>dtsPersonalRecontratacionFacilitador.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dtsPersonalRecontratacionFacilitador.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtsPersonalRecontratacionFacilitador.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes.cs" />
+    <Compile Include="SqlServerTypes\Loader.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="bdActividadesSolicitudDataSet.xsc">
+      <DependentUpon>bdActividadesSolicitudDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="bdActividadesSolicitudDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>bdActividadesSolicitudDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="bdActividadesSolicitudDataSet.xss">
+      <DependentUpon>bdActividadesSolicitudDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="bdCompleta_SolictudDataSet.xsc">
+      <DependentUpon>bdCompleta_SolictudDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="bdCompleta_SolictudDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>bdCompleta_SolictudDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="bdCompleta_SolictudDataSet.xss">
+      <DependentUpon>bdCompleta_SolictudDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="bdReportes_SSDataSet.xsc">
+      <DependentUpon>bdReportes_SSDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="bdReportes_SSDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>bdReportes_SSDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="bdReportes_SSDataSet.xss">
+      <DependentUpon>bdReportes_SSDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="bdRP_AsesoriaDataSet.xsc">
+      <DependentUpon>bdRP_AsesoriaDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="bdRP_AsesoriaDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>bdRP_AsesoriaDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="bdRP_AsesoriaDataSet.xss">
+      <DependentUpon>bdRP_AsesoriaDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="bdSolicitud_SS_DataSet.xsc">
+      <DependentUpon>bdSolicitud_SS_DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="bdSolicitud_SS_DataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>bdSolicitud_SS_DataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="bdSolicitud_SS_DataSet.xss">
+      <DependentUpon>bdSolicitud_SS_DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="bdtecDataSet.xsc">
+      <DependentUpon>bdtecDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="bdtecDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>bdtecDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="bdtecDataSet.xss">
+      <DependentUpon>bdtecDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="bdtecRP_SolicitudSet.xsc">
+      <DependentUpon>bdtecRP_SolicitudSet.xsd</DependentUpon>
+    </None>
+    <None Include="bdtecRP_SolicitudSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>bdtecRP_SolicitudSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="bdtecRP_SolicitudSet.xss">
+      <DependentUpon>bdtecRP_SolicitudSet.xsd</DependentUpon>
+    </None>
+    <None Include="dtsCLEGeneral.xsc">
+      <DependentUpon>dtsCLEGeneral.xsd</DependentUpon>
+    </None>
+    <None Include="dtsCLEGeneral.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsCLEGeneral.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dtsCLEGeneral.xss">
+      <DependentUpon>dtsCLEGeneral.xsd</DependentUpon>
+    </None>
+    <None Include="dtsConstanciaEgresado.xsc">
+      <DependentUpon>dtsConstanciaEgresado.xsd</DependentUpon>
+    </None>
+    <None Include="dtsConstanciaEgresado.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsConstanciaEgresado.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dtsConstanciaEgresado.xss">
+      <DependentUpon>dtsConstanciaEgresado.xsd</DependentUpon>
+    </None>
+    <None Include="dtsConstanciaGeneral.xsc">
+      <DependentUpon>dtsConstanciaGeneral.xsd</DependentUpon>
+    </None>
+    <None Include="dtsConstanciaGeneral.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsConstanciaGeneral.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dtsConstanciaGeneral.xss">
+      <DependentUpon>dtsConstanciaGeneral.xsd</DependentUpon>
+    </None>
+    <None Include="dtsConstanciaMaterias.xsc">
+      <DependentUpon>dtsConstanciaMaterias.xsd</DependentUpon>
+    </None>
+    <None Include="dtsConstanciaMaterias.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsConstanciaMaterias.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dtsConstanciaMaterias.xss">
+      <DependentUpon>dtsConstanciaMaterias.xsd</DependentUpon>
+    </None>
+    <None Include="dtsConstanciaMateriasEgresados.xsc">
+      <DependentUpon>dtsConstanciaMateriasEgresados.xsd</DependentUpon>
+    </None>
+    <None Include="dtsConstanciaMateriasEgresados.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsConstanciaMateriasEgresados.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dtsConstanciaMateriasEgresados.xss">
+      <DependentUpon>dtsConstanciaMateriasEgresados.xsd</DependentUpon>
+    </None>
+    <None Include="dtsConstanciaTiraMaterias.xsc">
+      <DependentUpon>dtsConstanciaTiraMaterias.xsd</DependentUpon>
+    </None>
+    <None Include="dtsConstanciaTiraMaterias.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsConstanciaTiraMaterias.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dtsConstanciaTiraMaterias.xss">
+      <DependentUpon>dtsConstanciaTiraMaterias.xsd</DependentUpon>
+    </None>
+    <None Include="dtsConstanciaUnSemestre.xsc">
+      <DependentUpon>dtsConstanciaUnSemestre.xsd</DependentUpon>
+    </None>
+    <None Include="dtsConstanciaUnSemestre.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsConstanciaUnSemestre.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dtsConstanciaUnSemestre.xss">
+      <DependentUpon>dtsConstanciaUnSemestre.xsd</DependentUpon>
+    </None>
+    <None Include="dtsFacilitadorHorario.xsc">
+      <DependentUpon>dtsFacilitadorHorario.xsd</DependentUpon>
+    </None>
+    <None Include="dtsFacilitadorHorario.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsFacilitadorHorario.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="dtsFacilitadorHorario.xss">
+      <DependentUpon>dtsFacilitadorHorario.xsd</DependentUpon>
+    </None>
+    <None Include="dtsFormatoUnico.xsc">
+      <DependentUpon>dtsFormatoUnico.xsd</DependentUpon>
+    </None>
+    <None Include="dtsFormatoUnico.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsFormatoUnico.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dtsFormatoUnico.xss">
+      <DependentUpon>dtsFormatoUnico.xsd</DependentUpon>
+    </None>
+    <None Include="dtsFormatoUnicoAnt.xsc">
+      <DependentUpon>dtsFormatoUnicoAnt.xsd</DependentUpon>
+    </None>
+    <None Include="dtsFormatoUnicoAnt.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsFormatoUnicoAnt.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dtsFormatoUnicoAnt.xss">
+      <DependentUpon>dtsFormatoUnicoAnt.xsd</DependentUpon>
+    </None>
+    <None Include="dtsOrdenMantenimiento.xsc">
+      <DependentUpon>dtsOrdenMantenimiento.xsd</DependentUpon>
+    </None>
+    <None Include="dtsOrdenMantenimiento.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsOrdenMantenimiento.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dtsOrdenMantenimiento.xss">
+      <DependentUpon>dtsOrdenMantenimiento.xsd</DependentUpon>
+    </None>
+    <None Include="dtsSolicitudMantenimiento.xsc">
+      <DependentUpon>dtsSolicitudMantenimiento.xsd</DependentUpon>
+    </None>
+    <None Include="dtsSolicitudMantenimiento.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsSolicitudMantenimiento.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dtsSolicitudMantenimiento.xss">
+      <DependentUpon>dtsSolicitudMantenimiento.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsAcumuladoHistorico.xsc">
+      <DependentUpon>dtsAcumuladoHistorico.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsAcumuladoHistorico.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsAcumuladoHistorico.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DTS\dtsAcumuladoHistorico.xss">
+      <DependentUpon>dtsAcumuladoHistorico.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsAlumnosActaFacilitador.xsc">
+      <DependentUpon>dtsAlumnosActaFacilitador.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsAlumnosActaFacilitador.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsAlumnosActaFacilitador.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DTS\dtsAlumnosActaFacilitador.xss">
+      <DependentUpon>dtsAlumnosActaFacilitador.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsBoletaCalificaciones.xsc">
+      <DependentUpon>dtsBoletaCalificaciones.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsBoletaCalificaciones.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsBoletaCalificaciones.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DTS\dtsBoletaCalificaciones.xss">
+      <DependentUpon>dtsBoletaCalificaciones.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsCargasAcademicasFiel.xsc">
+      <DependentUpon>dtsCargasAcademicasFiel.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsCargasAcademicasFiel.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsCargasAcademicasFiel.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DTS\dtsCargasAcademicasFiel.xss">
+      <DependentUpon>dtsCargasAcademicasFiel.xsd</DependentUpon>
+    </None>
+    <None Include="dtsCertificados.xsc">
+      <DependentUpon>dtsCertificados.xsd</DependentUpon>
+    </None>
+    <None Include="dtsCertificados.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsCertificados.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dtsCertificados.xss">
+      <DependentUpon>dtsCertificados.xsd</DependentUpon>
+    </None>
+    <None Include="dtsFichaPagoReinscripcion.xsc">
+      <DependentUpon>dtsFichaPagoReinscripcion.xsd</DependentUpon>
+    </None>
+    <None Include="dtsFichaPagoReinscripcion.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsFichaPagoReinscripcion.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dtsFichaPagoReinscripcion.xss">
+      <DependentUpon>dtsFichaPagoReinscripcion.xsd</DependentUpon>
+    </None>
+    <None Include="dtsKardex.xsc">
+      <DependentUpon>dtsKardex.xsd</DependentUpon>
+    </None>
+    <None Include="dtsKardex.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsKardex.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dtsKardex.xss">
+      <DependentUpon>dtsKardex.xsd</DependentUpon>
+    </None>
+    <None Include="dtsPersonalRecontratacion.xsc">
+      <DependentUpon>dtsPersonalRecontratacion.xsd</DependentUpon>
+    </None>
+    <None Include="dtsPersonalRecontratacion.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsPersonalRecontratacion.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dtsPersonalRecontratacion.xss">
+      <DependentUpon>dtsPersonalRecontratacion.xsd</DependentUpon>
+    </None>
+    <None Include="dtsReinscripcionListas.xsc">
+      <DependentUpon>dtsReinscripcionListas.xsd</DependentUpon>
+    </None>
+    <None Include="dtsReinscripcionListas.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsReinscripcionListas.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dtsReinscripcionListas.xss">
+      <DependentUpon>dtsReinscripcionListas.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dbsDocumentosSGC.xsc">
+      <DependentUpon>dbsDocumentosSGC.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dbsDocumentosSGC.xsd" />
+    <None Include="DTS\dbsDocumentosSGC.xss">
+      <DependentUpon>dbsDocumentosSGC.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsAlumnosActa.xsc">
+      <DependentUpon>dtsAlumnosActa.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsAlumnosActa.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsAlumnosActa.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DTS\dtsAlumnosActa.xss">
+      <DependentUpon>dtsAlumnosActa.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsCLEListasGrupos.xsc">
+      <DependentUpon>dtsCLEListasGrupos.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsCLEListasGrupos.xsd" />
+    <None Include="DTS\dtsCLEListasGrupos.xss">
+      <DependentUpon>dtsCLEListasGrupos.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsConstanciaCumplimiento.xsc">
+      <DependentUpon>dtsConstanciaCumplimiento.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsConstanciaCumplimiento.xsd" />
+    <None Include="DTS\dtsConstanciaCumplimiento.xss">
+      <DependentUpon>dtsConstanciaCumplimiento.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsDatosActa.xsc">
+      <DependentUpon>dtsDatosActa.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsDatosActa.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsDatosActa.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DTS\dtsDatosActa.xss">
+      <DependentUpon>dtsDatosActa.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsDatosActaFacilitador.xsc">
+      <DependentUpon>dtsDatosActaFacilitador.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsDatosActaFacilitador.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsDatosActaFacilitador.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DTS\dtsDatosActaFacilitador.xss">
+      <DependentUpon>dtsDatosActaFacilitador.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsDatosAspirante.xsc">
+      <DependentUpon>dtsDatosAspirante.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsDatosAspirante.xsd" />
+    <None Include="DTS\dtsDatosAspirante.xss">
+      <DependentUpon>dtsDatosAspirante.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsDatosCargaAcademica.xsc">
+      <DependentUpon>dtsDatosCargaAcademica.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsDatosCargaAcademica.xsd" />
+    <None Include="DTS\dtsDatosCargaAcademica.xss">
+      <DependentUpon>dtsDatosCargaAcademica.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsDatosPersonalContratoAsimilados.xsc">
+      <DependentUpon>dtsDatosPersonalContratoAsimilados.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsDatosPersonalContratoAsimilados.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsDatosPersonalContratoAsimilados.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DTS\dtsDatosPersonalContratoAsimilados.xss">
+      <DependentUpon>dtsDatosPersonalContratoAsimilados.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsDatosPersonalContratoFacilitadoresCLE.xsc">
+      <DependentUpon>dtsDatosPersonalContratoFacilitadoresCLE.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsDatosPersonalContratoFacilitadoresCLE.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsDatosPersonalContratoFacilitadoresCLE.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DTS\dtsDatosPersonalContratoFacilitadoresCLE.xss">
+      <DependentUpon>dtsDatosPersonalContratoFacilitadoresCLE.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsDatosPersonalContratoGeneral.xsc">
+      <DependentUpon>dtsDatosPersonalContratoGeneral.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsDatosPersonalContratoGeneral.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsDatosPersonalContratoGeneral.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DTS\dtsDatosPersonalContratoGeneral.xss">
+      <DependentUpon>dtsDatosPersonalContratoGeneral.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsDatosPersonalContratoHonorarios.xsc">
+      <DependentUpon>dtsDatosPersonalContratoHonorarios.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsDatosPersonalContratoHonorarios.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsDatosPersonalContratoHonorarios.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DTS\dtsDatosPersonalContratoHonorarios.xss">
+      <DependentUpon>dtsDatosPersonalContratoHonorarios.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsDatosPersonalDocenteHonorarios.xsc">
+      <DependentUpon>dtsDatosPersonalDocenteHonorarios.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsDatosPersonalDocenteHonorarios.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsDatosPersonalDocenteHonorarios.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DTS\dtsDatosPersonalDocenteHonorarios.xss">
+      <DependentUpon>dtsDatosPersonalDocenteHonorarios.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsEncabezadoBoleta.xsc">
+      <DependentUpon>dtsEncabezadoBoleta.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsEncabezadoBoleta.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsEncabezadoBoleta.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DTS\dtsEncabezadoBoleta.xss">
+      <DependentUpon>dtsEncabezadoBoleta.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsEstadisticoInscritos.xsc">
+      <DependentUpon>dtsEstadisticoInscritos.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsEstadisticoInscritos.xsd" />
+    <None Include="DTS\dtsEstadisticoInscritos.xss">
+      <DependentUpon>dtsEstadisticoInscritos.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsEvaluacionDocente.xsc">
+      <DependentUpon>dtsEvaluacionDocente.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsEvaluacionDocente.xsd" />
+    <None Include="DTS\dtsEvaluacionDocente.xss">
+      <DependentUpon>dtsEvaluacionDocente.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsExpedienteDigital.xsc">
+      <DependentUpon>dtsExpedienteDigital.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsExpedienteDigital.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsExpedienteDigital.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DTS\dtsExpedienteDigital.xss">
+      <DependentUpon>dtsExpedienteDigital.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsFirmantesExtraactividades.xsc">
+      <DependentUpon>dtsFirmantesExtraactividades.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsFirmantesExtraactividades.xsd" />
+    <None Include="DTS\dtsFirmantesExtraactividades.xss">
+      <DependentUpon>dtsFirmantesExtraactividades.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsHorarioIngles.xsc">
+      <DependentUpon>dtsHorarioIngles.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsHorarioIngles.xsd" />
+    <None Include="DTS\dtsHorarioIngles.xss">
+      <DependentUpon>dtsHorarioIngles.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsInscritosTutorias.xsc">
+      <DependentUpon>dtsInscritosTutorias.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsInscritosTutorias.xsd" />
+    <None Include="DTS\dtsInscritosTutorias.xss">
+      <DependentUpon>dtsInscritosTutorias.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsListasReinscripcionIngles.xsc">
+      <DependentUpon>dtsListasReinscripcionIngles.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsListasReinscripcionIngles.xsd" />
+    <None Include="DTS\dtsListasReinscripcionIngles.xss">
+      <DependentUpon>dtsListasReinscripcionIngles.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsLogos.xsc">
+      <DependentUpon>dtsLogos.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsLogos.xsd" />
+    <None Include="DTS\dtsLogos.xss">
+      <DependentUpon>dtsLogos.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsPagoRegistroVehicular.xsc">
+      <DependentUpon>dtsPagoRegistroVehicular.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsPagoRegistroVehicular.xsd" />
+    <None Include="DTS\dtsPagoRegistroVehicular.xss">
+      <DependentUpon>dtsPagoRegistroVehicular.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsParticipantesInscritos.xsc">
+      <DependentUpon>dtsParticipantesInscritos.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsParticipantesInscritos.xsd" />
+    <None Include="DTS\dtsParticipantesInscritos.xss">
+      <DependentUpon>dtsParticipantesInscritos.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsReporteFinalDatos.xsc">
+      <DependentUpon>dtsReporteFinalDatos.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsReporteFinalDatos.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsReporteFinalDatos.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DTS\dtsReporteFinalDatos.xss">
+      <DependentUpon>dtsReporteFinalDatos.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsReporteFinalEncabezado.xsc">
+      <DependentUpon>dtsReporteFinalEncabezado.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsReporteFinalEncabezado.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsReporteFinalEncabezado.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DTS\dtsReporteFinalEncabezado.xss">
+      <DependentUpon>dtsReporteFinalEncabezado.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsReporteFinalTotal.xsc">
+      <DependentUpon>dtsReporteFinalTotal.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsReporteFinalTotal.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsReporteFinalTotal.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DTS\dtsReporteFinalTotal.xss">
+      <DependentUpon>dtsReporteFinalTotal.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsResultadosActExtra.xsc">
+      <DependentUpon>dtsResultadosActExtra.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsResultadosActExtra.xsd" />
+    <None Include="DTS\dtsResultadosActExtra.xss">
+      <DependentUpon>dtsResultadosActExtra.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsREvlDepto.xsc">
+      <DependentUpon>dtsREvlDepto.xsd</DependentUpon>
+    </None>
+    <None Include="DTS\dtsREvlDepto.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsREvlDepto.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DTS\dtsREvlDepto.xss">
+      <DependentUpon>dtsREvlDepto.xsd</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="dtsPersonalRecontratacionFacilitador.xsc">
+      <DependentUpon>dtsPersonalRecontratacionFacilitador.xsd</DependentUpon>
+    </None>
+    <None Include="dtsPersonalRecontratacionFacilitador.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsPersonalRecontratacionFacilitador.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="dtsPersonalRecontratacionFacilitador.xss">
+      <DependentUpon>dtsPersonalRecontratacionFacilitador.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="RDLC\SGC\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="RDLC\Academicos\TecNM-AC-PO-004-02.rdlc" />
+    <EmbeddedResource Include="RDLC\Aspirantes\Aspirantes2EstudiantesInscritos.rdlc" />
+    <EmbeddedResource Include="RDLC\Aspirantes\Ficha.rdlc" />
+    <EmbeddedResource Include="RDLC\CLE\ActasIngles.rdlc" />
+    <EmbeddedResource Include="RDLC\CLE\constancia.rdlc" />
+    <EmbeddedResource Include="RDLC\CLE\Constancias.rdlc" />
+    <EmbeddedResource Include="RDLC\CLE\Liberacion.rdlc" />
+    <EmbeddedResource Include="RDLC\CLE\Horarios.rdlc" />
+    <EmbeddedResource Include="RDLC\CLE\ListaGrupos.rdlc" />
+    <EmbeddedResource Include="RDLC\CLE\ListaReinscripcion.rdlc" />
+    <EmbeddedResource Include="RDLC\DesarrolloAcademico\ResEvlDepto.rdlc" />
+    <EmbeddedResource Include="RDLC\DesarrolloAcademico\REvlDepto.rdlc" />
+    <EmbeddedResource Include="RDLC\DesarrolloAcademico\TecNM-AC-PO-003-03-.rdlc" />
+    <EmbeddedResource Include="RDLC\DesarrolloAcademico\TecNM-AC-PO-003-03.rdlc" />
+    <EmbeddedResource Include="RDLC\DocumentosOficiales\BoletaCalificaciones.rdlc" />
+    <EmbeddedResource Include="RDLC\DocumentosOficiales\CargasAcademicasFiEl.rdlc" />
+    <EmbeddedResource Include="RDLC\DocumentosOficiales\CargaAcademicaFiEl.rdlc" />
+    <EmbeddedResource Include="RDLC\DocumentosOficiales\CargaAcademica.rdlc" />
+    <EmbeddedResource Include="RDLC\DocumentosOficiales\ConstanciaCumplimiento.rdlc" />
+    <EmbeddedResource Include="RDLC\DocumentosOficiales\Certificados.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RDLC\DocumentosOficiales\ConstanciaCumplimiento15.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RDLC\DocumentosOficiales\ConstanciaGe.rdlc" />
+    <EmbeddedResource Include="RDLC\DocumentosOficiales\ConstanciaEgresado.rdlc" />
+    <EmbeddedResource Include="RDLC\DocumentosOficiales\ConstanciaTraslado.rdlc" />
+    <EmbeddedResource Include="RDLC\DocumentosOficiales\Constancia_TituloEnTramite.rdlc" />
+    <EmbeddedResource Include="RDLC\DocumentosOficiales\Constancia_egresadoavance.rdlc" />
+    <EmbeddedResource Include="RDLC\DocumentosOficiales\ConstanciaMaterias.rdlc" />
+    <EmbeddedResource Include="RDLC\DocumentosOficiales\ConstanciaTiraMaterias.rdlc" />
+    <EmbeddedResource Include="RDLC\DocumentosOficiales\ConstanciaUnSemestre.rdlc" />
+    <EmbeddedResource Include="RDLC\DocumentosOficiales\ConstanciaGe_2.rdlc" />
+    <EmbeddedResource Include="RDLC\DocumentosOficiales\ConstanciaGe_3.rdlc" />
+    <EmbeddedResource Include="RDLC\DocumentosOficiales\ConstanciaLiberacionAC.rdlc" />
+    <EmbeddedResource Include="RDLC\DocumentosOficiales\ContratoFacilitadorCLE.rdlc" />
+    <EmbeddedResource Include="RDLC\DocumentosOficiales\ContratoDocenteAsimilados.rdlc" />
+    <EmbeddedResource Include="RDLC\DocumentosOficiales\ContratoDocenteHonorarios.rdlc" />
+    <EmbeddedResource Include="RDLC\DocumentosOficiales\ContratoGeneral.rdlc" />
+    <EmbeddedResource Include="RDLC\DocumentosOficiales\DiplomaEspecialidad.rdlc" />
+    <EmbeddedResource Include="RDLC\DocumentosOficiales\Actas.rdlc" />
+    <EmbeddedResource Include="RDLC\DocumentosOficiales\FormatoUnico.rdlc" />
+    <EmbeddedResource Include="RDLC\DocumentosOficiales\HorarioLaboralFacilitador.rdlc" />
+    <EmbeddedResource Include="RDLC\DocumentosOficiales\HorarioLaboral.rdlc" />
+    <EmbeddedResource Include="RDLC\DocumentosOficiales\Kardex.rdlc" />
+    <EmbeddedResource Include="RDLC\ExpedienteDigital\AutorizacionExpediente.rdlc" />
+    <EmbeddedResource Include="RDLC\ExpedienteDigital\AvisoDePrivacidad.rdlc" />
+    <EmbeddedResource Include="RDLC\ExpedienteDigital\CartaCompromiso.rdlc" />
+    <EmbeddedResource Include="RDLC\ExpedienteDigital\CartaResponsiva.rdlc" />
+    <EmbeddedResource Include="RDLC\ExpedienteDigital\FormatoNoPertenciaAOtroPlantel.rdlc" />
+    <EmbeddedResource Include="RDLC\ExpedienteDigital\SolicitudInscripcion.rdlc" />
+    <EmbeddedResource Include="RDLC\Extraescolares\RegistroParticipantes.rdlc" />
+    <EmbeddedResource Include="RDLC\Extraescolares\ResultadoActividades.rdlc" />
+    <EmbeddedResource Include="RDLC\Generales\EvaluacionDocente.rdlc" />
+    <EmbeddedResource Include="RDLC\Generales\Vacio.rdlc" />
+    <EmbeddedResource Include="RDLC\Pagos\FichaReinscripcion.rdlc" />
+    <EmbeddedResource Include="RDLC\Pagos\FichaServicios.rdlc" />
+    <EmbeddedResource Include="RDLC\Pagos\FichaPago.rdlc" />
+    <EmbeddedResource Include="RDLC\Pagos\RegistroVehicular.rdlc" />
+    <EmbeddedResource Include="RDLC\ProcesoEstrategicoAdmonRecursos\MantenimientoEquipos\OrdenMantenimiento.rdlc" />
+    <EmbeddedResource Include="RDLC\ProcesoEstrategicoAdmonRecursos\MantenimientoEquipos\OrdenMantenimientoPreview.rdlc" />
+    <EmbeddedResource Include="RDLC\ProcesoEstrategicoAdmonRecursos\MantenimientoEquipos\SolicitudMantenimientoPreview.rdlc" />
+    <EmbeddedResource Include="RDLC\ProcesoEstrategicoAdmonRecursos\MantenimientoEquipos\SolicitudMantenimiento.rdlc" />
+    <EmbeddedResource Include="RDLC\Reinscripcion\ListaReinscripcion.rdlc" />
+    <EmbeddedResource Include="RDLC\Residencias\FormatoLiberacion.rdlc" />
+    <EmbeddedResource Include="RDLC\Residencias\TecNM-AC-PO-004-01.rdlc" />
+    <EmbeddedResource Include="RDLC\Residencias\TecNM-AC-PO-004-06.rdlc" />
+    <EmbeddedResource Include="RDLC\Residencias\TecNM-AC-PO-004-07.rdlc" />
+    <EmbeddedResource Include="RDLC\Residencias\TecNM-AC-PO-004-08.rdlc" />
+    <EmbeddedResource Include="RDLC\Residencias\TecNM-AC-PO-004-09.rdlc" />
+    <EmbeddedResource Include="RDLC\ServicioSocial\PlanTrabajo.rdlc" />
+    <EmbeddedResource Include="RDLC\ServicioSocial\TecNM-VI-PO-002-10.rdlc" />
+    <EmbeddedResource Include="RDLC\ServicioSocial\TecNM-VI-PO-002-09.rdlc" />
+    <EmbeddedResource Include="RDLC\ServicioSocial\TecNM-VI-PO-002-08.rdlc" />
+    <EmbeddedResource Include="RDLC\ServicioSocial\TecNM-VI-PO-002-04.rdlc" />
+    <EmbeddedResource Include="RDLC\Tutorias\ResultadoPorTutoria.rdlc" />
+    <EmbeddedResource Include="RDLC\Vinculacion\TecNM-VI-PO-002-05.rdlc" />
+    <EmbeddedResource Include="RDLC\Vinculacion\TecNM-VI-PO-002-06.rdlc" />
+    <EmbeddedResource Include="RDLC\Vinculacion\TecNM-VI-PO-002-07.rdlc" />
+    <EmbeddedResource Include="RDLC\Vinculacion\TecNM-VI-PO-002-02.rdlc" />
+    <EmbeddedResource Include="RDLC\Vinculacion\CartaPresentacionInterno.rdlc" />
+    <EmbeddedResource Include="RDLC\Vinculacion\TecNM-VI-PO-002-01.rdlc" />
+    <EmbeddedResource Include="RDLC\Vinculacion\TecNM-AC-PO-004-03.rdlc" />
+    <EmbeddedResource Include="RDLC\Vinculacion\TecNM-VI-PO-002-03.rdlc" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial110.dll" />
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial110.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dtsBoletaCalificaciones" targetNamespace="http://tempuri.org/dtsBoletaCalificaciones.xsd" xmlns:mstns="http://tempuri.org/dtsBoletaCalificaciones.xsd" xmlns="http://tempuri.org/dtsBoletaCalificaciones.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="bdtec245" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="bdtec245 (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Sapei.Reportes.Properties.Settings.GlobalReference.Default.bdtec245" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DataTable1TableAdapter" GeneratorDataComponentClassName="DataTable1TableAdapter" Name="DataTable1" UserDataComponentName="DataTable1TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="bdtec245 (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select '' materia, '' nombre_abreviado_materia, '' creditos_materia, '' grupo, '' rfc, '' calificacion, '' tipo_evaluacion</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="materia" DataSetColumn="materia" />
+              <Mapping SourceColumn="nombre_abreviado_materia" DataSetColumn="nombre_abreviado_materia" />
+              <Mapping SourceColumn="creditos_materia" DataSetColumn="creditos_materia" />
+              <Mapping SourceColumn="grupo" DataSetColumn="grupo" />
+              <Mapping SourceColumn="rfc" DataSetColumn="rfc" />
+              <Mapping SourceColumn="calificacion" DataSetColumn="calificacion" />
+              <Mapping SourceColumn="tipo_evaluacion" DataSetColumn="tipo_evaluacion" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dtsBoletaCalificaciones" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="dtsBoletaCalificaciones" msprop:Generator_DataSetName="dtsBoletaCalificaciones">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DataTable1" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_RowClassName="DataTable1Row" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_UserTableName="DataTable1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="materia" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="materia" msprop:Generator_ColumnPropNameInTable="materiaColumn" msprop:Generator_ColumnVarNameInTable="columnmateria" msprop:Generator_UserColumnName="materia" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="nombre_abreviado_materia" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="nombre_abreviado_materia" msprop:Generator_ColumnPropNameInTable="nombre_abreviado_materiaColumn" msprop:Generator_ColumnVarNameInTable="columnnombre_abreviado_materia" msprop:Generator_UserColumnName="nombre_abreviado_materia" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="creditos_materia" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="creditos_materia" msprop:Generator_ColumnPropNameInTable="creditos_materiaColumn" msprop:Generator_ColumnVarNameInTable="columncreditos_materia" msprop:Generator_UserColumnName="creditos_materia" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="grupo" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="grupo" msprop:Generator_ColumnPropNameInTable="grupoColumn" msprop:Generator_ColumnVarNameInTable="columngrupo" msprop:Generator_UserColumnName="grupo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="rfc" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="rfc" msprop:Generator_ColumnPropNameInTable="rfcColumn" msprop:Generator_ColumnVarNameInTable="columnrfc" msprop:Generator_UserColumnName="rfc" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="calificacion" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="calificacion" msprop:Generator_ColumnPropNameInTable="calificacionColumn" msprop:Generator_ColumnVarNameInTable="columncalificacion" msprop:Generator_UserColumnName="calificacion" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="tipo_evaluacion" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="tipo_evaluacion" msprop:Generator_ColumnPropNameInTable="tipo_evaluacionColumn" msprop:Generator_ColumnVarNameInTable="columntipo_evaluacion" msprop:Generator_UserColumnName="tipo_evaluacion" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

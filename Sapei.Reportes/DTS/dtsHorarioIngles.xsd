@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dtsHorarioIngles" targetNamespace="http://tempuri.org/dtsHorarioIngles.xsd" xmlns:mstns="http://tempuri.org/dtsHorarioIngles.xsd" xmlns="http://tempuri.org/dtsHorarioIngles.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="bdtecConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="bdtecConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SII.Reportes.Properties.Settings.GlobalReference.Default.bdtecConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="cle_seleccionTableAdapter" GeneratorDataComponentClassName="cle_seleccionTableAdapter" Name="cle_seleccion" UserDataComponentName="cle_seleccionTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="bdtecConnectionString (Settings)" DbObjectName="bdtec.dbo.cle_seleccion" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>	select (select identificacion_corta from periodos_escolares where periodo = C.periodo) periodo 
+		,no_de_control, (select nombre_alumno + ' ' + apellido_paterno + ' '+ apellido_materno from alumnos where no_de_control = C.no_de_control) nombre
+		,nivel,grupo
+, isnull((select hora_inicial+' - '+ hora_final +' / '+aula from cle_horarios where periodo = C.periodo and nivel = C.nivel and grupo = C.grupo and dia = 2),'') lunes
+, isnull((select hora_inicial+' - '+ hora_final +' / '+aula from cle_horarios where periodo = C.periodo and nivel = C.nivel and grupo = C.grupo and dia = 3),'') martes
+, isnull((select hora_inicial+' - '+ hora_final +' / '+aula from cle_horarios where periodo = C.periodo and nivel = C.nivel and grupo = C.grupo and dia = 4),'') miercoles
+, isnull((select hora_inicial+' - '+ hora_final +' / '+aula from cle_horarios where periodo = C.periodo and nivel = C.nivel and grupo = C.grupo and dia = 5),'') jueves
+, isnull((select hora_inicial+' - '+ hora_final +' / '+aula from cle_horarios where periodo = C.periodo and nivel = C.nivel and grupo = C.grupo and dia = 6),'') viernes
+, isnull((select hora_inicial+' - '+ hora_final +' / '+aula from cle_horarios where periodo = C.periodo and nivel = C.nivel and grupo = C.grupo and dia = 7),'') sabado
+
+		from cle_seleccion C </CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="periodo" DataSetColumn="periodo" />
+              <Mapping SourceColumn="no_de_control" DataSetColumn="no_de_control" />
+              <Mapping SourceColumn="nivel" DataSetColumn="nivel" />
+              <Mapping SourceColumn="grupo" DataSetColumn="grupo" />
+              <Mapping SourceColumn="nombre" DataSetColumn="nombre" />
+              <Mapping SourceColumn="lunes" DataSetColumn="lunes" />
+              <Mapping SourceColumn="martes" DataSetColumn="martes" />
+              <Mapping SourceColumn="miercoles" DataSetColumn="miercoles" />
+              <Mapping SourceColumn="jueves" DataSetColumn="jueves" />
+              <Mapping SourceColumn="viernes" DataSetColumn="viernes" />
+              <Mapping SourceColumn="sabado" DataSetColumn="sabado" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dtsHorarioIngles" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="dtsHorarioIngles" msprop:Generator_UserDSName="dtsHorarioIngles">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="cle_seleccion" msprop:Generator_TableClassName="cle_seleccionDataTable" msprop:Generator_TableVarName="tablecle_seleccion" msprop:Generator_RowChangedName="cle_seleccionRowChanged" msprop:Generator_TablePropName="cle_seleccion" msprop:Generator_RowDeletingName="cle_seleccionRowDeleting" msprop:Generator_RowChangingName="cle_seleccionRowChanging" msprop:Generator_RowEvHandlerName="cle_seleccionRowChangeEventHandler" msprop:Generator_RowDeletedName="cle_seleccionRowDeleted" msprop:Generator_RowClassName="cle_seleccionRow" msprop:Generator_UserTableName="cle_seleccion" msprop:Generator_RowEvArgName="cle_seleccionRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="periodo" msprop:Generator_ColumnVarNameInTable="columnperiodo" msprop:Generator_ColumnPropNameInRow="periodo" msprop:Generator_ColumnPropNameInTable="periodoColumn" msprop:Generator_UserColumnName="periodo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="no_de_control" msprop:Generator_ColumnVarNameInTable="columnno_de_control" msprop:Generator_ColumnPropNameInRow="no_de_control" msprop:Generator_ColumnPropNameInTable="no_de_controlColumn" msprop:Generator_UserColumnName="no_de_control">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="nivel" msprop:Generator_ColumnVarNameInTable="columnnivel" msprop:Generator_ColumnPropNameInRow="nivel" msprop:Generator_ColumnPropNameInTable="nivelColumn" msprop:Generator_UserColumnName="nivel">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="grupo" msprop:Generator_ColumnVarNameInTable="columngrupo" msprop:Generator_ColumnPropNameInRow="grupo" msprop:Generator_ColumnPropNameInTable="grupoColumn" msprop:Generator_UserColumnName="grupo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="nombre" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnnombre" msprop:Generator_ColumnPropNameInRow="nombre" msprop:Generator_ColumnPropNameInTable="nombreColumn" msprop:Generator_UserColumnName="nombre" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="127" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="lunes" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnlunes" msprop:Generator_ColumnPropNameInRow="lunes" msprop:Generator_ColumnPropNameInTable="lunesColumn" msprop:Generator_UserColumnName="lunes" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="22" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="martes" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnmartes" msprop:Generator_ColumnPropNameInRow="martes" msprop:Generator_ColumnPropNameInTable="martesColumn" msprop:Generator_UserColumnName="martes" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="22" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="miercoles" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnmiercoles" msprop:Generator_ColumnPropNameInRow="miercoles" msprop:Generator_ColumnPropNameInTable="miercolesColumn" msprop:Generator_UserColumnName="miercoles" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="22" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="jueves" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnjueves" msprop:Generator_ColumnPropNameInRow="jueves" msprop:Generator_ColumnPropNameInTable="juevesColumn" msprop:Generator_UserColumnName="jueves" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="22" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="viernes" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnviernes" msprop:Generator_ColumnPropNameInRow="viernes" msprop:Generator_ColumnPropNameInTable="viernesColumn" msprop:Generator_UserColumnName="viernes" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="22" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="sabado" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnsabado" msprop:Generator_ColumnPropNameInRow="sabado" msprop:Generator_ColumnPropNameInTable="sabadoColumn" msprop:Generator_UserColumnName="sabado" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="22" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:cle_seleccion" />
+      <xs:field xpath="mstns:periodo" />
+      <xs:field xpath="mstns:no_de_control" />
+      <xs:field xpath="mstns:nivel" />
+      <xs:field xpath="mstns:grupo" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

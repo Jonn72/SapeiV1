@@ -1,0 +1,211 @@
+﻿
+.posicion {
+    float: left;
+    padding: 5px;
+    height: 100%;
+    width: 100%;
+    display: inline-block;
+    /* position: relative;*/
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+    transition: .6s ease all
+}
+
+
+.posicion2 {
+    float: left;
+    padding: 5px;
+    display: inline-block;
+    height: auto;
+    width: 180%;
+    /*   position: relative;*/
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+    transition: .6s ease all
+}
+
+h5 {
+    margin-top: 0;
+    margin-bottom: .5rem
+}
+
+h4{
+    color: darkslategrey;
+}
+
+.title {
+    line-height: 1.3rem;
+    position: inherit;
+    top: 10px;
+    left: 10px;
+   
+  /*  font-size: 20px;*/
+    color: darkblue;
+    line-height: 1.3rem;
+    max-height: calc(1.3rem * 4)
+}
+
+.title1 {
+    line-height: 1.3rem;
+    position: inherit;
+    top: 10px;
+   right: 10px;
+   /* font-size: 20px;*/
+    color: darkblue;
+    line-height: 1.3rem;
+    max-height: calc(1.3rem * 4)
+}
+
+.card {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+}
+
+card-header:first-child {
+    border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
+}
+
+.card-header {
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    background-color: rgba(0, 0, 0, 0.03);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.card-body {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1.25rem;
+}
+.div-img {
+    display: inline-block;
+}
+
+    .div-img .img {
+      
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+        display: inline-block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        transform: scale(1);
+        -ms-transform: scale(1);
+        -moz-transform: scale(1);
+        -webkit-transform: scale(1);
+        -o-transform: scale(1);
+        -webkit-transition: all 500ms ease-in-out;
+        -moz-transition: all 500ms ease-in-out;
+        -ms-transition: all 500ms ease-in-out;
+        -o-transition: all 500ms ease-in-out;
+    }
+
+    .div-img .text  {
+     /*   font-family: "Open Sans";*/
+        padding-top: 5px;
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+        transform: translate(0px);
+        -webkit-transition: all 500ms ease-in-out;
+        -moz-transition: all 500ms ease-in-out;
+        -ms-transition: all 500ms ease-in-out;
+        -o-transition: all 500ms ease-in-out;
+        opacity: 0;
+        transition: transfom opacity 1.5s;
+    }
+
+    .div-img:hover .img {
+        transform: scale(0.8);
+        -ms-transform: scale(0.8);
+        -moz-transform: scale(0.8);
+        -webkit-transform: scale(0.8);
+        -o-transform: scale(0.8);
+    }
+
+    .div-img:hover .text {
+        transform: translate(0px, -20px);
+        opacity: 1;
+    }
+
+.img-centro{
+    margin: 60px auto 0px;
+}
+
+.texto{
+    text-align: justify
+  }
+
+.imagenes {
+    float: left;
+  /*  padding: 5px;*/
+    height: 300px;
+    width: 40%;
+    position: center;
+  
+}
+
+.imagenes1 {
+    float: right;
+    /*padding: 5px;*/
+    height: 300px;
+    width: 40%;
+    position: center;
+}
+
+.hr{
+    border: none;
+    height: 5px;
+    color:darkolivegreen;
+    background: darkolivegreen;
+
+}
+
+/*.burbujas{
+content: '';
+background-image: url('/Images/bubble.svg');
+background-repeat: no-repeat;
+background-size: contain;*/
+/*display: inline-block;*/
+/*height: 50px;
+padding: 0;
+position: absolute;
+vertical-align: text-bottom;
+width: 15%;
+left: -2rem;
+bottom: -2rem;
+left: 20.6rem;
+top: 20.5rem;
+}*/
+
+
+.threed {
+    box-shadow: 20px 13px 13px 13px rgba(0,0,0,0.75);
+/*    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);*/
+    /*  -webkit-transform: translateX(-5px);
+    transform: translateX(-5px);
+*/
+}
+
+.threed1 {
+    box-shadow: -20px 13px 13px 13px rgba(0,0,0,0.72);
+    /*    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);*/
+    /*  -webkit-transform: translateX(-5px);
+    transform: translateX(-5px);
+*/
+}
