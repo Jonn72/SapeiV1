@@ -1,55 +1,117 @@
-﻿<div class="bats-container"></div>
-<div class="ghost-container"></div>
-
-<div id="wrapper">
+﻿<div id="wrapper">
     <div class="vertical-align-wrap">
         <div class="vertical-align-middle">
-            <div class="auth-box font-texto ">
+            <div class="auth-box font-texto">
                 <div class="left">
                     <div class="content">
-                        <div class="alert text-center font-mensaje" role="alert"></div>
-                        <form class="form-auth-small" id="form_log" action="" method="post" accept-charset="utf-8">
-                            <div class="logo text-center"><img src="~/Images/aniversario.png" alt="Logo" style="width: 27%; height: auto;"></div>
+                        <div class="alert text-center font-mensaje"
+                             role="alert"
+                             style="display: none"></div>
+                        <form class="form-auth-small"
+                              id="form_log"
+                              action=""
+                              method="post"
+                              accept-charset="utf-8">
+                            <div class="logo">
+                                <img src="~/Images/tecnm1.png"  
+                                     alt="Logo"
+                                     style="width: 70%; height: 50%" />
+                            </div>
+                            <h2 class="font-extrabold">SAPEI</h2>
+                            <h4 class="fw-400">Bienvenido</h4>
+                            <h4 class="mb-header">
+                                Sistema de Administración de Procesos Estratégicos
+                                Institucionales
+                            </h4>
                             <div class="form-group">
                                 <label for="signup-email" class="control-label sr-only">Usuario</label>
                                 <div class="input-group">
-                                    <span class="input-group-addon "><span class="lnr lnr-user"></span></span>
-                                    <input type="text" class="form-control" placeholder="Usuario" id="usr">
+                                    <span class="input-group-addon">
+                                        <span class="lnr lnr-user"></span>
+                                    </span>
+                                    <input type="text"
+                                           class="form-control"
+                                           placeholder="Usuario"
+                                           id="usr" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="signup-password" class="control-label sr-only">Password</label>
                                 <div class="input-group">
-                                    <span class="input-group-addon "><span class="lnr lnr-lock"></span></span>
-                                    <input type="password" class="form-control" placeholder="Contraseña" id="psw">
+                                    <span class="input-group-addon">
+                                        <span class="lnr lnr-lock"></span>
+                                    </span>
+                                    <input type="password"
+                                           class="form-control"
+                                           placeholder="Contraseña"
+                                           id="psw" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <input class="btn btn_success btn-lg btn-block btn_send" type="submit" value="Iniciar Sesión" />
+                                <input class="btn btn_success btn-lg btn-block btn_send btn_login"
+                                       type="submit"
+                                       value="Iniciar Sesión" />
                             </div>
-                            <div class="bottom">
-                                <h6><span><i class="fa fa-lock"></i> <a href="../Home/Recupera">Restablecer Contraseña</a></span></h6>
-                            </div>
-                            @{
-                                if (Sapei.Framework.Utilerias.SesionSapei.Sistema.Sesion.Periodo.ActivaRegistroAspirantes)
-                                {
-                                    <div class="bottom">
-                                        <a href="../Aspirante/Registro">
-                                            <h6><i class="fa fa-address-card"></i>  Registro de Aspirantes</h6>
-                                        </a>
-                                    </div>
+                            <div class="separators-linethrough"></div>
+                            <div class="d-flex-j-content">
+                                <div class="bottom">
+                                    <i class="fa fa-lock"></i>
+
+                                    <a href="../Home/Recupera">
+                                        <h6>Restablecer Contraseña</h6>
+                                    </a>
+                                </div>
+                                @{
+                                    if (Sapei.Framework.Utilerias.SesionSapei.Sistema.Sesion.Periodo.ActivaRegistroAspirantes)
+                                    {
+                                        <div class="bottom">
+
+                                            <a href="../Aspirante/Registro">
+                                                <i class="fa fa-address-card"></i>
+
+                                                <h6>  Registro de Aspirantes</h6>
+                                            </a>
+                                        </div>
+                                    }
                                 }
-                            }
+
+                            </div>
+                            <div class="text-center mb-subheader">
+                                <img src="~/Images/logo.png" 
+                                     alt="logo tecnm"
+                                     class="logo-footer" />
+                                <div class="credits">
+                                    © Desarrollado por el Tecnológico Nacional de México
+                                    campus Tláhuac
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>
                 <div class="right">
                     <div class="overlay"></div>
-                    <div class="content text">
-                        <h2 class="heading">Tecnológico Nacional de México campus Tláhuac</h2>
+                    <div class="content text data-carousel">
+                        <h2 class="data-carousel-title">
+                            LA ESENCIA DE LA GRANDEZA RADICA EN LAS RAÍCES
+                        </h2>
                         <div class="page-header">
-                            <h1>SAPEI</h1>
-                            <h4>Sistema de Administración de Procesos Estratégicos Institucionales</h4>
+                            <h4 class="data-carousel-description">
+                                La esencia que puede llegar a representar una Institución
+                                distinguiéndola entre las demás debe ser única e
+                                irremplazable, teniendo raíces fuertes desde su crecimiento
+                                hasta su desarrollo, siempre recordando donde nacimos,
+                                crecimos y maduramos en nuestra sociedad, adoptando una
+                                grandeza digna notable y llena de orgullo.
+                            </h4>
+                        </div>
+                        <div class="d-flex-j-content">
+                            <div style="display: flex">
+                                <div style="font-size: 12px;">
+                                    <div class="fw-400">DTA-JSMC-GTS-MAMA-YMIC</div>
+                                    <div class="fw-400">2017-09-20</div>
+                                    <div></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -58,7 +120,6 @@
         </div>
     </div>
 </div>
-
 @Scripts.Render("~/bundles/login")
 
 <script>
@@ -120,3 +181,65 @@
         //}
     });
 </script>
+@*<div class="bats-container"></div>
+    <div class="ghost-container"></div>
+
+    <div id="wrapper">
+        <div class="vertical-align-wrap">
+            <div class="vertical-align-middle">
+                <div class="auth-box font-texto ">
+                    <div class="left">
+                        <div class="content">
+                            <div class="alert text-center font-mensaje" role="alert"></div>
+                            <form class="form-auth-small" id="form_log" action="" method="post" accept-charset="utf-8">
+                                <div class="logo text-center"><img src="~/Images/aniversario.png" alt="Logo" style="width: 27%; height: auto;"></div>
+                                <div class="form-group">
+                                    <label for="signup-email" class="control-label sr-only">Usuario</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon "><span class="lnr lnr-user"></span></span>
+                                        <input type="text" class="form-control" placeholder="Usuario" id="usr">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="signup-password" class="control-label sr-only">Password</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon "><span class="lnr lnr-lock"></span></span>
+                                        <input type="password" class="form-control" placeholder="Contraseña" id="psw">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input class="btn btn_success btn-lg btn-block btn_send" type="submit" value="Iniciar Sesión" />
+                                </div>
+                                <div class="bottom">
+                                    <h6><span><i class="fa fa-lock"></i> <a href="../Home/Recupera">Restablecer Contraseña</a></span></h6>
+                                </div>
+                                @{
+                                    if (Sapei.Framework.Utilerias.SesionSapei.Sistema.Sesion.Periodo.ActivaRegistroAspirantes)
+                                    {
+                                        <div class="bottom">
+                                            <a href="../Aspirante/Registro">
+                                                <h6><i class="fa fa-address-card"></i>  Registro de Aspirantes</h6>
+                                            </a>
+                                        </div>
+                                    }
+                                }
+                            </form>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div class="overlay"></div>
+                        <div class="content text">
+                            <h2 class="heading">Tecnológico Nacional de México campus Tláhuac</h2>
+                            <div class="page-header">
+                                <h1>SAPEI</h1>
+                                <h4>Sistema de Administración de Procesos Estratégicos Institucionales</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+*@

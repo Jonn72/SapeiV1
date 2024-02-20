@@ -1474,8 +1474,6 @@ namespace appSapei.Controllers
 					Aulas loAulas;
 					loAulas = new Aulas(SesionSapei.Sistema);
 					loAulas.Cargar(psAula);
-					if (loAulas.EOF)
-						loAulas.aula = psAula;
 					loAulas.ubicacion = psUbicacion;
 					loAulas.capacidad_aula = psCapacidad;
 					loAulas.observaciones = psObservaciones;
