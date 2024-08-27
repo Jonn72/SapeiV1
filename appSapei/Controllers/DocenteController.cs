@@ -88,7 +88,7 @@ namespace appSapei.Controllers
 						
                     else
                     {
-						lsPeriodo = Sapei.Framework.Utilerias.ManejoPeriodos.PeriodoAnterior(SesionSapei.Sistema.Sesion.Periodo.PeriodoActual, true);
+						lsPeriodo = Sapei.Framework.Utilerias.ManejoPeriodos.PeriodoAnterior(SesionSapei.Sistema.Sesion.Periodo.PeriodoActual, false);
 						
 						ViewData["botonperiodo"] = "<div class=\"x_title\"><h3>Regresar al Periodo Actual</h3><div class=\"clearfix\"></div></div>Al dar click en este boton regresará al periodo actual.<center><a class=\"btn btn-success\" href=\"/Docente/CapturaCalificaciones\" data-ajax-update=\"#BodyPrincipal\" data-ajax-mode=\"replace\" data-ajax-method=\"GET\" data-ajax=\"true\">Periodo Actual</a></center>";
 

@@ -55,7 +55,7 @@ function CargaDatos() {
             MensajesToastrErrorConexion();
         });
 }
-$("#frmAutoReinscripcion").submit(function (event) {
+$("#btnGuardar").click(function (event) {
     event.preventDefault();
     var noControl = $("#txtNoControl").val();
     var periodo = $('#cboPeriodo').val();

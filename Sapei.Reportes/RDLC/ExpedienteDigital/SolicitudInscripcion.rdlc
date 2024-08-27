@@ -817,7 +817,7 @@
                               <Paragraph>
                                 <TextRuns>
                                   <TextRun>
-                                    <Value>Revisión: 0</Value>
+                                    <Value>Revisión: 1</Value>
                                     <Style>
                                       <FontWeight>Bold</FontWeight>
                                       <Color>Gray</Color>
@@ -934,7 +934,6 @@
                   </Image>
                   <Rectangle Name="Rectangle4">
                     <KeepTogether>true</KeepTogether>
-                    <Left>0.03528cm</Left>
                     <Height>2.69262cm</Height>
                     <Width>18.79044cm</Width>
                     <ZIndex>3</ZIndex>
@@ -1357,7 +1356,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Rev. O</Value>
+                    <Value>Rev. 1</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
                     </Style>

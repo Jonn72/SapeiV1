@@ -247,7 +247,7 @@ namespace appSapei.Controllers
 					loParametros.Add(new ParametrosSQL("@no_de_control", psNoControl));
 					loParametros.Add(new ParametrosSQL("@recibo_pago", psRecibo));
 					loParametros.Add(new ParametrosSQL("@monto_pago", piMonto));
-					loReader = SesionSapei.Sistema.Conexion.EjecutaProcedimientoAlmacenadoDataReader("pam_autoriza_inscripcion", loParametros);
+					loReader = SesionSapei.Sistema.Conexion.EjecutaProcedimientoAlmacenadoDataReader("pam_autoriza_verano", loParametros);
 					lsMensaje = "";
 					if (loReader.HasRows)
 					{
@@ -263,18 +263,8 @@ namespace appSapei.Controllers
 					loParametros.Add(new ParametrosSQL("@periodo", psPeriodo));
 					loParametros.Add(new ParametrosSQL("@usuario", SesionSapei.Sistema.Sesion.Usuario.Usuario));
 					SesionSapei.Sistema.Conexion.EjecutaProcedimientoAlmacenadoDataReader("pam_avisos_reins_log", loParametros);
-					if (!lsMensaje.ToLower().Contains("correctamente"))
-						return ManejoMensajesJson.RegresaMensajeJsonBusqueda(lsMensaje, true);
-
-					// Se arma cadena para notificacion en gnosis
-					if (psPeriodo.EsVerano())
-						lsTitulo = "Pago de verano";
-					else
-						lsTitulo = "Pago de inscripción";
-
-					lsMensaje = lsMensaje + "|" + Sapei.Framework.Utilerias.Funciones.FuncionesCifrado.RegresaMensajeCifrado(psNoControl, SesionSapei.Sistema.Sesion.Usuario.RolUsuario.ToString(), lsTitulo, lsMensaje);
-
 					return ManejoMensajesJson.RegresaMensajeJsonBusqueda(lsMensaje, true);
+
 				}
 			}
 			catch (Exception ex)

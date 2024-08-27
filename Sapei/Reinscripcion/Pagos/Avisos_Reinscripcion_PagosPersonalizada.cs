@@ -89,7 +89,7 @@ namespace Sapei
 				if (string.IsNullOrWhiteSpace(lsRegistro))
 					continue;
 				lasRegistro = lsRegistro.Trim().Split(',');
-				if (lasRegistro.Length != 11)
+				if (lasRegistro.Length != 12)
 					return "El archivo no contiene el número de columnas requeridas en la fila " + Convert.ToString(liFIla);
 
 				lsControl = lasRegistro[10].Trim().LTrim('0');
