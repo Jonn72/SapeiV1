@@ -70,9 +70,8 @@
       <HintPath>..\Sapei.Reportes\bin\Debug\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
-    <Reference Include="SpreadsheetGear, Version=6.0.3.236, Culture=neutral, PublicKeyToken=39c186f5904944ec, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\SpreadsheetGear.dll</HintPath>
+    <Reference Include="SpreadsheetGear, Version=9.3.6.102, Culture=neutral, PublicKeyToken=39c186f5904944ec, processorArchitecture=MSIL">
+      <HintPath>..\packages\SpreadsheetGear.9.3.6\lib\netstandard2.0\SpreadsheetGear.dll</HintPath>
     </Reference>
     <Reference Include="Syncfusion.Compression.Base, Version=19.3450.0.43, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <HintPath>..\packages\Syncfusion.HtmlToPdfConverter.Blink.AspNet.Mvc5.19.3.0.43\lib\net45\Syncfusion.Compression.Base.dll</HintPath>
@@ -98,6 +97,10 @@
     </Reference>
     <Reference Include="System.IO.Packaging, Version=4.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IO.Packaging.4.5.0\lib\net46\System.IO.Packaging.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
