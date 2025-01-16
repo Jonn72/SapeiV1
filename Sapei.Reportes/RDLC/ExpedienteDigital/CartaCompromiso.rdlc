@@ -9,21 +9,23 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>CARTA COMPROMISO</Value>
+                <Value>Carta Compromiso para la entrega del certificado de bachillerato</Value>
                 <Style>
                   <FontSize>12pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox21</rd:DefaultName>
         <Top>4.30953cm</Top>
-        <Left>8.99266cm</Left>
-        <Height>0.6cm</Height>
-        <Width>4.85444cm</Width>
+        <Left>3.83329cm</Left>
+        <Height>0.73229cm</Height>
+        <Width>13.7669cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -95,7 +97,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>                                      ABISAI MORALES JIMENEZ</Value>
+                <Value>                                      ALBERTO MERINO HERRERIAS</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>
@@ -151,95 +153,13 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Por medio de la presente, me  COMPROMETO  con usted a entregar el  certificado de terminación  de estudios de Nivel Medio Superior previo al próximo período de reinscripción, tomando en cuenta lo estipulado al acuerdo</Value>
+                <Value>Por este medio y BAJO PROTESTA DE DECIR LA VERDAD manifiesto tener acreditado mi bachillerato; comprometiéndome a entregar el certificado de terminación de estudios de Nivel Medio Superior en un plazo máximo improrrogable de seis meses conforme a lo previsto en el Artículo Sexto del Acuerdo No 1/SPC publicado en el Diario Oficial de la Federación el 17 de diciembre de 1997; en el pleno conocimiento que de no hacerlo así, se me suspendera la reinscripción al semestre inmediato superior (segundo semestre).</Value>
                 <Style />
               </TextRun>
             </TextRuns>
             <Style>
               <TextAlign>Left</TextAlign>
             </Style>
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>No. 1/SPC publicado en el diario Oficial de la Federación, el 17 de Diciembre de 1997.  Estando consciente que de no hacerlo así:</Value>
-                <Style />
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Left</TextAlign>
-            </Style>
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value />
-                <Style />
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Left</TextAlign>
-            </Style>
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>         ° Se me </Value>
-                <Style />
-              </TextRun>
-              <TextRun>
-                <Value>suspenda la inscripción</Value>
-                <Style>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value> al sigueinte semestre.</Value>
-                <Style />
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Left</TextAlign>
-            </Style>
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>         ° Si la fecha de aprovación de la última materia especificada en dicho documento rebasa de 2                                 meses a partir de mi fecha de inscripción me dara de </Value>
-                <Style />
-              </TextRun>
-              <TextRun>
-                <Value>baja del plantel</Value>
-                <Style>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value> por violación de ciclo.   </Value>
-                <Style />
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Left</TextAlign>
-            </Style>
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value xml:space="preserve">    </Value>
-                <Style />
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>Sin otro particular,reciba un cordial saludo.</Value>
-                <Style />
-              </TextRun>
-            </TextRuns>
-            <Style />
           </Paragraph>
           <Paragraph>
             <TextRuns>
@@ -655,7 +575,7 @@
                       <Paragraph>
                         <TextRuns>
                           <TextRun>
-                            <Value>Revisión: 1</Value>
+                            <Value>Revisión: 2</Value>
                             <Style>
                               <FontWeight>Bold</FontWeight>
                               <Color>Gray</Color>
@@ -772,7 +692,8 @@
           </Image>
           <Rectangle Name="Rectangle4">
             <KeepTogether>true</KeepTogether>
-            <Left>0.03528cm</Left>
+            <Top>0cm</Top>
+            <Left>0.0746cm</Left>
             <Height>2.69262cm</Height>
             <Width>18.79044cm</Width>
             <ZIndex>3</ZIndex>
