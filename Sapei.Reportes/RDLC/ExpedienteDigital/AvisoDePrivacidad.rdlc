@@ -9,7 +9,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>AVISO DE PRIVACIDAD</Value>
+                <Value>AVISO DE PRIVACIDAD SIMPLIFICADO</Value>
                 <Style>
                   <FontSize>11pt</FontSize>
                   <FontWeight>Bold</FontWeight>
@@ -21,9 +21,9 @@
         </Paragraphs>
         <rd:DefaultName>Textbox3</rd:DefaultName>
         <Top>6.66432cm</Top>
-        <Left>8.91328cm</Left>
+        <Left>7.32578cm</Left>
         <Height>0.52062cm</Height>
-        <Width>5.09292cm</Width>
+        <Width>7.55355cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -41,17 +41,163 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>De acuerdo con lo  Previsto en la   </Value>
+                <Value>El </Value>
                 <Style />
               </TextRun>
               <TextRun>
-                <Value>"  Ley federal de protección de Datos Personales  "  </Value>
+                <Value>Tecnológico Nacional de México (TecNM)</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>,  declara  el  Instituto Tecnológico de Tláhuac ser una institución legalmente constituida de conformidad  con las leyes mexicanas, con  domicilio  en  Av. Estanislao  Ramírez  No. 301, Col. Ampliación Selene,  C.P. 13430,  Alcaldia. Tláhuac; y como responsable del tratamiento de sus datos personales, hace de su conocimiento que:</Value>
+                <Value>, a través de sus oficinas centrales adscritas a la Dirección General, con domicilio en Av. Universidad 1200, 5to Piso, Colonia Xoco, Alcaldía Benito Juárez, CP. 03330, Ciudad de México, es responsable de recabar sus datos personales, del tratamiento de los mismos, de su protección y resguardo, con fundamento en los artículos 3º, fracción II, 16, 17, 18, 21, 25, 26, 27, 28 y 65 de la Ley General de Protección de Datos Personales en Posesión de Sujetos Obligados, publicada en el Diario Oficial de la Federación el 26 de enero de 2017. </Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Finalidades para recabar sus datos personales son las siguientes: </Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>La recolección de los datos personales por parte de este Órgano Desconcentrado se efectuará en el cumplimento de las siguientes finalidades:</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>• Eliminación de datos personales contenidos en las documentales que dan respuesta a las solicitudes de acceso a la información, recursos de revisión, y cumplimientos emitidos por el Pleno del Instituto Nacional de Transparencia, Acceso a la Información y Protección de Datos Personales. </Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>• Llevar a cabo las gestiones necesarias para el otorgamiento de becas, estímulos y otros medios de apoyo para los estudiantes del Tecnológico Nacional de México. </Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>• Llevar a cabo las actividades relacionadas con la expedición y registro de certificados, títulos y grados académicos del TecNM.  </Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>• Realizar los trámites relacionados con la expedición de las cédulas de los egresados de los institutos, unidades y centros ante la Dirección General de Profesiones de la Secretaría de Educación Pública </Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>• Suscripción de convenios de vinculación con los sectores social, público y privado con el Tecnológico Nacional de México. </Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>• Inscripción para participar en eventos, concursos, congresos, simposios, seminarios y reuniones de carácter académico, científica e innovación en el Tecnológico Nacional de México, para desarrollar la investigación aplicada, científica y tecnológica. </Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>• Inscripción para participar en eventos de cultura, arte, educación cívica, participación comunitaria, educación para la salud y deportes del Tecnológico Nacional de México. </Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>• Coordinar el proceso de promoción para el personal docente de los Institutos Tecnológicos, unidades y centros.  </Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>• Elaborar y evaluar los Sistema de Gestión de Calidad, ambiental, de la energía y de la seguridad y salud en el trabajo. </Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>• Trámites de prestaciones y movimientos de personal, como altas, bajas, promociones, licencias, modificaciones de datos personales y demás incidencias del personal adscrito al Tecnológico Nacional de México. </Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>• Realizar los procesos licitatorios para la adquisición de mobiliario y equipo. </Value>
                 <Style />
               </TextRun>
             </TextRuns>
@@ -78,6 +224,34 @@
         <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
         <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>De acuerdo con lo  Previsto en la   </Value>
+                <Style />
+              </TextRun>
+              <TextRun>
+                <Value>"  Ley federal de protección de Datos Personales  "  </Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>,  declara  el  Instituto Tecnológico de Tláhuac ser una institución legalmente constituida de conformidad  con las leyes mexicanas, con  domicilio  en  Av. Estanislao  Ramírez  No. 301, Col. Ampliación Selene,  C.P. 13430,  Alcaldia. Tláhuac; y como responsable del tratamiento de sus datos personales, hace de su conocimiento que:</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
           <Paragraph>
             <TextRuns>
               <TextRun>
