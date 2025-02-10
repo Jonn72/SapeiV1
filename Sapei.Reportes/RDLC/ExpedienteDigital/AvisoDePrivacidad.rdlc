@@ -107,7 +107,16 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>• Eliminación de datos personales contenidos en las documentales que dan respuesta a las solicitudes de acceso a la información, recursos de revisión, y cumplimientos emitidos por el Pleno del Instituto Nacional de Transparencia, Acceso a la Información y Protección de Datos Personales. </Value>
+                <Value>• Eliminación de datos personales contenidos en las documentales que dan respuesta a las solicitudes de acceso a la información, recursos de revisión, y cumplimientos emitidos por el Pleno del Instituto Nacional de Transparencia, Acceso a la Información y Protección de Datos Personales.</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
                 <Style />
               </TextRun>
             </TextRuns>
@@ -125,7 +134,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>• Llevar a cabo las actividades relacionadas con la expedición y registro de certificados, títulos y grados académicos del TecNM.  </Value>
+                <Value />
                 <Style />
               </TextRun>
             </TextRuns>
@@ -134,7 +143,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>• Realizar los trámites relacionados con la expedición de las cédulas de los egresados de los institutos, unidades y centros ante la Dirección General de Profesiones de la Secretaría de Educación Pública </Value>
+                <Value>• Llevar a cabo las actividades relacionadas con la expedición y registro de certificados, títulos y grados académicos del TecNM.</Value>
                 <Style />
               </TextRun>
             </TextRuns>
@@ -143,7 +152,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>• Suscripción de convenios de vinculación con los sectores social, público y privado con el Tecnológico Nacional de México. </Value>
+                <Value />
                 <Style />
               </TextRun>
             </TextRuns>
@@ -152,7 +161,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>• Inscripción para participar en eventos, concursos, congresos, simposios, seminarios y reuniones de carácter académico, científica e innovación en el Tecnológico Nacional de México, para desarrollar la investigación aplicada, científica y tecnológica. </Value>
+                <Value>• Realizar los trámites relacionados con la expedición de las cédulas de los egresados de los institutos, unidades y centros ante la Dirección General de Profesiones de la Secretaría de Educación Pública.</Value>
                 <Style />
               </TextRun>
             </TextRuns>
@@ -161,7 +170,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>• Inscripción para participar en eventos de cultura, arte, educación cívica, participación comunitaria, educación para la salud y deportes del Tecnológico Nacional de México. </Value>
+                <Value />
                 <Style />
               </TextRun>
             </TextRuns>
@@ -170,7 +179,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>• Coordinar el proceso de promoción para el personal docente de los Institutos Tecnológicos, unidades y centros.  </Value>
+                <Value>• Suscripción de convenios de vinculación con los sectores social, público y privado con el Tecnológico Nacional de México.</Value>
                 <Style />
               </TextRun>
             </TextRuns>
@@ -179,7 +188,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>• Elaborar y evaluar los Sistema de Gestión de Calidad, ambiental, de la energía y de la seguridad y salud en el trabajo. </Value>
+                <Value />
                 <Style />
               </TextRun>
             </TextRuns>
@@ -188,7 +197,88 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>• Trámites de prestaciones y movimientos de personal, como altas, bajas, promociones, licencias, modificaciones de datos personales y demás incidencias del personal adscrito al Tecnológico Nacional de México. </Value>
+                <Value>• Inscripción para participar en eventos, concursos, congresos, simposios, seminarios y reuniones de carácter académico, científica e innovación en el Tecnológico Nacional de México, para desarrollar la investigación aplicada, científica y tecnológica.</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>• Inscripción para participar en eventos de cultura, arte, educación cívica, participación comunitaria, educación para la salud y deportes del Tecnológico Nacional de México.</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>• Coordinar el proceso de promoción para el personal docente de los Institutos Tecnológicos, unidades y centros.</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>• Elaborar y evaluar los Sistema de Gestión de Calidad, ambiental, de la energía y de la seguridad y salud en el trabajo.</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>• Trámites de prestaciones y movimientos de personal, como altas, bajas, promociones, licencias, modificaciones de datos personales y demás incidencias del personal adscrito al Tecnológico Nacional de México.</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
                 <Style />
               </TextRun>
             </TextRuns>
@@ -203,27 +293,161 @@
             </TextRuns>
             <Style />
           </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>8.24273cm</Top>
-        <Left>2.2606cm</Left>
-        <Height>1.89646cm</Height>
-        <Width>17.90417cm</Width>
-        <ZIndex>1</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox5">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Transferencia de datos personales </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>El Tecnológico Nacional de México a través de sus oficinas centrales adscritas a la Dirección General, le informa que sus datos personales no serán transferidos, difundidos, ni distribuidos salvo lo señalado en el artículo 22 de la Ley General de Protección de Datos Personales en Posesión de Sujetos Obligados.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>En el caso del tratamiento de los </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>datos sensibles</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>, se estará sujeto a lo previsto por los artículos 3º, fracción X, 7º y 21 de la Ley General de Protección de Datos Personales en Posesión de Sujetos Obligados. </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Usted puede conocer nuestro aviso de privacidad integral en la página electrónica del Tecnológico Nacional de México: </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>https://www.tecnm.mx/?vista=Proteccion_Datos_Personales</Value>
+                <ActionInfo>
+                  <Actions>
+                    <Action>
+                      <Hyperlink>https://www.tecnm.mx/?vista=Proteccion_Datos_Personales</Hyperlink>
+                    </Action>
+                  </Actions>
+                </ActionInfo>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
           <Paragraph>
             <TextRuns>
               <TextRun>
@@ -262,12 +486,12 @@
             <Style />
           </Paragraph>
         </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>10.31558cm</Top>
+        <rd:DefaultName>Textbox4</rd:DefaultName>
+        <Top>8.24273cm</Top>
         <Left>2.2606cm</Left>
-        <Height>3.72208cm</Height>
+        <Height>5.60063cm</Height>
         <Width>17.90417cm</Width>
-        <ZIndex>2</ZIndex>
+        <ZIndex>1</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -297,7 +521,7 @@
         <Left>4.26426cm</Left>
         <Height>0.6cm</Height>
         <Width>4.32563cm</Width>
-        <ZIndex>3</ZIndex>
+        <ZIndex>2</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -317,7 +541,7 @@
         <Left>4.52884cm</Left>
         <Height>4cm</Height>
         <Width>4cm</Width>
-        <ZIndex>4</ZIndex>
+        <ZIndex>3</ZIndex>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -365,7 +589,7 @@
         <Left>4.59153cm</Left>
         <Height>2.58438cm</Height>
         <Width>3.93731cm</Width>
-        <ZIndex>5</ZIndex>
+        <ZIndex>4</ZIndex>
         <Visibility>
           <Hidden>true</Hidden>
         </Visibility>
@@ -388,7 +612,7 @@
         <Left>13.13615cm</Left>
         <Height>4cm</Height>
         <Width>4cm</Width>
-        <ZIndex>6</ZIndex>
+        <ZIndex>5</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -430,7 +654,7 @@
         <Left>13.13615cm</Left>
         <Height>2.98126cm</Height>
         <Width>4cm</Width>
-        <ZIndex>7</ZIndex>
+        <ZIndex>6</ZIndex>
         <Visibility>
           <Hidden>true</Hidden>
         </Visibility>
@@ -467,7 +691,7 @@
         <Left>18.26791cm</Left>
         <Height>0.67938cm</Height>
         <Width>2.3202cm</Width>
-        <ZIndex>8</ZIndex>
+        <ZIndex>7</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -501,7 +725,7 @@
         <Left>13.13615cm</Left>
         <Height>1.23499cm</Height>
         <Width>4cm</Width>
-        <ZIndex>9</ZIndex>
+        <ZIndex>8</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -540,7 +764,7 @@
         <Left>2.2606cm</Left>
         <Height>0.62645cm</Height>
         <Width>7.72545cm</Width>
-        <ZIndex>10</ZIndex>
+        <ZIndex>9</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -576,7 +800,7 @@
         <Left>2.2606cm</Left>
         <Height>0.73201cm</Height>
         <Width>11.28034cm</Width>
-        <ZIndex>11</ZIndex>
+        <ZIndex>10</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -634,7 +858,7 @@
         <Left>2.2606cm</Left>
         <Height>0.6cm</Height>
         <Width>6.32929cm</Width>
-        <ZIndex>12</ZIndex>
+        <ZIndex>11</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -668,7 +892,7 @@
         <Left>4.52884cm</Left>
         <Height>0.57156cm</Height>
         <Width>3.93731cm</Width>
-        <ZIndex>13</ZIndex>
+        <ZIndex>12</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -700,7 +924,7 @@
         <Left>13.13615cm</Left>
         <Height>0.6cm</Height>
         <Width>4.29104cm</Width>
-        <ZIndex>14</ZIndex>
+        <ZIndex>13</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
