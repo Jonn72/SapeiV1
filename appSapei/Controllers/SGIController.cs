@@ -89,6 +89,9 @@ namespace appSapei.Controllers
                    int liIEL = 0;
                    int liIMC = 0;
                    int liISA = 0;
+                   int liCOP = 0;
+                   int liIFE = 0;
+                   int liADM = 0;
                    int liPorcentaje = 0;
 
                    lsPeriodo = psPeriodo;
@@ -118,7 +121,16 @@ namespace appSapei.Controllers
                              case "IMC":
                                   liIMC = loDr.RegresaValor<int>("total");
                                   break;
-                        }
+                             case "COP":
+                                  liCOP = loDr.RegresaValor<int>("total");
+                                   break;
+                             case "ADM":
+                                  liADM = loDr.RegresaValor<int>("total");
+                                    break;
+                             case "IFE":
+                                  liIFE = loDr.RegresaValor<int>("total");
+                                   break;
+                    }
                    }
                    ViewData["titulo_pagina"] = "Encuestas realizadas";
                    ViewData["url"] = "SGI/EstadisticasEncuestas";
@@ -147,7 +159,19 @@ namespace appSapei.Controllers
                    ViewData["TotalIEL"] = liIEL;
                    ViewData["PorcentajeIEL"] = liPorcentaje;
 
-                   ViewData["Tabla"] = loInscritos.RegresaDatosGeneralesEncuesta(lsPeriodo); ;
+                   liPorcentaje = (liCOP * 100) / (liTotalInscritos);
+                   ViewData["TotalCOP"] = liCOP;
+                   ViewData["PorcentajeCOP"] = liPorcentaje;
+
+                   liPorcentaje = (liADM * 100) / (liTotalInscritos);
+                   ViewData["TotalADM"] = liADM;
+                   ViewData["PorcentajeADM"] = liPorcentaje;
+
+                   liPorcentaje = (liIFE * 100) / (liTotalInscritos);
+                   ViewData["TotalIFE"] = liIFE;
+                   ViewData["PorcentajeIFE"] = liPorcentaje;
+
+                ViewData["Tabla"] = loInscritos.RegresaDatosGeneralesEncuesta(lsPeriodo); ;
                    ViewData["Titulo"] = "Estudiantes Registrados";
                    ViewData["Encabezados"] = new List<string> { "Encuesta", "Pregunta", "Respuesta"};
                    ViewData["periodo"] = lsPeriodo;
@@ -155,7 +179,7 @@ namespace appSapei.Controllers
 
                    ViewData["cboFiltros"] = true;
 
-                   ViewData["cboFiltro1"] = new List<string> { "1-Todas","ARQ-Arquitectura", "IEL-Ing. Electrónica", "ISA-Ing. en Sis. Automotrices", "ISI-Ing. en Sistemas Computacional", "IMC-Ing. Mecatrónica" };
+                   ViewData["cboFiltro1"] = new List<string> { "1-Todas","ARQ-Arquitectura", "IEL-Ing. Electrónica", "ISA-Ing. en Sis. Automotrices", "ISI-Ing. en Sistemas Computacionales", "IMC-Ing. Mecatrónica" , "COP-Lic. Contabilidad","ADM-Lic. Administración", "IFE-Ing.Ferroviaria"  };
                    ViewData["txtFiltro1"] = "Carrera";
 
                    ViewData["cboFiltro2"] = new List<string> { "0-Todas", "1-Servicio Social", "2-Centro de Información", "3-Centro de Cómputo", "4-Coordinación de Carreras", "5-Recursos Financieros", "6-Residencias Profesionales", "7-Servicios Escolares" };

@@ -2,36 +2,51 @@
 <input type="hidden" id="hidURL" value="@ViewData["url"]" />
 <input type="hidden" id="hidURL_estadistica" value="@ViewData["url_estadistica"]" />
 <div class="row tile_count">
-     <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count" data-toggle="modal" data-target="#divModal" id="total">
-          <span class="count_top"><i class="fa fa-user"></i> Total de Estudiantes</span>
-          <div class="count">@ViewData["TotalEstudiantes"]</div>
-          <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>.</i> </span>
-     </div>
-     <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-          <span class="count_top"><i class="fa fa-building"></i> Arquitectura</span>
-          <div class="count">@ViewData["TotalARQ"]</div>
-          <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i> @ViewData["PorcentajeARQ"]% </i> </span>
-     </div>
-     <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-          <span class="count_top"><i class="fa fa-car"></i> Ing. Sis. Automotriz</span>
-          <div class="count green">@ViewData["TotalISA"]</div>
-          <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i> @ViewData["PorcentajeISA"]% </i> </span>
-     </div>
-     <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-          <span class="count_top"><i class="fa fa-terminal"></i> Ing. Sis. Computacionales</span>
-          <div class="count green">@ViewData["TotalISI"]</div>
-          <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i> @ViewData["PorcentajeISI"]% </i> </span>
-     </div>
-     <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-          <span class="count_top"><i class="fa fa-gears"></i> Ing. Mecatrónica</span>
-          <div class="count green">@ViewData["TotalIMC"]</div>
-          <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i> @ViewData["PorcentajeIMC"]% </i> </span>
-     </div>
-     <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-          <span class="count_top"><i class="fa fa-plug"></i> Ing. Electrónica</span>
-          <div class="count green">@ViewData["TotalIEL"]</div>
-          <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i> @ViewData["PorcentajeIEL"]% </i></span>
-     </div>
+    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count" data-toggle="modal" data-target="#divModal" id="total">
+        <span class="count_top"><i class="fa fa-user"></i> Total de Estudiantes</span>
+        <div class="count">@ViewData["TotalEstudiantes"]</div>
+        <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>.</i> </span>
+    </div>
+    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+        <span class="count_top"><i class="fa fa-building"></i> Arquitectura</span>
+        <div class="count">@ViewData["TotalARQ"]</div>
+        <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i> @ViewData["PorcentajeARQ"]% </i> </span>
+    </div>
+    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+        <span class="count_top"><i class="fa fa-car"></i> Ing. Sis. Automotriz</span>
+        <div class="count green">@ViewData["TotalISA"]</div>
+        <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i> @ViewData["PorcentajeISA"]% </i> </span>
+    </div>
+    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+        <span class="count_top"><i class="fa fa-terminal"></i> Ing. Sis. Computacionales</span>
+        <div class="count green">@ViewData["TotalISI"]</div>
+        <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i> @ViewData["PorcentajeISI"]% </i> </span>
+    </div>
+    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+        <span class="count_top"><i class="fa fa-gears"></i> Ing. Mecatrónica</span>
+        <div class="count green">@ViewData["TotalIMC"]</div>
+        <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i> @ViewData["PorcentajeIMC"]% </i> </span>
+    </div>
+    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+        <span class="count_top"><i class="fa fa-plug"></i> Ing. Electrónica</span>
+        <div class="count green">@ViewData["TotalIEL"]</div>
+        <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i> @ViewData["PorcentajeIEL"]% </i></span>
+    </div>
+    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+        <span class="count_top"><i class="fa fa-plug"></i> Ing. Ferroviaria</span>
+        <div class="count green">@ViewData["TotalIFE"]</div>
+        <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i> @ViewData["PorcentajeIFE"]% </i></span>
+    </div>
+    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+        <span class="count_top"><i class="fa fa-plug"></i> Lic. Contabilidad</span>
+        <div class="count green">@ViewData["TotalCOP"]</div>
+        <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i> @ViewData["PorcentajeCOP"]% </i></span>
+    </div>
+    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+        <span class="count_top"><i class="fa fa-plug"></i> Lic. Administración</span>
+        <div class="count green">@ViewData["TotalADM"]</div>
+        <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i> @ViewData["PorcentajeADM"]% </i></span>
+    </div>
 </div>
 <div class="clearfix"></div>
 <div class="x_panel">
