@@ -660,7 +660,8 @@ namespace Sapei
             using (var loConexion = new ManejaConexion(_oSistema.Conexion))
             {
                 loParametros.Add(new ParametrosSQL("@no_control", psControl));
-                loDt.Load(_oSistema.Conexion.EjecutaProcedimientoAlmacenadoDataReader("pac_constancia_egresado", loParametros));
+                //loDt.Load(_oSistema.Conexion.EjecutaProcedimientoAlmacenadoDataReader("pac_constancia_egresado", loParametros));
+                loDt.Load(_oSistema.Conexion.EjecutaProcedimientoAlmacenadoDataReader("pac_constancia_titulo_tramite", loParametros));
             }
             //lsNombre = string.Format("{0} {1} {2}", ldtDatos.Rows[0].RegresaValor<string>("nombre"), ldtDatos.Rows[0].RegresaValor<string>("paterno"), ldtDatos.Rows[0].RegresaValor<string>("materno")).ToUpper();
             loReporte.AgregaParametro("constancia", psId);
