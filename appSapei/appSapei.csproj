@@ -392,6 +392,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\themes\Bienvenida.css" />
     <Content Include="Content\themes\css_SII.css" />
     <Content Include="Content\themes\ExpedienteDigital.css" />
     <Content Include="Content\themes\Tecnologico.css" />
