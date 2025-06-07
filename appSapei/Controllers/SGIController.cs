@@ -171,7 +171,7 @@ namespace appSapei.Controllers
                    ViewData["TotalIFE"] = liIFE;
                    ViewData["PorcentajeIFE"] = liPorcentaje;
 
-                   ViewData["Tabla"] = loInscritos.RegresaDatosGeneralesEncuesta(lsPeriodo); ;
+                ViewData["Tabla"] = loInscritos.RegresaDatosGeneralesEncuesta(lsPeriodo); ;
                    ViewData["Titulo"] = "Estudiantes Registrados";
                    ViewData["Encabezados"] = new List<string> { "Encuesta", "Pregunta", "Respuesta"};
                    ViewData["periodo"] = lsPeriodo;

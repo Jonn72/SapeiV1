@@ -2,9 +2,39 @@
 <link rel="stylesheet" href="~/Content/themes/Tecnologico.css" />
 
 
+
 <div style="padding:15px;">
     <h2 align="center">Bienvenido(a) @SesionSapei.Sistema.Sesion.Usuario.Nombre</h2>
 </div>
+
+<!-- Ventana Emergente -->
+@if (SesionSapei.Sistema.Sesion.Usuario.RolUsuario == Sapei.Framework.Configuracion.enmRolUsuario.ALU)
+{
+    <div id="modalBienvenida" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="cerrarModal()">&times;</span>
+            <img src="~/Images/signoadmiracion.png" />
+            <h3>¡Bienvenido Guardian!</h3>
+            <p>Recuerda que debes mantener actualizados tus datos personales.</p>
+            <p>Acude a Servicios Escolares para Verificarlos</p>
+
+        </div>
+    </div>
+
+    <script>
+        window.onload = function () {
+            // Comprobacion para que el modal solo se muestre una vez por sesion
+            if (!sessionStorage.getItem("modalMostrado")) {
+                document.getElementById("modalBienvenida").style.display = "block";
+                sessionStorage.setItem("modalMostrado", "true");
+            }
+        };
+
+        function cerrarModal() {
+            document.getElementById("modalBienvenida").style.display = "none";
+        }
+    </script>
+}
 
 <div class="row"></div>
 <div class="row"></div>
@@ -21,10 +51,12 @@
                     <div class="col-md-4 col-sm-4 col-xs-12">
                         <center>
                             <div class="div-img">
-                                <a class="img img-centro" data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#BodyPrincipal" href="../../Generales/Tecnologico">
-                                    <img class="" src="~/Images/Tecnm.png" width="64%" height="64%" alt="" />
-                                    <br />Conoce tu comunidad TecNM
-                                </a>
+                                        <a class="img img-centro" data-ajax="true" data-ajax-method="GET"
+                                           data-ajax-mode="replace" data-ajax-update="#BodyPrincipal"
+                                           href="../../Generales/Tecnologico">
+                                            <img src="~/Images/Tecnm.png" width="64%" height="64%" alt="" />
+                                            <br />Conoce tu comunidad TecNM
+                                        </a>
                             </div>
                         </center>
 
@@ -68,7 +100,43 @@
             }
         }
 
-
     </div>
-
 </div>
+@*<style>
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.5);
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 10% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 50%;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    .close-modal {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+        .close-modal:hover,
+        .close-modal:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+</style>*@
