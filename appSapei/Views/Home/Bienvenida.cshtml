@@ -1,6 +1,6 @@
 ﻿@using Sapei.Framework.Utilerias;
 <link rel="stylesheet" href="~/Content/themes/Tecnologico.css" />
-
+<link rel="stylesheet" href="~/Content/themes/Bienvenida.css"/>
 
 
 <div style="padding:15px;">
@@ -10,8 +10,8 @@
 <!-- Ventana Emergente -->
 @if (SesionSapei.Sistema.Sesion.Usuario.RolUsuario == Sapei.Framework.Configuracion.enmRolUsuario.ALU)
 {
-    <div id="modalBienvenida" class="modal">
-        <div class="modal-content">
+    <div id="modalBienvenida" class="modalbienvenida">
+        <div class="modal-contenido">
             <span class="close-modal" onclick="cerrarModal()">&times;</span>
             <img src="~/Images/signoadmiracion.png" />
             <h3>¡Bienvenido Guardian!</h3>
@@ -102,6 +102,7 @@
 
     </div>
 </div>
+<<<<<<< HEAD
 @*<style>
     .modal {
         display: none;
@@ -140,3 +141,8 @@
             cursor: pointer;
         }
 </style>*@
+=======
+<style>
+   
+</style>
+>>>>>>> 498e7fcf8a062b9dc26d13ce0c2711a18e182b55
