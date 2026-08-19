@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -946,7 +946,8 @@ namespace Sapei.Framework.Utilerias
 			using (MemoryStream ms = new MemoryStream())
 			{
 				QRCodeGenerator qrGenerator = new QRCodeGenerator();
-				QRCodeGenerator.QRCode qrCode = qrGenerator.CreateQrCode(psTexto, QRCodeGenerator.ECCLevel.Q);
+				QRCoder.QRCodeData qrCodeData = qrGenerator.CreateQrCode(psTexto, QRCodeGenerator.ECCLevel.Q);
+				QRCoder.QRCode qrCode = new QRCoder.QRCode(qrCodeData);
 				using (Bitmap bitMap = qrCode.GetGraphic(20))
 				{
 					bitMap.Save(ms, ImageFormat.Png);
