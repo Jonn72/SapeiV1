@@ -46,7 +46,7 @@ namespace Sapei
                StringBuilder lsConsulta;
                lsConsulta = new StringBuilder();
                lsConsulta.Append("select");
-               lsConsulta.Append(" folio, vuelta, paterno + ' ' + materno + ' ' + nombre nombre, carrera1 carrera,");
+               lsConsulta.Append(" folio, vuelta, paterno, materno, nombre nombre, carrera1 carrera,");
                lsConsulta.Append(" isnull((select no_de_control from aspirantes where folio = A.folio),'') no_de_control, ");
                 lsConsulta.Append(" isnull((select nip from alumnos where no_de_control = A.no_de_control),'') nip ");
 

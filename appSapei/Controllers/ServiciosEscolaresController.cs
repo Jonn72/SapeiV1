@@ -50,7 +50,7 @@ namespace appSapei.Controllers
 					loDt = loConsulta.CargarAspirantes2Estudiantes(psPeriodo);
 					ViewData["Titulo"] = "Relación Aspirantes-Estudiantes Encontrados";
 					ViewData["Tabla"] = loDt;
-					ViewData["Encabezados"] = new List<string> { "Folio", "Vuelta", "Nombre", "Carrera", "No. Control","NIP" };
+					ViewData["Encabezados"] = new List<string> { "Folio", "Vuelta", "Paterno", "Materno","Nombre(s)", "Carrera", "No. Control","NIP" };
 					return PartialView("../Generales/TablaGeneral");
 				}
 			}
